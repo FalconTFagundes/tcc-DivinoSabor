@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body{
+    height: 100%;
+}
+
+.footer-father-f-f{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-father-f{
+    flex: 1 1 auto;
+}
+
+.footer-father{
+    height: 100%;
+    margin: auto;
+}
+
+body {
+    background: #F5F5F5;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+
+/* NAVBAR */
+
+.divNav{
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar{
+    position: relative;
+    height: 90px;
+    width: 500px;
+    background: white;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar ul{
+    position: relative;
+    display: flex;
+}
+
+.navbar ul li{
+    position: relative;
+    list-style-type: none;
+}
+
+.navbar ul li a{
+    position: relative;
+    height: 120px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.navbar ul li a i{
+    position: absolute;
+    font-size: 1.2em; 
+    color: #9e77f1;
+}
+
+ul li a i.activeIcon{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.6s ease;
+}
+
+.navbar ul li.active a i{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.navbar ul .indicator{
+    position: absolute;
+    bottom: -19px;
+    left: 32px;
+    height: 50px;
+    width: 25px;
+    background: #9e77f1;
+    border-radius: 50%;
+    transition: all 0.5s cubic-bezier(0.67, -0.55, 0.265, 1.55);
+}
+
+ul .indicator::before{
+    content: "";
+    position: absolute;
+    left: -17px;
+    bottom: 50%;
+    height: 23px;
+    width: 20px;
+    background: white;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 10px 0 #9e77f1;
+}
+
+ul .indicator::after{
+    content: "";
+    position: absolute;
+    right: -17px;
+    bottom: 50%;
+    height: 23px;
+    width: 20px;
+    background: white;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 10px 0 #9e77f1;
+}
+
+/* MENU MEIO */
+
+.toggle {
+    background: #9e77f1;
+    width: 5.2em;
+    height: 5.2em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+    z-index: 3;
+    border-radius: 50%;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    transition: .3s;
+}
+
+.toggle:hover {
+    transition: .3s;
+    transform: scale(1.1);
+}
+
+.toggle onclick{
+    box-shadow: 0;
+}
+
+.toggle i {
+    font-size: 4em;
+    color: white;
+    display: block;
+    margin-top: 10px;
+    transition: .3s;
+}
+
+.toggle i:hover {
+    color: #caf177;
+}
+
+.menu {
+    background: #ffffff;
+    height: 6.2em;
+    width: 6.2em;
+    border-radius: 50%;
+    transform: scale(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 2;
+    transition: .7s !important;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.menu a {
+    display: flex;
+    position: absolute;
+    font-size: 0.8em;
+    color: #9e77f1;
+    transition: .4s;
+    text-decoration: none;
+    /* background: #9e77f1; */
+}
+
+.menu i {
+    font-size: 1em;
+}
+
+/* controle da posição das crianças do menu */
+
+
+/* 1 - fa-solid fa-list */
+.menu a:nth-child(1) {
+    top: 16px;
+    left: 43px;
+}
+
+/* 2 - fa-solid fa-money-bill-trend-up */
+.menu a:nth-child(2) {
+    top: 43px;
+    left: 72px;
+}
+
+/* 3 - fa-warehouse */
+.menu a:nth-child(3) {
+    top: 43px;
+    left: 12px;
+}
+
+/* 4 - fa-solid fa-chart-column  */
+.menu a:nth-child(4) {
+    top: 74px;
+    left: 43px;
+}
+
+.menu a:hover {
+    color: #caf177;
+    transition: .2s;
+    transform: scale(1.1);
+}
+
+/* HORAS */
+
+.clock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9e77f1;
+    padding: 110px;
+    border-radius: 10px;
+    z-index: -5;
+}
+
+.horas{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 90px;
+    gap: 15px;
+    flex-direction: row;
+}
+
+#Date{
+    font-size: 1.3em !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* FOOTER */
+
+footer {
+    position: relative;
+    width: 100%;
+    background: #9e77f1;
+    min-height: 100px;
+    padding: 20px 50px;
+}
+
+footer .social_icon, footer .menu_footer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+footer .social_icon li, footer .menu_footer li{
+    list-style: none;
+}
+
+footer .social_icon li a{
+    font-size: 1.0em;
+    color: #F5F5F5;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    list-style: none;
+}
+
+footer .social_icon li a:hover{
+    transform: translateY(-10px);
+    transform: scale(1.1);
+    transition: 0.2s;
+    color: #caf177;
+}
+
+footer .social_icon ul{
+    justify-content: center;
+    align-items: center;
+}
+
+
+footer .menu_footer li p{
+    font-size: 0.98em;
+    color: #F5F5F5;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    list-style: none;
+    pointer-events: none;
+}
+
+footer .wave{
+    position: absolute;
+    top: -70px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: url(../images/wave.png);
+    background-size: 1000px 100px;    
+
+}
+
+footer .wave#wave1{
+    z-index: 1;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWave1 9s linear infinite;
+}
+
+footer .wave#wave2{
+    z-index: 0.5;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animateWave2 6s linear infinite;
+}
+
+footer .wave#wave3{
+    z-index: 1;
+    opacity: 0.2;
+    bottom: 0;
+    animation: animateWave1 7s linear infinite;
+}
+
+footer .wave#wave4{
+    z-index: 0.5;
+    opacity: 0.7;
+    bottom: 10px;
+    animation: animateWave2 8s linear infinite;
+}
+
+@keyframes animateWave1{
+    0%
+    {
+        background-position-x: 1000px;
+    }
+    100%
+    {
+        background-position-x: 0px;
+    }
+}
+
+@keyframes animateWave2{
+    0%
+    {
+        background-position-x: 0px;
+    }
+    100%
+    {
+        background-position-x: 1000px;
+    }
+}
+
