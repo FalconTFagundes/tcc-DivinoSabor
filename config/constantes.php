@@ -39,7 +39,7 @@ if ($servidorLocal) {
     define('HOST', 'localhost');
     define('USER', 'root');
     define('PASS', '');
-    define('DBNAME', 'dbcadastro');
+    define('DBNAME', 'db_divinosabor');
 } else {
     define('HOST', '0');
     define('USER', '0');

@@ -18,7 +18,7 @@ function checarLogin($tabela, $valor1, $valor2)
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT cpf, senha FROM $tabela WHERE cpf = ? AND senha = ?");
+        $sqlLista = $conn->prepare("SELECT email, senha FROM $tabela WHERE email = ? AND senha = ?");
         $sqlLista->bindValue(1, $valor1, PDO::PARAM_STR);
         $sqlLista->bindValue(2, $valor2, PDO::PARAM_STR);
         $sqlLista->execute();
@@ -2502,6 +2502,27 @@ function listarGeral($campos, $tabela)
     $conn = null;
 }
 
+// listar eventos
+function listarEventos($campos, $tabela)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->query("SELECT $campos "
+            . "FROM $tabela ");
+        $sqlLista->execute();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return 'Vazio';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
 
 function listarTodosPizza($campo, $tabela)
 {

@@ -271,4 +271,10 @@ function inserirRegistros($tabela, $campos, $valores)
 
 ;
 
+
+
+
+
+
+
 ?>
