@@ -26,7 +26,10 @@ include_once './func/dashboard.php';
   </thead>
   <?php
   $retornoListarPedidos = listarGeral('idpedidos, nome, status, detalhes, cadastro, alteracao, ativo', 'pedidos');
-  if (!empty($retornoListarPedidos)) {
+  if(empty($retornoListarPedidos)){
+    echo 'vazio';
+  }
+  if (!empty($retornoListarPedidos))   {
     foreach ($retornoListarPedidos as $itemPedido) {
       $idPedido = $itemPedido->idpedidos;
       $nomePedido = $itemPedido->nome;
@@ -44,17 +47,18 @@ include_once './func/dashboard.php';
           <td>
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
               <button type="button" class="btn btn-success">Ativar</button>
-              <button type="button" class="btn btn-danger">Excluir</button>
+              <button type="submit" class="btn btn-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedido', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')">Excluir</button>
             </div>
           </td>
 
         </tr>
 
       </tbody>
-  <?php  }
-  } ?>
+  <?php
+    }
+  }
+ ?>
 </table>
-
 
 
 

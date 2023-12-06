@@ -37,6 +37,57 @@ function cadGeral(formId, modalId, pageAcao, pageRetorno) {
 }
 
 
+function excGeral(idvar, acaopage, pageretorno, m1, m2) {
+    Swal.fire({
+        title: m1,
+        text: m2,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            var dados = {
+                acao: acaopage,
+                id: idvar
+            }
+
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'Operação Cancelada',
+                'error'
+            )
+        }
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'HTML',
+            url: 'controle.php',
+            data: dados,
+            beforeSend: function (retorno) {
+            }, success: function (retorno) {
+
+                Swal.fire(
+                    'Arquivo Deletado!',
+                    'O arquivo foi deletado com sucesso',
+                    'success'
+                )
+                setTimeout(function () {
+                    atualizarPagina(pageretorno);
+                }, 1000)
+            }
+
+
+        });
+    })
+}
+
+
+
+
 function atualizarPagina(dataMenu) {
     var dados = {
         acao: dataMenu

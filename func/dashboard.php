@@ -4673,4 +4673,17 @@ function possuiCamposVaziosArray(array $arrayCampos): bool
     return count($dif) === 0 ? false : true;
 }
 
+function excluirDashboard($tabela, $campoid, $id)
+{
+    $conn = conectar();
+    $queryListar = $conn->prepare("DELETE FROM $tabela WHERE $campoid = $id");
+    $queryListar->execute();
+    if ($queryListar->rowCount() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 ?>

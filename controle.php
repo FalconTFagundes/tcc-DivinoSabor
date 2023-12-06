@@ -44,5 +44,9 @@ switch ($acao) {
     case 'cadastrarPedidos':
         include_once './pages/pedidos/cadastrarPedidos.php';
         break;
+
+    case 'excluirPedido':
+        include_once './pages/pedidos/excluirPedido.php';
+        break;
         
 }
