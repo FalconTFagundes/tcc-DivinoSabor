@@ -97,7 +97,7 @@ function msgGeral(msg, tipo) {
     });
 }
 
-function ativarGeral(id, ativovar, acaopage, pageretorno) {
+function ativarGeral(id, ativovar, acaopage, pageretorno, m1) {
     if (ativovar == 'ativar') {
         var ativo = 'A';
     } else {
@@ -118,9 +118,9 @@ function ativarGeral(id, ativovar, acaopage, pageretorno) {
         }, success: function (retorno) {
             if (retorno == 'Atualizado') {
                 if (ativo == 'D') {
-                    msgGeral('Desativado!', 'success');
+                    msgGeral(m1, 'success');
                 } else {
-                    msgGeral('Ativado!', 'success');
+                    msgGeral(m1, 'success');
                 }
                 atualizarPagina(pageretorno);
                 setTimeout(function () {

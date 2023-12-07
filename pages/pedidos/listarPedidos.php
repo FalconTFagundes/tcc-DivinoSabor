@@ -71,11 +71,11 @@ if (strtotime($dataAtual) >= strtotime($dataEntrega)) {
               <?php
               if ($ativoPedido == 'A') {
               ?>
-                <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido;?>,'desativar','ativarPedidos','listarPedidos');"> <i class="fa-solid fa-unlock"></i> Não Concluído</button>
+                <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido;?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock"></i> Não Concluído</button>
               <?php
               } else {
               ?>
-                <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos');"><i class="fa-solid fa-lock"></i> Concluído</button>
+                <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos', 'Pedido marcado como não concluído');"><i class="fa-solid fa-lock"></i> Concluído</button>
 
               <?php
               }
@@ -100,18 +100,24 @@ if (strtotime($dataAtual) >= strtotime($dataEntrega)) {
      
 <style>
     .entregaVermelha {
-      background-color: red;
+      border-radius: 40px 80px;
+      background-color: #FF6347;
       color: white;
+      font-weight: bold;
     }
 
     .entregaAmarela {
-      background-color: yellow;
-      color: black;
+      border-radius: 40px 80px;
+      background-color: #FFD700;
+      color: white;
+      font-weight: bold;
     }
 
     .entregaVerde {
-      background-color: green;
+      border-radius: 40px 80px;
+      background-color: #32CD32;
       color: white;
+      font-weight: bold;
     }
   </style>
 
@@ -142,7 +148,7 @@ if (strtotime($dataAtual) >= strtotime($dataEntrega)) {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
           <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadPedido','modalCadPedido','cadastrarPedidos','listarPedidos');">Cadastrar</button>
         </div>
       </form>
