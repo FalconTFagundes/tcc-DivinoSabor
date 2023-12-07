@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/12/2023 às 02:11
+-- Tempo de geração: 07/12/2023 às 02:24
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -53,21 +53,20 @@ INSERT INTO `calendario` (`id`, `title`, `color`, `start`, `end`) VALUES
 CREATE TABLE `pedidos` (
   `idpedidos` int(10) UNSIGNED NOT NULL,
   `nome` varchar(60) NOT NULL,
-  `status` varchar(45) NOT NULL,
+  `pedido` varchar(45) NOT NULL,
   `detalhes` varchar(70) NOT NULL,
   `cadastro` datetime NOT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `ativo` char(1) NOT NULL DEFAULT 'A'
+  `ativo` char(1) NOT NULL DEFAULT 'A',
+  `dataEntrega` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pedidos`
 --
 
-INSERT INTO `pedidos` (`idpedidos`, `nome`, `status`, `detalhes`, `cadastro`, `alteracao`, `ativo`) VALUES
-(1, 'Widerson', 'Ativo', 'ps5 da nasa tunado SEM SER SLIN', '2023-12-04 22:05:42', '2023-12-05 01:05:42', 'A'),
-(2, 'Fernando', 'Ativo', '200 esfirras de frango com muito cheddar e calabresa grande em rodelas', '2023-12-04 22:06:10', '2023-12-05 01:06:10', 'A'),
-(3, 'Glaydmar', 'Ativo', 'Coxinha Gigante de 6kg', '2023-12-04 22:09:59', '2023-12-05 01:09:59', 'A');
+INSERT INTO `pedidos` (`idpedidos`, `nome`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`) VALUES
+(18, 'test', 'eteste', 'teste', '2023-12-06 19:47:18', '2023-12-07 01:16:22', 'D', '2023-12-09');
 
 -- --------------------------------------------------------
 
@@ -130,7 +129,7 @@ ALTER TABLE `calendario`
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
