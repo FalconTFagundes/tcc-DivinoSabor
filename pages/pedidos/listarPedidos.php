@@ -8,7 +8,7 @@ include_once './func/dashboard.php';
 
 
 <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalCadPedido">
-  Cadastrar Pedido
+<i class="fa-solid fa-plus"></i> Cadastrar Pedido
 </button>
 <br><br>
 
@@ -19,45 +19,60 @@ include_once './func/dashboard.php';
     <tr>
       <th scope="col" width="5%">Código</th>
       <th scope="col" width="25%">Nome</th>
-      <th scope="col" width="15%">Status</th>
+      <th scope="col" width="15%">Pedido</th>
       <th scope="col" width="30%">Detalhes</th>
+      <th scope="col" width="30%">Data de Entrega</th>
       <th scope="col" width="25%">Ações</th>
     </tr>
   </thead>
-  <?php
-  $retornoListarPedidos = listarGeral('idpedidos, nome, status, detalhes, cadastro, alteracao, ativo', 'pedidos');
-  if(empty($retornoListarPedidos)){
-    echo 'vazio';
-  }
-  if (!empty($retornoListarPedidos))   {
-    foreach ($retornoListarPedidos as $itemPedido) {
-      $idPedido = $itemPedido->idpedidos;
-      $nomePedido = $itemPedido->nome;
-      $statusPedido = $itemPedido->status;
-      $detalhesPedido = $itemPedido->detalhes;
+  <tbody>
 
-  ?>
-      <tbody>
+    <?php
+    $retornoListarPedidos = listarGeral('idpedidos, nome, pedido, detalhes, cadastro, alteracao, ativo, dataEntrega', 'pedidos');
+    if (is_array($retornoListarPedidos) && !empty($retornoListarPedidos)) {
+      foreach ($retornoListarPedidos as $itemPedido) {
+        $idPedido = $itemPedido->idpedidos;
+        $nomePedido = $itemPedido->nome;
+        $pedido = $itemPedido->pedido;
+        $detalhesPedido = $itemPedido->detalhes;
+        $ativoPedido = $itemPedido-> ativo;
+        $dataEntrega = $itemPedido -> dataEntrega;
+        $dataEntregaFormat = date("d/m/Y", strtotime($dataEntrega));
+    ?>
 
         <tr>
           <th scope="row"><?php echo $idPedido; ?></th>
           <td><?php echo $nomePedido; ?></td>
-          <td><?php echo $statusPedido; ?></td>
+          <td><?php echo $pedido; ?></td>
           <td><?php echo $detalhesPedido; ?></td>
+          <td class="dataValidade"><?php echo $dataEntregaFormat; ?></td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <button type="button" class="btn btn-success">Ativar</button>
-              <button type="submit" class="btn btn-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedido', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')">Excluir</button>
+              <?php
+              if ($ativoPedido == 'A') {
+              ?>
+                <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido;?>,'desativar','ativarPedidos','listarPedidos');"> <i class="fa-solid fa-unlock"></i> Não Concluído</button>
+              <?php
+              } else {
+              ?>
+                <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos');"><i class="fa-solid fa-lock"></i> Concluído</button>
+
+              <?php
+              }
+              ?>
+              <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedidos', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash"></i> Excluir</button>
             </div>
           </td>
-
         </tr>
-
-      </tbody>
-  <?php
+    <?php
+      }
+    } else {
+      echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
+      echo "Nenhum Registro Encontrado";
+      echo "</div>";
     }
-  }
- ?>
+    ?>
+  </tbody>
 </table>
 
 

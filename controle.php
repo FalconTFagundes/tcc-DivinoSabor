@@ -10,6 +10,7 @@ switch ($acao) {
 
     case 'Home':
         unset($_SESSION['page']);
+
         // echo 'Home';
         break;
 
@@ -45,8 +46,12 @@ switch ($acao) {
         include_once './pages/pedidos/cadastrarPedidos.php';
         break;
 
-    case 'excluirPedido':
-        include_once './pages/pedidos/excluirPedido.php';
+    case 'excluirPedidos':
+        include_once './pages/pedidos/excluirPedidos.php';
+        break;
+
+    case 'ativarPedidos':
+        include_once './pages/pedidos/ativarPedidos.php';
         break;
         
 }

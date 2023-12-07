@@ -5,7 +5,7 @@
     <div class="menu-f">
         <ul>
             <li class="active">
-                <a href="#" class="linkMenu" idMenu="Home">
+                <a href="index.php" class="linkMenu" idMenu="Home">
                     <img src="./assets/images/logo-2015.png" alt="Logo Divino Sabor" style="width: 98px; height: 98px; flex-shrink: 0;">
                 </a>
             </li>

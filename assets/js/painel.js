@@ -86,6 +86,53 @@ function excGeral(idvar, acaopage, pageretorno, m1, m2) {
 }
 
 
+// mensagem editar
+function msgGeral(msg, tipo) {
+    Swal.fire({
+        position: 'center',
+        icon: tipo,
+        title: msg,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+function ativarGeral(id, ativovar, acaopage, pageretorno) {
+    if (ativovar == 'ativar') {
+        var ativo = 'A';
+    } else {
+
+        var ativo = 'D';
+    }
+    var dados = {
+        acao: acaopage,
+        id: id,
+        a: ativo
+    }
+    $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        url: 'controle.php', /* envio de 'acao' para a página controle */
+        data: dados,
+        beforeSend: function (retorno) {
+        }, success: function (retorno) {
+            if (retorno == 'Atualizado') {
+                if (ativo == 'D') {
+                    msgGeral('Desativado!', 'success');
+                } else {
+                    msgGeral('Ativado!', 'success');
+                }
+                atualizarPagina(pageretorno);
+                setTimeout(function () {
+                }, 1000)
+            }
+            console.log(retorno);
+        }
+    });
+
+
+}
+
 
 
 function atualizarPagina(dataMenu) {
@@ -156,6 +203,8 @@ $(document).ready(function () {
                     setTimeout(function () {
                         // loadingEnd();
                         $('div#showpage').html(retorno);
+                        document.getElementById("clock").classList.remove("clock");
+                        document.getElementById("clock").classList.add("clock-time");
                         if (!menuToggle.classList.contains("menu-lado")) {
                             menuToggle.classList.toggle("menu-lado");
                         };
@@ -167,6 +216,9 @@ $(document).ready(function () {
                         if (!clockNavToggle.classList.contains("clock-son")) {
                             clockNavToggle.classList.toggle("clock-son");
                         };
+
+                        
+
                     }, 300);
                 } else if (retorno == 'Home') {
                     location.reload();
@@ -178,15 +230,9 @@ $(document).ready(function () {
             }
         });
     });
-
-
-
 })
 
-
-
 // função de loading a página
-
 function loading() {
     Swal.fire({
         title: 'Carregando...',
@@ -372,18 +418,6 @@ function LoginSair() {
 //         mask: '(99) 9 9999-9999'
 //     });
 // }
-
-
-// mensagem editar
-function msgGeral(msg, tipo) {
-    Swal.fire({
-        position: 'center',
-        icon: tipo,
-        title: msg,
-        showConfirmButton: false,
-        timer: 1500
-    });
-}
 
 
 
@@ -892,64 +926,6 @@ function msgDelete(id, acao, page) {
                             timer: 1500
                         })
                         listarPage(page);
-                    }
-
-                }
-            });
-        }
-    })
-
-}
-
-
-
-
-
-// ativar item na dashboard
-function ativGeral(id, acao, page) {
-
-    Swal.fire({
-        title: 'Você tem certeza que deseja continuar?',
-        text: "Essa ação irá alterar o status desse registro.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Não, cancelar!',
-        confirmButtonText: 'Sim, alterar registro!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-
-            var dados = {
-                acao: acao,
-                id: id,
-            };
-
-            $.ajax({
-                type: "POST",
-                dataType: 'json',
-                url: 'controle.php',
-                data: dados,
-                beforeSend: function () {
-
-                }, success: function (retorno) {
-
-                    if (retorno === 'OK') {
-                        Swal.fire({
-                            title: 'Alterado!',
-                            text: 'O status do registro foi alterado com sucesso.',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        listarPage(page);
-                    } else {
-                        Swal.fire({
-                            title: 'Erro!',
-                            text: retorno + ' Tente novamente mais tarde.',
-                            icon: 'error',
-                            showConfirmButton: true,
-                        })
                     }
 
                 }

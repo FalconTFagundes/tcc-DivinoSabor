@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="clock <?php
+    <div id="clock" class="clock <?php
                     if (!empty($_SESSION['page'])) {
                         echo 'clocka';
                     }
