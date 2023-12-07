@@ -3,7 +3,9 @@
 include_once './config/constantes.php';
 include_once './config/conexao.php';
 include_once './func/dashboard.php';
+
 ?>
+
 <h1 style="text-align: center;">Pedidos</h1>
 
 
@@ -28,6 +30,10 @@ include_once './func/dashboard.php';
   <tbody>
 
     <?php
+$dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
+$dataSeteDiasAntes = date("Y-m-d", strtotime("-7 days"));
+
+
     $retornoListarPedidos = listarGeral('idpedidos, nome, pedido, detalhes, cadastro, alteracao, ativo, dataEntrega', 'pedidos');
     if (is_array($retornoListarPedidos) && !empty($retornoListarPedidos)) {
       foreach ($retornoListarPedidos as $itemPedido) {
@@ -37,15 +43,29 @@ include_once './func/dashboard.php';
         $detalhesPedido = $itemPedido->detalhes;
         $ativoPedido = $itemPedido-> ativo;
         $dataEntrega = $itemPedido -> dataEntrega;
-        $dataEntregaFormat = date("d/m/Y", strtotime($dataEntrega));
-    ?>
+      
+        $dataEntregaFormat = date("d/m/Y", strtotime($dataEntrega)); //passando para o formato br
+
+        $classeData = '';
+if (strtotime($dataAtual) >= strtotime($dataEntrega)) {
+  $classeData = 'entregaVermelha';
+} elseif (strtotime($dataAtual) >= strtotime('-7 days', strtotime($dataEntrega)) && strtotime($dataAtual) < strtotime($dataEntrega)) {
+  $classeData = 'entregaAmarela';
+} else {
+  $classeData = 'entregaVerde';
+}
+
+
+        
+        
+          ?>
 
         <tr>
           <th scope="row"><?php echo $idPedido; ?></th>
           <td><?php echo $nomePedido; ?></td>
           <td><?php echo $pedido; ?></td>
           <td><?php echo $detalhesPedido; ?></td>
-          <td class="dataValidade"><?php echo $dataEntregaFormat; ?></td>
+          <td class="<?php echo $classeData; ?>"><?php echo $dataEntregaFormat; ?></td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
               <?php
@@ -72,9 +92,28 @@ include_once './func/dashboard.php';
       echo "</div>";
     }
     ?>
+
   </tbody>
 </table>
 
+
+     
+<style>
+    .entregaVermelha {
+      background-color: red;
+      color: white;
+    }
+
+    .entregaAmarela {
+      background-color: yellow;
+      color: black;
+    }
+
+    .entregaVerde {
+      background-color: green;
+      color: white;
+    }
+  </style>
 
 
 <div class="modal fade" id="modalCadPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,12 +129,16 @@ include_once './func/dashboard.php';
             <input type="text" class="form-control" name="nomePedido" id="nomePedido" aria-describedby="nomePedido">
           </div>
           <div class="mb-3">
-            <label for="statusPedido" class="form-label">Status do Pedido</label>
-            <input type="text" class="form-control" name="statusPedido" id="statusPedido">
+            <label for="pedido" class="form-label">Pedido</label>
+            <input type="text" class="form-control" name="pedido" id="pedido">
           </div>
           <div class="mb-3">
             <label for="detalhesPedido" class="form-label">Detalhes</label>
             <input type="text" class="form-control" name="detalhesPedido" id="detalhesPedido">
+          </div>
+          <div class="mb-3">
+            <label for="dataEntregaPedido" class="form-label">Data de Entrega</label>
+            <input type="date" class="form-control" name="dataEntregaPedido" id="dataEntregaPedido">
           </div>
         </div>
         <div class="modal-footer">

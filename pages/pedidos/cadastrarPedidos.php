@@ -11,12 +11,14 @@ $conn = conectar();
 if(!empty($dados) && isset($dados)) {
 
     $nomePedido = $dados['nomePedido']; 
-    $statusPedido = $dados['statusPedido'];
+    $pedido = $dados['pediido'];
     $detalhesPedido = $dados['detalhesPedido'];
+    $dataEntregaPedido = $dados['dataEntregaPedido'];
+
     $dataeHoraPedido = date('Y-m-d H:i:s');
 
 
-    $retornoInsert = insertQuatro('pedidos','nome, status, detalhes, cadastro',"$nomePedido", "$statusPedido", "$detalhesPedido", "$dataeHoraPedido"); /* função PHP que faz o insert  */
+    $retornoInsert = insertCinco('pedidos','nome, pedido, detalhes, dataEntrega, cadastro',"$nomePedido", "$statusPedido", "$detalhesPedido", "$dataEntregaPedido", "$dataeHoraPedido"); /* função PHP que faz o insert  */
     echo json_encode($retornoInsert); /* envia o final da ação da função - VERIFICA NA PÁGINA DE FUNÇÃO, $retornoInsert recebe 'Gravado' ou 'nGravado'  */
 
 } else {
