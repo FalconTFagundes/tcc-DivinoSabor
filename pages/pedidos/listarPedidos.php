@@ -10,137 +10,134 @@ include_once './func/dashboard.php';
 
 
 <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalCadPedido">
-<i class="fa-solid fa-plus"></i> Cadastrar Pedido
+  <i class="fa-solid fa-plus"></i> Cadastrar Pedido
 </button>
 <br><br>
 
 
 
-<table class="table-financeira table table-hover">
-  <thead>
-    <tr>
-      <th scope="col" width="5%">Código</th>
-      <th scope="col" width="25%">Nome</th>
-      <th scope="col" width="15%">Pedido</th>
-      <th scope="col" width="30%">Detalhes</th>
-      <th scope="col" width="30%">Data de Entrega</th>
-      <th scope="col" width="25%">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php
-$dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
-$dataSeteDiasAntes = date("Y-m-d", strtotime("-7 days"));
-
-
-    $retornoListarPedidos = listarGeral('idpedidos, nome, pedido, detalhes, cadastro, alteracao, ativo, dataEntrega', 'pedidos');
-    if (is_array($retornoListarPedidos) && !empty($retornoListarPedidos)) {
-      foreach ($retornoListarPedidos as $itemPedido) {
-        $idPedido = $itemPedido->idpedidos;
-        $nomePedido = $itemPedido->nome;
-        $pedido = $itemPedido->pedido;
-        $detalhesPedido = $itemPedido->detalhes;
-        $ativoPedido = $itemPedido-> ativo;
-        $dataEntrega = $itemPedido -> dataEntrega;
-      
-        $dataEntregaFormat = date("d/m/Y", strtotime($dataEntrega)); //passando para o formato br
-
-        $classeData = '';
-if (strtotime($dataAtual) >= strtotime($dataEntrega)) {
-  $classeData = 'entregaVermelha';
-} elseif (strtotime($dataAtual) >= strtotime('-7 days', strtotime($dataEntrega)) && strtotime($dataAtual) < strtotime($dataEntrega)) {
-  $classeData = 'entregaAmarela';
-} else {
-  $classeData = 'entregaVerde';
-}
-
-
-        
-        
-          ?>
-
+<div style="height: 400px;">
+    <table class="table-financeira table table-hover">
+      <thead>
         <tr>
-          <th scope="row"><?php echo $idPedido; ?></th>
-          <td><?php echo $nomePedido; ?></td>
-          <td><?php echo $pedido; ?></td>
-          <td><?php echo $detalhesPedido; ?></td>
-          <td class="<?php echo $classeData; ?>"><?php echo $dataEntregaFormat; ?></td>
-          <td>
-            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <?php
-              if ($ativoPedido == 'A') {
-              ?>
-                <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido;?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock"></i> Não Concluído</button>
-              <?php
-              } else {
-              ?>
-                <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos', 'Pedido marcado como não concluído');"><i class="fa-solid fa-lock"></i> Concluído</button>
-
-              <?php
-              }
-              ?>
-              <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedidos', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash"></i> Excluir</button>
-            </div>
-          </td>
+          <th scope="col" width="5%">Código</th>
+          <th scope="col" width="25%">Nome</th>
+          <th scope="col" width="15%">Pedido</th>
+          <th scope="col" width="30%">Detalhes</th>
+          <th scope="col" width="30%">Data de Entrega</th>
+          <th scope="col" width="25%">Ações</th>
         </tr>
-    <?php
-      }
-    } else {
-      echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
-      echo "Nenhum Registro Encontrado";
-      echo "</div>";
-    }
-    ?>
+      </thead>
+      <tbody>
 
-  </tbody>
-</table>
+        <?php
+        $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
+        $dataSeteDiasAntes = date("Y-m-d", strtotime("-7 days"));
 
 
-     
+        $retornoListarPedidos = listarGeral('idpedidos, nome, pedido, detalhes, cadastro, alteracao, ativo, dataEntrega', 'pedidos');
+        if (is_array($retornoListarPedidos) && !empty($retornoListarPedidos)) {
+          foreach ($retornoListarPedidos as $itemPedido) {
+            $idPedido = $itemPedido->idpedidos;
+            $nomePedido = $itemPedido->nome;
+            $pedido = $itemPedido->pedido;
+            $detalhesPedido = $itemPedido->detalhes;
+            $ativoPedido = $itemPedido->ativo;
+            $dataEntrega = $itemPedido->dataEntrega;
+
+            $dataEntregaFormat = date("d/m/Y", strtotime($dataEntrega)); //passando para o formato br
+
+            $classeData = '';
+            if (strtotime($dataAtual) >= strtotime($dataEntrega)) {
+              $classeData = 'entregaVermelha';
+            } elseif (strtotime($dataAtual) >= strtotime('-7 days', strtotime($dataEntrega)) && strtotime($dataAtual) < strtotime($dataEntrega)) {
+              $classeData = 'entregaAmarela';
+            } else {
+              $classeData = 'entregaVerde';
+            }
+
+
+
+
+        ?>
+
+            <tr>
+              <th scope="row"><?php echo $idPedido; ?></th>
+              <td><?php echo $nomePedido; ?></td>
+              <td><?php echo $pedido; ?></td>
+              <td><?php echo $detalhesPedido; ?></td>
+              <td class="<?php echo $classeData; ?>"><?php echo $dataEntregaFormat; ?></td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                  <?php
+                  if ($ativoPedido == 'A') {
+                  ?>
+                    <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido; ?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock"></i> Não Concluído</button>
+                  <?php
+                  } else {
+                  ?>
+                    <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos', 'Pedido marcado como não concluído');"><i class="fa-solid fa-lock"></i> Concluído</button>
+
+                  <?php
+                  }
+                  ?>
+                  <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedidos', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash"></i> Excluir</button>
+                </div>
+              </td>
+            </tr>
+        <?php
+          }
+        } else {
+          echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
+          echo "Nenhum Registro Encontrado";
+          echo "</div>";
+        }
+        ?>
+
+      </tbody>
+    </table>
+  </div>
+
+
 <style>
-    table {
-      z-index: 1;
-    }
+  .entregaVermelha,
+  .entregaAmarela,
+  .entregaVerde {
+    border-radius: 10px;
+    padding: 15px 30px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    z-index: 0;
+  }
 
-    .entregaVermelha,
-    .entregaAmarela,
-    .entregaVerde {
-      border-radius: 10px;
-      padding: 15px 30px;
-      color: #fff;
-      font-weight: bold;
-      text-align: center;
-      display: inline-block;
-      margin: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      position: relative;
-      z-index: 0;
-    }
+  .entregaVermelha {
+    background: linear-gradient(45deg, #FF6347, #FF4580);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .entregaVermelha {
-      background: linear-gradient(45deg, #FF6347, #FF4500);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+  .entregaAmarela {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .entregaAmarela {
-      background: linear-gradient(45deg, #FFD700, #FFA500);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+  .entregaVerde {
+    background: linear-gradient(45deg, #32CD32, #008000);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .entregaVerde {
-      background: linear-gradient(45deg, #32CD32, #008000);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Hover effect */
-    .entregaVermelha:hover,
-    .entregaAmarela:hover,
-    .entregaVerde:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    }
+  /* Hover effect */
+  .entregaVermelha:hover,
+  .entregaAmarela:hover,
+  .entregaVerde:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
 </style>
 
 

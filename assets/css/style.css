@@ -31,8 +31,7 @@ body.loginStyle .margin-login {
     width: 350px;
     height: 500px;
     overflow: hidden;
-    background: linear-gradient(#9E77F1, #582db6);
-    ;
+    background: linear-gradient(#9E77F1, #582db6);;
     border-radius: 10px;
     box-shadow: 5px 20px 20px #424242;
 }
@@ -525,17 +524,47 @@ ul .indicator::after {
     background: none;
 } */
 
+table{
+    border-collapse: separate!important;
+}
+
 .table-financeira {
     width: 100%;
-    border: 1px solid #9E77F1;
+    border: 2px solid #9E77F1;
     border-radius: 30px!important; 
     background: #FFF;
     color: #9E77F1;
     text-align: center;
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+     /* position: relative;
+    border-collapse: separate; */
+}
+
+.table-financeira thead tr {
+    height: 100%;
+    top: 0;
+    position: sticky;
 }
 
 .table-financeira thead {
-    /* border-radius: 36px; */
+    background-color: #fff;
+    height: 100%;
+    position: sticky;
+    z-index: 2;
+}
+ 
+.table-financeira thead th {
+    background-color: #FFF;
+    /* z-index: 2; */
+}
+
+.table-financeira tbody {
+
+    /* height: 100%; */
+    /* overflow: scroll; */
+
 }
 
 /* .table-financeira thead td {
@@ -562,6 +591,9 @@ ul .indicator::after {
     box-shadow: 1px 1px 1px #292929;
 }
  */
+
+
+ 
 #btn-ativar {
     width: 56px;
     height: 30px;
@@ -625,7 +657,9 @@ ul .indicator::after {
 /* FOOTER */
 
 footer {
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     background: #9e77f1;
     min-height: 100px;

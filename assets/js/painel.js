@@ -941,7 +941,7 @@ var i = 0;
 
 function expand() {
     if (i == 0) {
-        document.getElementById("menu").style.transform = "scale(4)";
+        document.getElementById("menu").style.transform = "scale(3)";
         document.getElementById("plus").style.transform = "rotate(137deg)";
         i = 1;
     } else {
