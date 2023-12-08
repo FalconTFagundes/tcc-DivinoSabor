@@ -7,7 +7,7 @@ include_once './func/dashboard.php';
 // $eventosCalendario = listarGeral('idcalendario, title, color, start, end', 'calendario');
 
 // QUERY para recuperar os eventos
-$query_events = "SELECT id, title, color, start, end FROM events";
+$query_events = "SELECT id, title, color, start, end FROM calendario";
 
 // prepara o QUERY
 $result_events = $conn->prepare($query_events);
@@ -36,6 +36,8 @@ while($row_events = $result_events->fetch(PDO::FETCH_ASSOC)){
 
 
 echo json_encode($eventos);
+
+
 
 
 // // criar o array que recebe os eventos

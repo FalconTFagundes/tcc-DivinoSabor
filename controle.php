@@ -24,7 +24,9 @@ switch ($acao) {
     case 'listarEventos':
         // chamar variável
         $_SESSION["page"] = 'listarEventos';
+
         include_once './pages/eventos/listarEventos.php';
+
         break;
 
 
