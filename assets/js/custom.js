@@ -58,7 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // botão de mais links, número máximo de eventos em um determinado dia, se for true, o número de eventos será listado à altura da célula do dia
         dayMaxEvents: true,
 
-        events: './../pages/eventos/listar_evento_calendario.php'
+        events: 'listar_evento_calendario.php'
+
+
     });
 
     calendar.render();
