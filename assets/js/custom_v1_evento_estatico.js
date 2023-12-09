@@ -1,5 +1,6 @@
 // executar quando o documento php estiver totalmente carregado
 
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // define a data atual
