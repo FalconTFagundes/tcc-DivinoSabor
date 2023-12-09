@@ -153,19 +153,19 @@ include_once './func/dashboard.php';
         <div class="modal-body">
           <div class="mb-3">
             <label for="nomePedido" class="form-label">Nome do Cliente</label>
-            <input type="text" class="form-control" name="nomePedido" id="nomePedido" aria-describedby="nomePedido">
+            <input type="text" class="form-control" name="nomePedido" id="nomePedido" aria-describedby="nomePedido" required>
           </div>
           <div class="mb-3">
             <label for="pedido" class="form-label">Pedido</label>
-            <input type="text" class="form-control" name="pedido" id="pedido">
+            <input type="text" class="form-control" name="pedido" id="pedido" required>
           </div>
           <div class="mb-3">
             <label for="detalhesPedido" class="form-label">Detalhes</label>
-            <input type="text" class="form-control" name="detalhesPedido" id="detalhesPedido">
-          </div>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
           <div class="mb-3">
             <label for="dataEntregaPedido" class="form-label">Data de Entrega</label>
-            <input type="date" class="form-control" name="dataEntregaPedido" id="dataEntregaPedido">
+            <input type="date" class="form-control" name="dataEntregaPedido" id="dataEntregaPedido" required>
           </div>
         </div>
         <div class="modal-footer">
