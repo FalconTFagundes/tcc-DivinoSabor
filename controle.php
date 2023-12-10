@@ -31,6 +31,9 @@ switch ($acao) {
         include_once './pages/eventos/cadastrarEventos.php';
         break;
 
+    case 'excluirEventos':
+        include_once './pages/eventos/excluirEventos.php';
+        break;
 
         // páginas de ações
 
@@ -56,5 +59,4 @@ switch ($acao) {
     case 'ativarPedidos':
         include_once './pages/pedidos/ativarPedidos.php';
         break;
-        
 }

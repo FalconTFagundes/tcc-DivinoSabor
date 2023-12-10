@@ -128,9 +128,53 @@ document.addEventListener('DOMContentLoaded', function () {
             }, */
 
         eventClick: function (arg) {
-            if (confirm('Are you sure you want to delete this event?')) {
-                arg.event.remove();
-            }
+            var eventId = arg.event.id;
+            Swal.fire({
+                title: 'Deseja excluir este evento?',
+                text: 'Esta operação é irreversível!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    var dados = {
+                        acao: 'excluirEventos',
+                        id: eventId
+                    }
+
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Operação Cancelada',
+                        'error'
+                    )
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'HTML',
+                    url: 'controle.php',
+                    data: dados,
+                    beforeSend: function (retorno) {
+                    }, success: function (retorno) {
+
+                        Swal.fire(
+                            'Arquivo Deletado!',
+                            'O arquivo foi deletado com sucesso',
+                            'success'
+                        )
+                        setTimeout(function () {
+                            atualizarPagina('listarEventos');
+                        }, 1000)
+                    }
+
+
+                });
+            })
+            arg.event.remove();
         },
 
         // eu parei no passar o código para ao banco de dados no evento custom estatico

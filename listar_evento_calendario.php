@@ -39,6 +39,7 @@ try {
     // Saída JSON
     echo json_encode($eventos);
 } catch (Exception $e) {
+    
     // Verificação de erro >.<
     header('HTTP/1.1 500 Internal Server Error');
     echo json_encode(['error' => 'Erro ao recuperar eventos: ' . $e->getMessage()]);
