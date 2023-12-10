@@ -10,8 +10,7 @@ switch ($acao) {
 
     case 'Home':
         unset($_SESSION['page']);
-
-        // echo 'Home';
+        echo 'Home';
         break;
 
         // ações da parte de usuarios 
