@@ -31,19 +31,102 @@ document.addEventListener('DOMContentLoaded', function () {
         // indicar visualmente a área que será selecionada antes que o usuário solte o botão do mouse para confirmar a seleção
         selectMirror: true,
 
-        // quando clica o evento aparece para poder agendar
-        select: function (arg) {
-            var title = prompt('Event Title:');
-            if (title) {
-                calendar.addEvent({
-                    title: title,
-                    start: arg.start,
-                    end: arg.end,
-                    allDay: arg.allDay
+
+        // Captura o dia clicado
+        select: function cadCalendario(info) {
+            // Obtém o objeto Date de info.start e info.end
+            var inicio = new Date(info.start);
+            var fim = new Date(info.end);
+
+            // Formata as datas no padrão desejado (Y/m/d H:i:s)
+            var formatoInicio = inicio.toISOString().slice(0, 19).replace("T", " ");
+            var formatoFim = fim.toISOString().slice(0, 19).replace("T", " ");
+
+            // Define os valores nos campos
+            $('#modalCadEvento #horaInicio').val(formatoInicio);
+            $('#modalCadEvento #horaFim').val(formatoFim);
+            $('#modalCadEvento').modal('show');
+
+            // Adiciona um evento de submissão ao formulário
+            $('#frmCadEvento').submit(function (event) {
+                event.preventDefault();  // Impede o comportamento padrão de submissão
+
+                var formdata = $(this).serializeArray();
+                formdata.push({
+                    name: "acao",
+                    value: "cadastrarEventos"
                 });
-            }
-            calendar.unselect();
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'html',
+                    url: 'controle.php',
+                    data: formdata,
+                    beforeSend: function (retorno) {
+                        // Pode adicionar indicadores de carregamento ou outros feedbacks visuais aqui
+                    },
+                    success: function (retorno) {
+                        $('#modalCadEvento').modal('hide');
+                        console.log(retorno);
+                        setTimeout(function () {
+                            atualizarPagina('listarEventos');
+                        }, 1000);
+
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Salvo com Sucesso',
+                            showConfirmButton: false,
+                            timer: 1500
+
+                        })
+                    }
+                });
+            });
         },
+
+
+
+
+
+        /*     select: function cadCalendario(formId, modalId, pageAcao, pageRetorno) {
+                
+                this.on('submit', function (k) {
+                    k.preventDefault();
+                    var formdata = $(this).serializeArray();
+                    formdata.push({
+                        name: "acao",
+                        value: pageAcao,
+                        dadosDia: dadosDia
+                    });
+    
+                    $.ajax({
+                        type: "POST",
+                        dataType: 'html',
+                        url: 'controle.php',
+                        data: formdata,
+                        beforeSend: function (retorno) {
+                        },
+                        success: function (retorno) {
+                            console.log(retorno);
+                            $('#' + modalId).modal('hide');
+                            setTimeout(function () {
+                                atualizarPagina(pageRetorno);
+                            }, 1000);
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Salvo com Sucesso',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                });
+    
+                calendar.unselect();
+            }, */
+
         eventClick: function (arg) {
             if (confirm('Are you sure you want to delete this event?')) {
                 arg.event.remove();
@@ -58,7 +141,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // botão de mais links, número máximo de eventos em um determinado dia, se for true, o número de eventos será listado à altura da célula do dia
         dayMaxEvents: true,
 
-        events: 'listar_evento_calendario.php'
+        events: 'listar_evento_calendario.php',
+
 
 
     });

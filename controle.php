@@ -25,9 +25,11 @@ switch ($acao) {
         // chamar variável
         $_SESSION["page"] = 'listarEventos';
         include_once './pages/eventos/listarEventos.php';
-    
         break;
 
+    case 'cadastrarEventos':
+        include_once './pages/eventos/cadastrarEventos.php';
+        break;
 
 
         // páginas de ações

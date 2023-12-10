@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/12/2023 às 19:58
+-- Tempo de geração: 10/12/2023 às 22:42
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -34,6 +34,17 @@ CREATE TABLE `events` (
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
+(1, 'Teste Roxo', '#9E77F1', '2023-12-10 03:00:00', '2023-12-11 03:00:00'),
+(2, 'Teste Red', '#FF0831', '2023-12-15 03:00:00', '2023-12-16 03:00:00'),
+(3, 'Teste Blue', '#297BFF', '2023-12-19 03:00:00', '2023-12-20 03:00:00'),
+(4, 'teste Verde', '#00BD3f', '2023-12-07 03:00:00', '2023-12-08 03:00:00'),
+(5, 'teste amarelão', '#D4C200', '2023-12-22 03:00:00', '2023-12-23 03:00:00');
 
 -- --------------------------------------------------------
 
@@ -114,7 +125,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
