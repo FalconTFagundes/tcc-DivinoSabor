@@ -29,20 +29,13 @@
     }
 </style>
 
-
-
-
-
-
-
-
 </head>
 
 <body>
 
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">SOBRE A CHRONOS DEVELOPMENT</h1>
+            <h1 class="display-4">Sobre a Chronos Development</h1>
             <p class="lead">Bem-vindo à Chronos Development, sua parceira em soluções inovadoras para gestão empresarial...</p>
 
             <h2>Nossa Missão</h2>
