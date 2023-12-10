@@ -7,10 +7,10 @@
     </div>
     <div>
         <ul class="social_icon">
-            <li><a href="">Sobre nós</a></li>
-            <li><a href="">Mais perguntados</a></li>
-            <li><a href="">Suporte</a></li>
-            <li><a href="">Termos e Condições</a></li>
+            <li><a href="#" class="linkMenu" idMenu="sobreNos">Sobre nós</a></li>
+            <li><a href="#" class="linkMenu" idMenu="perguntas">Mais perguntados</a></li>
+            <li><a href="#" class="linkMenu" idMenu="suporte">Suporte</a></li>
+            <li><a href="#" class="linkMenu" idMenu="termos">Termos e Condições</a></li>
         </ul>
     </div>
     <div>

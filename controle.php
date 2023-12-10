@@ -13,7 +13,30 @@ switch ($acao) {
         echo 'Home';
         break;
 
+
+
+
         // ações da parte de usuarios 
+    case 'sobreNos':
+        $_SESSION["page"] = 'sobreNos';
+        include_once './footerPages/sobreNos.php';
+        break;
+
+    case 'perguntas':
+        $_SESSION["page"] = 'perguntas';
+        include_once './footerPages/perguntas.php';
+        break;
+
+    case 'suporte':
+        $_SESSION["page"] = 'suporte';
+        include_once './footerPages/suporte.php';
+        break;
+
+    case 'termos':
+        $_SESSION["page"] = 'termos';
+        include_once './footerPages/termos.php';
+        break;
+
     case 'listarPedidos':
         // chamar variável
         $_SESSION["page"] = 'listarPedidos';
