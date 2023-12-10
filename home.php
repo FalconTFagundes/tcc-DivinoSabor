@@ -52,8 +52,8 @@ include_once './pages/time.php';
                     }
                     if ($page == 'listarEventos') {
                         include_once './pages/eventos/listarEventos.php';
-                        header("Refresh:0; url=index.php");
-                    } 
+                    }
+                    
                 }
 
                 // if (!empty($_GET['page'])) {

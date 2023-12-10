@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/12/2023 às 02:24
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Tempo de geração: 10/12/2023 às 19:58
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,25 +24,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `calendario`
+-- Estrutura para tabela `events`
 --
 
-CREATE TABLE `calendario` (
+CREATE TABLE `events` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(220) NOT NULL,
-  `color` varchar(45) NOT NULL,
-  `start` date NOT NULL,
-  `end` date NOT NULL
+  `color` varchar(45) NOT NULL DEFAULT '#9E77F1',
+  `start` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `calendario`
---
-
-INSERT INTO `calendario` (`id`, `title`, `color`, `start`, `end`) VALUES
-(1, 'Confraternização', '#9E77F1', '2023-12-12', '2023-12-13'),
-(2, 'Confraternização 2', '#9E75F3', '2023-12-25', '2023-12-28'),
-(3, 'Confraternização 3', '#9E77F6', '2023-12-17', '2023-12-19');
 
 -- --------------------------------------------------------
 
@@ -98,9 +89,9 @@ INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `ativo`, `alteraca
 --
 
 --
--- Índices de tabela `calendario`
+-- Índices de tabela `events`
 --
-ALTER TABLE `calendario`
+ALTER TABLE `events`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
@@ -120,16 +111,16 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de tabela `calendario`
+-- AUTO_INCREMENT de tabela `events`
 --
-ALTER TABLE `calendario`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `events`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`

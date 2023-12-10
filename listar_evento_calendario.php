@@ -1,71 +1,45 @@
 <?php
+include_once './config/constantes.php';
+include_once './config/conexao.php';
+include_once './func/dashboard.php';
 
-include_once 'config/constantes.php';
-include_once 'config/conexao.php';
-include_once 'func/dashboard.php';
+try {
+    // Obtém a conexão
+    $conn = conectar();
 
+    // QUERY para recuperar os eventos
+    $query_events = "SELECT id, title, color, DATE_FORMAT(start, '%Y-%m-%dT%H:%i:%s') AS start, DATE_FORMAT(end, '%Y-%m-%dT%H:%i:%s') AS end FROM events";
 
-// $eventosCalendario = listarGeral('idcalendario, title, color, start, end', 'calendario');
+    // Prepara o QUERY
+    $result_events = $conn->prepare($query_events);
 
+    // Executa o QUERY
+    $result_events->execute();
 
-// QUERY para recuperar os eventos
-$query_events = "SELECT id, title, color, start, end FROM events";
+    // Criar o array que recebe os eventos
+    $eventos = [];
 
-// prepara o QUERY
-$result_events = $conn->prepare($query_events);
+    // Percorre a lista de registros retornados do banco de dados
+    while ($row_events = $result_events->fetch(PDO::FETCH_ASSOC)) {
+        // Extrai o array
+        extract($row_events);
 
-// executa o QUERY
-$result_events->execute();
+        $eventos[] = [
+            'id' => $id,
+            'title' => $title,
+            'color' => $color,
+            'start' => $start,
+            'end' => $end,
+        ];
+    }
 
-// criar o array que recebe os eventos
-$eventos = [];
+    // Configurar cabeçalho
+    header('Content-Type: application/json');
 
-// percorre a lista de registros retornando do banco de dados
-while($row_events = $result_events->fetch(PDO::FETCH_ASSOC)){
-
-    // extrair o array
-    extract($row_events);
-
-    $eventos [] = [
-        'id' => $id,
-        'title' => $title,
-        'color' => $color,
-        'start' => $start,
-        'end' => $end,
-    ];
+    // Saída JSON
+    echo json_encode($eventos);
+} catch (Exception $e) {
+    // Se ocorrer um erro, envie uma resposta de erro
+    header('HTTP/1.1 500 Internal Server Error');
+    echo json_encode(['error' => 'Erro ao recuperar eventos: ' . $e->getMessage()]);
 }
-
-
-
-echo json_encode($eventos);
-
-
-
-
-// // criar o array que recebe os eventos
-// $eventos = [];
-
-// foreach($eventos as $listarEventos){
-
-//     $eventos[] = 'id'->idcalendario;
-//     $eventos[] = $title['title'];
-//     $eventos[] = $color['color'];
-//     $eventos[] = $start['start'];
-//     $eventos[] = $end['end'];
-
-//     // $eventos[] = [
-//     //     'idcalendario'->$id,
-//     //     'title'->$title,
-//     //     'color'->$color,
-//     //     'start'->$start,
-//     //     'end'->$end
-//     // ];
-// }
-
-// // echo json_encode($eventos);
-// var_dump($eventos);
-
-
-
-?>
-

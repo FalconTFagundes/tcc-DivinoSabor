@@ -29,16 +29,15 @@
 </div>
 
 <button id="mostrarCalendarioBtn" onclick="mostrarCalendario()">Mostrar Calendário</button>
-
 <script>
 function mostrarCalendario() {
     msgGeral('Carregando Calendário', 'success');
 
     // Recarrega a página após uns milésimos aí - 800
     setTimeout(() => {
-        location.reload();
-}, "800");
-   
+        // Redireciona para index.php
+        window.location.href = 'index.php';
+    }, 800);
 }
 
 // Oculta o botão após a página ser carregada
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('mostrarCalendarioBtn').style.display = 'none';
 });
 </script>
+
 
 </body>
 </html>
