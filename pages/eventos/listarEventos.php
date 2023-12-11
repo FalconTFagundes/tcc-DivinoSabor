@@ -44,11 +44,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="horaInicio" class="form-label">Início do Evento</label>
-                            <input type="datetime-local" class="form-control maskDateTime" name="horaInicio" id="horaInicio" required>
+                            <input type="datetime-local" class="form-control" name="horaInicio" id="horaInicio" required>
                         </div>
                         <div class="mb-3">
                             <label for="horaFim" class="form-label">Fim do Evento</label>
-                            <input type="datetime-local" class="form-control maskDateTime" name="horaFim" id="horaFim" required>
+                            <input type="datetime-local" class="form-control" name="horaFim" id="horaFim" required>
                         </div>
                         <div class="mb-3">
                             <label for="horaFim" class="form-label">Selecione a Cor</label>
