@@ -1,5 +1,4 @@
 
-
 function cadGeral(formId, modalId, pageAcao, pageRetorno) {
     $('#' + formId).on('submit', function (k) {
         k.preventDefault();
@@ -159,9 +158,6 @@ function atualizarPagina(dataMenu) {
 
 $(document).ready(function () {
 
-    // fazer as mascars funcionarem
-    // masks();
-
     $('#modalAddCliente').on('shown.bs.modal', function () {
         $('input#nomeCliente').trigger('focus')
     });
@@ -269,7 +265,12 @@ function listarPage(listar) {
 }
 
 
+
 // funções de mask
+
+// faz as máscaras funcionarem - coloca no ínicio da folha, NO INÍCIO (LINE 1)!!!!!!!
+// masks(); 
+
 function masks() {
     $('.maskTelefone').inputmask({
         mask: '(99) 9 9999-9999'
@@ -279,12 +280,14 @@ function masks() {
         mask: '999.999.999-99'
     });
 
-
+    /*  $('.maskDateTime').inputmask({
+        mask: '99/99/9999 99:99'
+    })  */
     // ABENÇOADO SEJA ESTE LINK 
     // https://stackoverflow.com/questions/35413377/jquery-mask-number-with-commas-and-decimal 
 
 
-    $('.maskValor').mask("#,##0.00", { reverse: true });
+    /*     $('.maskValor').mask("#,##0.00", { reverse: true }); */
 
 }
 

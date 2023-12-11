@@ -15,6 +15,8 @@ if(!empty($dados) && isset($dados)) {
     $horaFimEvento = $dados['horaFim'];
     $corEvento = $dados['corEvento'];
 
+    var_dump($dados);
+
 
     $retornoInsert = insertQuatro('events','title, color, start, end',"$tituloEvento", "$corEvento", "$horaInicioEvento", "$horaFimEvento"); /* função PHP que faz o insert  */
     echo json_encode($retornoInsert); /* envia o final da ação da função - (VERIFICA NA PÁGINA DE FUNÇÃO) $retornoInsert recebe 'Gravado' ou 'nGravado'  */

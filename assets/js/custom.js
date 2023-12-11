@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $('#modalCadEvento #horaInicio').val(formatoInicio);
             $('#modalCadEvento #horaFim').val(formatoFim);
             $('#modalCadEvento').modal('show');
-
+        
             // Adiciona um evento de submissão ao formulário
             $('#frmCadEvento').submit(function (event) {
                 event.preventDefault();  // Impede o comportamento padrão de submissão
@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     success: function (retorno) {
                         $('#modalCadEvento').modal('hide');
                         console.log(retorno);
+                        console.log(formatoInicio); // verificando como as datas estão sendo recebidassssssss
+                        console.log(formatoFim);
                         setTimeout(function () {
                             atualizarPagina('listarEventos');
                         }, 1000);
