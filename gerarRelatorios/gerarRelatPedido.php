@@ -1,11 +1,11 @@
 <?php
 // Carregar o Composer
-require './vendor/autoload.php';
+require '../vendor/autoload.php';
 
 // Incluir conexao com BD
-include_once './config/constantes.php';
-include_once './config/conexao.php';
-include_once './func/dashboard.php';
+include_once '../config/constantes.php';
+include_once '../config/conexao.php';
+include_once '../func/dashboard.php';
 
 // Referenciar o namespace Dompdf
 use Dompdf\Dompdf;

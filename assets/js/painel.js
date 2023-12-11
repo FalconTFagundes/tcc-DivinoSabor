@@ -199,14 +199,14 @@ $(document).ready(function () {
             beforeSend: function () {
                 // loading();
             }, success: function (retorno) {
- 
+
                 if (retorno != 'Home') {
                     setTimeout(function () {
                         // loadingEnd();
                         $('div#showpage').html(retorno);
                         document.getElementById("clock").classList.remove("clock");
                         document.getElementById("clock").classList.add("clock-time");
-                        
+
                         if (!menuToggle.classList.contains("menu-lado")) {
                             menuToggle.classList.toggle("menu-lado");
                         };
@@ -219,7 +219,7 @@ $(document).ready(function () {
                             clockNavToggle.classList.toggle("clock-son");
                         };
 
-                        
+
 
                     }, 300);
                 } else if (retorno == 'Home') {
