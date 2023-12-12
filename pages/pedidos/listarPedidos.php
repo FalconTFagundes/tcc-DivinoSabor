@@ -10,9 +10,9 @@ include_once './func/dashboard.php';
 
 
 <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalCadPedido">
-  <i class="fa-solid fa-plus"></i> Cadastrar Pedido
+  <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Pedido
 </button>
-<a href="./gerarRelatorios/gerarRelatPedido.php"><button type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-print"></i>
+<a href="./gerarRelatorios/gerarRelatPedido.php"><button type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-print" title="Gerar Relatório"></i>
     Gerar Relatório Geral
   </button> </a>
 <br><br>
@@ -75,11 +75,11 @@ include_once './func/dashboard.php';
                 <?php
                 if ($ativoPedido == 'A') {
                 ?>
-                  <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido; ?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock"></i> Não Concluído</button>
+                  <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido; ?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock" title="Pedido Não Concluído"></i></i> Não Concluído</button>
                 <?php
                 } else {
                 ?>
-                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos', 'Pedido marcado como não concluído');"><i class="fa-solid fa-lock"></i> Concluído</button>
+                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos', 'Pedido marcado como não concluído');"><i class="fa-solid fa-lock" title="Pedido Concluído"></i></i> Concluído</button>
 
                 <?php
                 }
@@ -88,14 +88,14 @@ include_once './func/dashboard.php';
                 <!-- passando id diretamente na URL - sem SEM AJAX -->
                 <a href="./gerarRelatorios/gerarRelatUnPedido.php?id=<?php echo $idPedido; ?>" target="_blank">
                   <button type="button" class="btn btn-outline-info">
-                    <i class="fa-solid fa-print"></i> Relatório
+                    <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
 
 
 
 
-                <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedidos', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash"></i> Excluir</button>
+                <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedidos', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
               </div>
             </td>
           </tr>

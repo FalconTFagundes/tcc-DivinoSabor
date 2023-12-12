@@ -25,16 +25,16 @@ include_once './pages/time.php';
 
                 <div class="menu" id="menu">
                     <a href="#" class="linkMenu" idMenu="listarPedidos">
-                        <i class="fa-solid fa-list-check"></i>
+                        <i class="fa-solid fa-list-check" title="Pedidos"></i>
                     </a>
                     <a href="#" class="linkMenu" idMenu="listarFinanceiro">
-                        <i class="fa-solid fa-money-bill-trend-up"></i>
+                        <i class="fa-solid fa-money-bill-trend-up" title="Financeiro"></i>
                     </a>
                     <a href="#" class="linkMenu" idMenu="listarEstoque">
-                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <i class="fa-solid fa-boxes-stacked" title="Estoque"></i>
                     </a>
                     <a href="#" class="linkMenu" idMenu="listarEventos">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-calendar-days" title="Eventos"></i>
                     </a>
                 </div>
             </div>

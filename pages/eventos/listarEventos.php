@@ -33,7 +33,7 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        text-align: center;
+        text-align: center;    
     }
 
     #btnGerarCalendario:hover {
@@ -49,8 +49,8 @@
         <div id='calendar'></div>
     </div>
 
-    <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye"></i>Mostrar Calendário</button>
-    <button type="button" class="btn btn-secondary btn-lg"id="btnGerarCalendario"><i class="fa-solid fa-print"></i>Gerar Relatório Geral</button>
+    <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye" title="Exibir"></i> Mostrar Calendário</button>
+    <button type="button" class="btn btn-secondary btn-lg"id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
     <br><br>
 
 
