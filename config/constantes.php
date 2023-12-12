@@ -34,8 +34,8 @@ define('DATATIMEATUAL', date("Y-m-d H:i:s"));
 //----------------------------------------------------------------
 
 
-$servidorLocal = true;
-if ($servidorLocal) {
+$servidorLocal = false;
+if ($servidorLocal) { //se for == true
     define('HOST', 'localhost');
     define('USER', 'root');
     define('PASS', '');
