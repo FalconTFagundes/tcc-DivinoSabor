@@ -3,7 +3,6 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        /* Modificado para centralizar horizontalmente */
         transform: translate(-50%, -50%);
         background-color: #9E77F1;
         color: #ffffff;
@@ -23,9 +22,7 @@
     #btnGerarCalendario {
         position: absolute;
         top: 40%;
-        /* Ajustado para alinhar abaixo do primeiro botão */
         left: 50%;
-        /* Modificado para centralizar horizontalmente */
         transform: translate(-50%, -50%);
         background-color: #9E77F1;
         color: #ffffff;
@@ -53,7 +50,10 @@
     </div>
 
     <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye" title="Exibir"></i> Mostrar Calendário</button>
-    <button type="button" class="btn btn-secondary btn-lg" id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
+
+    <a href="./gerarRelatorios/gerarRelatEventos.php">
+        <button type="button" class="btn btn-secondary btn-lg" id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
+    </a>
     <br><br>
 
 
@@ -92,7 +92,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-                        <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-check" title="Cadastrar Evento"></i> Cadastrar</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check" title="Cadastrar Evento"></i> Cadastrar</button>
                     </div>
                 </form>
             </div>
