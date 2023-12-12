@@ -41,10 +41,10 @@ if ($servidorLocal) {
     define('PASS', '');
     define('DBNAME', 'db_divinosabor');
 } else {
-    define('HOST', '0');
-    define('USER', '0');
-    define('PASS', '0');
-    define('DBNAME', '0');
+    define('HOST', '15.235.55.95');
+    define('USER', 'rafael');
+    define('PASS', 'rafaelfagundes762');
+    define('DBNAME', 'db_divinosabor');
 }
 
 

@@ -13,9 +13,33 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+
     }
 
     #mostrarCalendarioBtn:hover {
+        background-color: #2c3e50;
+    }
+
+
+    #btnGerarCalendario {
+        position: absolute;
+        top: 40%;
+        right: 45%;
+        transform: translateY(-50%);
+        background-color: #3498db;
+        color: #ffffff;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    #btnGerarCalendario:hover {
         background-color: #2c3e50;
     }
 </style>
@@ -27,7 +51,15 @@
         <div id='calendar'></div>
     </div>
 
-    <button id="mostrarCalendarioBtn" onclick="mostrarCalendario()">Mostrar Calendário</button>
+    <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye"></i>Mostrar Calendário</button>
+    <button type="button" class="btn btn-secondary btn-lg"id="btnGerarCalendario"><i class="fa-solid fa-print"></i>Gerar Relatório Geral</button>
+
+
+    <a href="#"><button type="button" class="btn btn-outline-secondary" > 
+            
+        </button> </a>
+    <br><br>
+
 
 
     <div class="modal fade" id="modalCadEvento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,11 +76,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="horaInicio" class="form-label">Início do Evento</label>
-                            <input type="datetime-local" class="form-control" name="horaInicio" id="horaInicio" required>
+                            <input type="text" class="form-control" name="horaInicio" id="horaInicio" required>
                         </div>
                         <div class="mb-3">
                             <label for="horaFim" class="form-label">Fim do Evento</label>
-                            <input type="datetime-local" class="form-control" name="horaFim" id="horaFim" required>
+                            <input type="text" class="form-control" name="horaFim" id="horaFim" required>
                         </div>
                         <div class="mb-3">
                             <label for="horaFim" class="form-label">Selecione a Cor</label>
@@ -70,6 +102,9 @@
         </div>
     </div>
 
+
+
+
     <script>
         function mostrarCalendario() {
             msgGeral('Carregando Calendário', 'success');
@@ -84,8 +119,12 @@
         // Oculta o botão após a página ser carregada
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('mostrarCalendarioBtn').style.display = 'none';
+            document.getElementById('btnGerarCalendario').style.display = 'none';
+
         });
     </script>
+
+
 
 
 </body>

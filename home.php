@@ -52,8 +52,8 @@ include_once './pages/time.php';
                     }
                     if ($page == 'listarEventos') {
                         include_once './pages/eventos/listarEventos.php';
+        
                     }
-                    
                 }
 
                 // if (!empty($_GET['page'])) {
@@ -84,5 +84,3 @@ include_once './pages/footer.php';
 
 
 ?>
-
-

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $('#modalCadEvento #horaInicio').val(formatoInicio);
             $('#modalCadEvento #horaFim').val(formatoFim);
             $('#modalCadEvento').modal('show');
-        
+
             // Adiciona um evento de submissão ao formulário
             $('#frmCadEvento').submit(function (event) {
                 event.preventDefault();  // Impede o comportamento padrão de submissão
@@ -193,5 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    calendar.render();
+
+        calendar.render();
 });
+
