@@ -110,8 +110,7 @@ try {
             } else if ($color == "#FF0831"){
                 $dados .= "<tr><th>Cor Destacada no Calendário</th><td style='color: $color;'>Vermelho</td></tr>";
             }
-            
-            $dados .= "<tr><th>Código Hexadecimal da Cor</th><td style='color: $color;'>$color</td></tr>";
+
             $start = formatarDataHoraBr($start); // formatando data de entrega para o padrão BR
             $dados .= "<tr><th>Data e Hora de Início do Evento</th><td>$start</td></tr>";
             $end = formatarDataHoraBr($end); // formatando data de entrega para o padrão BR
