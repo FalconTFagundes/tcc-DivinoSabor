@@ -2,9 +2,9 @@
     #mostrarCalendarioBtn {
         position: absolute;
         top: 50%;
-        right: 45%;
-        transform: translateY(-50%);
-        background-color: #3498db;
+        left: 50%; /* Modificado para centralizar horizontalmente */
+        transform: translate(-50%, -50%);
+        background-color: #9E77F1;
         color: #ffffff;
         padding: 15px 30px;
         font-size: 18px;
@@ -13,21 +13,18 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-
-
     }
 
     #mostrarCalendarioBtn:hover {
-        background-color: #2c3e50;
+        background-color: #483D8B;
     }
-
 
     #btnGerarCalendario {
         position: absolute;
-        top: 40%;
-        right: 45%;
-        transform: translateY(-50%);
-        background-color: #3498db;
+        top: 40%; /* Ajustado para alinhar abaixo do primeiro botão */
+        left: 50%; /* Modificado para centralizar horizontalmente */
+        transform: translate(-50%, -50%);
+        background-color: #9E77F1;
         color: #ffffff;
         padding: 15px 30px;
         font-size: 18px;
@@ -40,9 +37,10 @@
     }
 
     #btnGerarCalendario:hover {
-        background-color: #2c3e50;
+        background-color: #483D8B;
     }
 </style>
+
 </head>
 
 <body>
@@ -53,11 +51,6 @@
 
     <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye"></i>Mostrar Calendário</button>
     <button type="button" class="btn btn-secondary btn-lg"id="btnGerarCalendario"><i class="fa-solid fa-print"></i>Gerar Relatório Geral</button>
-
-
-    <a href="#"><button type="button" class="btn btn-outline-secondary" > 
-            
-        </button> </a>
     <br><br>
 
 
