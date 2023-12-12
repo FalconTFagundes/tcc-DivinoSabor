@@ -8,10 +8,12 @@ include_once './func/dashboard.php';
 
 <h1 style="text-align: center;">Pedidos</h1>
 
-
-<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalCadPedido">
+<!-- btn que chama a modal -->
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadPedido">
   <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Pedido
 </button>
+
+
 <a href="./gerarRelatorios/gerarRelatPedido.php"><button type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-print" title="Gerar Relatório"></i>
     Gerar Relatório Geral
   </button> </a>
@@ -152,28 +154,32 @@ include_once './func/dashboard.php';
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   }
+
+
+
 </style>
 
 
 
 
-<div class="modal fade" id="modalCadPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<!-- Modal Cad Pedido -->
+<div class="modal fade" id="modalCadPedido" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color:blueviolet; color: white;">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Pedido</h5>
+      <div class="modal-header" style="background-color:blueviolet; color: white; ">
+        <h5 class="modal-title" id="modalCadPedido">Cadastrar Pedido <i class="fa-regular fa-pen-to-square" title="Cadastro de Pedidos"></i></h5>
       </div>
       <form name="frmCadPedido" method="POST" id="frmCadPedido" class="frmCadPedido" action="#">
         <div class="modal-body">
-          <div class="mb-3">
+          <div class="form-group">
             <label for="nomePedido" class="form-label">Nome do Cliente</label>
             <input type="text" class="form-control" name="nomePedido" id="nomePedido" aria-describedby="nomePedido" required>
           </div>
-          <div class="mb-3">
+          <div class="form-group">
             <label for="pedido" class="form-label">Pedido</label>
             <input type="text" class="form-control" name="pedido" id="pedido" required>
           </div>
-          <div class="mb-3">
+          <div class="form-group">
             <label for="detalhesPedido" class="form-label">Detalhes</label>
             <textarea class="form-control" name="detalhesPedido" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
@@ -183,9 +189,9 @@ include_once './func/dashboard.php';
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-          <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadPedido','modalCadPedido','cadastrarPedidos','listarPedidos');">Cadastrar</button>
-        </div>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
+        <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadPedido','modalCadPedido','cadastrarPedidos','listarPedidos');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+      </div>
       </form>
     </div>
   </div>

@@ -2,7 +2,8 @@
     #mostrarCalendarioBtn {
         position: absolute;
         top: 50%;
-        left: 50%; /* Modificado para centralizar horizontalmente */
+        left: 50%;
+        /* Modificado para centralizar horizontalmente */
         transform: translate(-50%, -50%);
         background-color: #9E77F1;
         color: #ffffff;
@@ -21,8 +22,10 @@
 
     #btnGerarCalendario {
         position: absolute;
-        top: 40%; /* Ajustado para alinhar abaixo do primeiro botão */
-        left: 50%; /* Modificado para centralizar horizontalmente */
+        top: 40%;
+        /* Ajustado para alinhar abaixo do primeiro botão */
+        left: 50%;
+        /* Modificado para centralizar horizontalmente */
         transform: translate(-50%, -50%);
         background-color: #9E77F1;
         color: #ffffff;
@@ -33,7 +36,7 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        text-align: center;    
+        text-align: center;
     }
 
     #btnGerarCalendario:hover {
@@ -50,30 +53,31 @@
     </div>
 
     <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye" title="Exibir"></i> Mostrar Calendário</button>
-    <button type="button" class="btn btn-secondary btn-lg"id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
+    <button type="button" class="btn btn-secondary btn-lg" id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
     <br><br>
 
 
 
-    <div class="modal fade" id="modalCadEvento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Modal Cad Evento -->
+    <div class="modal fade" id="modalCadEvento" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:blueviolet; color: white;">
-                    <h5 class="modal-title" id="exampleModalLabel">Cadastrar Evento</h5>
+                <div class="modal-header" style="background-color:blueviolet; color: white; ">
+                    <h5 class="modal-title" id="modalCadEvento">Cadastrar Evento <i class="fa-regular fa-calendar-check" title="Cadastro de Eventos"></i></h5>
                 </div>
                 <form name="frmCadEvento" method="POST" id="frmCadEvento" class="frmCadEvento" action="#">
                     <div class="modal-body">
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="tituloEvento" class="form-label">Título do Evento</label>
                             <input type="text" class="form-control" name="tituloEvento" id="tituloEvento" aria-describedby="tituloEvento" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="horaInicio" class="form-label">Início do Evento</label>
-                            <input type="text" class="form-control" name="horaInicio" id="horaInicio" required>
+                            <input type="datetime-local" class="form-control" name="horaInicio" id="horaInicio" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="horaFim" class="form-label">Fim do Evento</label>
-                            <input type="text" class="form-control" name="horaFim" id="horaFim" required>
+                            <input type="datetime-local" class="form-control" name="horaFim" id="horaFim" required>
                         </div>
                         <div class="mb-3">
                             <label for="horaFim" class="form-label">Selecione a Cor</label>
@@ -87,16 +91,13 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
+                        <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-check" title="Cadastrar Evento"></i> Cadastrar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-
-
 
     <script>
         function mostrarCalendario() {
