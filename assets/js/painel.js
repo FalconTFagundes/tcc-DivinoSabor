@@ -23,7 +23,7 @@ function cadGeral(formId, modalId, pageAcao, pageRetorno) {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Salvo com Sucesso',
+                    title: 'Salvo com Sucesso :D',
                     showConfirmButton: false,
                     timer: 1500
 
@@ -69,11 +69,13 @@ function excGeral(idvar, acaopage, pageretorno, m1, m2) {
             beforeSend: function (retorno) {
             }, success: function (retorno) {
 
-                Swal.fire(
-                    'Arquivo Deletado!',
-                    'O arquivo foi deletado com sucesso',
-                    'success'
-                )
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Deletado com Sucesso :D",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
                 setTimeout(function () {
                     atualizarPagina(pageretorno);
                 }, 1000)

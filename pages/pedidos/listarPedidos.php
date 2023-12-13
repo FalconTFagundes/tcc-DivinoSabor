@@ -115,53 +115,6 @@ include_once './func/dashboard.php';
 </div>
 
 
-<style>
-  .entregaVermelha,
-  .entregaAmarela,
-  .entregaVerde {
-    border-radius: 10px;
-    padding: 15px 30px;
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    display: inline-block;
-    margin: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    position: relative;
-    z-index: 0;
-  }
-
-  .entregaVermelha {
-    background: linear-gradient(45deg, #FF6347, #FF4580);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .entregaAmarela {
-    background: linear-gradient(45deg, #FFD700, #FFA500);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .entregaVerde {
-    background: linear-gradient(45deg, #32CD32, #008000);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Hover effect */
-  .entregaVermelha:hover,
-  .entregaAmarela:hover,
-  .entregaVerde:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  }
-
-
-
-</style>
-
-
-
-
 <!-- Modal Cad Pedido -->
 <div class="modal fade" id="modalCadPedido" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">

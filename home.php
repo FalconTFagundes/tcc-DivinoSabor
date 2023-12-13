@@ -52,8 +52,23 @@ include_once './pages/time.php';
                     }
                     if ($page == 'listarEventos') {
                         include_once './pages/eventos/listarEventos.php';
-        
                     }
+                    if ($page == 'listarFinanceiro') {
+                        include_once './pages/financeiro/listarFinanceiro.php';
+                    }
+                    if ($page == 'perguntas') {
+                        include_once './footerPages/perguntas.php';
+                    }
+                    if ($page == 'sobreNos') {
+                        include_once './footerPages/sobreNos.php';
+                    }
+                    if ($page == 'suporte') {
+                        include_once './footerPages/suporte.php';
+                    }
+                    if ($page == 'termos') {
+                        include_once './footerPages/termos.php';
+                    }
+                    
                 }
 
                 // if (!empty($_GET['page'])) {

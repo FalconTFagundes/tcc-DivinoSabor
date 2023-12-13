@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             timer: 1500
 
                         })
+
+                        
                     }
                 });
             });
@@ -163,15 +165,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     beforeSend: function (retorno) {
                     }, success: function (retorno) {
 
-                        Swal.fire(
-                            'Arquivo Deletado!',
-                            'O arquivo foi deletado com sucesso',
-                            'success'
-                        )
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Salvo com Sucesso',
+                            showConfirmButton: false,
+                            timer: 700
+
+                        })
                         setTimeout(function () {
                             atualizarPagina('listarEventos');
                         }, 1000)
                     }
+                    
+                    
 
 
                 });

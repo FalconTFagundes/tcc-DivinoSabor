@@ -13,9 +13,6 @@ switch ($acao) {
         echo 'Home';
         break;
 
-
-
-
         // ações da parte de usuarios 
     case 'sobreNos':
         $_SESSION["page"] = 'sobreNos';
@@ -37,11 +34,15 @@ switch ($acao) {
         include_once './footerPages/termos.php';
         break;
 
+        // PEDIDOS
+
     case 'listarPedidos':
         // chamar variável
         $_SESSION["page"] = 'listarPedidos';
         include_once './pages/pedidos/listarPedidos.php';
         break;
+
+        // EVENTOS
 
     case 'listarEventos':
         // chamar variável
@@ -55,6 +56,14 @@ switch ($acao) {
 
     case 'excluirEventos':
         include_once './pages/eventos/excluirEventos.php';
+        break;
+
+
+        // FINANCEIRO
+
+    case 'listarFinanceiro':
+        $_SESSION["page"] = 'listarFinanceiro';
+        include_once './pages/financeiro/listarFinanceiro.php';
         break;
 
         // páginas de ações

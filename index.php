@@ -14,6 +14,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- faviicon icon net guia -->
+    <link href="assets/images/favicon/favicon.ico" rel="icon">
+    <link href="assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon">
+
+
     <!-- Bootstrap v4.0 CSS -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
@@ -21,7 +26,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- icons -->
-    <link rel="stylesheet" href="assets/fontAwesome/css/all.min.css"/> <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/fontAwesome/css/all.min.css" /> <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/boxicons/css/boxicons.min.css"> <!-- Boxicons -->
 
 
