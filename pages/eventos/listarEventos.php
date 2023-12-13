@@ -57,29 +57,6 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var btnGerarCalendario = document.getElementById("btnGerarCalendario");
-
-            btnGerarCalendario.addEventListener("click", function(event) {
-                event.preventDefault();
-
-                Swal.fire({
-                    title: 'Você tem certeza?',
-                    text: 'Deseja gerar o relatório geral dos eventos?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Sim, gerar relatório!',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = btnGerarCalendario.parentElement.getAttribute('href');
-                    }
-                });
-            });
-        });
-
         function mostrarAlerta() {
             Swal.fire({
                 title: 'Você tem certeza?',

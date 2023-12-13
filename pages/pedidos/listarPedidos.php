@@ -14,9 +14,12 @@ include_once './func/dashboard.php';
 </button>
 
 
-<a href="./gerarRelatorios/gerarRelatPedido.php"><button type="button" class="btn btn-outline-secondary" id="btnRelatorioPedido"> <i class="fa-solid fa-print" title="Gerar Relatório"></i>
-    Gerar Relatório Geral
-  </button> </a>
+<button type="button" class="btn btn-outline-secondary" onclick="mostrarAlerta();">
+  <i class="fa-solid fa-print" title="Gerar Relatório"></i>
+  Gerar Relatório Geral
+</button>
+
+
 <br><br>
 
 
@@ -88,11 +91,12 @@ include_once './func/dashboard.php';
                 ?>
 
                 <!-- passando id diretamente na URL - sem SEM AJAX -->
-                <a href="./gerarRelatorios/gerarRelatUnPedido.php?id=<?php echo $idPedido; ?>">
+                <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idPedido; ?>')">
                   <button type="button" class="btn btn-outline-info btnGerarRelatPedidoUn">
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
+
 
 
 
@@ -151,70 +155,51 @@ include_once './func/dashboard.php';
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var btnRelatorioPedido = document.getElementById("btnRelatorioPedido");
-    btnRelatorioPedido.addEventListener("click", function(event) {
-      event.preventDefault(); // impede o comportamento padrão do link
-      Swal.fire({
-        title: 'Você tem certeza?',
-        text: 'Deseja gerar o relatório geral de pedidos?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, gerar relatório!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Gerando Relatório :D',
-            showConfirmButton: false,
-            timer: 700
-
-          })
-          window.location.href = btnRelatorioPedido.parentElement.getAttribute('href');
-        }
-      });
-    });
-  });
-
-
-  document.addEventListener("DOMContentLoaded", function() {
-    var btnGerarRelatPedidoUn = document.getElementsByClassName("btnGerarRelatPedidoUn");
-
-    // Itera sobre a coleção de elementos
-    for (var i = 0; i < btnGerarRelatPedidoUn.length; i++) {
-      btnGerarRelatPedidoUn[i].addEventListener("click", function(event) {
-        event.preventDefault(); // Impede o comportamento padrão do link
+  function mostrarAlerta() {
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: 'Deseja gerar o relatório geral dos pedidos?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, gerar relatório!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
         Swal.fire({
-          title: 'Você tem certeza?',
-          text: 'Deseja gerar o relatório do pedido?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Sim, gerar relatório!',
-          cancelButtonText: 'Cancelar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Gerando Relatório :D',
-            showConfirmButton: false,
-            timer: 700
-
-          })
-            window.location.href = this.parentElement.getAttribute('href');
-          }
+          position: 'center',
+          icon: 'success',
+          title: 'Gerando Relatório :D',
+          showConfirmButton: false,
+          timer: 700
         });
-      });
-    }
-  });
-</script>
+        window.location.href = './gerarRelatorios/gerarRelatPedido.php';
+      }
+    });
+  }
 
-
-
+  function mostrarAlertaIdGet(idPedido) {
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: 'Deseja gerar o relatório do pedido?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, gerar relatório!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Gerando Relatório :D',
+          showConfirmButton: false,
+          timer: 700
+        });
+        window.location.href = './gerarRelatorios/gerarRelatUnPedido.php?id=' + idPedido;
+      }
+    });
+  }
 </script>
