@@ -64,10 +64,7 @@ include_once './func/dashboard.php';
             $classeData = 'entregaVerde';
           }
 
-
-
-
-      ?>
+          ?>
 
           <tr>
             <th scope="row"><?php echo $idPedido; ?></th>
@@ -113,7 +110,6 @@ include_once './func/dashboard.php';
         echo "</div>";
       }
       ?>
-
     </tbody>
   </table>
 </div>

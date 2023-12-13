@@ -984,7 +984,6 @@ allLi.forEach((li, index) => {
 
 
 // RELÓGIO COM DATA
-
 function clock() {
     var monthNames = ["Jan.", "Fev.", "Mar.", "Abril", "Maio", "Jun.", "Jul.", "Agos.", "Set.", "Out.", "Nov.", "Dez."];
     var dayNames = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
@@ -993,27 +992,20 @@ function clock() {
 
     var today = new Date();
 
-    document.getElementById('Date').innerHTML = (dayNames[today.getDay()] + " " + Icon + " " + today.getDate() + ' ' + monthNames[today.getMonth()] + ' ' + today.getFullYear());
+    document.getElementById('Date').innerHTML = (dayNames[(today.getDay() + 6) % 7] + " " + Icon + " " + today.getDate() + ' ' + monthNames[today.getMonth()] + ' ' + today.getFullYear());
 
     var h = today.getHours();
     var m = today.getMinutes();
-    // var s = today.getSeconds();
-    var day = h < 11 ? 'AM' : 'PM';
 
     document.getElementById('hours').innerHTML = h;
     document.getElementById('min').innerHTML = m;
-    // document.getElementById('sec').innerHTML = s;
 
     h = h < 10 ? '0' + h : h;
     m = m < 10 ? '0' + m : m;
-    // s = s<10? '0'+s: s;
 }
 var inter = setInterval(clock, 400);
 
 // RELÓGIO COM DATA DE LADO
-
-
-
 function clocka() {
     var monthNames = ["Jan.", "Fev.", "Mar.", "Abril", "Maio", "Jun.", "Jul.", "Agos.", "Set.", "Out.", "Nov.", "Dez."];
     var dayNames = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
@@ -1022,23 +1014,20 @@ function clocka() {
 
     var today = new Date();
 
-    document.getElementById('Datea').innerHTML = (dayNames[today.getDay()] + " " + Icon + " " + today.getDate() + ' ' + monthNames[today.getMonth()] + ' ' + today.getFullYear());
+    document.getElementById('Datea').innerHTML = (dayNames[(today.getDay() + 6) % 7] + " " + Icon + " " + today.getDate() + ' ' + monthNames[today.getMonth()] + ' ' + today.getFullYear());
 
     var h = today.getHours();
     var m = today.getMinutes();
-    // var s = today.getSeconds();
-    var day = h < 11 ? 'AM' : 'PM';
 
     document.getElementById('hoursa').innerHTML = h;
     document.getElementById('mina').innerHTML = m;
-    // document.getElementById('sec').innerHTML = s;
 
     h = h < 10 ? '0' + h : h;
     m = m < 10 ? '0' + m : m;
-    // s = s<10? '0'+s: s;
 }
 
-var inter = setInterval(clocka, 400);
+var intera = setInterval(clocka, 400);
+
 
 
 // CALENDÁRIO
