@@ -36,6 +36,12 @@ include_once './pages/time.php';
                     <a href="#" class="linkMenu" idMenu="listarEventos">
                         <i class="fa-solid fa-calendar-days" title="Eventos"></i>
                     </a>
+                    <!-- <a href="#" class="linkMenu" idMenu="listarProdutos">
+                    <i class="fa-solid fa-cart-flatbed" title="Produtos"></i>
+                    </a> -->
+
+<!-- criar +2 novos botões no menu -->
+
                 </div>
             </div>
 

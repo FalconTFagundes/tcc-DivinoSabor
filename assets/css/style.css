@@ -172,6 +172,10 @@ border-radius: 30px;
     width: 100%;
 }
 
+.container{
+    margin-top: -6px!important;
+}
+
 body {
     background: #F5F5F5;
     overflow: hidden;
