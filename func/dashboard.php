@@ -4413,7 +4413,7 @@ function virgulaporpontoPainel($str)
 
 function formatarDataHoraBr($data)
 {
-    return date('d-m-Y H:i:s', strtotime($data));
+    return date('d/m/Y H:i:s', strtotime($data));
 }
 
 function formatarDataBr($data)
