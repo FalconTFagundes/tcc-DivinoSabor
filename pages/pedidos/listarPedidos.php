@@ -166,6 +166,14 @@ include_once './func/dashboard.php';
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Gerando Relatório :D',
+            showConfirmButton: false,
+            timer: 700
+
+          })
           window.location.href = btnRelatorioPedido.parentElement.getAttribute('href');
         }
       });
@@ -191,6 +199,14 @@ include_once './func/dashboard.php';
           cancelButtonText: 'Cancelar'
         }).then((result) => {
           if (result.isConfirmed) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Gerando Relatório :D',
+            showConfirmButton: false,
+            timer: 700
+
+          })
             window.location.href = this.parentElement.getAttribute('href');
           }
         });

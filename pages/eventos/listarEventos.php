@@ -8,9 +8,9 @@
 
     <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye" title="Exibir"></i> Mostrar Calendário</button>
 
-    <a href="./gerarRelatorios/gerarRelatEventos.php">
-        <button type="button" class="btn btn-secondary btn-lg" id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
-    </a>
+    <button type="button" class="btn btn-secondary btn-lg" id="btnGerarCalendario" onclick="mostrarAlerta()">
+        <i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral
+    </button>
     <br><br>
 
 
@@ -57,6 +57,55 @@
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var btnGerarCalendario = document.getElementById("btnGerarCalendario");
+
+            btnGerarCalendario.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                Swal.fire({
+                    title: 'Você tem certeza?',
+                    text: 'Deseja gerar o relatório geral dos eventos?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim, gerar relatório!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = btnGerarCalendario.parentElement.getAttribute('href');
+                    }
+                });
+            });
+        });
+
+        function mostrarAlerta() {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: 'Deseja gerar o relatório geral dos eventos?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, gerar relatório!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Gerando Relatório :D',
+                    showConfirmButton: false,
+                    timer: 700
+
+                })
+                    window.location.href = './gerarRelatorios/gerarRelatEventos.php';
+                }
+            });
+        }
+
+
         function mostrarCalendario() {
             msgGeral('Carregando Calendário', 'success');
 
