@@ -1,3 +1,49 @@
+<<<<<<< HEAD
+=======
+<style>
+    #mostrarCalendarioBtn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #9E77F1;
+        color: #ffffff;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #mostrarCalendarioBtn:hover {
+        background-color: #483D8B;
+    }
+
+    #btnGerarCalendario {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #9E77F1;
+        color: #ffffff;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    #btnGerarCalendario:hover {
+        background-color: #483D8B;
+    }
+</style>
+
+>>>>>>> 564a2d7606e97ddad2399c4643ef7ce848b89cfb
 </head>
 
 <body>
@@ -7,7 +53,10 @@
     </div>
 
     <button type="button" class="btn btn-primary btn-lg" id="mostrarCalendarioBtn" onclick="mostrarCalendario()"><i class="fa-solid fa-eye" title="Exibir"></i> Mostrar Calendário</button>
-    <button type="button" class="btn btn-secondary btn-lg" id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
+
+    <a href="./gerarRelatorios/gerarRelatEventos.php">
+        <button type="button" class="btn btn-secondary btn-lg" id="btnGerarCalendario"><i class="fa-solid fa-print" title="Gerar Relatório"></i> Gerar Relatório Geral</button>
+    </a>
     <br><br>
 
 
@@ -46,7 +95,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-                        <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-check" title="Cadastrar Evento"></i> Cadastrar</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check" title="Cadastrar Evento"></i> Cadastrar</button>
                     </div>
                 </form>
             </div>

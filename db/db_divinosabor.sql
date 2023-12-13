@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11/12/2023 às 03:17
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 12/12/2023 às 23:36
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,12 +40,32 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
-(1, 'Teste Roxo', '#9E77F1', '2023-12-10 03:00:00', '2023-12-11 03:00:00'),
-(2, 'Teste Red', '#FF0831', '2023-12-15 03:00:00', '2023-12-16 03:00:00'),
-(3, 'Teste Blue', '#297BFF', '2023-12-19 03:00:00', '2023-12-20 03:00:00'),
-(5, 'teste amarelão', '#D4C200', '2023-12-22 03:00:00', '2023-12-23 03:00:00'),
-(6, 'Teste', '#FF0831', '2023-12-26 23:00:00', '2023-12-27 03:00:00'),
-(7, 'Festa', '#00BD3f', '2023-12-07 03:00:00', '2023-12-08 03:00:00');
+(8, 'Teste Mask', '#00BD3f', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 'teste', '#D4C200', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 'Teste Mask', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 'Teste Mask', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(15, 'teste', '#D4C200', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(16, 'a', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(17, 'a', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(18, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(19, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(20, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(21, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(22, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(23, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(24, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(25, 'teste', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(26, 'teste', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(31, 'Festa de Aniversário', '#297BFF', '2023-12-16 00:00:00', '2023-12-17 12:00:00'),
+(32, 'Festa no Saae', '#9E77F1', '2023-12-07 03:00:00', '2023-12-08 03:00:00'),
+(35, 'Aegea', '#D4C200', '2023-12-12 03:00:00', '2023-12-13 03:00:00'),
+(36, 'Formatura', '#FF0831', '2023-12-29 03:00:00', '2023-12-30 03:00:00'),
+(37, 'Aniversário Fernando', '#D4C200', '2023-12-05 03:00:00', '2023-12-06 03:00:00'),
+(38, 'Senai lab', '#00BD3f', '2024-01-01 03:00:00', '2024-01-02 03:00:00'),
+(39, 'teste', '#00BD3f', '2023-12-22 03:00:00', '2023-12-23 03:00:00'),
+(40, 'teste', '#9E77F1', '2023-12-14 03:00:00', '2023-12-15 03:00:00'),
+(41, 'teste', '#9E77F1', '2023-12-21 03:00:00', '2023-12-22 03:00:00'),
+(42, 'teste', '#9E77F1', '2023-12-05 03:00:00', '2023-12-06 03:00:00');
 
 -- --------------------------------------------------------
 
@@ -60,7 +80,7 @@ CREATE TABLE `pedidos` (
   `detalhes` varchar(70) NOT NULL,
   `cadastro` datetime NOT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `ativo` char(1) NOT NULL DEFAULT 'D',
+  `ativo` char(1) NOT NULL DEFAULT 'A',
   `dataEntrega` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -69,15 +89,11 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idpedidos`, `nome`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`) VALUES
-(1, 'Rafael', 'Festa de Aniverário', '200 salgados ao total', '2023-12-10 20:33:08', '2023-12-11 00:01:57', 'D', '2024-08-17'),
-(2, 'teste', 'teste', 'teste', '2023-12-10 22:24:10', '2023-12-11 01:24:43', 'D', '0111-11-11'),
-(3, 'Teste', 'teste', 'teste', '2023-12-10 22:50:03', '2023-12-11 01:50:03', 'D', '2025-11-11'),
-(4, 'teste', 'tagasg', 'gasgag', '2023-12-10 22:50:15', '2023-12-11 01:50:15', 'D', '2024-11-11'),
-(5, 'teste', 'teste', 'teste', '2023-12-10 22:50:30', '2023-12-11 01:50:30', 'D', '2023-12-11'),
-(6, 'test', 't', 't', '2023-12-10 22:50:38', '2023-12-11 01:50:38', 'D', '1111-11-11'),
-(7, 'test', 't', 't', '2023-12-10 22:50:45', '2023-12-11 01:50:45', 'D', '1111-11-11'),
-(8, 't', 't', 't', '2023-12-10 22:50:55', '2023-12-11 01:50:55', 'D', '0000-00-00'),
-(9, 'test', 't', 't', '2023-12-10 22:51:01', '2023-12-11 01:51:01', 'D', '1111-11-11');
+(14, 'Fernando Rodrigues', 'Festa de Hallowen', 'Salgados diversos e bolo', '2023-12-11 19:41:24', '2023-12-12 22:31:07', 'A', '2023-12-18'),
+(15, 'Widerson', 'Festa de Aniversário', '500 salgados diversos', '2023-12-11 19:41:57', '2023-12-12 22:31:07', 'A', '2025-12-01'),
+(16, 'Rafael', 'Festa', 'Muitos salgados com foco em carne', '2023-12-11 19:42:34', '2023-12-12 22:31:07', 'A', '2023-11-25'),
+(17, 't', 't', 't', '2023-12-12 19:30:39', '2023-12-12 22:31:07', 'A', '1111-11-11'),
+(18, 'T', 'T', 'T', '2023-12-12 19:31:28', '2023-12-12 22:31:28', 'A', '1111-11-11');
 
 -- --------------------------------------------------------
 
@@ -134,13 +150,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`

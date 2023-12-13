@@ -26,9 +26,15 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- icons -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="assets/fontAwesome/css/all.min.css" /> <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/boxicons/css/boxicons.min.css"> <!-- Boxicons -->
 
+=======
+    <link rel="stylesheet" href="assets/fontAwesome/css/all.min.css"/>  <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/boxicons/css/boxicons.min.css">  <!-- Boxicons -->
+    
+>>>>>>> 564a2d7606e97ddad2399c4643ef7ce848b89cfb
 
     <title>Divino Sabor | Dashboard</title>
 </head>
@@ -55,19 +61,19 @@
     </div>
 
     <!-- jQuery -->
-    <script src="assets/jQuery/jquery3.7.1.js"></script>
+    <script src="assets/jQuery/jquery3.7.1.js"></script> 
 
     <!-- Popper.js -->
     <script src="assets/popperJs/popper.js"></script>
 
     <!-- Bootstrap v4.0 -->
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- inputmask -->
-    <script src="assets/inputMask/inputMask.js"></script>
+    <script src="assets/inputMask/inputMask.js"></script> 
 
     <!-- sweet alert -->
-    <script src="assets/sweetAlert2/sweetAlert2.js"></script>
+   <script src="assets/sweetAlert2/sweetAlert2.js"></script>
 
     <!-- calendario -->
     <script src='./assets/js/index.global.min.js'></script>
