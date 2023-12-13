@@ -58,7 +58,7 @@
             </div>
             <div class="horas">
                 <div id="hours" class="clock-time"></div>
-                <div id="space" class="clock-time">:</div>
+                <div id="space" class="clock-time"></div>
                 <div id="min" class="clock-time"></div>
             </div>
         </div>
