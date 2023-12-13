@@ -14,7 +14,7 @@ include_once './func/dashboard.php';
 </button>
 
 
-<a href="./gerarRelatorios/gerarRelatPedido.php" id="btnRelatorioPedido"><button type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-print" title="Gerar Relatório"></i>
+<a href="./gerarRelatorios/gerarRelatPedido.php"><button type="button" class="btn btn-outline-secondary" id="btnRelatorioPedido"> <i class="fa-solid fa-print" title="Gerar Relatório"></i>
     Gerar Relatório Geral
   </button> </a>
 <br><br>
@@ -88,8 +88,8 @@ include_once './func/dashboard.php';
                 ?>
 
                 <!-- passando id diretamente na URL - sem SEM AJAX -->
-                <a href="./gerarRelatorios/gerarRelatUnPedido.php?id=<?php echo $idPedido; ?>" target="_blank">
-                  <button type="button" class="btn btn-outline-info">
+                <a href="./gerarRelatorios/gerarRelatUnPedido.php?id=<?php echo $idPedido; ?>">
+                  <button type="button" class="btn btn-outline-info btnGerarRelatPedidoUn">
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
@@ -142,9 +142,9 @@ include_once './func/dashboard.php';
           </div>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-        <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadPedido','modalCadPedido','cadastrarPedidos','listarPedidos');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
-      </div>
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
+          <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadPedido','modalCadPedido','cadastrarPedidos','listarPedidos');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+        </div>
       </form>
     </div>
   </div>
@@ -152,26 +152,53 @@ include_once './func/dashboard.php';
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-
     var btnRelatorioPedido = document.getElementById("btnRelatorioPedido");
     btnRelatorioPedido.addEventListener("click", function(event) {
-
-      event.preventDefault();
+      event.preventDefault(); // impede o comportamento padrão do link
       Swal.fire({
         title: 'Você tem certeza?',
-        text: 'Deseja gerar o relatório?',
+        text: 'Deseja gerar o relatório geral de pedidos?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sim, gerar relatório!',
         cancelButtonText: 'Cancelar'
-
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = btnRelatorioPedido.getAttribute('href');
+          window.location.href = btnRelatorioPedido.parentElement.getAttribute('href');
         }
       });
     });
   });
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var btnGerarRelatPedidoUn = document.getElementsByClassName("btnGerarRelatPedidoUn");
+
+    // Itera sobre a coleção de elementos
+    for (var i = 0; i < btnGerarRelatPedidoUn.length; i++) {
+      btnGerarRelatPedidoUn[i].addEventListener("click", function(event) {
+        event.preventDefault(); // Impede o comportamento padrão do link
+        Swal.fire({
+          title: 'Você tem certeza?',
+          text: 'Deseja gerar o relatório do pedido?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sim, gerar relatório!',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = this.parentElement.getAttribute('href');
+          }
+        });
+      });
+    }
+  });
+</script>
+
+
+
 </script>
