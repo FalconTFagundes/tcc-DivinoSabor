@@ -997,12 +997,13 @@ function clock() {
     var h = today.getHours();
     var m = today.getMinutes();
 
-    document.getElementById('hours').innerHTML = h;
-    document.getElementById('min').innerHTML = m;
-
     h = h < 10 ? '0' + h : h;
     m = m < 10 ? '0' + m : m;
+
+    document.getElementById('hours').innerHTML = h;
+    document.getElementById('min').innerHTML = m;
 }
+
 var inter = setInterval(clock, 400);
 
 // RELÓGIO COM DATA DE LADO
@@ -1019,11 +1020,11 @@ function clocka() {
     var h = today.getHours();
     var m = today.getMinutes();
 
-    document.getElementById('hoursa').innerHTML = h;
-    document.getElementById('mina').innerHTML = m;
-
     h = h < 10 ? '0' + h : h;
     m = m < 10 ? '0' + m : m;
+
+    document.getElementById('hoursa').innerHTML = h;
+    document.getElementById('mina').innerHTML = m;
 }
 
 var intera = setInterval(clocka, 400);
@@ -1031,7 +1032,6 @@ var intera = setInterval(clocka, 400);
 
 
 // CALENDÁRIO
-
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
