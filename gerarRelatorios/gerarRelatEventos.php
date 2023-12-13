@@ -28,65 +28,64 @@ try {
 
         // Executar a QUERY
         $stmt->execute();
-
+        
         // Informacoes para o PDF
         $dados = "<!DOCTYPE html>";
         $dados .= "<html lang='pt-br'>";
         $dados .= "<head>";
         $dados .= "<meta charset='UTF-8'>";
-        $dados .= "<style>
-            body {
-                font-family: 'Arial', sans-serif;
-                color: #333;
-                margin: 20px;
-            }
-
-            h1 {
-                color: #9E77F1;
-                text-align: center;
-                border-bottom: 2px solid #333;
-                padding-bottom: 10px;
-                margin-bottom: 20px;
-            }
-
-            h4 {
-                color: #333;
-                margin-top: 10px;
-            }
-
-            b {
-                color: #333;
-            }
-
-            hr {
-                border-top: 1px solid;
-                margin-top: 20px;
-                margin-bottom: 30px;
-            }
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-
-            th, td {
-                border: 1px solid #ddd;
-                padding: 12px;
-                text-align: left;
-            }
-
-            th {
-                background-color: #f2f2f2; /* Cor de fundo mais clara para cabeçalho da tabela */
-            }
-
-            td {
-                background-color: #fff; /* Cor de fundo branca para células de dados */
-            }
-        </style>";
-
         $dados .= "<title>Relatório de Eventos</title>";
+        $dados .= "<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        margin: 20px;
+    }
+
+    h1 {
+        color: #9E77F1;
+        text-align: center;
+        border-bottom: 2px solid #333;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: #333;
+        margin-top: 10px;
+    }
+
+    b {
+        color: #333;
+    }
+
+    hr {
+        border-top: 1px solid;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        background-color: #fff;
+    }
+</style>";
         $dados .= "</head>";
         $dados .= "<body>";
         $dados .= "<h1>RELATÓRIO DE EVENTOS</h1>";
@@ -99,24 +98,26 @@ try {
             $dados .= "<table>";
             $dados .= "<tr><th>Código do Evento</th><td>$id</td></tr>";
             $dados .= "<tr><th>Título do Evento</th><td>$title</td></tr>";
+
+            $colorLabel = "";
             if ($color == "#00BD3f") {
-                $dados .= "<tr><th>Cor Destacada no Calendário</th><td style='color: $color;'>Verde</td></tr>";
+                $colorLabel = "Verde";
             } elseif ($color == "#D4C200") {
-                $dados .= "<tr><th>Cor Destacada no Calendário</th><td style='color: $color;'>Amarelo</td></tr>";
-            } else if ($color == "#9E77F1"){
-                $dados .= "<tr><th>Cor Destacada no Calendário</th><td style='color: $color;'>Roxo</td></tr>";
-            } else if ($color == "#297BFF"){
-                $dados .= "<tr><th>Cor Destacada no Calendário</th><td style='color: $color;'>Azul</td></tr>";
-            } else if ($color == "#FF0831"){
-                $dados .= "<tr><th>Cor Destacada no Calendário</th><td style='color: $color;'>Vermelho</td></tr>";
+                $colorLabel = "Amarelo";
+            } elseif ($color == "#9E77F1") {
+                $colorLabel = "Roxo";
+            } elseif ($color == "#297BFF") {
+                $colorLabel = "Azul";
+            } elseif ($color == "#FF0831") {
+                $colorLabel = "Vermelho";
             }
 
-            $start = formatarDataHoraBr($start); // formatando data de entrega para o padrão BR
-            $dados .= "<tr><th>Data e Hora de Início do Evento</th><td>$start</td></tr>";
-            $end = formatarDataHoraBr($end); // formatando data de entrega para o padrão BR
-            $dados .= "<tr><th>Data e Hora de fim do Evento</th><td>$end</td></tr>";
+            $start = formatarDataHoraBr($start);
+            $end = formatarDataHoraBr($end);
 
-            $dados .= "</td></tr>";
+            $dados .= "<tr><th>Cor Destacada no Calendário</th><td style='color: $color;'>$colorLabel</td></tr>";
+            $dados .= "<tr><th>Data e Hora de Início do Evento</th><td>$start</td></tr>";
+            $dados .= "<tr><th>Data e Hora de fim do Evento</th><td>$end</td></tr>";
             $dados .= "</table>";
 
             // Adiciona uma linha horizontal após cada registro
@@ -124,6 +125,7 @@ try {
         }
 
         $dados .= "</body>";
+
 
         // Instanciar e usar a classe dompdf
         $dompdf = new Dompdf(['enable_remote' => true]);
