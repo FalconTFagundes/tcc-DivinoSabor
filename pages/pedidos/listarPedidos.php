@@ -14,7 +14,7 @@ include_once './func/dashboard.php';
 </button>
 
 
-<a href="./gerarRelatorios/gerarRelatPedido.php"><button type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-print" title="Gerar Relatório"></i>
+<a href="./gerarRelatorios/gerarRelatPedido.php" id="btnRelatorioPedido"><button type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-print" title="Gerar Relatório"></i>
     Gerar Relatório Geral
   </button> </a>
 <br><br>
@@ -149,3 +149,29 @@ include_once './func/dashboard.php';
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+    var btnRelatorioPedido = document.getElementById("btnRelatorioPedido");
+    btnRelatorioPedido.addEventListener("click", function(event) {
+
+      event.preventDefault();
+      Swal.fire({
+        title: 'Você tem certeza?',
+        text: 'Deseja gerar o relatório?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, gerar relatório!',
+        cancelButtonText: 'Cancelar'
+
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = btnRelatorioPedido.getAttribute('href');
+        }
+      });
+    });
+  });
+</script>
