@@ -1,6 +1,4 @@
-//tema dark/light
-// :D
-
+//tema dark/light :D
 const btnDarkModeToggle = document.getElementById("btn-dark-mode-toggle");
 let themeSystem = localStorage.getItem("themeSystem") || "light";
 
@@ -11,18 +9,31 @@ btnDarkModeToggle.addEventListener('click', () => {
     localStorage.setItem("themeSystem", newTheme);
     themeSystem = newTheme;
     defineCurrentTheme(newTheme);
+    updateLogo(newTheme);
 });
 
 function defineCurrentTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme == "light") {
-        btnDarkModeToggle.innerHTML = "<i class='fa-regular fa-3x fa-moon' title='Modo Escuro'></i>";
+        btnDarkModeToggle.innerHTML = "<i class='fa-regular fa-3x fa-moon' id='lightModeActive' title='Modo Escuro'></i>";
     } else {
-        btnDarkModeToggle.innerHTML = "<i class='fa-solid fa-3x fa-moon' title='Modo Claro'></i>";
+        btnDarkModeToggle.innerHTML = "<i class='fa-solid fa-3x fa-moon' id='darkModeActive' title='Modo Claro'></i>";
+    }
+}
+
+function updateLogo(theme) {
+    const logoElement = document.querySelector(".linkMenu img");
+
+    if (theme == "light") {
+        logoElement.src = "./assets/images/favicon/logo-2015.png"; //light modee logo
+    } else {
+        logoElement.src = "./assets/images/favicon/logoDarkMode.png"; //dark mode logo
     }
 }
 
 defineCurrentTheme(themeSystem);
+updateLogo(themeSystem);
+
 
 
 function cadGeral(formId, modalId, pageAcao, pageRetorno) {
