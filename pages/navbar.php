@@ -52,10 +52,7 @@
         </ul>
     </div>
     <div class="container" id="divDarkModeBtn">
-        <i class="fa-regular fa-4x fa-moon" title="Modo Escuro"></i>
-
-        <!-- btn modo escuro ativado!!!!! -->
-        <!-- <i class="fa-solid fa-moon" title="Modo Claro"></i> -->
+        <button id="btn-dark-mode-toggle"></button>
     </div>
     <div class="menu-f">
         <div id="clock-nav" class="<?php

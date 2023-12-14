@@ -1,3 +1,29 @@
+//tema dark/light
+// :D
+
+const btnDarkModeToggle = document.getElementById("btn-dark-mode-toggle");
+let themeSystem = localStorage.getItem("themeSystem") || "light";
+
+btnDarkModeToggle.addEventListener('click', () => {
+    let oldTheme = themeSystem;
+    let newTheme = oldTheme == "light" ? "dark" : "light";
+
+    localStorage.setItem("themeSystem", newTheme);
+    themeSystem = newTheme;
+    defineCurrentTheme(newTheme);
+});
+
+function defineCurrentTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    if (theme == "light") {
+        btnDarkModeToggle.innerHTML = "<i class='fa-regular fa-3x fa-moon' title='Modo Escuro'></i>";
+    } else {
+        btnDarkModeToggle.innerHTML = "<i class='fa-solid fa-3x fa-moon' title='Modo Claro'></i>";
+    }
+}
+
+defineCurrentTheme(themeSystem);
+
 
 function cadGeral(formId, modalId, pageAcao, pageRetorno) {
     $('#' + formId).on('submit', function (k) {
