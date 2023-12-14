@@ -16,6 +16,7 @@
     --whiteDiferente: #3f3f3f;
     --dark: #fff;
     --purplePadrão: #6a43bd;
+    transition: 5s;
 }
 
 * {
@@ -213,10 +214,10 @@ body {
     width: 8%;
     height: 12%;
     position: absolute;
-    top: 4%;
+    margin-left: 13%;
+    top: 3%;
     right: 0;
-    padding: 0%;
-    display: block;
+    /* display: block; */
 
 }
 
@@ -472,32 +473,46 @@ ul .indicator::after {
     font-size: 1em;
 }
 
-/* controle da posição das crianças do menu */
+/* controle da posição das crianças do menu centro */
 
 
-/* 1 - fa-solid fa-list */
+/* 1 - fa-solid fa-list-check */
 .menu a:nth-child(1) {
     top: 16px;
-    left: 43px;
+    left: 27px;
 }
 
 /* 2 - fa-solid fa-money-bill-trend-up */
 .menu a:nth-child(2) {
-    top: 43px;
-    left: 72px;
+    top: 15px;
+    left: 60px;
 }
 
-/* 3 - fa-warehouse */
+/* 3 - fa-solid fa-boxes-stacked */
 .menu a:nth-child(3) {
     top: 43px;
     left: 12px;
 }
 
-/* 4 - fa-solid fa-chart-column  */
+/* 4 - fa-solid fa-calendar-days  */
 .menu a:nth-child(4) {
     top: 74px;
-    left: 43px;
+    left: 27px;
 }
+
+/* 5 - fa-solid fa-user-plus  */
+.menu a:nth-child(5) {
+    top: 74px;
+    left: 58px;
+}
+
+/* 6 - fa-solid fa-box-open  */
+.menu a:nth-child(6) {
+    top: 43px;
+    left: 72px;
+}
+
+
 
 .menu a:hover {
     color: #caf177;
@@ -516,25 +531,49 @@ ul .indicator::after {
     right: 90px;
 }
 
+
+.menu-lado .menu i {
+    font-size: 0.92em;
+}
+
+/* 1 - fa-solid fa-list-check */
 .menu-lado .menu a:nth-child(1) {
-    top: 32px;
-    left: 16px;
-}
-
-.menu-lado .menu a:nth-child(2) {
     top: 16px;
-    left: 43px;
+    left: 26px;
 }
 
+/* 2 - fa-solid fa-money-bill-trend-up */
+.menu-lado .menu a:nth-child(2) {
+    top: 13px;
+    left: 46px;
+}
+
+/* 3 - fa-solid fa-boxes-stacked */
 .menu-lado .menu a:nth-child(3) {
-    top: 55px;
-    left: 15px;
+    top: 32px;
+    left: 12px;
 }
 
+/* 4 - fa-solid fa-calendar-days  */
 .menu-lado .menu a:nth-child(4) {
-    top: 74px;
-    left: 43px;
+    top: 51px;
+    left: 13px;
 }
+
+
+/* 5 - fa-solid fa-user-plus  */
+.menu-lado .menu a:nth-child(5) {
+    top: 69px;
+    left: 25px;
+}
+
+
+/* 6 - fa-solid fa-box-open  */
+.menu-lado .menu a:nth-child(6) {
+    top: 74px;
+    left: 46px;
+}
+
 
 #showpage {
     height: 100%;
