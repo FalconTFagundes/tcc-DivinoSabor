@@ -134,8 +134,6 @@ function ativarGeral(id, ativovar, acaopage, pageretorno, m1) {
 
 }
 
-
-
 function atualizarPagina(dataMenu) {
     var dados = {
         acao: dataMenu

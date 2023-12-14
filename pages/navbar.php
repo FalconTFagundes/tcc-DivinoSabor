@@ -12,35 +12,47 @@
         </ul>
     </div>
     <div class="navbar">
-
         <ul>
-
             <li>
                 <!-- <a href="#" class="linkMenu" idMenu="Notificacoes">
                     <i class='bx bx-bell icon'></i>
                     <i class="bx bx-bell activeIcon" style="color: #caf177;"></i>
                 </a> -->
+         
             </li>
             <li>
+
             <li class="dropdown">
                 <a href="#" class="linkMenu" id="nomeUserNav" idMenu="Perfil">
-                    <?php 
+                    <?php
                     echo $_SESSION['nomeUser'];
                     ?>
+
                     <!-- <i class='bx bx-user icon'></i>
                     <i class="bx bx-user activeIcon" style="color: #caf177;"></i> -->
+
                 </a>
+                
+
                 <ul>
                     <li><a href="" onclick="LoginSair();">Sair</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="#" class="#">
+                    <i class="fa-regular fa-square-check" title="Modo Escuro"></i>
+                </a>
+            </li>
 
+            <!-- btn modo escuro ativado!!!!! -->
+        <!--     <i class="fa-solid fa-square-check"></i> -->
 
             </li>
-         
-<div class="algo">
-<div class="indicator"></div>
-</div>
+
+            <div class="algo">
+                <div class="indicator"></div>
+            </div>
+
             <!-- <div class="indicator"></div> -->
         </ul>
     </div>
@@ -55,6 +67,7 @@
                                     ?>">
             <div id="Date" class="clock-time">
 
+
             </div>
             <div class="horas">
                 <div id="hours" class="clock-time"></div>
@@ -62,5 +75,6 @@
                 <div id="min" class="clock-time"></div>
             </div>
         </div>
+
     </div>
 </div>
