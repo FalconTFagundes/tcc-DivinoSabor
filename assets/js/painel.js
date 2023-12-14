@@ -271,7 +271,7 @@ function listarPage(listar) {
 // funções de mask
 
 // faz as máscaras funcionarem - coloca no ínicio da folha, NO INÍCIO (LINE 1)!!!!!!!
-// masks(); 
+/* masks();  */
 
 function masks() {
     $('.maskTelefone').inputmask({
@@ -280,6 +280,10 @@ function masks() {
 
     $('.maskCPF').inputmask({
         mask: '999.999.999-99'
+    });
+
+    $('.maskData').inputmask({
+        mask: '99/99/9999'
     });
 
     /*  $('.maskDateTime').inputmask({
