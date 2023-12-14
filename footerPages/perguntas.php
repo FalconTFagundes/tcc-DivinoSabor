@@ -1,6 +1,5 @@
 <style>
     body {
-        background-color: #eff5f9;
         color: #333;
         font-family: 'Arial', sans-serif;
     }

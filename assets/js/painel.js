@@ -10,6 +10,7 @@ btnDarkModeToggle.addEventListener('click', () => {
     themeSystem = newTheme;
     defineCurrentTheme(newTheme);
     updateLogo(newTheme);
+    updateWave(newTheme);
 });
 
 function defineCurrentTheme(theme) {
@@ -19,6 +20,7 @@ function defineCurrentTheme(theme) {
     } else {
         btnDarkModeToggle.innerHTML = "<i class='fa-solid fa-3x fa-moon' id='darkModeActive' title='Modo Claro'></i>";
     }
+
 }
 
 function updateLogo(theme) {
@@ -31,8 +33,23 @@ function updateLogo(theme) {
     }
 }
 
+function updateWave(theme) {
+    const waveElements = document.querySelectorAll(".waves .wave");
+
+    waveElements.forEach((waveElement, index) => {
+        if (theme == "light") {
+            waveElement.style.backgroundImage = `url(./assets/images/favicon/wave.png)`;
+        
+        } else {
+            waveElement.style.backgroundImage = `url(./assets/images/favicon/waveDarkMode.png)`;
+          
+        }
+    });
+}
+
 defineCurrentTheme(themeSystem);
 updateLogo(themeSystem);
+updateWave(themeSystem);
 
 
 
@@ -112,7 +129,7 @@ function excGeral(idvar, acaopage, pageretorno, m1, m2) {
                     title: "Deletado com Sucesso :D",
                     showConfirmButton: false,
                     timer: 1500,
-                  });
+                });
                 setTimeout(function () {
                     atualizarPagina(pageretorno);
                 }, 1000)

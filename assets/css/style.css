@@ -1,17 +1,21 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,900&display=swap');
 
 /* variáveis para transição de modo - dark/light :D */
 :root {
+    --purplePadrão: #9e77f1;
+    --purpleDark: #6a43bd;
     --white: #fff;
+    --whiteDiferente: #fdfdfd;
     --dark: #313131;
+    --darkClaro: #3f3f3f;
 }
 
 /* troca de temas :D */
-[data-theme="dark"]{
+[data-theme="dark"] {
     --white: #313131;
+    --whiteDiferente: #3f3f3f;
     --dark: #fff;
+    --purplePadrão: #6a43bd;
 }
 
 * {
@@ -65,7 +69,7 @@ h1 {
 }
 
 body.loginStyle label {
-    color: #9E77F1 !important;
+    color: var(--purplePadrão) !important;
     font-size: 2.6rem;
     justify-content: center;
     display: flex;
@@ -217,7 +221,7 @@ body {
 }
 
 #divDarkModeBtn button {
-    background-color: #9E77F1;
+    background-color: var(--purplePadrão);
     cursor: pointer;
     transition-duration: 0.7s;
     padding: .4rem;
@@ -250,12 +254,8 @@ body {
 }
 
 
-
-
-
-
 #nomeUserNav {
-    color: #9e77f1;
+    color: #9E77F1;
     font-weight: 500;
 }
 
@@ -287,7 +287,7 @@ body {
     position: relative;
     height: 75px;
     width: 100%;
-    background: white;
+    background: var(--whiteDiferente);
     border-radius: 50px;
     display: flex;
     align-items: center;
@@ -311,7 +311,7 @@ body {
 }
 
 .navbar ul li.dropdown ul {
-    background-color: #9E77F1;
+    background-color: var(--purplePadrão);
     position: absolute;
     right: 1;
     min-width: 75px;
@@ -403,7 +403,7 @@ ul .indicator::after {
 /* MENU MEIO */
 
 .toggle {
-    background: #9e77f1;
+    background: var(--purplePadrão);
     width: 5.2em;
     height: 5.2em;
     position: absolute;
@@ -442,7 +442,7 @@ ul .indicator::after {
 }
 
 .menu {
-    background: #ffffff;
+    background: var(--whiteDiferente);
     height: 6.2em;
     width: 6.2em;
     border-radius: 50%;
@@ -462,7 +462,7 @@ ul .indicator::after {
     display: flex;
     position: absolute;
     font-size: 0.8em;
-    color: #9e77f1;
+    color: var(--purplePadrão);
     transition: .4s;
     text-decoration: none;
     /* background: #9e77f1; */
@@ -548,7 +548,7 @@ ul .indicator::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #9e77f1;
+    color: var(--purplePadrão);
     padding: 110px;
     border-radius: 10px;
     z-index: -5;
@@ -593,7 +593,7 @@ ul .indicator::after {
 }
 
 #clock-nav {
-    color: #9e77f1;
+    color: var(--purplePadrão);
 }
 
 .clock-son .horas,
@@ -613,16 +613,23 @@ ul .indicator::after {
     background: none;
 } */
 
+
+
+
 table {
     border-collapse: separate !important;
+
+
+      
+    
 }
 
 .table-financeira {
     width: 100%;
-    border: 2px solid #9E77F1;
+    border: 2px solid var(--purplePadrão);
     border-radius: 30px !important;
-    background: #FFF;
-    color: #9E77F1;
+    background: var(--whiteDiferente);
+    color: var(--purplePadrão);
     text-align: center;
     display: block;
     height: 100%;
@@ -638,14 +645,14 @@ table {
 }
 
 .table-financeira thead {
-    background-color: #fff;
+    background-color: var(--whiteDiferente);
     height: 100%;
     position: sticky;
     z-index: 2;
 }
 
 .table-financeira thead th {
-    background-color: #FFF;
+    background-color: var(--whiteDiferente);
     /* z-index: 2; */
 }
 
@@ -734,12 +741,12 @@ table {
 #calendar {
     max-width: 900px;
     margin: 0 auto;
-    color: #9E77F1;
+    color: var(--purplePadrão);
 }
 
 #calendar button {
     color: #fff;
-    background-color: #9E77F1;
+    background-color: var(--purplePadrão);
     border: none;
 }
 
@@ -748,12 +755,12 @@ table {
 .entregaVermelha,
 .entregaAmarela,
 .entregaVerde {
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 15px 30px;
     color: #fff;
     font-weight: bold;
     text-align: center;
-    display: inline-block;
+    display: block;
     margin: 10px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -793,7 +800,7 @@ table {
     left: 50%;
     /* Modificado para centralizar horizontalmente */
     transform: translate(-50%, -50%);
-    background-color: #9E77F1;
+    background-color: var(--purplePadrão);
     color: #ffffff;
     padding: 15px 30px;
     font-size: 18px;
@@ -815,7 +822,7 @@ table {
     left: 50%;
     /* Modificado para centralizar horizontalmente */
     transform: translate(-50%, -50%);
-    background-color: #9E77F1;
+    background-color: var(--purplePadrão);
     color: #ffffff;
     padding: 15px 30px;
     font-size: 18px;
@@ -840,7 +847,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #9e77f1;
+    background: var(--purplePadrão);
     min-height: 100px;
     padding: 20px 50px;
 }

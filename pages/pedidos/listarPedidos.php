@@ -77,7 +77,7 @@ include_once './func/dashboard.php';
                 <?php
                 if ($ativoPedido == 'A') {
                 ?>
-                  <button type='button' class='btn btn-outline-dark' onclick="ativarGeral(<?php echo $idPedido; ?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock" title="Pedido Não Concluído"></i></i> Não Concluído</button>
+                  <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idPedido; ?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock" title="Pedido Não Concluído"></i></i> Não Concluído</button>
                 <?php
                 } else {
                 ?>
@@ -86,18 +86,12 @@ include_once './func/dashboard.php';
                 <?php
                 }
                 ?>
-
                 <!-- passando id diretamente na URL - sem SEM AJAX -->
                 <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idPedido; ?>')">
                   <button type="button" class="btn btn-outline-info btnGerarRelatPedidoUn">
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
-
-
-
-
-
                 <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPedido; ?>', 'excluirPedidos', 'listarPedidos', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
               </div>
             </td>
@@ -113,7 +107,6 @@ include_once './func/dashboard.php';
     </tbody>
   </table>
 </div>
-
 
 <!-- Modal Cad Pedido -->
 <div class="modal fade" id="modalCadPedido" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
