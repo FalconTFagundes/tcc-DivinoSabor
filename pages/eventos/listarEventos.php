@@ -23,22 +23,22 @@
                     <h5 class="modal-title" id="modalCadEvento">Cadastrar Evento <i class="fa-regular fa-calendar-check" title="Cadastro de Eventos"></i></h5>
                 </div>
                 <form name="frmCadEvento" method="POST" id="frmCadEvento" class="frmCadEvento" action="#">
-                    <div class="modal-body">
+                    <div class="modal-body modaisCorpos">
                         <div class="form-group">
                             <label for="tituloEvento" class="form-label">Título do Evento</label>
-                            <input type="text" class="form-control" name="tituloEvento" id="tituloEvento" aria-describedby="tituloEvento" required>
+                            <input type="text" class="form-control inputModal" name="tituloEvento" id="tituloEvento" aria-describedby="tituloEvento" required>
                         </div>
                         <div class="form-group">
                             <label for="horaInicio" class="form-label">Início do Evento</label>
-                            <input type="datetime-local" class="form-control" name="horaInicio" id="horaInicio" required>
+                            <input type="datetime-local" class="form-control inputModal" name="horaInicio" id="horaInicio" required>
                         </div>
                         <div class="form-group">
                             <label for="horaFim" class="form-label">Fim do Evento</label>
-                            <input type="datetime-local" class="form-control" name="horaFim" id="horaFim" required>
+                            <input type="datetime-local" class="form-control inputModal" name="horaFim" id="horaFim" required>
                         </div>
                         <div class="mb-3">
                             <label for="horaFim" class="form-label">Selecione a Cor</label>
-                            <select class="custom-select" name="corEvento">
+                            <select class="custom-select inputModal" name="corEvento">
                                 <option selected value="#9E77F1" style="color: #9E77F1;">Roxo</option>
                                 <option value="#D4C200" style="color: #D4C200;">Amarelo</option>
                                 <option value="#297BFF" style="color: #297BFF;">Azul</option>
@@ -47,7 +47,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer modaisCorpos">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
                         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check" title="Cadastrar Evento"></i> Cadastrar</button>
                     </div>

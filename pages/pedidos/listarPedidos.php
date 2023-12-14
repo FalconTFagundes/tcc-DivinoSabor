@@ -116,25 +116,25 @@ include_once './func/dashboard.php';
         <h5 class="modal-title" id="modalCadPedido">Cadastrar Pedido <i class="fa-regular fa-pen-to-square" title="Cadastro de Pedidos"></i></h5>
       </div>
       <form name="frmCadPedido" method="POST" id="frmCadPedido" class="frmCadPedido" action="#">
-        <div class="modal-body">
+        <div class="modal-body modaisCorpos">
           <div class="form-group">
             <label for="nomePedido" class="form-label">Nome do Cliente</label>
-            <input type="text" class="form-control" name="nomePedido" id="nomePedido" aria-describedby="nomePedido" required>
+            <input type="text" class="form-control inputModal" name="nomePedido" id="nomePedido" aria-describedby="nomePedido" required>
           </div>
           <div class="form-group">
             <label for="pedido" class="form-label">Pedido</label>
-            <input type="text" class="form-control" name="pedido" id="pedido" required>
+            <input type="text" class="form-control inputModal" name="pedido" id="pedido" required>
           </div>
           <div class="form-group">
             <label for="detalhesPedido" class="form-label">Detalhes</label>
-            <textarea class="form-control" name="detalhesPedido" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control inputModal" name="detalhesPedido" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
           <div class="mb-3">
             <label for="dataEntregaPedido" class="form-label">Data de Entrega</label>
-            <input type="date" class="form-control" name="dataEntregaPedido" id="dataEntregaPedido" required>
+            <input type="date" class="form-control inputModal" name="dataEntregaPedido" id="dataEntregaPedido" required>
           </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer modaisCorpos">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
           <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadPedido','modalCadPedido','cadastrarPedidos','listarPedidos');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
         </div>

@@ -746,6 +746,23 @@ table {
 }
 
 
+/* MODAIS */
+
+.modaisCorpos{
+    background-color: var(--whiteDiferente);
+}
+
+.inputModal{
+    background-color: var(--whiteDiferente) !important;
+    color: var(--dark) !important;
+}
+
+.modaisCorpos label{
+    color: var(--dark);
+}
+/* FIM ESTILIZAÇÃO DE MODAIS */
+
+
 /* LISTAR PEDIDOS */
 .entregaVermelha,
 .entregaAmarela,
@@ -785,6 +802,7 @@ table {
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 /* FINAL LISTAR PEDIDOS */
 
