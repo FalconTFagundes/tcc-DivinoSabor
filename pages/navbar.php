@@ -18,10 +18,7 @@
                     <i class='bx bx-bell icon'></i>
                     <i class="bx bx-bell activeIcon" style="color: #caf177;"></i>
                 </a> -->
-         
             </li>
-            <li>
-
             <li class="dropdown">
                 <a href="#" class="linkMenu" id="nomeUserNav" idMenu="Perfil">
                     <?php
@@ -32,7 +29,7 @@
                     <i class="bx bx-user activeIcon" style="color: #caf177;"></i> -->
 
                 </a>
-                
+
 
                 <ul>
                     <li><a href="" onclick="LoginSair();">Sair</a></li>
@@ -40,12 +37,10 @@
             </li>
             <li>
                 <a href="#" class="#">
-                    <i class="fa-regular fa-square-check" title="Modo Escuro"></i>
+
                 </a>
             </li>
 
-            <!-- btn modo escuro ativado!!!!! -->
-        <!--     <i class="fa-solid fa-square-check"></i> -->
 
             </li>
 
@@ -55,6 +50,12 @@
 
             <!-- <div class="indicator"></div> -->
         </ul>
+    </div>
+    <div class="container" id="divDarkModeBtn">
+        <i class="fa-regular fa-4x fa-moon" title="Modo Escuro"></i>
+
+        <!-- btn modo escuro ativado!!!!! -->
+        <!-- <i class="fa-solid fa-moon" title="Modo Claro"></i> -->
     </div>
     <div class="menu-f">
         <div id="clock-nav" class="<?php

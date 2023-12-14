@@ -190,6 +190,30 @@ body {
 
 /* NAVBAR */
 
+#divDarkModeBtn {
+    width: 15%;
+    height: 12%;
+    position: absolute;
+    top: 4%;
+    right: 0;
+    padding: 0%;
+    display: block;
+   
+}
+
+#divDarkModeBtn i {
+   color: #9E77F1;
+   cursor: pointer;
+   transition-duration: 0.7s;
+}
+
+#divDarkModeBtn i:hover {
+    color: #390f96;  
+    transition-duration: 0.7;
+ }
+
+
+ 
 
 #nomeUserNav {
     color: #9e77f1;
