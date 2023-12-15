@@ -675,6 +675,7 @@ table {
 }
 
 .table-financeira thead tr {
+
     height: 100%;
     top: 0;
     position: sticky;

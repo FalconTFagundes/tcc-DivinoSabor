@@ -72,7 +72,7 @@ include_once './func/dashboard.php';
       ?>
 
           <tr>
-            <th scope="row"><?php echo $idPedido; ?></th>
+            <td scope="row"><?php echo $idPedido; ?></td>
             <td><?php echo $nomeClientePedido; ?></td>
             <td><?php echo $pedido; ?></td>
             <td><?php echo $detalhesPedido; ?></td>

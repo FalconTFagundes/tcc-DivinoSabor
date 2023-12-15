@@ -85,9 +85,10 @@ include_once './func/dashboard.php';
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
+
                 <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idCliente; ?>', 'excluirClientes', 'listarClientes', 'Certeza que deseja excluir este Cliente?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
               </div>
-              </td>
+            </td>
           </tr>
       <?php
         }
@@ -197,5 +198,4 @@ include_once './func/dashboard.php';
       }
     });
   }
-
 </script>
