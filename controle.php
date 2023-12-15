@@ -58,6 +58,12 @@ switch ($acao) {
         include_once './pages/eventos/excluirEventos.php';
         break;
 
+        // CLIENTES
+
+    case 'listarClientes':
+        include_once './pages/clientes/listarClientes.php';
+        break;  
+
 
         // FINANCEIRO
 

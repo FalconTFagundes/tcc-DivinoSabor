@@ -40,7 +40,7 @@ include_once './pages/time.php';
                         <i class="fa-solid fa-calendar-days" title="Eventos"></i>
                     </a>
 
-                    <a href="#" class="linkMenu" idMenu="listarUsuarios">
+                    <a href="#" class="linkMenu" idMenu="listarClientes">
                     <i class="fa-solid fa-user-plus" title="Usuarios"></i>
                     </a>
                     
