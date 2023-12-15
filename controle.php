@@ -82,6 +82,15 @@ switch ($acao) {
         include_once './pages/financeiro/listarFinanceiro.php';
         break;
 
+
+        // PRODUTO VENDA
+
+    case 'listarPacotes':
+        $_SESSION["page"] = 'listarPacotes';
+        include_once './pages/produtoVenda/listarProdutoVenda.php';
+        break;
+        
+
         // páginas de ações
 
     case 'loginEntrar':

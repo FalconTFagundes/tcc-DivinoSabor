@@ -12,6 +12,28 @@
 //-------------------------------------------SESSÃO---------------------------------------------------------------------
 //validar Sessao usuário
 
+function obterOpcoesDoBanco($tabela, $campoId, $campoDescricao)
+{
+    $conn = conectar();
+
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campoId, $campoDescricao FROM $tabela WHERE ativo = 'A'");
+        $sqlLista->execute();
+
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return 'Vazio';
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        $conn->rollback();
+    } finally {
+        $conn = null;
+    }
+}
+
 
 function checarLogin($tabela, $valor1, $valor2)
 {
