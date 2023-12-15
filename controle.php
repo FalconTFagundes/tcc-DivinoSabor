@@ -83,11 +83,11 @@ switch ($acao) {
         break;
 
 
-        // PRODUTO VENDA
+        // PACOTES
 
     case 'listarPacotes':
         $_SESSION["page"] = 'listarPacotes';
-        include_once './pages/produtoVenda/listarProdutoVenda.php';
+        include_once './pages/pacotes/listarPacotes.php';
         break;
         
 

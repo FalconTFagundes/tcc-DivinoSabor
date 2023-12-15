@@ -45,7 +45,7 @@ include_once './pages/time.php';
                     </a>
                     
                     <a href="#" class="linkMenu" idMenu="listarPacotes">
-                    <i class="fa-solid fa-box-open" title="Produtos/Pacote"></i>
+                    <i class="fa-solid fa-box-open" title="Pacotes"></i>
                     </a>
                     <!-- <a href="#" class="linkMenu" idMenu="listarProdutos">
                     <i class="fa-solid fa-cart-flatbed" title="Produtos"></i>
@@ -76,7 +76,7 @@ include_once './pages/time.php';
                         include_once './pages/financeiro/listarFinanceiro.php';
                     }
                     if ($page == 'listarPacotes') {
-                        include_once './pages/produtoVenda/listarProdutoVenda.php';
+                        include_once './pages/pacotes/listarPacotes.php';
                     }
                     if ($page == 'perguntas') {
                         include_once './footerPages/perguntas.php';
