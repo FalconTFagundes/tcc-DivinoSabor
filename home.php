@@ -56,6 +56,7 @@ include_once './pages/time.php';
             </div>
 
             <div id="showpage">
+          
                 <?php
 
                 // se existe, tem página mostrando

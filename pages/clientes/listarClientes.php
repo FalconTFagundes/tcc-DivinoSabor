@@ -14,7 +14,7 @@ include_once './func/dashboard.php';
 
 
 <button type="button" class="btn btn-outline-secondary" onclick="mostrarAlerta();">
-  <i class="fa-solid fa-print"  title="Gerar Relatório"></i>
+  <i class="fa-solid fa-print" title="Gerar Relatório"></i>
   Gerar Relatório Geral
 </button>
 
@@ -22,14 +22,14 @@ include_once './func/dashboard.php';
 <br><br>
 
 
-
 <div style="height: 400px;">
   <table class="table-financeira table table-hover">
     <thead>
       <tr>
         <th scope="col" width="5%">Código</th>
+        <th scope="col" width="20%">Imagem</th>
         <th scope="col" width="10%">Nome</th>
-        <th scope="col" width="25%">Endereço</th>
+        <th scope="col" width="10%">Endereço</th>
         <th scope="col" width="10%">Complemento</th>
         <th scope="col" width="10%">Estado</th>
         <th scope="col" width="20%">Cidade</th>
@@ -43,25 +43,30 @@ include_once './func/dashboard.php';
       <?php
       $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
-      $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo', 'clientes');
+      $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo, img', 'clientes');
       if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
         foreach ($retornoListarClientes as $itemCliente) {
-            $idCliente = $itemCliente -> idclientes;
-            $nomeCliente = $itemCliente -> nome;
-            $enderecoCliente = $itemCliente -> endereco;
-            $complementoCliente = $itemCliente -> complemento;
-            $estadoCliente = $itemCliente -> estado;
-            $cidadeCliente = $itemCliente -> cidade;
-            $cepCliente = $itemCliente -> cep;
-            $telefoneCliente = $itemCliente -> telefone;
-            $cadastroCliente = $itemCliente -> cadastro;
-            $ativoCliente = $itemCliente -> ativo;  
-          ?>
+          $idCliente = $itemCliente->idclientes;
+          $nomeCliente = $itemCliente->nome;
+          $enderecoCliente = $itemCliente->endereco;
+          $complementoCliente = $itemCliente->complemento;
+          $estadoCliente = $itemCliente->estado;
+          $cidadeCliente = $itemCliente->cidade;
+          $cepCliente = $itemCliente->cep;
+          $telefoneCliente = $itemCliente->telefone;
+          $cadastroCliente = $itemCliente->cadastro;
+          $ativoCliente = $itemCliente->ativo;
+          $imgCliente = $itemCliente->img;
+      /*     print_r($imgCliente);  verificando se o nome das imagens estão chegando corretamente*/
+      ?>
 
           <tr>
 
-     
+
             <th scope="row"><?php echo $idCliente; ?></th>
+            <th>
+            <img src="./assets/images/profile/<?php echo $imgCliente; ?>" alt="Imagem do Cliente" class="img-thumbnail imgCliente">
+            </th>
             <td><?php echo $nomeCliente; ?></td>
             <td><?php echo $enderecoCliente; ?></td>
             <td><?php echo $complementoCliente; ?></td>

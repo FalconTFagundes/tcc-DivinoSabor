@@ -655,6 +655,12 @@ ul .indicator::after {
 } */
 
 
+/* imagens dos clientes da tabela de cliente */
+.imgCliente{
+    height: 40% !important;
+    width: 40% !important; 
+}
+
 table {
     border-collapse: separate !important;
     
