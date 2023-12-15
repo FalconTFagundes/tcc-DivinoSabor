@@ -47,10 +47,14 @@ switch ($acao) {
         include_once './pages/clientes/cadastrarClientes.php';
         break;
 
+    case 'excluirClientes':
+        include_once './pages/clientes/excluirClientes.php';
+        break;
 
 
 
-        
+
+
         // EVENTOS
 
     case 'listarEventos':
