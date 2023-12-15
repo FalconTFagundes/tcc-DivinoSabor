@@ -34,14 +34,19 @@ switch ($acao) {
         include_once './footerPages/termos.php';
         break;
 
-        // PEDIDOS
 
-    case 'listarPedidos':
-        // chamar variável
-        $_SESSION["page"] = 'listarPedidos';
-        include_once './pages/pedidos/listarPedidos.php';
+
+        // CLIENTES
+
+    case 'listarClientes':
+        $_SESSION["page"] = 'listarClientes';
+        include_once './pages/clientes/listarClientes.php';
         break;
 
+
+
+
+        
         // EVENTOS
 
     case 'listarEventos':
@@ -57,7 +62,6 @@ switch ($acao) {
     case 'excluirEventos':
         include_once './pages/eventos/excluirEventos.php';
         break;
-
 
         // FINANCEIRO
 
@@ -78,6 +82,14 @@ switch ($acao) {
         include_once './login/loginSair.php';
         break;
 
+
+        // PEDIDOS
+
+    case 'listarPedidos':
+        // chamar variável
+        $_SESSION["page"] = 'listarPedidos';
+        include_once './pages/pedidos/listarPedidos.php';
+        break;
 
     case 'cadastrarPedidos':
         include_once './pages/pedidos/cadastrarPedidos.php';

@@ -3,7 +3,8 @@
 /* variáveis para transição de modo - dark/light :D */
 :root {
     --purplePadrão: #9e77f1;
-    --purpleDark: #6a43bd;
+    --purplePadrão2: #9e77f1;
+    --purpleDark: #915ddf;
     --white: #fff;
     --whiteDiferente: #fdfdfd;
     --dark: #313131;
@@ -15,7 +16,8 @@
     --white: #313131;
     --whiteDiferente: #3f3f3f;
     --dark: #fff;
-    --purplePadrão: #6a43bd;
+    --purplePadrão: #915ddf;
+    --purplePadrão2: #6a43bd;
     transition: 5s;
 }
 
@@ -690,6 +692,7 @@ table {
     /* z-index: 2; */
 }
 
+
 .table-financeira tbody {
 
     /* height: 100%; */
@@ -974,7 +977,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: var(--purplePadrão);
+    background: var(--purplePadrão2);
     min-height: 100px;
     padding: 20px 50px;
 }

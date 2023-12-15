@@ -40,8 +40,8 @@ include_once './pages/time.php';
                         <i class="fa-solid fa-calendar-days" title="Eventos"></i>
                     </a>
 
-                    <a href="#" class="linkMenu" idMenu="listarUsuarios">
-                    <i class="fa-solid fa-user-plus" title="Usuarios"></i>
+                    <a href="#" class="linkMenu" idMenu="listarClientes">
+                    <i class="fa-solid fa-user-plus" title="Clientes"></i>
                     </a>
                     
                     <a href="#" class="linkMenu" idMenu="listarPacotes">
@@ -51,13 +51,9 @@ include_once './pages/time.php';
                     <i class="fa-solid fa-cart-flatbed" title="Produtos"></i>
                     </a> -->
 
-                    
-
 <!-- criar +2 novos botões no menu -->
-
                 </div>
             </div>
-
 
             <div id="showpage">
                 <?php
@@ -71,6 +67,9 @@ include_once './pages/time.php';
                     }
                     if ($page == 'listarEventos') {
                         include_once './pages/eventos/listarEventos.php';
+                    }
+                    if ($page == 'listarClientes') {
+                        include_once './pages/clientes/listarClientes.php';
                     }
                     if ($page == 'listarFinanceiro') {
                         include_once './pages/financeiro/listarFinanceiro.php';
