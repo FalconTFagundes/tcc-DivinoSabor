@@ -31,10 +31,11 @@ include_once './func/dashboard.php';
         <th scope="col" width="10%">Nome</th>
         <th scope="col" width="25%">Endereço</th>
         <th scope="col" width="10%">Complemento</th>
+        <th scope="col" width="10%">Estado</th>
         <th scope="col" width="20%">Cidade</th>
-        <th scope="col" width="20%">Telefone</th>
+        <th scope="col" width="10%">Telefone</th>
         <th scope="col" width="25%">Ação</th>
-                <!-- CEP consta somente no relatório!! -->
+        <!-- CEP consta somente no relatório!! -->
       </tr>
     </thead>
     <tbody>
@@ -42,13 +43,14 @@ include_once './func/dashboard.php';
       <?php
       $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
-      $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, cep, telefone, cadastro, alteracao, ativo', 'clientes');
+      $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo', 'clientes');
       if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
         foreach ($retornoListarClientes as $itemCliente) {
             $idCliente = $itemCliente -> idclientes;
             $nomeCliente = $itemCliente -> nome;
             $enderecoCliente = $itemCliente -> endereco;
             $complementoCliente = $itemCliente -> complemento;
+            $estadoCliente = $itemCliente -> estado;
             $cidadeCliente = $itemCliente -> cidade;
             $cepCliente = $itemCliente -> cep;
             $telefoneCliente = $itemCliente -> telefone;
@@ -57,10 +59,13 @@ include_once './func/dashboard.php';
           ?>
 
           <tr>
+
+     
             <th scope="row"><?php echo $idCliente; ?></th>
             <td><?php echo $nomeCliente; ?></td>
             <td><?php echo $enderecoCliente; ?></td>
             <td><?php echo $complementoCliente; ?></td>
+            <td><?php echo $estadoCliente; ?></td>
             <td><?php echo $cidadeCliente; ?></td>
             <td><?php echo $telefoneCliente; ?></td>
             <td>
@@ -107,7 +112,7 @@ include_once './func/dashboard.php';
       <div class="modal-header" style="background-color:blueviolet; color: white; ">
         <h5 class="modal-title" id="modalCadPedido">Cadastrar Cliente <i class="fa-solid fa-user-plus" title="Cadastro de Clientes"></i></h5>
       </div>
-      <form name="frmCadPedido" method="POST" id="frmCadPedido" class="frmCadPedido" action="#">
+      <form name="frmCadClientes" method="POST" id="frmCadClientes" class="frmCadClientes" action="#">
         <div class="modal-body modaisCorpos">
           <div class="form-group">
             <label for="nomeCliente" class="form-label">Nome do Cliente</label>
@@ -122,8 +127,12 @@ include_once './func/dashboard.php';
             <input type="text" class="form-control inputModal" name="complementoCliente" id="complementoCliente" required>
           </div>
           <div class="mb-3">
+            <label for="estadoCliente" class="form-label">Estado</label>
+            <input type="text" class="form-control inputModal" name="estadoCliente" id="estadoCliente" required>
+          </div>
+          <div class="mb-3">
             <label for="cidadeCliente" class="form-label">Cidade</label>
-            <input type="date" class="form-control inputModal" name="cidadeCliente" id="cidadeCliente" required>
+            <input type="text" class="form-control inputModal" name="cidadeCliente" id="cidadeCliente" required>
           </div>
           <div class="mb-3">
             <label for="cepCliente" class="form-label">CEP</label>
@@ -136,7 +145,7 @@ include_once './func/dashboard.php';
         </div>
         <div class="modal-footer modaisCorpos">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-          <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadPedido','modalCadPedido','cadastrarPedidos','listarPedidos');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+          <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadClientes','modalCadClientes','cadastrarClientes','listarClientes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
         </div>
       </form>
     </div>

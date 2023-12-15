@@ -43,6 +43,10 @@ switch ($acao) {
         include_once './pages/clientes/listarClientes.php';
         break;
 
+    case 'cadastrarClientes':
+        include_once './pages/clientes/cadastrarClientes.php';
+        break;
+
 
 
 
