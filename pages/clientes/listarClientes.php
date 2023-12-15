@@ -55,14 +55,10 @@ include_once './func/dashboard.php';
           $telefoneCliente = $itemCliente->telefone;
           $cadastroCliente = $itemCliente->cadastro;
           $ativoCliente = $itemCliente->ativo;
-       
-        
       ?>
 
           <tr>
-
-
-            <th scope="row"><?php echo $idCliente; ?></th>
+            <td scope="row"><?php echo $idCliente; ?></td>
             <td><?php echo $nomeCliente; ?></td>
             <td><?php echo $enderecoCliente; ?></td>
             <td><?php echo $complementoCliente; ?></td>
@@ -91,7 +87,7 @@ include_once './func/dashboard.php';
                 </a>
                 <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idCliente; ?>', 'excluirClientes', 'listarClientes', 'Certeza que deseja excluir este Cliente?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
               </div>
-            </td>
+              </td>
           </tr>
       <?php
         }
