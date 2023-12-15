@@ -28,10 +28,10 @@ include_once './func/dashboard.php';
       <tr>
         <th scope="col" width="5%">Código</th>
         <th scope="col" width="10%">Nome</th>
-        <th scope="col" width="10%">Endereço</th>
+        <th scope="col" width="15%">Endereço</th>
         <th scope="col" width="10%">Complemento</th>
         <th scope="col" width="10%">Estado</th>
-        <th scope="col" width="20%">Cidade</th>
+        <th scope="col" width="15%">Cidade</th>
         <th scope="col" width="10%">Telefone</th>
         <th scope="col" width="25%">Ação</th>
         <!-- CEP consta somente no relatório!! -->
