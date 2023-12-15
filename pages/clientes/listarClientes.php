@@ -122,11 +122,8 @@ include_once './func/dashboard.php';
             <label for="nomeCliente" class="form-label">Nome do Cliente</label>
             <input type="text" class="form-control inputModal" name="nomeCliente" id="nomeCliente" aria-describedby="nomeCliente" required>
           </div>
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Selecione a Imagem do Cliente</label>
-            <input type="file" class="form-control-file" name="imgCliente" id="imgCliente">
-          </div>
-          <div id="previewUploadImgCliente"></div>
+
+
           <div class="form-group">
             <label for="enderecoCliente" class="form-label">Endereço</label>
             <input type="text" class="form-control inputModal" name="enderecoCliente" id="enderecoCliente" required>
@@ -152,9 +149,14 @@ include_once './func/dashboard.php';
             <input type="text" class="form-control inputModal maskTelefone" name="telefoneCliente" id="telefoneCliente" required>
           </div>
         </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Selecione a Imagem do Cliente</label>
+          <input type="file" class="form-control-file" name="imgCliente" id="imgCliente">
+        </div>
+        <div id="previewUploadImgCliente"></div>
         <div class="modal-footer modaisCorpos">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-          <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadClientes','modalCadClientes','cadastrarClientes','listarClientes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+          <button type="submit" class="btn btn-primary" id="btnCadClientes" onclick="cadGeral('frmCadClientes','modalCadClientes','cadastrarClientes','listarClientes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
         </div>
       </form>
     </div>
@@ -209,4 +211,74 @@ include_once './func/dashboard.php';
       }
     });
   }
+
+
+
+/* INICIO FUNÇÃO DE UPLOAD - CLIENTE */
+$(document).ready(function () {
+    var redimensionarCliente = $('#previewUploadImgCliente').croppie({
+        enableExif: true,
+        enableOrientation: true,
+        viewport: { width: 300, height: 300 },
+        boundary: { width: 300, height: 300 }
+    });
+
+    $('#imgCliente').on('change', function () {
+        var ler = new FileReader();
+
+        ler.onload = function (e) {
+            redimensionarCliente.croppie('bind', {
+                url: e.target.result
+            }).then(function () {
+                // Atualiza a visualização do Croppie após vincular a imagem
+                redimensionarCliente.croppie('setZoom', 0);
+
+                // Adiciona o código para ajustar o tamanho da imagem no preview
+                var img = new Image();
+                img.src = e.target.result;
+                img.onload = function () {
+                    var maxWidth = 300;
+                    var maxHeight = 300;
+
+                    if (img.width > maxWidth || img.height > maxHeight) {
+                        redimensionarCliente.croppie('setZoom', Math.min(maxWidth / img.width, maxHeight / img.height));
+                    }
+                };
+            });
+        };
+
+        ler.readAsDataURL(this.files[0]);
+    });
+
+    $('#btnCadClientes').on('click', function () {
+        redimensionarCliente.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (img) {
+            // Enviar os dados para um arquivo PHP
+            $.ajax({
+                url: "./upload/uploadClientes.php",
+                type: "POST",
+                data: {
+                    "imagem": img
+                },
+                success: function () {
+                    $('#modalCadClientes').modal('hide');
+                    setTimeout(function () {
+                        atualizarPagina('listarClientes');
+                    }, 1000);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Salvo com Sucesso',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+        });
+    });
+});
+/* FIM FUNÇÃO UPLOAD DE IMAGE - CLIENTE */
+
 </script>
