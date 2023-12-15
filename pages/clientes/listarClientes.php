@@ -88,7 +88,6 @@ include_once './func/dashboard.php';
                 }
                 ?>
                 <!-- passando id diretamente na URL - sem SEM AJAX -->
-
                 <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idCliente; ?>')">
                   <button type="button" class="btn btn-outline-info">
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
@@ -123,6 +122,7 @@ include_once './func/dashboard.php';
             <label for="nomeCliente" class="form-label">Nome do Cliente</label>
             <input type="text" class="form-control inputModal" name="nomeCliente" id="nomeCliente" aria-describedby="nomeCliente" required>
           </div>
+          <!-- aqui virar o upload da imagem do cliente -->
           <div class="form-group">
             <label for="enderecoCliente" class="form-label">Endereço</label>
             <input type="text" class="form-control inputModal" name="enderecoCliente" id="enderecoCliente" required>
@@ -161,7 +161,7 @@ include_once './func/dashboard.php';
   function mostrarAlerta() {
     Swal.fire({
       title: 'Você tem certeza?',
-      text: 'Deseja gerar o relatório geral dos pedidos?',
+      text: 'Deseja gerar o relatório geral dos clientes?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -177,7 +177,7 @@ include_once './func/dashboard.php';
           showConfirmButton: false,
           timer: 700
         });
-        window.location.href = './gerarRelatorios/gerarRelatPedido.php';
+        window.location.href = './gerarRelatorios/gerarRelatClientes.php';
       }
     });
   }
@@ -185,7 +185,7 @@ include_once './func/dashboard.php';
   function mostrarAlertaIdGet(idPedido) {
     Swal.fire({
       title: 'Você tem certeza?',
-      text: 'Deseja gerar o relatório do pedido?',
+      text: 'Deseja gerar o relatório do cliente?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -201,7 +201,7 @@ include_once './func/dashboard.php';
           showConfirmButton: false,
           timer: 700
         });
-        window.location.href = './gerarRelatorios/gerarRelatUnPedido.php?id=' + idPedido;
+        window.location.href = './gerarRelatorios/gerarRelatUnCliente.php?id=' + idPedido;
       }
     });
   }

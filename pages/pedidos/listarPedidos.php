@@ -49,9 +49,9 @@ include_once './func/dashboard.php';
           $idPedido = $itemPedido->idpedidos;
           /* LISTAR PELO ID DO CLIENTE!!!! */
           $idClientePedido = $itemPedido->idclientes;
-          $retornoClientePedido = listarTodosRegistroU('clientes','idclientes, nome', 'idclientes', "$idClientePedido");
-          foreach($retornoClientePedido as $itemClientePedido){
-            $nomeClientePedido = $itemClientePedido -> nome;
+          $retornoClientePedido = listarTodosRegistroU('clientes', 'idclientes, nome', 'idclientes', "$idClientePedido");
+          foreach ($retornoClientePedido as $itemClientePedido) {
+            $nomeClientePedido = $itemClientePedido->nome;
           }
           $pedido = $itemPedido->pedido;
           $detalhesPedido = $itemPedido->detalhes;
@@ -135,7 +135,7 @@ include_once './func/dashboard.php';
                 <option selected value="<?php echo $idCliente_Pedido ?>"><?php echo $nomeCliente_Pedido; ?></option>
               <?php    } ?>
             </select>
-          
+
           </div>
           <div class="form-group">
             <label for="pedido" class="form-label">Pedido</label>
@@ -159,6 +159,8 @@ include_once './func/dashboard.php';
   </div>
 </div>
 
+
+
 <script>
   function mostrarAlerta() {
     Swal.fire({
@@ -179,7 +181,7 @@ include_once './func/dashboard.php';
           showConfirmButton: false,
           timer: 700
         });
-        window.location.href = './gerarRelatorios/gerarRelatPedido.php';
+        window.location.href = `./gerarRelatorios/gerarRelatPedido.php`;
       }
     });
   }

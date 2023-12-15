@@ -2,7 +2,7 @@
 // Carregar o Composer
 require '../vendor/autoload.php';
 
-// Incluir conexao com BD
+// Incluir conexão com BD
 include_once '../config/constantes.php';
 include_once '../config/conexao.php';
 include_once '../func/dashboard.php';
@@ -16,8 +16,12 @@ try {
 
     // Se a conexão for bem-sucedida, continue com o restante do código
     if ($conn) {
+
         // QUERY para recuperar os registros do banco de dados
-        $query_pedidos = "SELECT idpedidos, nome, pedido, detalhes, dataEntrega, cadastro, alteracao, ativo FROM pedidos";
+        $query_pedidos = "SELECT pedidos.idpedidos, clientes.nome as nomeCliente, pedidos.pedido, pedidos.detalhes, pedidos.dataEntrega, pedidos.cadastro, pedidos.alteracao, pedidos.ativo 
+                          FROM pedidos 
+                          JOIN clientes ON pedidos.idclientes = clientes.idclientes";
+
         // Prepara a QUERY
         $stmt = $conn->prepare($query_pedidos);
 
@@ -98,7 +102,7 @@ try {
 
             $dados .= "<table>";
             $dados .= "<tr><th>Código do Pedido</th><td>$idpedidos</td></tr>";
-            $dados .= "<tr><th>Quem Fez o Pedido</th><td>$nome</td></tr>";
+            $dados .= "<tr><th>Cliente que fez o pedido</th><td>$nomeCliente</td></tr>";
             $dados .= "<tr><th>Pedido Feito</th><td>$pedido</td></tr>";
             $dados .= "<tr><th>Detalhes do Pedido</th><td>$detalhes</td></tr>";
             // verificando se o pedido está concluído ou não
@@ -127,10 +131,10 @@ try {
         // Instanciar e usar a classe dompdf
         $dompdf = new Dompdf(['enable_remote' => true]);
 
-        // Instanciar o metodo loadHtml e enviar o conteudo do PDF
+        // Instanciar o método loadHtml e enviar o conteúdo do PDF
         $dompdf->loadHtml($dados);
 
-        // Configurar o tamanho e a orientacao do papel
+        // Configurar o tamanho e a orientação do papel
         $dompdf->setPaper('A4', 'portrait');
 
         // Renderizar o HTML como PDF

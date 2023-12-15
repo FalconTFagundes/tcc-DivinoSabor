@@ -119,7 +119,7 @@ try {
             $dataEntregaFormatada = formatarDataHoraBr($dataEntrega); // formatando data de entrega para o padrão BR
             $dados .= "<tr><th>Data de Entrega</th><td>$dataEntregaFormatada</td></tr>";
             $dataCadastroFormatada = formatarDataHoraBr($cadastro); // formatando data de cadastro para o padrão BR
-            $dados .= "<tr><th>Data de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
+            $dados .= "<tr><th>Data e Hora de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
             $dataAlteracaoFormatada = formatarDataHoraBr($alteracao);
             $dados .= "<tr><th>Última Alteração</th><td>$dataAlteracaoFormatada</td></tr>";
 
