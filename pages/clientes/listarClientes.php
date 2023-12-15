@@ -73,11 +73,11 @@ include_once './func/dashboard.php';
                 <?php
                 if ($ativoCliente == 'A') {
                 ?>
-                  <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idCliente; ?>,'desativar','ativarClientes','listarClientes', 'Cliente Ativado com Sucesso');"> <i class="fa-solid fa-unlock" title="Cliente Não Ativado"></i></i>Ativado</button>
+                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idCliente; ?>,'desativar','ativarClientes','listarClientes', 'Cliente Desativado com Sucesso');"> <i class="fa-solid fa-unlock" title="Cliente Ativado"></i> Ativado</button>
                 <?php
                 } else {
                 ?>
-                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idCliente; ?>, 'ativar', 'ativarClientes','listarClientes', 'Cliente Desativado com Sucesso');"><i class="fa-solid fa-lock" title="Cliente Ativado"></i></i>Desativado</button>
+                  <button type='button' class='btn btn-outline-warning' onclick="ativarGeral(<?php echo $idCliente; ?>, 'ativar', 'ativarClientes','listarClientes', 'Cliente Ativado com Sucesso');"><i class="fa-solid fa-lock" title="Cliente Não Ativado"></i> Desativado</button>
 
                 <?php
                 }

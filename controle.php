@@ -51,6 +51,10 @@ switch ($acao) {
         include_once './pages/clientes/excluirClientes.php';
         break;
 
+    case 'ativarClientes':
+        include_once './pages/clientes/ativarClientes.php';
+        break;
+
 
 
 

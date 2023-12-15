@@ -77,11 +77,11 @@ include_once './func/dashboard.php';
                 <?php
                 if ($ativoPedido == 'A') {
                 ?>
-                  <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idPedido; ?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock" title="Pedido Não Concluído"></i></i> Não Concluído</button>
+                  <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idPedido; ?>,'desativar','ativarPedidos','listarPedidos', 'Pedido marcado como concluído');"> <i class="fa-solid fa-unlock" title="Pedido Não Concluído"></i> Não Concluído</button>
                 <?php
                 } else {
                 ?>
-                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos', 'Pedido marcado como não concluído');"><i class="fa-solid fa-lock" title="Pedido Concluído"></i></i> Concluído</button>
+                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPedido; ?>, 'ativar', 'ativarPedidos','listarPedidos', 'Pedido marcado como não concluído');"><i class="fa-solid fa-lock" title="Pedido Concluído"></i> Concluído</button>
 
                 <?php
                 }
