@@ -23,7 +23,7 @@ try {
    
 
         // QUERY para recuperar os registros do banco de dados
-        $query_clienteUn = "SELECT idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo, img FROM clientes WHERE idclientes = :idClienteUn";
+        $query_clienteUn = "SELECT idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo FROM clientes WHERE idclientes = :idClienteUn";
 
 
 
@@ -126,7 +126,6 @@ try {
             $dados .= "<tr><th>Data e Hora de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
             $dataAlteracaoFormatada = formatarDataHoraBr($alteracao);
             $dados .= "<tr><th>Última Alteração</th><td>$dataAlteracaoFormatada</td></tr>";
-            $dados .= "<tr><th>Nome do arquivo de imagem</th><td>$img</td></tr>";
             $dados .= "</table>";
 
             // Adiciona uma linha horizontal após cada registro

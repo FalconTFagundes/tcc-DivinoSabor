@@ -27,7 +27,6 @@ include_once './func/dashboard.php';
     <thead>
       <tr>
         <th scope="col" width="5%">Código</th>
-        <th scope="col" width="20%">Imagem</th>
         <th scope="col" width="10%">Nome</th>
         <th scope="col" width="10%">Endereço</th>
         <th scope="col" width="10%">Complemento</th>
@@ -43,7 +42,7 @@ include_once './func/dashboard.php';
       <?php
       $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
-      $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo, img', 'clientes');
+      $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo', 'clientes');
       if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
         foreach ($retornoListarClientes as $itemCliente) {
           $idCliente = $itemCliente->idclientes;
@@ -56,17 +55,14 @@ include_once './func/dashboard.php';
           $telefoneCliente = $itemCliente->telefone;
           $cadastroCliente = $itemCliente->cadastro;
           $ativoCliente = $itemCliente->ativo;
-          $imgCliente = $itemCliente->img;
-          /*     print_r($imgCliente);  verificando se o nome das imagens estão chegando corretamente*/
+       
+        
       ?>
 
           <tr>
 
 
             <th scope="row"><?php echo $idCliente; ?></th>
-            <th>
-              <img src="./assets/images/profile/<?php echo $imgCliente; ?>" alt="Imagem do Cliente" class="img-thumbnail imgCliente">
-            </th>
             <td><?php echo $nomeCliente; ?></td>
             <td><?php echo $enderecoCliente; ?></td>
             <td><?php echo $complementoCliente; ?></td>
@@ -123,7 +119,6 @@ include_once './func/dashboard.php';
             <input type="text" class="form-control inputModal" name="nomeCliente" id="nomeCliente" aria-describedby="nomeCliente" required>
           </div>
 
-
           <div class="form-group">
             <label for="enderecoCliente" class="form-label">Endereço</label>
             <input type="text" class="form-control inputModal" name="enderecoCliente" id="enderecoCliente" required>
@@ -149,11 +144,6 @@ include_once './func/dashboard.php';
             <input type="text" class="form-control inputModal maskTelefone" name="telefoneCliente" id="telefoneCliente" required>
           </div>
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Selecione a Imagem do Cliente</label>
-          <input type="file" class="form-control-file" name="imgCliente" id="imgCliente">
-        </div>
-        <div id="previewUploadImgCliente"></div>
         <div class="modal-footer modaisCorpos">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
           <button type="submit" class="btn btn-primary" id="btnCadClientes" onclick="cadGeral('frmCadClientes','modalCadClientes','cadastrarClientes','listarClientes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
@@ -211,74 +201,5 @@ include_once './func/dashboard.php';
       }
     });
   }
-
-
-
-/* INICIO FUNÇÃO DE UPLOAD - CLIENTE */
-$(document).ready(function () {
-    var redimensionarCliente = $('#previewUploadImgCliente').croppie({
-        enableExif: true,
-        enableOrientation: true,
-        viewport: { width: 300, height: 300 },
-        boundary: { width: 300, height: 300 }
-    });
-
-    $('#imgCliente').on('change', function () {
-        var ler = new FileReader();
-
-        ler.onload = function (e) {
-            redimensionarCliente.croppie('bind', {
-                url: e.target.result
-            }).then(function () {
-                // Atualiza a visualização do Croppie após vincular a imagem
-                redimensionarCliente.croppie('setZoom', 0);
-
-                // Adiciona o código para ajustar o tamanho da imagem no preview
-                var img = new Image();
-                img.src = e.target.result;
-                img.onload = function () {
-                    var maxWidth = 300;
-                    var maxHeight = 300;
-
-                    if (img.width > maxWidth || img.height > maxHeight) {
-                        redimensionarCliente.croppie('setZoom', Math.min(maxWidth / img.width, maxHeight / img.height));
-                    }
-                };
-            });
-        };
-
-        ler.readAsDataURL(this.files[0]);
-    });
-
-    $('#btnCadClientes').on('click', function () {
-        redimensionarCliente.croppie('result', {
-            type: 'canvas',
-            size: 'viewport'
-        }).then(function (img) {
-            // Enviar os dados para um arquivo PHP
-            $.ajax({
-                url: "./upload/uploadClientes.php",
-                type: "POST",
-                data: {
-                    "imagem": img
-                },
-                success: function () {
-                    $('#modalCadClientes').modal('hide');
-                    setTimeout(function () {
-                        atualizarPagina('listarClientes');
-                    }, 1000);
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Salvo com Sucesso',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            });
-        });
-    });
-});
-/* FIM FUNÇÃO UPLOAD DE IMAGE - CLIENTE */
 
 </script>
