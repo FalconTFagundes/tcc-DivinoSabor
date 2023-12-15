@@ -92,8 +92,8 @@ try {
         $dados .= "<h4>Usuário Emissor: <b>" . $_SESSION['nomeUser'] . "</b></h4>";
 
         // Ler os registros retornados do BD
-        while ($row_eventos = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            extract($row_eventos);
+        while ($row_clientes = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            extract($row_clientes);
 
             $dados .= "<table>";
             $dados .= "<tr><th>Código do Cliente</th><td>$idclientes</td></tr>";

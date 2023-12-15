@@ -112,9 +112,9 @@ try {
             } else {
                 $dados .= "<span style='color: #d9534f;'>Não Concluído</span>";
             }
-            $dataEntregaFormatada = formatarDataHoraBr($dataEntrega); // formatando data de entrega para o padrão BR
+            $dataEntregaFormatada = formatarDataHoraBr($dataEntrega); // formatando data de entrega para o padrão BR :D
             $dados .= "<tr><th>Data de Entrega</th><td>$dataEntregaFormatada</td></tr>";
-            $dataCadastroFormatada = formatarDataHoraBr($cadastro); // formatando data de cadastro para o padrão BR
+            $dataCadastroFormatada = formatarDataHoraBr($cadastro); // formatando data de cadastro para o padrão BR :D
             $dados .= "<tr><th>Data de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
             $dataAlteracaoFormatada = formatarDataHoraBr($alteracao);
             $dados .= "<tr><th>Última Alteração</th><td>$dataAlteracaoFormatada</td></tr>";

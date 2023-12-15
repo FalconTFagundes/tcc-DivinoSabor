@@ -182,7 +182,7 @@ include_once './func/dashboard.php';
     });
   }
 
-  function mostrarAlertaIdGet(idPedido) {
+  function mostrarAlertaIdGet(id) {
     Swal.fire({
       title: 'Você tem certeza?',
       text: 'Deseja gerar o relatório do cliente?',
@@ -201,7 +201,7 @@ include_once './func/dashboard.php';
           showConfirmButton: false,
           timer: 700
         });
-        window.location.href = './gerarRelatorios/gerarRelatUnCliente.php?id=' + idPedido;
+        window.location.href = './gerarRelatorios/gerarRelatUnCliente.php?id=' + id;
       }
     });
   }

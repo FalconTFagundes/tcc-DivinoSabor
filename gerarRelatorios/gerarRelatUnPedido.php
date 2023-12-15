@@ -2,7 +2,7 @@
 // Carregar o Composer
 require '../vendor/autoload.php';
 
-// Incluir conexao com BD
+// Incluir conexão com BD
 include_once '../config/constantes.php';
 include_once '../config/conexao.php';
 include_once '../func/dashboard.php';
@@ -11,7 +11,6 @@ include_once '../func/dashboard.php';
 use Dompdf\Dompdf;
 
 try {
-
     // Chama a função conectar e atribui o resultado à variável $conn
     $conn = conectar();
 
@@ -22,18 +21,21 @@ try {
         $idPedidoUn = isset($_GET['id']) ? intval($_GET['id']) : null;
 
         // QUERY para recuperar os registros do banco de dados
-        $query_pedidoUn = "SELECT idpedidos, nome, pedido, detalhes, dataEntrega, cadastro, alteracao, ativo FROM pedidos WHERE idpedidos = :idPedidoUn";
+        $query_pedidoUn = "SELECT pedidos.idpedidos, clientes.nome as nomeCliente, pedidos.pedido, pedidos.detalhes, pedidos.dataEntrega, pedidos.cadastro, pedidos.alteracao, pedidos.ativo 
+                           FROM pedidos 
+                           JOIN clientes ON pedidos.idclientes = clientes.idclientes
+                           WHERE pedidos.idpedidos = :idPedidoUn";
 
-
-        // Prepara a QUERY */
+        // Prepara a QUERY
         $stmt = $conn->prepare($query_pedidoUn);
-
-        $stmt->bindParam(':idPedidoUn', $idPedidoUn, PDO::PARAM_INT);
 
         // Verificar se a preparação da query foi bem-sucedida
         if (!$stmt) {
             throw new Exception("Falha ao preparar a consulta.");
         }
+
+        // Bind do parâmetro
+        $stmt->bindParam(':idPedidoUn', $idPedidoUn, PDO::PARAM_INT);
 
         // Executar a QUERY
         $stmt->execute();
@@ -93,7 +95,8 @@ try {
             td {
                 background-color: #fff; /* Cor de fundo branca para células de dados */
             }
-            </style>";
+        </style>";
+
         $dados .= "<title>Relatório de Pedido</title>";
         $dados .= "</head>";
         $dados .= "<body>";
@@ -106,7 +109,7 @@ try {
 
             $dados .= "<table>";
             $dados .= "<tr><th>Código do Pedido</th><td>$idpedidos</td></tr>";
-            $dados .= "<tr><th>Quem Fez o Pedido</th><td>$nome</td></tr>";
+            $dados .= "<tr><th>Quem Fez o Pedido</th><td>$nomeCliente</td></tr>";
             $dados .= "<tr><th>Pedido Feito</th><td>$pedido</td></tr>";
             $dados .= "<tr><th>Detalhes do Pedido</th><td>$detalhes</td></tr>";
             // verificando se o pedido está concluído ou não
@@ -154,3 +157,4 @@ try {
 } catch (Exception $e) {
     echo "Erro: " . $e->getMessage();
 }
+?>
