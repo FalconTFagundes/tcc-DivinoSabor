@@ -57,7 +57,7 @@ include_once './func/dashboard.php';
           $cadastroCliente = $itemCliente->cadastro;
           $ativoCliente = $itemCliente->ativo;
           $imgCliente = $itemCliente->img;
-      /*     print_r($imgCliente);  verificando se o nome das imagens estão chegando corretamente*/
+          /*     print_r($imgCliente);  verificando se o nome das imagens estão chegando corretamente*/
       ?>
 
           <tr>
@@ -65,7 +65,7 @@ include_once './func/dashboard.php';
 
             <th scope="row"><?php echo $idCliente; ?></th>
             <th>
-            <img src="./assets/images/profile/<?php echo $imgCliente; ?>" alt="Imagem do Cliente" class="img-thumbnail imgCliente">
+              <img src="./assets/images/profile/<?php echo $imgCliente; ?>" alt="Imagem do Cliente" class="img-thumbnail imgCliente">
             </th>
             <td><?php echo $nomeCliente; ?></td>
             <td><?php echo $enderecoCliente; ?></td>
@@ -122,7 +122,11 @@ include_once './func/dashboard.php';
             <label for="nomeCliente" class="form-label">Nome do Cliente</label>
             <input type="text" class="form-control inputModal" name="nomeCliente" id="nomeCliente" aria-describedby="nomeCliente" required>
           </div>
-          <!-- aqui virar o upload da imagem do cliente -->
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Selecione a Imagem do Cliente</label>
+            <input type="file" class="form-control-file" name="imgCliente" id="imgCliente">
+          </div>
+          <div id="previewUploadImgCliente"></div>
           <div class="form-group">
             <label for="enderecoCliente" class="form-label">Endereço</label>
             <input type="text" class="form-control inputModal" name="enderecoCliente" id="enderecoCliente" required>
