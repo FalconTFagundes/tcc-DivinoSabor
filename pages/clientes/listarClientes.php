@@ -1,5 +1,4 @@
 <?php
-
 include_once './config/constantes.php';
 include_once './config/conexao.php';
 include_once './func/dashboard.php';
@@ -56,9 +55,6 @@ include_once './func/dashboard.php';
             $cadastroCliente = $itemCliente -> cadastro;
             $ativoCliente = $itemCliente -> ativo;  
           ?>
- 
-
-
 
           <tr>
             <th scope="row"><?php echo $idCliente; ?></th>
@@ -105,29 +101,37 @@ include_once './func/dashboard.php';
 </div>
 
 <!-- Modal Cad Pedido -->
-<div class="modal fade" id="modalCadPedido" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
+<div class="modal fade" id="modalCadClientes" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:blueviolet; color: white; ">
-        <h5 class="modal-title" id="modalCadPedido">Cadastrar Pedido <i class="fa-regular fa-pen-to-square" title="Cadastro de Pedidos"></i></h5>
+        <h5 class="modal-title" id="modalCadPedido">Cadastrar Cliente <i class="fa-solid fa-user-plus" title="Cadastro de Clientes"></i></h5>
       </div>
       <form name="frmCadPedido" method="POST" id="frmCadPedido" class="frmCadPedido" action="#">
         <div class="modal-body modaisCorpos">
           <div class="form-group">
-            <label for="nomePedido" class="form-label">Nome do Cliente</label>
-            <input type="text" class="form-control inputModal" name="nomePedido" id="nomePedido" aria-describedby="nomePedido" required>
+            <label for="nomeCliente" class="form-label">Nome do Cliente</label>
+            <input type="text" class="form-control inputModal" name="nomeCliente" id="nomeCliente" aria-describedby="nomeCliente" required>
           </div>
           <div class="form-group">
-            <label for="pedido" class="form-label">Pedido</label>
-            <input type="text" class="form-control inputModal" name="pedido" id="pedido" required>
+            <label for="enderecoCliente" class="form-label">Endereço</label>
+            <input type="text" class="form-control inputModal" name="enderecoCliente" id="enderecoCliente" required>
           </div>
           <div class="form-group">
-            <label for="detalhesPedido" class="form-label">Detalhes</label>
-            <textarea class="form-control inputModal" name="detalhesPedido" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="complementoCliente" class="form-label">Complemento</label>
+            <input type="text" class="form-control inputModal" name="complementoCliente" id="complementoCliente" required>
           </div>
           <div class="mb-3">
-            <label for="dataEntregaPedido" class="form-label">Data de Entrega</label>
-            <input type="date" class="form-control inputModal" name="dataEntregaPedido" id="dataEntregaPedido" required>
+            <label for="cidadeCliente" class="form-label">Cidade</label>
+            <input type="date" class="form-control inputModal" name="cidadeCliente" id="cidadeCliente" required>
+          </div>
+          <div class="mb-3">
+            <label for="cepCliente" class="form-label">CEP</label>
+            <input type="number" class="form-control inputModal" name="cepCliente" id="cepCliente" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefoneCliente" class="form-label">Telefone</label>
+            <input type="text" class="form-control inputModal" name="telefoneCliente" id="telefoneCliente" required>
           </div>
         </div>
         <div class="modal-footer modaisCorpos">
