@@ -43,11 +43,16 @@ include_once './func/dashboard.php';
       $dataSeteDiasAntes = date("Y-m-d", strtotime("-7 days"));
 
 
-      $retornoListarPedidos = listarGeral('idpedidos, nome, pedido, detalhes, cadastro, alteracao, ativo, dataEntrega', 'pedidos');
+      $retornoListarPedidos = listarGeral('idpedidos, idclientes, pedido, detalhes, cadastro, alteracao, ativo, dataEntrega', 'pedidos');
       if (is_array($retornoListarPedidos) && !empty($retornoListarPedidos)) {
         foreach ($retornoListarPedidos as $itemPedido) {
           $idPedido = $itemPedido->idpedidos;
-          $nomePedido = $itemPedido->nome;
+          /* LISTAR PELO ID DO CLIENTE!!!! */
+          $idClientePedido = $itemPedido->idclientes;
+          $retornoClientePedido = listarTodosRegistroU('clientes','idclientes, nome', 'idclientes', "$idClientePedido");
+          foreach($retornoClientePedido as $itemClientePedido){
+            $nomeClientePedido = $itemClientePedido -> nome;
+          }
           $pedido = $itemPedido->pedido;
           $detalhesPedido = $itemPedido->detalhes;
           $ativoPedido = $itemPedido->ativo;
@@ -64,11 +69,11 @@ include_once './func/dashboard.php';
             $classeData = 'entregaVerde';
           }
 
-          ?>
+      ?>
 
           <tr>
             <th scope="row"><?php echo $idPedido; ?></th>
-            <td><?php echo $nomePedido; ?></td>
+            <td><?php echo $nomeClientePedido; ?></td>
             <td><?php echo $pedido; ?></td>
             <td><?php echo $detalhesPedido; ?></td>
             <td class="<?php echo $classeData; ?>"><?php echo $dataEntregaFormat; ?></td>
@@ -118,8 +123,19 @@ include_once './func/dashboard.php';
       <form name="frmCadPedido" method="POST" id="frmCadPedido" class="frmCadPedido" action="#">
         <div class="modal-body modaisCorpos">
           <div class="form-group">
-            <label for="nomePedido" class="form-label">Nome do Cliente</label>
-            <input type="text" class="form-control inputModal" name="nomePedido" id="nomePedido" aria-describedby="nomePedido" required>
+            <label for="nomePedido" class="form-label">Selecione o Cliente</label>
+            <!-- select com nome dos clientes cadastrados no banco de dados :D -->
+            <select class="custom-select inputModal" name="clientePedidoId">
+              <?php
+              $retornoListagemClientes_Pedidos = listarGeral('idclientes, nome', 'clientes');
+              foreach ($retornoListagemClientes_Pedidos as $itemListagemClientes_pedido) {
+                $idCliente_Pedido = $itemListagemClientes_pedido->idclientes;
+                $nomeCliente_Pedido = $itemListagemClientes_pedido->nome;
+              ?>
+                <option selected value="<?php echo $idCliente_Pedido ?>"><?php echo $nomeCliente_Pedido; ?></option>
+              <?php    } ?>
+            </select>
+          
           </div>
           <div class="form-group">
             <label for="pedido" class="form-label">Pedido</label>

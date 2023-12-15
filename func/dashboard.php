@@ -2502,6 +2502,31 @@ function listarGeral($campos, $tabela)
     $conn = null;
 }
 
+function listarGeralInnerJoin($campos, $tabelaPrincipal, $tabelaJoin, $condicaoJoin)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+
+        $sqlLista = $conn->query("SELECT $campos FROM $tabelaPrincipal
+                                 INNER JOIN $tabelaJoin ON $condicaoJoin");
+        $sqlLista->execute();
+
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            return 'Vazio';
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return $e->getMessage();
+        $conn->rollback();
+    } finally {
+        $conn = null;
+    }
+}
+
+
 // listar eventos
 function listarEventos($campos, $tabela)
 {

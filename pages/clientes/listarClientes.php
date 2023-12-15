@@ -136,11 +136,11 @@ include_once './func/dashboard.php';
           </div>
           <div class="mb-3">
             <label for="cepCliente" class="form-label">CEP</label>
-            <input type="number" class="form-control inputModal" name="cepCliente" id="cepCliente" required>
+            <input type="text" class="form-control inputModal maskCEP" name="cepCliente" id="cepCliente" required>
           </div>
           <div class="mb-3">
             <label for="telefoneCliente" class="form-label">Telefone</label>
-            <input type="text" class="form-control inputModal" name="telefoneCliente" id="telefoneCliente" required>
+            <input type="text" class="form-control inputModal maskTelefone" name="telefoneCliente" id="telefoneCliente" required>
           </div>
         </div>
         <div class="modal-footer modaisCorpos">
