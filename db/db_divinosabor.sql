@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/12/2023 às 05:25
+-- Tempo de geração: 15/12/2023 às 06:49
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -38,18 +38,20 @@ CREATE TABLE `clientes` (
   `telefone` varchar(55) NOT NULL DEFAULT '',
   `cadastro` datetime DEFAULT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `ativo` char(1) NOT NULL DEFAULT 'A'
+  `ativo` char(1) NOT NULL DEFAULT 'A',
+  `img` varchar(150) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `clientes`
 --
 
-INSERT INTO `clientes` (`idclientes`, `nome`, `endereco`, `complemento`, `cidade`, `estado`, `cep`, `telefone`, `cadastro`, `alteracao`, `ativo`) VALUES
-(3, 'Rafael', 'teste', 'teste', 'teste', 'teste', '124524', '333333', '2023-12-15 00:23:29', '2023-12-15 04:02:45', 'D'),
-(4, 'Bulim', 'test', 'test', 'teste', 'teste', '24242', 'teste', '2023-12-15 00:29:17', '2023-12-15 04:02:45', 'D'),
-(5, 'Geísa', 'test', 'test', 'teste', 'teste', '24242', 'teste', '2023-12-15 00:29:17', '2023-12-15 04:02:45', 'A'),
-(6, 'Widerson', 'teste', 'teste', 'teste', 'teste', '35059-110', '245252', '2023-12-15 00:40:45', '2023-12-15 04:02:45', 'A');
+INSERT INTO `clientes` (`idclientes`, `nome`, `endereco`, `complemento`, `cidade`, `estado`, `cep`, `telefone`, `cadastro`, `alteracao`, `ativo`, `img`) VALUES
+(3, 'Rafael', 'teste', 'teste', 'teste', 'teste', '124524', '333333', '2023-12-15 00:23:29', '2023-12-15 04:42:43', 'D', 'rafael.jpg'),
+(4, 'Bulim', 'test', 'test', 'teste', 'teste', '24242', 'teste', '2023-12-15 00:29:17', '2023-12-15 04:35:44', 'D', 'bulim.jpg'),
+(5, 'Geísa', 'test', 'test', 'teste', 'teste', '24242', 'teste', '2023-12-15 00:29:17', '2023-12-15 04:35:44', 'A', 'geisa.jpg'),
+(6, 'Widerson', 'teste', 'teste', 'teste', 'teste', '35059-110', '245252', '2023-12-15 00:40:45', '2023-12-15 04:35:44', 'A', 'widerson.jpg'),
+(7, 'Glaydmar', 'teste', 'teste', 'teste', 'teste', '252525', '25252525', '2023-12-15 00:40:45', '2023-12-15 04:35:44', 'A', 'glaydmar.jpg');
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,7 @@ INSERT INTO `pacotecadastro` (`idpacotecadastro`, `idpacote`, `idproduto`, `cada
 
 CREATE TABLE `pedidos` (
   `idpedidos` int(10) UNSIGNED NOT NULL,
-  `idclientes` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `idclientes` int(10) UNSIGNED NOT NULL,
   `pedido` varchar(45) NOT NULL,
   `detalhes` varchar(70) NOT NULL,
   `cadastro` datetime NOT NULL,
@@ -147,8 +149,8 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idpedidos`, `idclientes`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`) VALUES
-(9, 3, 'coxinha', 'coxinha', '2023-12-15 00:50:00', '2023-12-15 03:50:00', 'A', '2025-08-18'),
-(10, 6, 'teste', 'teste', '2023-12-15 01:09:50', '2023-12-15 04:09:50', 'A', '0000-00-00');
+(1, 5, 'teste', 'teste', '2023-12-15 02:18:44', '2023-12-15 05:18:44', 'A', '1111-11-11'),
+(2, 4, 'teste', 'teste', '2023-12-15 02:24:33', '2023-12-15 05:24:33', 'A', '1111-11-11');
 
 -- --------------------------------------------------------
 
@@ -255,7 +257,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idclientes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idclientes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `events`
@@ -279,7 +281,7 @@ ALTER TABLE `pacotecadastro`
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
