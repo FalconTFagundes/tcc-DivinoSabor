@@ -59,7 +59,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                 $retornoListarPacotes = obterPacotes();
                 if (is_array($retornoListarPacotes) && !empty($retornoListarPacotes)) {
                     foreach ($retornoListarPacotes as $itemPacote) {
-                        $idPacote = $itemPacote['idpacotecadastro'];
+                        $idPacote = $itemPacote['idpacote'];
                         $nomePacote = $itemPacote['pacote'];
                         $detalhesPacote = $itemPacote['detalhes'];
                         $qtdPeoplePacote = $itemPacote['qtdPessoas']; 
@@ -114,7 +114,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:blueviolet; color: white; ">
-                    <h5 class="modal-title" id="modalCadPedido">Cadastrar Pacote <i class="fa-solid fa-user-plus" title="Cadastro de Pacotes"></i></h5>
+                    <h5 class="modal-title" id="modalCadPacotes">Cadastrar Pacote <i class="fa-solid fa-user-plus" title="Cadastro de Pacotes"></i></h5>
                 </div>
                 <form name="frmCadPacotes" method="POST" id="frmCadPacotes" class="frmCadPacotes" action="#">
                     <div class="modal-body modaisCorpos">
@@ -129,7 +129,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                     </div>
                     <div class="modal-footer modaisCorpos">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-                        <button type="submit" class="btn btn-primary" id="btnCadClientes" onclick="cadGeral('frmCadPacotes','modalCadPacotes','cadPacote','listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+                        <button type="submit" class="btn btn-primary" id="btnCadPacotes" onclick="cadGeral('frmCadPacotes','modalCadPacotes','cadPacote','listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pacote"></i> Cadastrar</button>
                     </div>
                 </form>
             </div>
@@ -141,7 +141,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:blueviolet; color: white; ">
-                    <h5 class="modal-title" id="modalCadPedido">Cadastrar Itens no Pacote <i class="fa-regular fa-pen-to-square" title="Cadastro de Pacotoes"></i></h5>
+                    <h5 class="modal-title" id="modalCadPacotes">Cadastrar Itens no Pacote <i class="fa-regular fa-pen-to-square" title="Cadastro de Pacotoes"></i></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -215,7 +215,6 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
             </div>
         </div>
     </div>
-    <!-- Adicione os links para seus arquivos de script e estilo aqui -->
 </body>
 
 </html>
