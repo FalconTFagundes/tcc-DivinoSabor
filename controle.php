@@ -43,10 +43,22 @@ switch ($acao) {
         include_once './pages/clientes/listarClientes.php';
         break;
 
+    case 'cadastrarClientes':
+        include_once './pages/clientes/cadastrarClientes.php';
+        break;
+
+    case 'excluirClientes':
+        include_once './pages/clientes/excluirClientes.php';
+        break;
+
+    case 'ativarClientes':
+        include_once './pages/clientes/ativarClientes.php';
+        break;
 
 
 
-        
+
+
         // EVENTOS
 
     case 'listarEventos':
@@ -69,6 +81,27 @@ switch ($acao) {
         $_SESSION["page"] = 'listarFinanceiro';
         include_once './pages/financeiro/listarFinanceiro.php';
         break;
+
+
+        // PACOTES
+
+    case 'listarPacotes':
+        $_SESSION["page"] = 'listarPacotes';
+        include_once './pages/pacotes/listarPacotes.php';
+        break;
+
+    case 'cadPacote':
+        include_once './pages/pacotes/cadPacote.php';
+        break;
+
+    case 'ativarPacotes':
+        include_once './pages/pacotes/ativarPacotes.php';
+        break;
+
+    case 'excluirPacotes':
+        include_once './pages/pacotes/excluirPacotes.php';
+        break;
+
 
         // páginas de ações
 

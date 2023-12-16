@@ -12,6 +12,49 @@
 //-------------------------------------------SESSÃO---------------------------------------------------------------------
 //validar Sessao usuário
 
+function obterOpcoesDoBanco($tabela, $campoId, $campoDescricao)
+{
+    $conn = conectar();
+
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campoId, $campoDescricao FROM $tabela WHERE ativo = 'A'");
+        $sqlLista->execute();
+
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return 'Vazio';
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        $conn->rollback();
+    } finally {
+        $conn = null;
+    }
+}
+
+
+function obterPacotes()
+{
+    try {
+        $conn = conectar();
+
+        $consulta = "SELECT pc.idpacote, p.pacote, pr.produto, pc.quantidade AS QuantidadeDePessoas,  pc.valorPacote AS ValorDoPacote, p.cadastro,p.alteracao, p.ativo FROM pacotecadastro pc INNER JOIN pacote p ON pc.idpacote = p.idpacote INNER JOIN produto pr ON pc.idproduto = pr.idproduto";
+
+        $sqlLista = $conn->query($consulta);
+        $pacotes = $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+
+        return $pacotes ?: 'Vazio';
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+        return null;
+    } finally {
+        if ($conn) {
+            $conn = null;
+        }
+    }
+}
 
 function checarLogin($tabela, $valor1, $valor2)
 {
@@ -2502,6 +2545,31 @@ function listarGeral($campos, $tabela)
     $conn = null;
 }
 
+function listarGeralInnerJoin($campos, $tabelaPrincipal, $tabelaJoin, $condicaoJoin)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+
+        $sqlLista = $conn->query("SELECT $campos FROM $tabelaPrincipal
+                                 INNER JOIN $tabelaJoin ON $condicaoJoin");
+        $sqlLista->execute();
+
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            return 'Vazio';
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return $e->getMessage();
+        $conn->rollback();
+    } finally {
+        $conn = null;
+    }
+}
+
+
 // listar eventos
 function listarEventos($campos, $tabela)
 {
@@ -3020,6 +3088,37 @@ function insertSeis($tabela, $campos, $value1, $value2, $value3, $value4, $value
     };
     $conn = null;
 }
+
+
+function insertSete($tabela, $campos, $value1, $value2, $value3, $value4, $value5, $value6, $value7)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqInsert = $conn->prepare("INSERT INTO $tabela($campos)VALUES(?,?,?,?,?,?,?)");
+        $sqInsert->bindValue(1, $value1, PDO::PARAM_STR);
+        $sqInsert->bindValue(2, $value2, PDO::PARAM_STR);
+        $sqInsert->bindValue(3, $value3, PDO::PARAM_STR);
+        $sqInsert->bindValue(4, $value4, PDO::PARAM_STR);
+        $sqInsert->bindValue(5, $value5, PDO::PARAM_STR);
+        $sqInsert->bindValue(6, $value6, PDO::PARAM_STR);
+        $sqInsert->bindValue(7, $value7, PDO::PARAM_STR);
+        $sqInsert->execute();
+        $conn->commit();
+        if ($sqInsert->rowCount() > 0) {
+            return 'Gravado';
+        } else {
+            return 'nGravado';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
+
 
 function insertOito($tabela, $campos, $value1, $value2, $value3, $value4, $value5, $value6, $value7, $value8)
 {

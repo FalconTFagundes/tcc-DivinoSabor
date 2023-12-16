@@ -6,6 +6,6 @@ include_once "./func/dashboard.php";
 
 $dados_delete = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-$idCliente = $dados_delete['id'];
+$idPacote = $dados_delete['id'];
 
-excluirDashboard('clientes','idclientes', "$idCliente");
+excluirDashboard('pacote','idpacote', "$idPacote");

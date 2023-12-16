@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/12/2023 às 23:36
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Tempo de geração: 15/12/2023 às 06:49
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_divinosabor`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `idclientes` int(10) UNSIGNED NOT NULL,
+  `nome` varchar(65) NOT NULL DEFAULT '',
+  `endereco` varchar(120) NOT NULL DEFAULT '',
+  `complemento` varchar(45) NOT NULL DEFAULT '',
+  `cidade` varchar(100) NOT NULL DEFAULT '',
+  `estado` varchar(100) NOT NULL DEFAULT '',
+  `cep` varchar(45) NOT NULL DEFAULT '',
+  `telefone` varchar(55) NOT NULL DEFAULT '',
+  `cadastro` datetime DEFAULT NULL,
+  `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ativo` char(1) NOT NULL DEFAULT 'A',
+  `img` varchar(150) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `clientes`
+--
+
+INSERT INTO `clientes` (`idclientes`, `nome`, `endereco`, `complemento`, `cidade`, `estado`, `cep`, `telefone`, `cadastro`, `alteracao`, `ativo`, `img`) VALUES
+(3, 'Rafael', 'teste', 'teste', 'teste', 'teste', '124524', '333333', '2023-12-15 00:23:29', '2023-12-15 04:42:43', 'D', 'rafael.jpg'),
+(4, 'Bulim', 'test', 'test', 'teste', 'teste', '24242', 'teste', '2023-12-15 00:29:17', '2023-12-15 04:35:44', 'D', 'bulim.jpg'),
+(5, 'Geísa', 'test', 'test', 'teste', 'teste', '24242', 'teste', '2023-12-15 00:29:17', '2023-12-15 04:35:44', 'A', 'geisa.jpg'),
+(6, 'Widerson', 'teste', 'teste', 'teste', 'teste', '35059-110', '245252', '2023-12-15 00:40:45', '2023-12-15 04:35:44', 'A', 'widerson.jpg'),
+(7, 'Glaydmar', 'teste', 'teste', 'teste', 'teste', '252525', '25252525', '2023-12-15 00:40:45', '2023-12-15 04:35:44', 'A', 'glaydmar.jpg');
 
 -- --------------------------------------------------------
 
@@ -40,32 +72,60 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
-(8, 'Teste Mask', '#00BD3f', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 'teste', '#D4C200', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, 'Teste Mask', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(11, 'Teste Mask', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 'teste', '#D4C200', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(16, 'a', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(17, 'a', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(19, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(20, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(21, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(22, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(23, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(24, 't', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(25, 'teste', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(26, 'teste', '#9E77F1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(31, 'Festa de Aniversário', '#297BFF', '2023-12-16 00:00:00', '2023-12-17 12:00:00'),
-(32, 'Festa no Saae', '#9E77F1', '2023-12-07 03:00:00', '2023-12-08 03:00:00'),
-(35, 'Aegea', '#D4C200', '2023-12-12 03:00:00', '2023-12-13 03:00:00'),
-(36, 'Formatura', '#FF0831', '2023-12-29 03:00:00', '2023-12-30 03:00:00'),
-(37, 'Aniversário Fernando', '#D4C200', '2023-12-05 03:00:00', '2023-12-06 03:00:00'),
-(38, 'Senai lab', '#00BD3f', '2024-01-01 03:00:00', '2024-01-02 03:00:00'),
-(39, 'teste', '#00BD3f', '2023-12-22 03:00:00', '2023-12-23 03:00:00'),
-(40, 'teste', '#9E77F1', '2023-12-14 03:00:00', '2023-12-15 03:00:00'),
-(41, 'teste', '#9E77F1', '2023-12-21 03:00:00', '2023-12-22 03:00:00'),
-(42, 'teste', '#9E77F1', '2023-12-05 03:00:00', '2023-12-06 03:00:00');
+(1, 'Teste Roxo', '#9E77F1', '2023-12-10 03:00:00', '2023-12-11 03:00:00'),
+(2, 'Teste Red', '#FF0831', '2023-12-15 03:00:00', '2023-12-16 03:00:00'),
+(3, 'Teste Blue', '#297BFF', '2023-12-19 03:00:00', '2023-12-20 03:00:00'),
+(5, 'teste amarelão', '#D4C200', '2023-12-22 03:00:00', '2023-12-23 03:00:00'),
+(6, 'Teste', '#FF0831', '2023-12-26 23:00:00', '2023-12-27 03:00:00'),
+(7, 'Festa', '#00BD3f', '2023-12-07 03:00:00', '2023-12-08 03:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pacote`
+--
+
+CREATE TABLE `pacote` (
+  `idpacote` int(10) UNSIGNED NOT NULL,
+  `img` varchar(145) DEFAULT NULL,
+  `pacote` varchar(245) NOT NULL DEFAULT '',
+  `qtd` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `cadastro` datetime DEFAULT NULL,
+  `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ativo` char(1) NOT NULL DEFAULT 'A'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `pacote`
+--
+
+INSERT INTO `pacote` (`idpacote`, `img`, `pacote`, `qtd`, `cadastro`, `alteracao`, `ativo`) VALUES
+(17, 'weww', 'master', 333, NULL, '2023-12-14 23:41:27', 'A'),
+(18, 'qwqw', 'tetet', 344, NULL, '2023-12-14 23:45:20', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pacotecadastro`
+--
+
+CREATE TABLE `pacotecadastro` (
+  `idpacotecadastro` int(10) UNSIGNED NOT NULL,
+  `idpacote` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `idproduto` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `cadastro` datetime DEFAULT NULL,
+  `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ativo` char(1) NOT NULL DEFAULT 'A',
+  `quantidade` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `valorPacote` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `pacotecadastro`
+--
+
+INSERT INTO `pacotecadastro` (`idpacotecadastro`, `idpacote`, `idproduto`, `cadastro`, `alteracao`, `ativo`, `quantidade`, `valorPacote`) VALUES
+(15, 17, 6, '2023-12-14 20:41:49', '2023-12-14 23:41:49', 'A', 555, 999.99);
 
 -- --------------------------------------------------------
 
@@ -75,7 +135,7 @@ INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
 
 CREATE TABLE `pedidos` (
   `idpedidos` int(10) UNSIGNED NOT NULL,
-  `nome` varchar(60) NOT NULL,
+  `idclientes` int(10) UNSIGNED NOT NULL,
   `pedido` varchar(45) NOT NULL,
   `detalhes` varchar(70) NOT NULL,
   `cadastro` datetime NOT NULL,
@@ -88,12 +148,32 @@ CREATE TABLE `pedidos` (
 -- Despejando dados para a tabela `pedidos`
 --
 
-INSERT INTO `pedidos` (`idpedidos`, `nome`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`) VALUES
-(14, 'Fernando Rodrigues', 'Festa de Hallowen', 'Salgados diversos e bolo', '2023-12-11 19:41:24', '2023-12-12 22:31:07', 'A', '2023-12-18'),
-(15, 'Widerson', 'Festa de Aniversário', '500 salgados diversos', '2023-12-11 19:41:57', '2023-12-12 22:31:07', 'A', '2025-12-01'),
-(16, 'Rafael', 'Festa', 'Muitos salgados com foco em carne', '2023-12-11 19:42:34', '2023-12-12 22:31:07', 'A', '2023-11-25'),
-(17, 't', 't', 't', '2023-12-12 19:30:39', '2023-12-12 22:31:07', 'A', '1111-11-11'),
-(18, 'T', 'T', 'T', '2023-12-12 19:31:28', '2023-12-12 22:31:28', 'A', '1111-11-11');
+INSERT INTO `pedidos` (`idpedidos`, `idclientes`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`) VALUES
+(1, 5, 'teste', 'teste', '2023-12-15 02:18:44', '2023-12-15 05:18:44', 'A', '1111-11-11'),
+(2, 4, 'teste', 'teste', '2023-12-15 02:24:33', '2023-12-15 05:24:33', 'A', '1111-11-11');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `produto`
+--
+
+CREATE TABLE `produto` (
+  `idproduto` int(10) UNSIGNED NOT NULL,
+  `img` varchar(145) DEFAULT NULL,
+  `produto` varchar(145) NOT NULL DEFAULT '',
+  `valor` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `cadatro` datetime DEFAULT NULL,
+  `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ativo` char(1) NOT NULL DEFAULT 'A'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `produto`
+--
+
+INSERT INTO `produto` (`idproduto`, `img`, `produto`, `valor`, `cadatro`, `alteracao`, `ativo`) VALUES
+(6, 'eee', 'peixe', 2.00, NULL, '2023-12-14 22:14:37', 'A');
 
 -- --------------------------------------------------------
 
@@ -125,16 +205,43 @@ INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `ativo`, `alteraca
 --
 
 --
+-- Índices de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`idclientes`);
+
+--
 -- Índices de tabela `events`
 --
 ALTER TABLE `events`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Índices de tabela `pacote`
+--
+ALTER TABLE `pacote`
+  ADD PRIMARY KEY (`idpacote`);
+
+--
+-- Índices de tabela `pacotecadastro`
+--
+ALTER TABLE `pacotecadastro`
+  ADD PRIMARY KEY (`idpacotecadastro`,`idpacote`,`idproduto`),
+  ADD KEY `FK_pacotecadastro_pacote` (`idpacote`),
+  ADD KEY `FK_pacotecadastro_produto` (`idproduto`);
+
+--
 -- Índices de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`idpedidos`);
+  ADD PRIMARY KEY (`idpedidos`,`idclientes`),
+  ADD KEY `FK_idclientes` (`idclientes`);
+
+--
+-- Índices de tabela `produto`
+--
+ALTER TABLE `produto`
+  ADD PRIMARY KEY (`idproduto`);
 
 --
 -- Índices de tabela `usuario`
@@ -147,22 +254,63 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `idclientes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de tabela `pacote`
+--
+ALTER TABLE `pacote`
+  MODIFY `idpacote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de tabela `pacotecadastro`
+--
+ALTER TABLE `pacotecadastro`
+  MODIFY `idpacotecadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `produto`
+--
+ALTER TABLE `produto`
+  MODIFY `idproduto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idusuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `pacotecadastro`
+--
+ALTER TABLE `pacotecadastro`
+  ADD CONSTRAINT `FK_pacotecadastro_pacote` FOREIGN KEY (`idpacote`) REFERENCES `pacote` (`idpacote`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_pacotecadastro_produto` FOREIGN KEY (`idproduto`) REFERENCES `produto` (`idproduto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `FK_idclientes` FOREIGN KEY (`idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

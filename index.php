@@ -22,6 +22,9 @@
     <!-- Bootstrap v4.0 CSS -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
+    <!-- croppie -->
+    <link rel="stylesheet" href="assets/croppiejs/cropper.min.css">
+
     <!-- CSS normal -->
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -68,6 +71,9 @@
 
     <!-- sweet alert -->
    <script src="assets/sweetAlert2/sweetAlert2.js"></script>
+
+   <!-- croppie -->
+   <script src="assets/croppiejs/croppie.min.js"></script>
 
     <!-- calendario -->
     <script src='./assets/js/index.global.min.js'></script>

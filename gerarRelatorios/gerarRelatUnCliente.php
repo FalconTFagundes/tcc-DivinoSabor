@@ -2,7 +2,7 @@
 // Carregar o Composer
 require '../vendor/autoload.php';
 
-// Incluir conexão com BD
+// Incluir conexao com BD
 include_once '../config/constantes.php';
 include_once '../config/conexao.php';
 include_once '../func/dashboard.php';
@@ -11,19 +11,26 @@ include_once '../func/dashboard.php';
 use Dompdf\Dompdf;
 
 try {
+
     // Chama a função conectar e atribui o resultado à variável $conn
     $conn = conectar();
 
     // Se a conexão for bem-sucedida, continue com o restante do código
     if ($conn) {
 
-        // QUERY para recuperar os registros do banco de dados
-        $query_pedidos = "SELECT pedidos.idpedidos, clientes.nome as nomeCliente, pedidos.pedido, pedidos.detalhes, pedidos.dataEntrega, pedidos.cadastro, pedidos.alteracao, pedidos.ativo 
-                          FROM pedidos 
-                          JOIN clientes ON pedidos.idclientes = clientes.idclientes";
+        // Recebendo ID diretamente pela URL - sem Ajax e verificando ser um número inteiro
+        $idClienteUn = isset($_GET['id']) ? intval($_GET['id']) : null;
+   
 
-        // Prepara a QUERY
-        $stmt = $conn->prepare($query_pedidos);
+        // QUERY para recuperar os registros do banco de dados
+        $query_clienteUn = "SELECT idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo FROM clientes WHERE idclientes = :idClienteUn";
+
+
+
+        // Prepara a QUERY */
+        $stmt = $conn->prepare($query_clienteUn);
+
+        $stmt->bindParam(':idClienteUn', $idClienteUn, PDO::PARAM_INT);
 
         // Verificar se a preparação da query foi bem-sucedida
         if (!$stmt) {
@@ -88,38 +95,37 @@ try {
             td {
                 background-color: #fff; /* Cor de fundo branca para células de dados */
             }
-        </style>";
-
-        $dados .= "<title>Relatório de Pedidos</title>";
+            </style>";
+        $dados .= "<title>Relatório de Clientes</title>";
         $dados .= "</head>";
         $dados .= "<body>";
-        $dados .= "<h1>RELATÓRIO DE PEDIDOS</h1>";
+        $dados .= "<h1>RELATÓRIO DO CLIENTE</h1>";
         $dados .= "<h4>Usuário Emissor: <b>" . $_SESSION['nomeUser'] . "</b></h4>";
 
         // Ler os registros retornados do BD
-        while ($row_pedidos = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            extract($row_pedidos);
+        while ($row_clienteUn = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            extract($row_clienteUn);
 
             $dados .= "<table>";
-            $dados .= "<tr><th>Código do Pedido</th><td>$idpedidos</td></tr>";
-            $dados .= "<tr><th>Cliente que fez o pedido</th><td>$nomeCliente</td></tr>";
-            $dados .= "<tr><th>Pedido Feito</th><td>$pedido</td></tr>";
-            $dados .= "<tr><th>Detalhes do Pedido</th><td>$detalhes</td></tr>";
-            // verificando se o pedido está concluído ou não
-            $dados .= "<tr><th>Status do Pedido</th><td>";
+            $dados .= "<tr><th>Código do Cliente</th><td>$idclientes</td></tr>";
+            $dados .= "<tr><th>Nome</th><td>$nome</td></tr>";
             if ($ativo == 'A') {
-                $dados .= "<span style='color: #32CD32;'>Concluído</span>";
+                $status = "<span style='color: #32CD32;'>Ativado</span>";
             } else {
-                $dados .= "<span style='color: #d9534f;'>Não Concluído</span>";
+                $status = "<span style='color: #d9534f;'>Desativado</span>";
             }
-            $dataEntregaFormatada = formatarDataHoraBr($dataEntrega); // formatando data de entrega para o padrão BR :D
-            $dados .= "<tr><th>Data de Entrega</th><td>$dataEntregaFormatada</td></tr>";
-            $dataCadastroFormatada = formatarDataHoraBr($cadastro); // formatando data de cadastro para o padrão BR :D
-            $dados .= "<tr><th>Data de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
+            
+            $dados .= "<tr><th>Status do Cliente</th><td>$status</td></tr>";
+            $dados .= "<tr><th>Endereço</th><td>$endereco</td></tr>";
+            $dados .= "<tr><th>Complemento</th><td>$complemento</td></tr>";
+            $dados .= "<tr><th>Cidade</th><td>$cidade</td></tr>";
+            $dados .= "<tr><th>Estado</th><td>$estado</td></tr>";
+            $dados .= "<tr><th>CEP</th><td>$cep</td></tr>";
+            $dados .= "<tr><th>Telefone</th><td>$telefone</td></tr>";
+            $dataCadastroFormatada = formatarDataHoraBr($cadastro);
+            $dados .= "<tr><th>Data e Hora de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
             $dataAlteracaoFormatada = formatarDataHoraBr($alteracao);
             $dados .= "<tr><th>Última Alteração</th><td>$dataAlteracaoFormatada</td></tr>";
-
-            $dados .= "</td></tr>";
             $dados .= "</table>";
 
             // Adiciona uma linha horizontal após cada registro
@@ -131,10 +137,10 @@ try {
         // Instanciar e usar a classe dompdf
         $dompdf = new Dompdf(['enable_remote' => true]);
 
-        // Instanciar o método loadHtml e enviar o conteúdo do PDF
+        // Instanciar o metodo loadHtml e enviar o conteudo do PDF
         $dompdf->loadHtml($dados);
 
-        // Configurar o tamanho e a orientação do papel
+        // Configurar o tamanho e a orientacao do papel
         $dompdf->setPaper('A4', 'portrait');
 
         // Renderizar o HTML como PDF
@@ -150,4 +156,3 @@ try {
 } catch (Exception $e) {
     echo "Erro: " . $e->getMessage();
 }
-?>

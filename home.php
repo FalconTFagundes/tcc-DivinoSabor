@@ -56,6 +56,7 @@ include_once './pages/time.php';
             </div>
 
             <div id="showpage">
+          
                 <?php
 
                 // se existe, tem página mostrando
@@ -73,6 +74,9 @@ include_once './pages/time.php';
                     }
                     if ($page == 'listarFinanceiro') {
                         include_once './pages/financeiro/listarFinanceiro.php';
+                    }
+                    if ($page == 'listarPacotes') {
+                        include_once './pages/pacotes/listarPacotes.php';
                     }
                     if ($page == 'perguntas') {
                         include_once './footerPages/perguntas.php';

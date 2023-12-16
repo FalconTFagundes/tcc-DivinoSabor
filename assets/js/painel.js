@@ -1,3 +1,4 @@
+masks();  
 //tema dark/light :D
 const btnDarkModeToggle = document.getElementById("btn-dark-mode-toggle");
 let themeSystem = localStorage.getItem("themeSystem") || "light";
@@ -323,11 +324,12 @@ function listarPage(listar) {
 // funções de mask
 
 // faz as máscaras funcionarem - coloca no ínicio da folha, NO INÍCIO (LINE 1)!!!!!!!
-/* masks();  */
+/* masks(); */
 
 function masks() {
+    $(document).ready(function() {
     $('.maskTelefone').inputmask({
-        mask: '(99) 9 9999-9999'
+        mask: '(99) 99999-9999'
     });
 
     $('.maskCPF').inputmask({
@@ -337,6 +339,12 @@ function masks() {
     $('.maskData').inputmask({
         mask: '99/99/9999'
     });
+
+    $('.maskCEP').inputmask({
+        mask: '99999-999'
+    });
+
+});
 
     /*  $('.maskDateTime').inputmask({
         mask: '99/99/9999 99:99'
