@@ -103,6 +103,10 @@ try {
             font-weight: bold;
             font-size: 14px;
         }
+
+        span{
+            font-weight: bold;
+        }
     
         td {
             background-color: #ffffff;
@@ -138,13 +142,13 @@ try {
 
                     $dados .= "<h2>$pacote</h2>";
                     $dados .= "<table>";
-                    $dados .= "<tr><th>Quantidade de Pessoas:</th><td>$qtdPessoas</td></tr>";
-                    $dados .= "<tr><th>Valor do Pacote:</th><td>$valorPacote</td></tr>";
+                    $dados .= "<tr><th>Capacidade:</th><td>$qtdPessoas pessoa(s)</td></tr>";
+                    $dados .= "<tr><th>Valor Total do Pacote:</th><td>$valorPacote</td></tr>";
                     $dados .= "<tr><th>Detalhes do Pacote:</th><td>$detalhes</td></tr>";
-                    $dados .= "<tr><th>Status do Pacote Cadastro:</th><td>";
+                    $dados .= "<tr><th>Status do Pacote:</th><td>";
                     $dados .= ($AtivoPacoteCadastro == 'A') ? "<span style='color: #32CD32;'>Ativo</span>" : "<span style='color: #d9534f;'>Inativo</span>";
                     $dados .= "</td></tr>";
-                    $dados .= "<tr><th>Data de Cadastro:</th><td>" . formatarDataHoraBr($cadastro) . "</td></tr>";
+                    $dados .= "<tr><th>Data e Hora de Cadastro:</th><td>" . formatarDataHoraBr($cadastro) . "</td></tr>";
                     $dados .= "<tr><th>Última Alteração:</th><td>" . formatarDataHoraBr($alteracao) . "</td></tr>";
                 }
 
