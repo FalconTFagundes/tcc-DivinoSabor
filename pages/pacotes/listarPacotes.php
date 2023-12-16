@@ -104,7 +104,6 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
 </div>
 
 
-
 <!-- Modal Cadastrar Pacote -->
 <div class="modal fade" id="modalCadPacotes" tabindex="-1" role="dialog" aria-labelledby="modalCadPacote" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -137,16 +136,16 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color:blueviolet; color: white; ">
-                <h5 class="modal-title" id="modalCadPedido">Cadastrar Pacote <i class="fa-regular fa-pen-to-square" title="Cadastro de Pacotoes"></i></h5>
+                <h5 class="modal-title" id="modalCadPedido">Cadastrar Itens no Pacote <i class="fa-regular fa-pen-to-square" title="Cadastro de Pacotoes"></i></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modaisCorpos">
                 <form action="./pages/produtoVenda/cadProdutoVenda.php" method="post">
                     <div class="form-group">
                         <label for="idpacote">Escolha o pacote</label>
-                        <select class="form-control" name="idpacote" id="idpacote">
+                        <select class="form-control inputModal" name="idpacote" id="idpacote">
                             <?php foreach ($opcoesPacote as $opcao) : ?>
                                 <option value="<?php echo $opcao['idpacote']; ?>">
                                     <?php echo $opcao['pacote']; ?>
@@ -159,7 +158,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                         <div class="produto">
                             <div class="form-group">
                                 <label for="idproduto">Escolha os produtos</label>
-                                <select class="form-control" name="idproduto[]" id="idproduto">
+                                <select class="form-control inputModal" name="idproduto[]" id="idproduto">
                                     <?php foreach ($opcoesProduto as $opcao) : ?>
                                         <option value="<?php echo $opcao['idproduto']; ?>">
                                             <?php echo $opcao['produto']; ?>
@@ -170,7 +169,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
 
                             <div class="form-group">
                                 <label for="quantidade">Quantidade</label>
-                                <input type="number" class="form-control" name="quantidade[]" placeholder="Quantidade">
+                                <input type="number" class="form-control inputModal" name="quantidade[]" placeholder="Quantidade">
                             </div>
                         </div>
                     </div>
@@ -195,7 +194,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                             <div class="produto">
                                 <div class="form-group">
                                     <label for="idproduto">Escolha os produtos</label>
-                                    <select class="form-control" name="idproduto[]" id="idproduto">
+                                    <select class="form-control inputModal" name="idproduto[]" id="idproduto">
                                         <?php foreach ($opcoesProduto as $opcao) : ?>
                                                 <option value="<?php echo $opcao['idproduto']; ?>"><?php echo $opcao['produto']; ?></option>
                                         <?php endforeach; ?>
@@ -204,7 +203,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
 
                                 <div class="form-group">
                                     <label for="quantidade">Quantidade</label>
-                                    <input type="number" class="form-control" name="quantidade[]" placeholder="Quantidade">
+                                    <input type="number" class="form-control inputModal" name="quantidade[]" placeholder="Quantidade">
                                 </div>
                             </div>
                             <br> <br>`;
