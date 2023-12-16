@@ -13,8 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $detalhesPacote = $_POST['detalhesPacote'];
 
         $idProdutos = $_POST['idproduto'];
-        $quantidades = $_POST['quantidade'];
+        $quantidades = isset($_POST['quantidade']) ? $_POST['quantidade'] : array();
 
+        $quantidades = $_POST['quantidade'];  // Adicionado para obter as quantidades
+       /*  var_dump($quantidades); */
         try {
             $conexao->beginTransaction();
 
@@ -23,12 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Insere os produtos agrupados na tabela pacotecadastro
             foreach ($idProdutos as $index => $idproduto) {
-                $quantidade = $quantidades[$index];
+                $quantidade = $quantidades[$index];  // Obtém a quantidade correspondente
 
-                $sqlCadastrarProdutoNoPacote = $conexao->prepare("INSERT INTO pacotecadastro (idpacote, idproduto, cadastro, ativo, detalhes) VALUES (?, ?, NOW(), 'A', ?)");
+                $sqlCadastrarProdutoNoPacote = $conexao->prepare("INSERT INTO pacotecadastro (idpacote, idproduto, quantidade, cadastro, ativo, detalhes) VALUES (?, ?, ?, NOW(), 'A', ?)");
                 $sqlCadastrarProdutoNoPacote->bindValue(1, $idpacote, PDO::PARAM_INT);
                 $sqlCadastrarProdutoNoPacote->bindValue(2, $idproduto, PDO::PARAM_INT);
-                $sqlCadastrarProdutoNoPacote->bindValue(3, $detalhesPacote, PDO::PARAM_STR);
+                $sqlCadastrarProdutoNoPacote->bindValue(3, $quantidade, PDO::PARAM_INT);  // Bind da quantidade
+                $sqlCadastrarProdutoNoPacote->bindValue(4, $detalhesPacote, PDO::PARAM_STR);
                 $sqlCadastrarProdutoNoPacote->execute();
 
                 // Cálculo do valor total do pacote
@@ -60,4 +63,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erro na conexão com o banco de dados.";
     }
 }
-?>

@@ -58,7 +58,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                 $retornoListarPacotes = obterPacotes();
                 if (!empty($retornoListarPacotes)) {
                     foreach ($retornoListarPacotes as $itemPacote) {
-                        $idPacote = $itemPacote['idpacotecadastro'];
+                        $idPacote = $itemPacote['idpacote'];
                         $nomePacote = $itemPacote['pacote'];
                         $detalhesPacote = $itemPacote['detalhes'];
                         $qtdPeoplePacote = $itemPacote['qtdPessoas'];
@@ -103,6 +103,8 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                     echo "Nenhum Registro Encontrado";
                     echo "</div>";
                 }
+
+
                 ?>
             </tbody>
         </table>

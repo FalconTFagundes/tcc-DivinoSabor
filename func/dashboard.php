@@ -42,7 +42,7 @@ function obterPacotes()
 
         $consulta = "SELECT
             pacote.pacote,
-            MAX(pacotecadastro.idpacotecadastro) AS idpacotecadastro,
+            MAX(pacote.idpacote) AS idpacote,
             MAX(pacote.qtdPessoas) AS qtdPessoas,
             MAX(pacotecadastro.valorPacote) AS valorPacote,
             MAX(pacotecadastro.detalhes) AS detalhes,
@@ -66,6 +66,8 @@ function obterPacotes()
         }
     }
 }
+
+
 
 
 
@@ -4796,6 +4798,21 @@ function excluirDashboard($tabela, $campoid, $id)
         return false;
     }
 }
+
+function excluirPacotes($tabela, $campoid, $id)
+{
+    $conn = conectar();
+    $queryListar = $conn->prepare("DELETE FROM $tabela WHERE $campoid = :id");
+    $queryListar->bindValue(':id', $id, PDO::PARAM_INT);
+    $queryListar->execute();
+    if ($queryListar->rowCount() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 
 
 ?>
