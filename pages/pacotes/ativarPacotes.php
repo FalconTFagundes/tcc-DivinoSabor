@@ -9,13 +9,13 @@ $conn = conectar();
 
 if(!empty($dados) && isset($dados)) {
 
-    $idPacote = $dados['id'];
-    $ativarPacote = $dados['a'];
+    $idPacoteCad = $dados['id'];
+    $ativarPacoteCad = $dados['a'];
     
-    if($ativarPacote == 'A'){
-        $retorno = upUm('pacote', 'ativo', 'idpacote', 'A', "$idPacote");
+    if($ativarPacoteCad == 'A'){
+        $retorno = upUm('pacotecadastro', 'ativo', 'idpacotecadastro', 'A', "$idPacoteCad");
     } else {
-        $retorno = upUm('pacote', 'ativo', 'idpacote', 'D', "$idPacote");
+        $retorno = upUm('pacotecadastro', 'ativo', 'idpacotecadastro', 'D', "$idPacoteCad");
     }
 
 

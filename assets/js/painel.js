@@ -166,6 +166,7 @@ function ativarGeral(id, ativovar, acaopage, pageretorno, m1) {
         id: id,
         a: ativo
     }
+    console.log(dados);
     $.ajax({
         type: 'POST',
         dataType: 'JSON',

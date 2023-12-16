@@ -8,4 +8,4 @@ $dados_delete = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 $idPacote = $dados_delete['id'];
 
-excluirDashboard('pacote','idpacote', "$idPacote");
+excluirDashboard('pacotecadastro','idpacotecadastro', "$idPacote");

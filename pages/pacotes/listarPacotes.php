@@ -59,13 +59,14 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                 $retornoListarPacotes = obterPacotes();
                 if (is_array($retornoListarPacotes) && !empty($retornoListarPacotes)) {
                     foreach ($retornoListarPacotes as $itemPacote) {
-                        $idPacote = $itemPacote['idpacote'];
+                        $idPacote = $itemPacote['idpacotecadastro'];
                         $nomePacote = $itemPacote['pacote'];
                         $detalhesPacote = $itemPacote['detalhes'];
                         $qtdPeoplePacote = $itemPacote['qtdPessoas']; 
                         $valorPacote = $itemPacote['valorPacote']; 
                         $cadastroPacote = $itemPacote['cadastro'];
-                        $ativoPacote = $itemPacote['ativo'];
+                        $ativoPacote = $itemPacote['AtivoPacoteCadastro'];
+                      /*   print_r($ativoPacote) */
                         ?>
                         <tr>
                             <td scope="row"><?php echo $idPacote; ?></td>

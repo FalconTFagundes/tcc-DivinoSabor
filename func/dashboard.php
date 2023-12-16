@@ -12,27 +12,27 @@
 //-------------------------------------------SESSÃO---------------------------------------------------------------------
 //validar Sessao usuário
 
-function obterOpcoesDoBanco($tabela, $campoId, $campoDescricao)
+function obterOpcoesDoBanco($tabela, $idColuna, $nomeColuna)
 {
-    $conn = conectar();
-
     try {
-        $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT $campoId, $campoDescricao FROM $tabela WHERE ativo = 'A'");
-        $sqlLista->execute();
+        $conn = conectar();
 
-        if ($sqlLista->rowCount() > 0) {
-            return $sqlLista->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            return 'Vazio';
-        }
+        $consulta = "SELECT $idColuna, $nomeColuna FROM $tabela;";
+
+        $sqlLista = $conn->query($consulta);
+        $opcoes = $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+
+        return $opcoes ?: 'Vazio';
     } catch (PDOException $e) {
-        echo 'Exception -> ' . $e->getMessage();
-        $conn->rollback();
+        echo "Erro: " . $e->getMessage();
+        return null;
     } finally {
-        $conn = null;
+        if ($conn) {
+            $conn = null;
+        }
     }
 }
+
 
 
 function obterPacotes()
@@ -41,12 +41,12 @@ function obterPacotes()
         $conn = conectar();
 
         $consulta = "SELECT
-        pacote.idpacote,
+        pacotecadastro.idpacotecadastro,
         pacote.pacote,
         pacote.qtdPessoas,
         pacotecadastro.valorPacote,
         pacotecadastro.detalhes,
-        pacotecadastro.ativo,
+        pacotecadastro.ativo AS AtivoPacoteCadastro, 
         pacotecadastro.cadastro,
         pacotecadastro.alteracao
       FROM pacote
