@@ -18,7 +18,7 @@ try {
     if ($conn) {
 
         // QUERY para recuperar os registros do banco de dados
-        $query_pedidos = "SELECT
+        $query_pacotes = "SELECT
             pacote.idpacote,
             pacote.pacote,
             pacote.qtdPessoas,
@@ -34,7 +34,7 @@ try {
         INNER JOIN produto ON pacotecadastro.idproduto = produto.idproduto;";
 
         // Prepara a QUERY
-        $stmt = $conn->prepare($query_pedidos);
+        $stmt = $conn->prepare($query_pacotes);
 
         // Verificar se a preparação da query foi bem-sucedida
         if (!$stmt) {
@@ -129,8 +129,8 @@ try {
 
         // Verificar se existem registros para processar
         if ($stmt->rowCount() > 0) {
-            while ($row_pedidos = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                extract($row_pedidos);
+            while ($row_pacotes = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row_pacotes);
 
                 // Exibe as informações do pacote apenas uma vez
                 if (!isset($pacote_info) || $pacote_info != $idpacote) {
