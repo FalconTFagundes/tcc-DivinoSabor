@@ -102,6 +102,11 @@ switch ($acao) {
         include_once './pages/pacotes/excluirPacotes.php';
         break;
 
+    case 'cadPacoteVenda':
+        include_once './pages/pacotes/cadPacoteVenda.php';
+        break;
+
+
 
         // páginas de ações
 
