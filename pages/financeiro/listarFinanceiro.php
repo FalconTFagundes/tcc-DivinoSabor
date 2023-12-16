@@ -50,11 +50,15 @@
     <!-- GRÁFICOS -->
 
     <div class="details">
-        <div class="vendasRecentes">
+        <div class="headerTableFin">
+            <h2>Vendas recentes</h2>
             <div class="cardHeader">
-                <h2>Vendas recentes</h2>
                 <a href="" class="btn">Ver tudo</a>
             </div>
+        </div>
+
+        <div class="vendasRecentes">
+
 
             <table>
                 <thead>
@@ -65,11 +69,14 @@
                         <th scope="col" width="25%">Status</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr>1</tr>
-                    <tr>João</tr>
-                    <tr>Diamante</tr>
-                    <tr><span class="status concluido">Concluído</span></tr>
+                    <tr>
+                        <th>1</th>
+                        <th>João</th>
+                        <th>Diamante</th>
+                        <th><span class="status concluido">Concluído</span></th>
+                    </tr>
                 </tbody>
             </table>
 
