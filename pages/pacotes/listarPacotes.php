@@ -6,7 +6,6 @@ include_once './func/dashboard.php';
 $resultadoCadastro = '';
 
 $opcoesPacote = obterOpcoesDoBanco('pacote', 'idpacote', 'pacote');
-
 $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
 
 ?>
@@ -57,7 +56,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                 $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
                 $retornoListarPacotes = obterPacotes();
-                if (is_array($retornoListarPacotes) && !empty($retornoListarPacotes)) {
+                if (!empty($retornoListarPacotes)) {
                     foreach ($retornoListarPacotes as $itemPacote) {
                         $idPacote = $itemPacote['idpacotecadastro'];
                         $nomePacote = $itemPacote['pacote'];
@@ -66,7 +65,6 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                         $valorPacote = $itemPacote['valorPacote'];
                         $cadastroPacote = $itemPacote['cadastro'];
                         $ativoPacote = $itemPacote['AtivoPacoteCadastro'];
-                        /*   print_r($ativoPacote) */
                 ?>
                         <tr>
                             <td scope="row"><?php echo $idPacote; ?></td>
@@ -77,24 +75,24 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     <?php
-                                    if ($ativoPacote == 'A') {
+                                    $statusButtonClass = ($ativoPacote == 'A') ? 'btn-outline-success' : 'btn-outline-warning';
+                                    $statusButtonText = ($ativoPacote == 'A') ? 'Ativado' : 'Desativado';
+                                    $statusIcon = ($ativoPacote == 'A') ? 'fa-unlock' : 'fa-lock';
                                     ?>
-                                        <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPacote; ?>,'desativar','ativarPacotes','listarPacotes', 'Pacote Desativado com Sucesso');"> <i class="fa-solid fa-unlock" title="Pacote Ativado"></i> Ativado</button>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <button type='button' class='btn btn-outline-warning' onclick="ativarGeral(<?php echo $idPacote; ?>, 'ativar', 'ativarPacotes','listarPacotes', 'Pacote Ativado com Sucesso');"><i class="fa-solid fa-lock" title="Pacote Não Ativado"></i> Desativado</button>
-                                    <?php
-                                    }
-                                    ?>
-                                    <!-- passando id diretamente na URL - sem SEM AJAX -->
+                                    <button type='button' class='btn <?php echo $statusButtonClass; ?>' onclick="ativarGeral(<?php echo $idPacote; ?>, '<?php echo ($ativoPacote == 'A') ? 'desativar' : 'ativar'; ?>', 'ativarPacotes','listarPacotes', 'Pacote <?php echo $statusButtonText; ?> com Sucesso');">
+                                        <i class="fa-solid <?php echo $statusIcon; ?>" title="Pacote <?php echo $statusButtonText; ?>"></i> <?php echo $statusButtonText; ?>
+                                    </button>
+
+                                    <!-- passando id diretamente na URL - sem AJAX -->
                                     <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idPacote; ?>')">
                                         <button type="button" class="btn btn-outline-info">
                                             <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                                         </button>
                                     </a>
 
-                                    <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPacote; ?>', 'excluirPacotes', 'listarPacotes', 'Certeza que deseja excluir este pacote?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
+                                    <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPacote; ?>', 'excluirPacotes', 'listarPacotes', 'Certeza que deseja excluir este pacote?', 'Operação Irreversível!')">
+                                        <i class="fa-solid fa-trash" title="Excluir"></i> Excluir
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -216,6 +214,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
             </div>
         </div>
     </div>
+
 
     <script>
         function mostrarAlerta() {

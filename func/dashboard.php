@@ -41,16 +41,17 @@ function obterPacotes()
         $conn = conectar();
 
         $consulta = "SELECT
-        pacotecadastro.idpacotecadastro,
-        pacote.pacote,
-        pacote.qtdPessoas,
-        pacotecadastro.valorPacote,
-        pacotecadastro.detalhes,
-        pacotecadastro.ativo AS AtivoPacoteCadastro, 
-        pacotecadastro.cadastro,
-        pacotecadastro.alteracao
-      FROM pacote
-      INNER JOIN pacotecadastro ON pacote.idpacote = pacotecadastro.idpacote;";
+            pacote.pacote,
+            MAX(pacotecadastro.idpacotecadastro) AS idpacotecadastro,
+            MAX(pacote.qtdPessoas) AS qtdPessoas,
+            MAX(pacotecadastro.valorPacote) AS valorPacote,
+            MAX(pacotecadastro.detalhes) AS detalhes,
+            MAX(pacotecadastro.ativo) AS AtivoPacoteCadastro,
+            MAX(pacotecadastro.cadastro) AS cadastro,
+            MAX(pacotecadastro.alteracao) AS alteracao
+          FROM pacote
+          INNER JOIN pacotecadastro ON pacote.idpacote = pacotecadastro.idpacote
+          GROUP BY pacote.pacote;";
 
         $sqlLista = $conn->query($consulta);
         $pacotes = $sqlLista->fetchAll(PDO::FETCH_ASSOC);
@@ -65,6 +66,8 @@ function obterPacotes()
         }
     }
 }
+
+
 
 function checarLogin($tabela, $valor1, $valor2)
 {

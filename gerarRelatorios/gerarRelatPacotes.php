@@ -129,13 +129,15 @@ try {
 
         // Verificar se existem registros para processar
         if ($stmt->rowCount() > 0) {
-            while ($row_pacotes = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                extract($row_pacotes);
+            $pacote_info = null; // Inicializa a variável
+
+            while ($row_pedidos = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row_pedidos);
 
                 // Exibe as informações do pacote apenas uma vez
-                if (!isset($pacote_info) || $pacote_info != $idpacote) {
+                if ($pacote_info != $idpacote) {
                     // Fechar a tabela anterior, se já existir uma
-                    if (isset($pacote_info)) {
+                    if ($pacote_info !== null) {
                         $dados .= "</table>"; // Fecha a tabela
                         $dados .= "<hr>"; // Adiciona uma linha horizontal após cada pacote
                     }
@@ -163,6 +165,7 @@ try {
         } else {
             $dados .= "<p>Nenhum registro encontrado.</p>";
         }
+
 
         $dados .= "</body>";
         // Instanciar e usar a classe dompdf
