@@ -89,7 +89,19 @@ switch ($acao) {
         $_SESSION["page"] = 'listarPacotes';
         include_once './pages/pacotes/listarPacotes.php';
         break;
-        
+
+    case 'cadPacote':
+        include_once './pages/pacotes/cadPacote.php';
+        break;
+
+    case 'ativarPacotes':
+        include_once './pages/pacotes/ativarPacotes.php';
+        break;
+
+    case 'excluirPacotes':
+        include_once './pages/pacotes/excluirPacotes.php';
+        break;
+
 
         // páginas de ações
 

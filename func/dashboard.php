@@ -35,6 +35,27 @@ function obterOpcoesDoBanco($tabela, $campoId, $campoDescricao)
 }
 
 
+function obterPacotes()
+{
+    try {
+        $conn = conectar();
+
+        $consulta = "SELECT pc.idpacote, p.pacote, pr.produto, pc.quantidade AS QuantidadeDePessoas,  pc.valorPacote AS ValorDoPacote, p.cadastro,p.alteracao, p.ativo FROM pacotecadastro pc INNER JOIN pacote p ON pc.idpacote = p.idpacote INNER JOIN produto pr ON pc.idproduto = pr.idproduto";
+
+        $sqlLista = $conn->query($consulta);
+        $pacotes = $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+
+        return $pacotes ?: 'Vazio';
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+        return null;
+    } finally {
+        if ($conn) {
+            $conn = null;
+        }
+    }
+}
+
 function checarLogin($tabela, $valor1, $valor2)
 {
     $conn = conectar();

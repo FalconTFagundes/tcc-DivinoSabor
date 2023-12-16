@@ -42,7 +42,7 @@
         <?php
         $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
-        $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo', 'clientes');
+        $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo','clientes');
         if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
           foreach ($retornoListarClientes as $itemCliente) {
             $idCliente = $itemCliente->idclientes;
@@ -102,7 +102,7 @@
     </table>
   </div>
 
-  <!-- Modal Cad Pedido -->
+  <!-- Modal Cad Cliente -->
   <div class="modal fade" id="modalCadClientes" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
