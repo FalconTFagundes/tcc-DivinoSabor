@@ -56,7 +56,8 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                 $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
                 $retornoListarPacotes = obterPacotes();
-                if (!empty($retornoListarPacotes)) {
+      /*           var_dump($retornoListarPacotes); */ //ver oq está vindo
+                if (!empty($retornoListarPacotes) && is_array($retornoListarPacotes)) {
                     foreach ($retornoListarPacotes as $itemPacote) {
                         $idPacote = $itemPacote['idpacote'];
                         $nomePacote = $itemPacote['pacote'];
@@ -97,7 +98,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                             </td>
                         </tr>
                 <?php
-                    }
+                    } 
                 } else {
                     echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
                     echo "Nenhum Registro Encontrado";
