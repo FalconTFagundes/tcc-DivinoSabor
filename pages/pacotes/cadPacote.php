@@ -17,7 +17,7 @@ if(!empty($dados) && isset($dados)) {
 
     $dataeHoraAtual = date('Y-m-d H:i:s');
 
-    $retornoInsert = insertTres('pacote','pacote, qtd, cadastro',"$nomePacote", "$quantitativoPacote", "$dataeHoraAtual"); /* função PHP que faz o insert  */
+    $retornoInsert = insertTres('pacote','pacote, qtdPessoas, cadastro',"$nomePacote", "$quantitativoPacote", "$dataeHoraAtual"); /* função PHP que faz o insert  */
     echo json_encode($retornoInsert); /* envia o final da ação da função - (VERIFICA NA PÁGINA DE FUNÇÃO) $retornoInsert recebe 'Gravado' ou 'nGravado'  */
 
 } else {

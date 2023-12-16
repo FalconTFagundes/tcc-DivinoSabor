@@ -123,7 +123,7 @@ function excGeral(idvar, acaopage, pageretorno, m1, m2) {
             data: dados,
             beforeSend: function (retorno) {
             }, success: function (retorno) {
-
+                console.log(retorno);
                 Swal.fire({
                     position: "center",
                     icon: "success",

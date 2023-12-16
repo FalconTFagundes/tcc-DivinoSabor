@@ -49,7 +49,6 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                     <th scope="col" width="20%">Quantitativo que Alcança</th>
                     <th scope="col" width="20%">Valor</th>
                     <th scope="col" width="25%">Ações</th>
-                    <!-- CEP consta somente no relatório!! -->
                 </tr>
             </thead>
             <tbody>
@@ -60,11 +59,11 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                 $retornoListarPacotes = obterPacotes();
                 if (is_array($retornoListarPacotes) && !empty($retornoListarPacotes)) {
                     foreach ($retornoListarPacotes as $itemPacote) {
-                        $idPacote = $itemPacote['idpacote'];
+                        $idPacote = $itemPacote['idpacotecadastro'];
                         $nomePacote = $itemPacote['pacote'];
                         $detalhesPacote = $itemPacote['detalhes'];
-                        $qtdPeoplePacote = $itemPacote['QuantidadeDePessoas'];
-                        $valorPacote = $itemPacote['ValorDoPacote'];
+                        $qtdPeoplePacote = $itemPacote['qtdPessoas']; 
+                        $valorPacote = $itemPacote['valorPacote']; 
                         $cadastroPacote = $itemPacote['cadastro'];
                         $ativoPacote = $itemPacote['ativo'];
                         ?>
@@ -188,7 +187,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                             <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadItemPacote','cadPacoteProdutoModal','cadPacoteVenda', 'listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
                         </div>
                     </form>
-                    <script>
+                    <script>                        
                         function adicionarProduto() {
                             var container = document.getElementById('produtos-container');
                             var produtoDiv = document.createElement('div');

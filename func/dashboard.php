@@ -40,7 +40,17 @@ function obterPacotes()
     try {
         $conn = conectar();
 
-        $consulta = "SELECT pc.idpacote, p.pacote, pr.produto, pc.quantidade AS QuantidadeDePessoas,  pc.valorPacote AS ValorDoPacote, pc.detalhes, p.cadastro, p.alteracao, p.ativo FROM pacotecadastro pc INNER JOIN pacote p ON pc.idpacote = p.idpacote INNER JOIN produto pr ON pc.idproduto = pr.idproduto";
+        $consulta = "SELECT
+  pacotecadastro.idpacotecadastro,
+  pacote.pacote,
+  pacote.qtdPessoas,
+  pacotecadastro.valorPacote,
+  pacotecadastro.detalhes,
+  pacotecadastro.ativo,
+  pacotecadastro.cadastro,
+  pacotecadastro.alteracao
+FROM pacote
+INNER JOIN pacotecadastro ON pacote.idpacote = pacotecadastro.idpacote;";
 
         $sqlLista = $conn->query($consulta);
         $pacotes = $sqlLista->fetchAll(PDO::FETCH_ASSOC);
