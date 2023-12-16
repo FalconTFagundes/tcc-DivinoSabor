@@ -82,11 +82,11 @@ try {
             }
 
             th {
-                background-color: #f2f2f2; /* Cor de fundo mais clara para cabeçalho da tabela */
+                background-color: #f2f2f2; 
             }
 
             td {
-                background-color: #fff; /* Cor de fundo branca para células de dados */
+                background-color: #fff; 
             }
         </style>";
 

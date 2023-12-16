@@ -62,12 +62,12 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                         $idPacote = $itemPacote['idpacotecadastro'];
                         $nomePacote = $itemPacote['pacote'];
                         $detalhesPacote = $itemPacote['detalhes'];
-                        $qtdPeoplePacote = $itemPacote['qtdPessoas']; 
-                        $valorPacote = $itemPacote['valorPacote']; 
+                        $qtdPeoplePacote = $itemPacote['qtdPessoas'];
+                        $valorPacote = $itemPacote['valorPacote'];
                         $cadastroPacote = $itemPacote['cadastro'];
                         $ativoPacote = $itemPacote['AtivoPacoteCadastro'];
-                      /*   print_r($ativoPacote) */
-                        ?>
+                        /*   print_r($ativoPacote) */
+                ?>
                         <tr>
                             <td scope="row"><?php echo $idPacote; ?></td>
                             <td><?php echo $nomePacote; ?></td>
@@ -188,7 +188,7 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
                             <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadItemPacote','cadPacoteProdutoModal','cadPacoteVenda', 'listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
                         </div>
                     </form>
-                    <script>                        
+                    <script>
                         function adicionarProduto() {
                             var container = document.getElementById('produtos-container');
                             var produtoDiv = document.createElement('div');
@@ -216,6 +216,56 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
             </div>
         </div>
     </div>
+
+    <script>
+        function mostrarAlerta() {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: 'Deseja gerar o relatório geral dos pacotes?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, gerar relatório!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Gerando Relatório :D',
+                        showConfirmButton: false,
+                        timer: 700
+                    });
+                    window.location.href = `./gerarRelatorios/gerarRelatPacotes.php`;
+                }
+            });
+        }
+
+        function mostrarAlertaIdGet(idPacote) {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: 'Deseja gerar o relatório do pacote?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, gerar relatório!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Gerando Relatório :D',
+                        showConfirmButton: false,
+                        timer: 700
+                    });
+                    window.location.href = './gerarRelatorios/gerarRelatUnPacote.php?id=' + idPacote;
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
