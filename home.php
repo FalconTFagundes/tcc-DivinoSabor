@@ -32,7 +32,7 @@ include_once './pages/time.php';
                         <i class="fa-solid fa-money-bill-trend-up" title="Financeiro"></i>
                     </a>
 
-                    <a href="#" class="linkMenu" idMenu="listarEstoque">
+                    <a href="#" class="linkMenu" idMenu="listarIngredientes">
                         <i class="fa-solid fa-boxes-stacked" title="Estoque"></i>
                     </a>
 
@@ -41,22 +41,22 @@ include_once './pages/time.php';
                     </a>
 
                     <a href="#" class="linkMenu" idMenu="listarClientes">
-                    <i class="fa-solid fa-user-plus" title="Clientes"></i>
+                        <i class="fa-solid fa-user-plus" title="Clientes"></i>
                     </a>
-                    
+
                     <a href="#" class="linkMenu" idMenu="listarPacotes">
-                    <i class="fa-solid fa-box-open" title="Pacotes"></i>
+                        <i class="fa-solid fa-box-open" title="Pacotes"></i>
                     </a>
                     <!-- <a href="#" class="linkMenu" idMenu="listarProdutos">
                     <i class="fa-solid fa-cart-flatbed" title="Produtos"></i>
                     </a> -->
 
-<!-- criar +2 novos botões no menu -->
+                    <!-- criar +2 novos botões no menu -->
                 </div>
             </div>
 
             <div id="showpage">
-          
+
                 <?php
 
                 // se existe, tem página mostrando
@@ -78,6 +78,9 @@ include_once './pages/time.php';
                     if ($page == 'listarPacotes') {
                         include_once './pages/pacotes/listarPacotes.php';
                     }
+                    if ($page == 'listarIngredientes') {
+                        include_once './pages/estoque/listarIngredientes.php';
+                    }
                     if ($page == 'perguntas') {
                         include_once './footerPages/perguntas.php';
                     }
@@ -90,7 +93,6 @@ include_once './pages/time.php';
                     if ($page == 'termos') {
                         include_once './footerPages/termos.php';
                     }
-                    
                 }
 
                 // if (!empty($_GET['page'])) {

@@ -107,6 +107,25 @@ switch ($acao) {
         break;
 
 
+        // ESTOQUE - INGREDIENTES/PRODUTOS
+
+    case 'listarIngredientes.php':
+        $_SESSION["page"] = 'listarIngredientes';
+        include_once './pages/estoque/listarIngredientes.php';
+        break;
+    
+    case 'cadastrarIngredientes.php':
+        include_once './pages/estoque/cadastrarIngredientes.php';
+        break;
+    
+    case 'excluirIngredientes.php':
+        include_once './pages/estoque/excluirIngredientes.php';
+        break;
+
+    case 'ativarIngredientes.php':
+        include_once './pages/estoque/ativarIngredientes.php';
+        break;
+
 
         // páginas de ações
 

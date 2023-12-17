@@ -238,6 +238,8 @@ $(document).ready(function () {
             acao: menuClicado,
         };
 
+        console.log(dados);
+
         var menuToggle = document.getElementById('controle-menu-toggle');
 
         var clockToggle = document.getElementById('controle-clock-toggle');
@@ -251,6 +253,7 @@ $(document).ready(function () {
             data: dados,
             beforeSend: function () {
                 // loading();
+          
             }, success: function (retorno) {
 
                 if (retorno != 'Home') {

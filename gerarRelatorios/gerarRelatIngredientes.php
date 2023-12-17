@@ -97,25 +97,25 @@ try {
 
             $dados .= "<table>";
             $dados .= "<tr><th>Código do Ingrediente</th><td>$idingredientes</td></tr>";
-$dados .= "<tr><th>Nome</th><td>$nomeIngred</td></tr>"; // Correção aqui
-if ($ativo == 'A') {
-    $status = "<span style='color: #32CD32;'>Ativado</span>";
-} else {
-    $status = "<span style='color: #d9534f;'>Desativado</span>";
-}
-$dados .= "<tr><th>Status do Ingrediente</th><td>$status</td></tr>";
-$dados .= "<tr><th>Quantidade adquirida</th><td>$quantIngred</td></tr>"; // Correção aqui
-$dados .= "<tr><th>Data da compra</th><td>$dataComp</td></tr>";
-$dados .= "<tr><th>Peso unitário</th><td>$pesoUnit</td></tr>";
-$dados .= "<tr><th>Valor unitário</th><td>$precoUnit</td></tr>";
-$dados .= "<tr><th>Preço total</th><td>$precoTot</td></tr>";
-$dados .= "<tr><th>Data de validade</th><td>$dataValidad</td></tr>";
-$dataCadastroFormatada = formatarDataHoraBr($cadastro);
-$dados .= "<tr><th>Data e Hora de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
-$dataAlteracaoFormatada = formatarDataHoraBr($alteracao);
-$dados .= "<tr><th>Última Alteração</th><td>$dataAlteracaoFormatada</td></tr>";
-$dados .= "</table>";
-$dados .= "<hr>";
+            $dados .= "<tr><th>Nome</th><td>$nomeIngred</td></tr>"; 
+            if ($ativo == 'A') {
+                $status = "<span style='color: #32CD32;'>Ativado</span>";
+            } else {
+                $status = "<span style='color: #d9534f;'>Desativado</span>";
+            }
+            $dados .= "<tr><th>Status do Ingrediente</th><td>$status</td></tr>";
+            $dados .= "<tr><th>Quantidade adquirida</th><td>$quantIngred</td></tr>"; 
+            $dados .= "<tr><th>Data da compra</th><td>$dataComp</td></tr>";
+            $dados .= "<tr><th>Peso unitário</th><td>$pesoUnit</td></tr>";
+            $dados .= "<tr><th>Valor unitário</th><td>$precoUnit</td></tr>";
+            $dados .= "<tr><th>Preço total</th><td>$precoTot</td></tr>";
+            $dados .= "<tr><th>Data de validade</th><td>$dataValidad</td></tr>";
+            $dataCadastroFormatada = formatarDataHoraBr($cadastro);
+            $dados .= "<tr><th>Data e Hora de Cadastro</th><td>$dataCadastroFormatada</td></tr>";
+            $dataAlteracaoFormatada = formatarDataHoraBr($alteracao);
+            $dados .= "<tr><th>Última Alteração</th><td>$dataAlteracaoFormatada</td></tr>";
+            $dados .= "</table>";
+            $dados .= "<hr>";
 
 
             // Adiciona uma linha horizontal após cada registro
