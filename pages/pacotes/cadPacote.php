@@ -13,7 +13,7 @@ if(!empty($dados) && isset($dados)) {
     $nomePacote = $dados['nomePacote']; 
     $quantitativoPacote = $dados['quantitativoPacote'];
 
-    var_dump($dados);
+/*     var_dump($dados); */
 
     $dataeHoraAtual = date('Y-m-d H:i:s');
 

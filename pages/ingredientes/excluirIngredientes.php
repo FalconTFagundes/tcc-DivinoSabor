@@ -6,6 +6,6 @@ include_once "./func/dashboard.php";
 
 $dados_delete = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-$idingred = $dados_delete['id'];
+$idIngrediente = $dados_delete['id'];
 
-excluirDashboard('ingredientes','idingredientes', "$idingred");
+excluirDashboard('ingredientes','idingredientes', "$idIngrediente");

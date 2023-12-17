@@ -1,24 +1,37 @@
 <?php
 
-include_once '../config/constantes.php';
-include_once '../config/conexao.php';
-include_once '../func/func.php';
+include_once "./config/constantes.php";
+include_once "./config/conexao.php";
+include_once "./func/dashboard.php";
 
 
-$nomeIngred = filter_input(INPUT_POST, 'nomeIngred', FILTER_SANITIZE_STRING);
-$quantIngred = filter_input(INPUT_POST, 'quantIngred', FILTER_SANITIZE_STRING);
-$pesoIngred = filter_input(INPUT_POST, 'pesoIngred', FILTER_SANITIZE_STRING);
-$valIngred = filter_input(INPUT_POST, 'valIngred', FILTER_SANITIZE_STRING);
-$dataComp = filter_input(INPUT_POST, 'dataCompra', FILTER_SANITIZE_STRING);
-$dataValidade = filter_input(INPUT_POST, 'dataValidade', FILTER_SANITIZE_STRING);
+$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+$conn = conectar();
 
+if (!empty($dados) && isset($dados)) {
 
+    $nomeIngrediente = $dados['nomeIngred'];
+    $qtdIngrediente = $dados['quantIngred'];
+    $pesoIngrediente = $dados['pesoIngred'];
+    $valorIngred = $dados['valorIngred'];
+    $dataCompraIngrediente = $dados['dataCompra'];
+    $codigoIngrediente = $dados['codigoIngrediente'];
+    $dataValidade = $dados['dataValidade'];
 
-$resultado =  insertseis('ingredientes', ' nomeIngred, quantIngred, pesoUnit, precoUnit, dataComp, dataValidad', 
-$nomeIngred, $quantIngred, $pesoIngred, $valIngred, $dataComp, $dataValidade);
+    $dataeHoraAtual = date('Y-m-d H:i:s');
 
-
-if ($resultado === "Cadastrado") {
- 
-
+    $resultado =  insertOito(
+        'ingredientes',
+        'nomeIngred, quantIngred, pesoUnit, precoUnit, dataComp, dataValidad, codigo, cadastro',
+        "$nomeIngrediente",
+        "$qtdIngrediente",
+        "$pesoIngrediente",
+        "$valorIngred",
+        "$dataCompraIngrediente",
+        "$dataValidade",
+        "$codigoIngrediente",
+        "$dataeHoraAtual"
+    );
+} else {
+    echo json_encode('Erro no Insert');
 }

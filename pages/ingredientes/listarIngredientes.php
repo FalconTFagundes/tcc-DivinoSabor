@@ -11,7 +11,7 @@ include_once './func/dashboard.php';
 
 
 <!-- btn que chama a modal -->
-<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadIngred">
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadIngrediente">
   <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar ingrediente
 </button>
 
@@ -21,10 +21,6 @@ include_once './func/dashboard.php';
   Gerar Relatório Geral
 </button>
 
-
-  <button type="button" class="btn btn-outline-info linkMenu" idMenu="listarProduto">
-    <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Produto
-  </button>
 
 
 <br><br>
@@ -54,17 +50,16 @@ include_once './func/dashboard.php';
       $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
       $dataSeteDiasAntes = date("Y-m-d", strtotime("-7 days"));
 
-
-
-      $listarIngred = listarGeral('idingredientes, nomeIngred, quantIngred, pesoUnit, precoUnit, dataComp, dataValidad, precoTot, ativo', 'ingredientes');
-      foreach ($listarIngred as $itemIngred) {
+      $retornoListarIngredientes = listarGeral('idingredientes, nomeIngred, quantIngred, pesoUnit, precoUnit, dataComp, dataValidad, precoTotal, ativo', 'ingredientes');
+      if (is_array($retornoListarIngredientes) && !empty($retornoListarIngredientes)) {
+      foreach ($retornoListarIngredientes as $itemIngred) {
         $idIngred = $itemIngred->idingredientes;
         $nomeIngred = $itemIngred->nomeIngred;
         $quantIngred = $itemIngred->quantIngred;
         $pesoUnit = $itemIngred->pesoUnit;
         $precoUnit = $itemIngred->precoUnit;
         $dataComp = $itemIngred->dataComp;
-        $precoTot = $itemIngred->precoTot;
+        $precoTotal = $itemIngred->precoTotal;
         $dataValidad = $itemIngred->dataValidad;
         $ativoIngred = $itemIngred->ativo;
 
@@ -86,10 +81,10 @@ include_once './func/dashboard.php';
           <td scope="row"><?php echo $idIngred; ?></td>
           <td><?php echo $nomeIngred; ?></td>
           <td><?php echo $quantIngred; ?></td>
-          <td><?php echo $pesoUnit; ?></td>
-          <td><?php echo $precoUnit; ?></td>
+          <td><?php echo $pesoUnit . " Kg"; ?> </td>
+          <td><?php echo $precoUnit . " R$"; ?></td>
           <td><?php echo $dataComp; ?></td>
-          <td><?php echo $precoTot; ?></td>
+          <td><?php echo $precoTotal . " R$"; ?></td>
           <td class="<?php echo $classeData; ?>"><?php echo  $dataValidadFormat; ?></td>
 
           <td>
@@ -97,79 +92,84 @@ include_once './func/dashboard.php';
               <?php
               if ($ativoIngred == 'A') {
               ?>
-                <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idIngred; ?>,'desativar','ativarIngredientes','listarIngredientesEstoque', 'Uso suspenso');"> <i class="fa-solid fa-unlock" title="satus ingrediente"></i>Em uso</button>
+                <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idIngred; ?>,'desativar','ativarIngredientes','listarIngredientes', 'Uso suspenso');"> <i class="fa-solid fa-unlock" title="satus ingrediente"></i> Em uso</button>
               <?php
               } else {
               ?>
-                <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idIngred; ?>, 'ativar', 'ativarIngredientes','listarIngredientesEstoque', 'Ingrediente em uso');"><i class="fa-solid fa-lock" title="Pedido Concluído"></i>Uso suspenso</button>
+                <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idIngred; ?>, 'ativar', 'ativarIngredientes','listarIngredientes', 'Ingrediente em uso');"><i class="fa-solid fa-lock" title="Pedido Concluído"></i> Uso suspenso</button>
 
               <?php
               }
               ?>
               <!-- passando id diretamente na URL - sem SEM AJAX -->
               <a href="#" onclick="mostrarAlertaIdGet('<?php $idIngred; ?>')">
-                <button type="button" class="btn btn-outline-info btnGerarRelatPedidoUn">
+                <button type="button" class="btn btn-outline-info btnGerarRelatIngredientesUn">
                   <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                 </button>
               </a>
-              <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idIngred ?>', 'excluirIngredientes', 'listarIngredientesEstoque', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir ingredientes"></i> Excluir </button>
+              <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idIngred ?>', 'excluirIngredientes', 'listarIngredientes', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir ingredientes"></i> Excluir </button>
             </div>
           </td>
         </tr>
-      <?php } ?>
+      <?php } 
+        } else {
+        echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
+        echo "Nenhum Registro Encontrado";
+        echo "</div>";
+      }
+      ?>
     </tbody>
   </table>
 
 </div>
 
-<!-- Modal Cad Pedido -->
-<div class="modal fade" id="modalCadIngred" tabindex="-1" role="dialog" aria-labelledby="modalCadIngred" aria-hidden="true">
+<!-- Modal Cad Ingrediente -->
+<div class="modal fade" id="modalCadIngrediente" tabindex="-1" role="dialog" aria-labelledby="modalCadIngred" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:blueviolet; color: white; ">
-        <h5 class="modal-title" id="modalCadPedido">Cadastrar Pedido <i class="fa-regular fa-pen-to-square" title="Cadastro de Pedidos"></i></h5>
+        <h5 class="modal-title" id="modalCadIngrediente">Cadastrar Ingrediente <i class="fa-regular fa-pen-to-square" title="Cadastro de Pedidos"></i></h5>
       </div>
-      <form name="frmCadIngred" method="POST" id="frmCadIngred" class="frmCadIngred" action="cadIngredienteRstoque.php">
+      <form name="frmCadIngrediente" method="POST" id="frmCadIngrediente" class="frmCadIngrediente" action="#">
         <div class="modal-body modaisCorpos">
           <div class="form-group">
-            <label for="nomePedido" class="form-label">Selecione o Cliente</label>
-            <!-- select com nome dos clientes cadastrados no banco de dados :D -->
-
-            <div class="form-group">
-              <label for="pedido" class="form-label">Ingrediente</label>
-              <input type="text" class="form-control inputModal" name="nomeIngred" id="ingrediente" required>
-            </div>
-
-            <div class="form-group">
-              <label for="pedido" class="form-label">Quantidade</label>
-              <input type="text" class="form-control inputModal" name="quantIngred" id="quantidade" required>
-            </div>
-
-            <div class="form-group">
-              <label for="pedido" class="form-label">Peso Unitário</label>
-              <input type="text" class="form-control inputModal" name="pesoIngred" id="pesoIngrediente" required oninput="formatarNumeroDecimal(this)">
-            </div>
-
-            <div class="form-group">
-              <label for="pedido" class="form-label">Valor Unitário</label>
-              <input type="text" class="form-control inputModal" name="valIngred" id="valorngrediente" required oninput="formatarNumeroDecimal(this)">
-            </div>
-
-            <div class="mb-3">
-              <label for="dataCompra" class="form-label">Data da compra</label>
-              <input type="date" class="form-control inputModal" name="dataCompra" id="dataEntregaPedido" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="dataValidade" class="form-label">Data de validaded</label>
-              <input type="date" class="form-control inputModal" name="dataValidade" id="dataEntregaPedido" required>
-            </div>
-
+            <label for="nomeIngred" class="form-label">Ingrediente</label>
+            <input type="text" class="form-control inputModal" name="nomeIngred" id="ingrediente" required>
           </div>
-          <div class="modal-footer modaisCorpos">
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-            <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadIngred','modalCadIngred','cadIngredienteEstoque','listarIngredienteEstoque');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+          <div class="form-group">
+            <label for="codigoIngrediente" class="form-label">Código do Ingrediente</label>
+            <input type="text" class="form-control inputModal" name="codigoIngrediente" id="codigoIngrediente" required>
           </div>
+
+          <div class="form-group">
+            <label for="quantIngred" class="form-label">Quantidade</label>
+            <input type="number" class="form-control inputModal" name="quantIngred" id="quantidade" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pesoIngred" class="form-label">Peso Unitário</label>
+            <input type="text" step=".01" class="form-control inputModal" name="pesoIngred" id="pesoIngrediente" required oninput="formatarNumeroDecimal(this)">
+          </div>
+
+          <div class="form-group">
+            <label for="valorIngred" class="form-label">Valor Unitário</label>
+            <input type="text" step=".01" class="form-control inputModal" name="valorIngred" id="valorIngred" required oninput="formatarNumeroDecimal(this)">
+          </div>
+
+          <div class="mb-3">
+            <label for="dataCompra" class="form-label">Data da compra</label>
+            <input type="date" class="form-control inputModal" name="dataCompra" id="dataCompra" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="dataValidade" class="form-label">Data de validade</label>
+            <input type="date" class="form-control inputModal" name="dataValidade" id="dataValidade" required>
+          </div>
+        </div>
+        <div class="modal-footer modaisCorpos">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
+          <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadIngrediente','modalCadIngrediente','cadastrarIngredientes','listarIngredientes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+        </div>
       </form>
     </div>
   </div>
@@ -184,6 +184,13 @@ include_once './func/dashboard.php';
 
 
 <script>
+  // focus input codigo
+  $(document).ready(function() {
+    $('#modalCadIngrediente').on('shown.bs.modal', function() {
+      $('#codigoIngrediente').focus();
+    });
+  });
+
   function mostrarAlerta() {
     Swal.fire({
       title: 'Você tem certeza?',
@@ -227,11 +234,8 @@ include_once './func/dashboard.php';
           showConfirmButton: false,
           timer: 700
         });
-        window.location.href = './gerarRelatorios/gerarRelatIngredientesUn.php?id=' + idingredientes;
+        window.location.href = './gerarRelatorios/gerarRelatingredientesUn.php?id=' + idingredientes;
       }
     });
   }
-
- 
 </script>
-
