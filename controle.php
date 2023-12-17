@@ -109,21 +109,21 @@ switch ($acao) {
 
         // ESTOQUE - INGREDIENTES/PRODUTOS
 
-    case 'listarIngredientes.php':
+    case 'listarIngredientes':
         $_SESSION["page"] = 'listarIngredientes';
-        include_once './pages/estoque/listarIngredientes.php';
+        include_once './pages/ingredientes/listarIngredientes.php';
         break;
     
-    case 'cadastrarIngredientes.php':
-        include_once './pages/estoque/cadastrarIngredientes.php';
+    case 'cadastrarIngredientes':
+        include_once './pages/ingredientes/cadastrarIngredientes.php';
         break;
     
-    case 'excluirIngredientes.php':
-        include_once './pages/estoque/excluirIngredientes.php';
+    case 'excluirIngredientes':
+        include_once './pages/ingredientes/excluirIngredientes.php';
         break;
 
-    case 'ativarIngredientes.php':
-        include_once './pages/estoque/ativarIngredientes.php';
+    case 'ativarIngredientes':
+        include_once './pages/ingredientes/ativarIngredientes.php';
         break;
 
 

@@ -79,7 +79,7 @@ include_once './pages/time.php';
                         include_once './pages/pacotes/listarPacotes.php';
                     }
                     if ($page == 'listarIngredientes') {
-                        include_once './pages/estoque/listarIngredientes.php';
+                        include_once './pages/ingredientes/listarIngredientes.php';
                     }
                     if ($page == 'perguntas') {
                         include_once './footerPages/perguntas.php';
