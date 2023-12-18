@@ -136,6 +136,14 @@ switch ($acao) {
         include_once './pages/produtos/listarProdutos.php';
         break;
 
+    case 'ativarProdutos':
+        include_once './pages/produtos/ativarProdutos.php';
+        break;
+
+    case 'excluirProdutos':
+        include_once './pages/produtos/excluirProdutos.php';
+        break;
+
 
         // páginas de ações
 
