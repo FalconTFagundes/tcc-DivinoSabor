@@ -71,6 +71,7 @@ function cadGeral(formId, modalId, pageAcao, pageRetorno) {
             beforeSend: function (retorno) {
             }, success: function (retorno) {
                 console.log(retorno);
+                console.log(formdata);
                 $('#' + modalId).modal('hide')
                 setTimeout(function () {
                     atualizarPagina(pageRetorno);

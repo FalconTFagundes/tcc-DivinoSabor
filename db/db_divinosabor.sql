@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/12/2023 às 06:49
+-- Tempo de geração: 17/12/2023 às 19:15
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -82,26 +82,48 @@ INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `ingredientes`
+--
+
+CREATE TABLE `ingredientes` (
+  `idingredientes` int(11) NOT NULL,
+  `nomeIngred` varchar(45) NOT NULL,
+  `img` varchar(45) NOT NULL,
+  `quantIngred` int(11) NOT NULL,
+  `pesoUnit` decimal(10,2) NOT NULL,
+  `pesoTotal` decimal(10,2) GENERATED ALWAYS AS (`quantIngred` * `pesoUnit`) STORED,
+  `precoUnit` decimal(10,2) NOT NULL,
+  `precoTotal` decimal(10,2) GENERATED ALWAYS AS (`quantIngred` * `precoUnit`) STORED,
+  `precoGrama` decimal(10,2) GENERATED ALWAYS AS (`pesoUnit` * 1000 / `precoUnit` / 100) STORED,
+  `dataComp` date NOT NULL,
+  `dataValidad` varchar(45) NOT NULL,
+  `codigo` int(11) NOT NULL,
+  `cadastro` datetime NOT NULL,
+  `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ativo` char(1) NOT NULL DEFAULT 'A'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `pacote`
 --
 
 CREATE TABLE `pacote` (
   `idpacote` int(10) UNSIGNED NOT NULL,
-  `img` varchar(145) DEFAULT NULL,
   `pacote` varchar(245) NOT NULL DEFAULT '',
-  `qtd` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `qtdPessoas` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `cadastro` datetime DEFAULT NULL,
-  `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `ativo` char(1) NOT NULL DEFAULT 'A'
+  `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pacote`
 --
 
-INSERT INTO `pacote` (`idpacote`, `img`, `pacote`, `qtd`, `cadastro`, `alteracao`, `ativo`) VALUES
-(17, 'weww', 'master', 333, NULL, '2023-12-14 23:41:27', 'A'),
-(18, 'qwqw', 'tetet', 344, NULL, '2023-12-14 23:45:20', 'A');
+INSERT INTO `pacote` (`idpacote`, `pacote`, `qtdPessoas`, `cadastro`, `alteracao`) VALUES
+(36, 'test qtd', 2, '2023-12-16 15:06:54', '2023-12-16 18:06:54'),
+(41, 'team viewer', 50, '2023-12-17 11:36:00', '2023-12-17 14:36:00');
 
 -- --------------------------------------------------------
 
@@ -116,16 +138,18 @@ CREATE TABLE `pacotecadastro` (
   `cadastro` datetime DEFAULT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A',
-  `quantidade` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `valorPacote` decimal(5,2) NOT NULL
+  `valorPacote` decimal(5,2) NOT NULL,
+  `detalhes` varchar(150) NOT NULL DEFAULT '',
+  `quantidade` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pacotecadastro`
 --
 
-INSERT INTO `pacotecadastro` (`idpacotecadastro`, `idpacote`, `idproduto`, `cadastro`, `alteracao`, `ativo`, `quantidade`, `valorPacote`) VALUES
-(15, 17, 6, '2023-12-14 20:41:49', '2023-12-14 23:41:49', 'A', 555, 999.99);
+INSERT INTO `pacotecadastro` (`idpacotecadastro`, `idpacote`, `idproduto`, `cadastro`, `alteracao`, `ativo`, `valorPacote`, `detalhes`, `quantidade`) VALUES
+(87, 41, 7, '2023-12-17 11:36:20', '2023-12-17 14:36:20', 'A', 700.00, 'frango, franguinho', 90),
+(88, 41, 7, '2023-12-17 11:36:20', '2023-12-17 14:36:20', 'A', 700.00, 'frango, franguinho', 50);
 
 -- --------------------------------------------------------
 
@@ -173,7 +197,8 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`idproduto`, `img`, `produto`, `valor`, `cadatro`, `alteracao`, `ativo`) VALUES
-(6, 'eee', 'peixe', 2.00, NULL, '2023-12-14 22:14:37', 'A');
+(6, 'eee', 'peixe', 5.00, NULL, '2023-12-16 19:00:36', 'A'),
+(7, NULL, 'Franguinho', 5.00, NULL, '2023-12-16 19:00:36', 'A');
 
 -- --------------------------------------------------------
 
@@ -215,6 +240,12 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `events`
   ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Índices de tabela `ingredientes`
+--
+ALTER TABLE `ingredientes`
+  ADD PRIMARY KEY (`idingredientes`);
 
 --
 -- Índices de tabela `pacote`
@@ -266,16 +297,22 @@ ALTER TABLE `events`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de tabela `ingredientes`
+--
+ALTER TABLE `ingredientes`
+  MODIFY `idingredientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT de tabela `pacote`
 --
 ALTER TABLE `pacote`
-  MODIFY `idpacote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idpacote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de tabela `pacotecadastro`
 --
 ALTER TABLE `pacotecadastro`
-  MODIFY `idpacotecadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idpacotecadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
@@ -287,7 +324,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `idproduto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idproduto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`

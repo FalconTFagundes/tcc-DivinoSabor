@@ -20,7 +20,7 @@ try {
         $idIngredUn = isset($_GET['id']) ? intval($_GET['id']) : null;
 
         // QUERY para recuperar os registros do banco de dados
-        $query_IngredUn = "SELECT idingredientes, nomeIngred, quantIngred, pesoUnit, dataComp, precoUnit, precoTot, dataValidad, cadastro, alteracao, ativo FROM ingredientes WHERE idingredientes = :idIngredUn";
+        $query_IngredUn = "SELECT idingredientes, nomeIngred, quantIngred, pesoUnit, dataComp, precoUnit, precoTotal, dataValidad, cadastro, alteracao, ativo FROM ingredientes WHERE idingredientes = :idIngredUn";
 
         // Prepara a QUERY
         $stmt = $conn->prepare($query_IngredUn);
@@ -115,7 +115,7 @@ try {
             $dados .= "<tr><th>Quantidade adquirida</th><td>$quantIngred</td></tr>";
             $dados .= "<tr><th>Peso unitário</th><td>$pesoUnit</td></tr>";
             $dados .= "<tr><th>Valor unitário</th><td>$precoUnit</td></tr>";
-            $dados .= "<tr><th>Valor total</th><td>$precoTot</td></tr>";
+            $dados .= "<tr><th>Valor total</th><td>$precoTotal</td></tr>";
             $dados .= "<tr><th>Data da compra</th><td>$dataComp</td></tr>";
             $dados .= "<tr><th>Data de validade</th><td>$dataValidad</td></tr>";
             $dataCadastroFormatada = formatarDataHoraBr($cadastro);
