@@ -1225,7 +1225,7 @@ $(document).ready(function () {
     // clicar Enter no campo de código de barras
     $('#codigoIngrediente').keypress(function (e) {
         if (e.which === 13) { // verificação - enter :D
-            e.preventDefault(); 
+            e.preventDefault();
             $('#btnConsultIngredientes').click(); // aciona o clique no btn de consulta
         }
     });
@@ -1243,14 +1243,15 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
+
                 $('#nomeIngred').val(data['nomeIngred']);
-                $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
+                if(data['img'] != null){
+                    $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
+                }
                 $('#pesoIngred').val(data['pesoUnit']);
                 $('#valorIngred').val(data['precoUnit']);
 
-                 // desabilitar o campo de upload de arquivo pois a imagem já existente irá aparecer
-                 $('#imgIngrediente').prop('disabled', true); 
-                 $('#avisoDesabilitar').show(); //aviso do pq foi desabilitado
+
             },
             error: function () {
                 console.log('Erro na consulta.');

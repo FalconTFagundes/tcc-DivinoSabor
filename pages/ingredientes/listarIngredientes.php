@@ -110,7 +110,7 @@ include_once './func/dashboard.php';
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
-                
+
                 <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idIngred ?>', 'excluirIngredientes', 'listarIngredientes', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir ingredientes"></i> Excluir </button>
               </div>
             </td>
@@ -142,14 +142,8 @@ include_once './func/dashboard.php';
           </div>
           <div class="form-group">
             <label for="imgIngrediente" class="form-label">Imagem Ingrediente</label>
-
           </div>
           <div class="form-group">
-            <!-- só aparece quando o btn type file for desabilitado no javascript (quando a outra img aparecer - img já cadastrada) -->
-            <div id="avisoDesabilitar" class="alert alert-warning" style="display:none; text-align: center;">
-              Upload desativado - Imagem já Exibida
-            </div>
-
             <input type="file" class="form-control inputModal" name="imgIngrediente" id="imgIngrediente">
           </div>
           <div id="previewUploadIngrediente"></div>
