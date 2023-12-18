@@ -28,9 +28,20 @@
   font-family: "Poppins", sans-serif;
 }
 
+html {
+  overflow: hidden;
+}
+
 html,
 body {
   height: 100%;
+}
+
+
+body {
+  background: var(--white);
+  overflow: scroll;
+  min-height: 100vh;
 }
 
 /* login */
@@ -154,15 +165,15 @@ body.loginStyle input {
   transform: scale(0.6);
 }
 
-#chk:checked ~ .login {
+#chk:checked~.login {
   transform: translateY(-500px);
 }
 
-#chk:checked ~ .login label {
+#chk:checked~.login label {
   transform: scale(1);
 }
 
-#chk:checked ~ .login label {
+#chk:checked~.login label {
   transform: scale(1);
 }
 
@@ -188,15 +199,10 @@ body.loginStyle input {
   width: 100%;
 }
 
-.container {
+.containerDarkModeBtn {
   margin-top: -6px !important;
 }
 
-body {
-  background: var(--white);
-  overflow: hidden;
-  min-height: 100vh;
-}
 
 .corValidade {
   background-color: red;
@@ -205,13 +211,10 @@ body {
 /* NAVBAR */
 
 #divDarkModeBtn {
-  width: 8%;
-  height: 12%;
-  position: absolute;
-  margin-left: 13%;
-  top: 3%;
-  right: 0;
-  /* display: block; */
+  width: 20%;
+  margin-right: 5%;
+  margin-left: 20%;
+
 }
 
 #divDarkModeBtn button {
@@ -256,6 +259,9 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 3%;
+  align-items: center;
+  margin-top: auto;
 }
 
 .divNavLogo {
@@ -269,10 +275,14 @@ body {
   width: 100%;
   height: 100%;
   padding: 11px;
+  display: flex;
+  align-items: center;
+  padding-top: 0;
 }
 
 .menu-f ul {
   list-style-type: none;
+  padding: 3%;
 }
 
 .navbar {
@@ -509,9 +519,10 @@ ul .indicator::after {
 /* MENU DE LADO */
 
 .menu-lado {
-  position: absolute;
-  top: 80vh;
-  right: 90px;
+  position: sticky;
+  top: 85%;
+  margin-left: 93%;
+  z-index: 5;
 }
 
 .menu-lado .menu i {
@@ -555,6 +566,7 @@ ul .indicator::after {
 }
 
 #showpage {
+  margin-top: 3%;
   height: 100%;
   width: 100%;
 }
@@ -566,7 +578,7 @@ ul .indicator::after {
   align-items: center;
   justify-content: center;
   color: var(--purplePadrão);
-  padding: 110px;
+  padding: 5%;
   border-radius: 10px;
   z-index: -5;
 }
@@ -581,12 +593,19 @@ ul .indicator::after {
   flex-direction: row;
 }
 
-#Date {
+#Date, #controle-clock-toggle {
   font-size: 1.3em !important;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
+
+/* dá conflito e aparece nas outras áreas */
+/* div#controle-clock-toggle {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+} */
 
 /* HORAS DE LADO */
 
@@ -596,6 +615,7 @@ ul .indicator::after {
 
 .clock-son {
   display: block;
+  padding-left: 20%;
 }
 
 .clock-lado {
@@ -618,6 +638,12 @@ ul .indicator::after {
   padding-top: 16px;
 }
 
+.clock-nav .clock-son .horas,
+.clock-nav .clock-son #Date {
+  font-size: 1em !important;
+  padding-top: 16px;
+}
+
 /* TABELAS */
 
 /* button{
@@ -633,7 +659,7 @@ table {
 
 .table-financeira {
   width: 100%;
-  border: 2px solid var(--purplePadrão);
+  border: 1px solid var(--purplePadrão);
   border-radius: 30px !important;
   background: var(--whiteDiferente);
   color: var(--purplePadrão);
@@ -646,16 +672,9 @@ table {
 }
 
 .table-financeira thead tr {
-<<<<<<< HEAD
   height: 100%;
   top: 0;
   position: sticky;
-=======
-
-    height: 100%;
-    top: 0;
-    position: sticky;
->>>>>>> 2fdbef0c3fe0dbf2979b49adb54348c296e332cc
 }
 
 .table-financeira thead {
@@ -667,38 +686,9 @@ table {
 
 .table-financeira thead th {
   background-color: var(--whiteDiferente);
-  /* z-index: 2; */
 }
 
-.table-financeira tbody {
-  /* height: 100%; */
-  /* overflow: scroll; */
-}
 
-/* .table-financeira thead td {
-    padding-top: 10px;
-}
- */
-/* .table-financeira button {
-    margin-left: 5px;
-    width: 33, 3%;
-    color: #F5F5F5;
-    transform: scale(1);
-    border-radius: 5px;
-    transition: .3s ease-in;
-    cursor: pointer;
-    box-shadow: 2px 2px 2px #424242;
-}
- */
-/* .table-financeira button:hover {
-    background: #69BF5B;
-    transition: .3s ease-out;
-    cursor: pointer;
-    transform: translateY(2px);
-    transform: scale(0.96);
-    box-shadow: 1px 1px 1px #292929;
-}
- */
 
 #btn-ativar {
   width: 56px;
@@ -709,9 +699,6 @@ table {
   color: #fff;
 
   cursor: pointer;
-}
-
-#btn-ativar:hover {
 }
 
 #btn-alterar {
@@ -774,6 +761,7 @@ table {
 .modaisCorpos label {
   color: var(--dark);
 }
+
 /* FIM ESTILIZAÇÃO DE MODAIS */
 
 /* LISTAR PEDIDOS */
@@ -870,19 +858,19 @@ table {
 .cardBox {
   margin: auto;
   position: relative;
-  width: 82%;
-  padding: 20px;
+  width: 92%;
+  padding: 1.2%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
+  grid-gap: 5%;
 }
 
 .cardBox .card {
   position: relative;
-  padding: 30px;
+  padding: 10%;
   border-radius: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   box-shadow: 0px 6px 12px rgba(2, 2, 2, 0.1);
   border: 1px solid #9e77f1;
   flex-direction: row;
@@ -890,6 +878,7 @@ table {
   overflow: hidden;
   cursor: pointer;
   background: transparent;
+  grid-gap: 25%;
 }
 
 .cardBox .card:hover {
@@ -908,7 +897,6 @@ table {
 
 .cardBox .card .numbers {
   position: relative;
-  font-weight: 500;
   font-size: 1.6rem;
   color: #9e77f1;
 }
@@ -927,17 +915,24 @@ table {
 .details {
   margin: auto;
   position: relative;
-  width: 80%;
+  width: 90%;
 }
+
 /* 43:15 */
-.details .vendasRecentes {
-  position: relative;
-  display: grid;
-  min-height: 60%;
+.details .vendasRecentes, .details .clientesRecentes {
+  color: var(--purplePadrão);
+  text-align: center;
+
   padding: 20px;
   box-shadow: 0px 6px 12px rgba(2, 2, 2, 0.1);
   border-radius: 30px;
   border: 1px solid #9e77f1;
+  overflow-y: auto;
+
+}
+
+.details .vendasRecentes thead {
+  width: auto;
 }
 
 .cardHeader {
@@ -947,28 +942,27 @@ table {
 }
 
 .details h2 {
-    font-weight: 600;
-    color: #9e77f1;
-    margin-left: 1%;
-    margin-top: 2%;
+  font-weight: 600;
+  color: #9e77f1;
+  margin-left: 1%;
+  margin-top: 2%;
 }
 
-.headerTableFin{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1%;
+.headerTableFin {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1%;
 }
 
-.headerTableFin .btn{
-    margin-top: 2px;
+.headerTableFin .btn {
+  margin-top: 2px;
 }
 
 .details .btn {
   position: relative;
   padding: 5px 10px;
-  /* background: #32cd32; */
   text-decoration: none;
   color: #9e77f1;
   border-radius: 20px;
@@ -976,19 +970,18 @@ table {
 }
 
 .details .btn:hover {
-    position: relative;
-    padding: 5px 10px;
-    /* background: #32cd32; */
-    text-decoration: none;
-    color: #32cd32;
-    border-radius: 20px;
-    border: 1px solid #32cd32;
-  }
+  position: relative;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #32cd32;
+  border-radius: 20px;
+  border: 1px solid #32cd32;
+}
 
-.details th{
-    color: #9e77f1!important;
-    width: auto;
-  }
+.details th {
+  color: #9e77f1 !important;
+  width: auto;
+}
 
 .details table {
   width: 100%;
@@ -996,27 +989,8 @@ table {
   margin-top: 10px;
 }
 
-.details .vendasRecentes table thead {
-  font-weight: 600;
-}
-
-.details .vendasRecentes table tr {
-  color: #424242;
-  /* border-bottom: 1px solid rgba(2, 2, 2, 0.1);     */
-}
-
 .details .vendasRecentes table tr:last-child {
   border-bottom: none;
-}
-
-.details .vendasRecentes table tbody tr:hover {
-  /* background: #9e77f1; */
-  /* color: #32cd32; */
-  
-}
-
-.details .vendasRecentes table tr td {
-  padding: 10px;
 }
 
 .details .vendasRecentes table tr td:last-child {
@@ -1032,44 +1006,126 @@ table {
 }
 
 
-.details .vendasRecentes tbody{
-    font-weight: 300!important;
-
-    font-size: 12px;
+.details .vendasRecentes tbody, .details .clientesRecentes tbody, .details p {
+  font-weight: 300 !important;
+  font-style: normal;
+  font-size: 1rem;
+  margin: auto;
 }
 
+.details table tbody {
+  font-weight: normal !important;
+  font-style: normal;
+}
 
 .status.concluido {
-    padding: 2px 4px;
-    background: #32cd32;
-    color: white;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
+  padding: 2px 4px;
+  background: #32cd32;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .status.emAndamento {
-    padding: 2px 4px;
-    background: #cd3232;
-    color: white;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
+  padding: 2px 4px;
+  background: #cd3232;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 
 /* FINAL LISTAR FINANCEIRO */
 
+
+
+/* SOBRE NÓS */
+
+/* body {
+        background-color: #eff5f9;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+    } */
+
+.container {
+  width: 100%;
+}
+
+.box {
+  text-align: center;
+  height: fit-content;
+  overflow-y: auto;
+  background: linear-gradient(to right, #9E77F1, #6f42c1);
+  color: #ffffff;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
+  margin-bottom: 5%;
+}
+
+.box h1{
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.container .card-body {
+  padding: 2.25rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+
+.display-4 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.container .cardArea {
+  margin: 0 0 0 0px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+
+}
+
+.container .card {
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 2px solid #9E77F1;
+  box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
+  background: transparent;
+}
+
+.container .card p,
+.container .card h5 {
+  color: #9E77F1;
+
+}
+
 /* FOOTER */
 
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
   background: var(--purplePadrão2);
-  min-height: 100px;
-  padding: 20px 50px;
 }
 
 footer .social_icon,
@@ -1080,6 +1136,7 @@ footer .menu_footer {
   align-items: center;
   margin: 10px 0;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 footer .social_icon li,
@@ -1176,4 +1233,335 @@ footer .wave#wave4 {
   100% {
     background-position-x: 1000px;
   }
+}
+
+
+/* ESTILIZAÇÃO RESPONSIVA */
+
+@media screen and (max-width: 1400px) {
+
+  /* áreas principais */
+
+  .clock-son {
+    padding-left: 5%;
+  }
+
+  .navbar {
+    margin-top: 20px;
+    position: relative;
+    height: 75px;
+    width: 35%;
+    background: var(--whiteDiferente);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* overflow: hidden; */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .menu-f {
+    padding: 0;
+    width: 50%;
+  }
+
+  #divDarkModeBtn {
+    margin-right: auto;
+    padding: 0;
+  }
+
+  .clock-son {
+    display: block;
+    margin-left: 11%;
+}
+
+  .menu-lado {
+    position: sticky;
+    top: 85%;
+    margin-left: 92%;
+    z-index: 5;
+  }
+
+  .divNav {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+
+  footer .social_icon, footer .menu_footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-content: center;
+    flex-direction: row;
+  }
+
+  /* sobre nós */
+
+  .container .cardArea {
+    margin: 0 0 0 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .container .card {
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 2px solid #9E77F1;
+    box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
+  }
+
+  /* financeiro */
+
+  .cardBox {
+    margin: auto;
+    position: relative;
+    width: 92%;
+    padding: 1.2%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5%;
+  }
+
+}
+
+
+@media screen and (max-width: 900px) {
+
+  /* áreas principais */
+
+  .clock-son {
+    padding-left: 5%;
+  }
+
+  .navbar {
+    margin-top: 20px;
+    position: relative;
+    height: 75px;
+    width: 35%;
+    background: var(--whiteDiferente);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* overflow: hidden; */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .menu-f {
+    padding: 0;
+    width: 50%;
+  }
+
+  #divDarkModeBtn {
+    margin-right: 19%;
+    padding: 0;
+  }
+
+  .menu-lado {
+    position: sticky;
+    top: 85%;
+    margin-left: 92%;
+    z-index: 5;
+  }
+
+  .divNav {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+
+  footer .social_icon, footer .menu_footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-content: center;
+    flex-direction: row;
+  }
+
+  /* sobre nós */
+
+  .cardArea {
+    margin: 0 0 0 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 2px solid #9E77F1;
+    box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
+  }
+
+  /* financeiro */
+
+  .cardBox {
+    margin: auto;
+    position: relative;
+    width: 92%;
+    padding: 1.2%;
+    display: flex;
+    grid-template-columns: auto;
+    grid-gap: 1%;
+    flex-wrap: nowrap;
+}
+
+}
+
+@media screen and (max-width: 525px) {
+  /* áreas principais */
+
+  .clock-son {
+    padding-left: 5%;
+  }
+
+  .navbar {
+    margin-top: 20px;
+    position: relative;
+    height: 75px;
+    width: 35%;
+    background: var(--whiteDiferente);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* overflow: hidden; */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .menu-f {
+    padding: 0;
+    width: 50%;
+  }
+
+  #divDarkModeBtn {
+    width: 1%;
+    margin-right: auto;
+    padding: 0;
+  }
+
+  .menu-lado {
+    position: sticky;
+    top: 85%;
+    margin-left: 80%;
+    z-index: 5;
+  }
+
+  .divNav {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+
+  footer .social_icon, footer .menu_footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-content: center;
+    flex-direction: row;
+  }
+
+  /* sobre nós */
+
+  .cardArea {
+    margin: 0 0 0 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 2px solid #9E77F1;
+    box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
+  }
+
+  /* financeiro */
+
+  .cardBox {
+    margin: auto;
+    position: relative;
+    width: 92%;
+    padding: 1.2%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 5%;
+    transition: 3s;
+  }
+
+  .cardBox .card {
+    width: auto;
+    position: relative;
+    padding: 10%;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 6px 12px rgba(2, 2, 2, 0.1);
+    border: 1px solid #9e77f1;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    background: transparent;
+    grid-gap: 25%;
+  }
+
+
 }

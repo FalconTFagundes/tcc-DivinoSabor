@@ -51,9 +51,7 @@
             <!-- <div class="indicator"></div> -->
         </ul>
     </div>
-    <div class="container" id="divDarkModeBtn">
-        <button id="btn-dark-mode-toggle"></button>
-    </div>
+    
     <div class="menu-f">
         <div id="clock-nav" class="<?php
                                     // fazer com que o menu permaneça de lado com a página carregada para layout
@@ -74,5 +72,9 @@
             </div>
         </div>
 
+
+        <div class="containerDarkModeBtn" id="divDarkModeBtn">
+        <button id="btn-dark-mode-toggle"></button>
+    </div>
     </div>
 </div>
