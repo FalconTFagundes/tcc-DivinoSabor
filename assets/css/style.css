@@ -187,6 +187,7 @@ body.loginStyle input {
 
 .footer-father-f {
   flex: 1 1 auto;
+  overflow: hidden;
 }
 
 .footer-father {
@@ -566,6 +567,7 @@ ul .indicator::after {
 }
 
 #showpage {
+  overflow: scroll;
   margin-top: 3%;
   height: 100%;
   width: 100%;
