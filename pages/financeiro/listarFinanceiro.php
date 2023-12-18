@@ -50,35 +50,85 @@
     <!-- GRÁFICOS -->
 
     <div class="details">
-        <div class="headerTableFin">
-            <h2>Vendas recentes</h2>
-            <div class="cardHeader">
-                <a href="" class="btn">Ver tudo</a>
+
+        <div class="containerVendasRecentes">
+            <!-- ORDENS RECENTES -->
+            <div class="headerTableFin">
+                <h2>Vendas recentes</h2>
+                <div class="cardHeader">
+                    <a href="" class="btn">Ver tudo</a>
+                </div>
             </div>
+
+            <div>
+
+
+                <table class="vendasRecentes">
+                    <thead>
+                        <tr>
+                            <th scope="col" width="5%">Código do pedido</th>
+                            <th scope="col" width="25%">Nome do cliente</th>
+                            <th scope="col" width="25%">Pacote escolhido</th>
+                            <th scope="col" width="25%">Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th>
+                                <p>1</p>
+                            </th>
+                            <th>
+                                <p>João</p>
+                            </th>
+                            <th>
+                                <p>Diamante</p>
+                            </th>
+                            <th><span class="status concluido">Concluído</span></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- FIM ORDENS RECENTES -->
         </div>
 
-        <div class="vendasRecentes">
 
+        <div class="containerClientesRecentes">
+            <div class="headerTableFin">
+                <h2>Clientes recentes</h2>
+                <div class="cardHeader">
+                    <a href="" class="btn">Ver tudo</a>
+                </div>
+            </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col" width="5%">Código do pedido</th>
-                        <th scope="col" width="25%">Nome do cliente</th>
-                        <th scope="col" width="25%">Pacote escolhido</th>
-                        <th scope="col" width="25%">Status</th>
-                    </tr>
-                </thead>
+            <div>
+                <table class="clientesRecentes">
+                    <thead>
+                        <tr>
+                            <th scope="col" width="5%">Código do pedido</th>
+                            <th scope="col" width="25%">Nome do cliente</th>
+                            <th scope="col" width="25%">Pacote escolhido</th>
+                            <th scope="col" width="25%">Status</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <tr>
-                        <th>1</th>
-                        <th>João</th>
-                        <th>Diamante</th>
-                        <th><span class="status concluido">Concluído</span></th>
-                    </tr>
-                </tbody>
-            </table>
+                    <tbody>
+                        <tr>
+                            <th>
+                                <p>1</p>
+                            </th>
+                            <th>
+                                <p>João</p>
+                            </th>
+                            <th>
+                                <p>Diamante</p>
+                            </th>
+                            <th><span class="status concluido">Concluído</span></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
+
     </div>
