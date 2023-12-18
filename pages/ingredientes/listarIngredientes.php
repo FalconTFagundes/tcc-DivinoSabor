@@ -137,10 +137,18 @@ include_once './func/dashboard.php';
         <div class="modal-body modaisCorpos">
           <div class="form-group">
             <label for="nomeIngred" class="form-label">Ingrediente</label>
-            <input type="text" class="form-control inputModal" name="nomeIngred" id="ingrediente" required>
+            <input type="text" class="form-control inputModal" name="nomeIngred" id="nomeIngred">
           </div>
           <div class="form-group">
             <label for="imgIngrediente" class="form-label">Imagem Ingrediente</label>
+
+          </div>
+          <div class="form-group">
+            <!-- só aparece quando o btn type file for desabilitado no javascript (quando a outra img aparecer - img já cadastrada) -->
+            <div id="avisoDesabilitar" class="alert alert-warning" style="display:none; text-align: center;">
+              Upload desativado - Imagem já Exibida
+            </div>
+
             <input type="file" class="form-control inputModal" name="imgIngrediente" id="imgIngrediente">
           </div>
           <div id="previewUploadIngrediente"></div>
@@ -148,7 +156,9 @@ include_once './func/dashboard.php';
             <label for="codigoIngrediente" class="form-label">Código do Ingrediente</label>
             <input type="text" class="form-control inputModal" name="codigoIngrediente" id="codigoIngrediente" required>
           </div>
-
+          <div class="form-group">
+            <button type="button" class="btn btn-outline-warning" id="btnConsultIngredientes">Consultar</button>
+          </div>
           <div class="form-group">
             <label for="quantIngred" class="form-label">Quantidade</label>
             <input type="number" class="form-control inputModal" name="quantIngred" id="quantidade" required>
@@ -156,27 +166,27 @@ include_once './func/dashboard.php';
 
           <div class="form-group">
             <label for="pesoIngred" class="form-label">Peso Unitário</label>
-            <input type="text" step=".01" class="form-control inputModal" name="pesoIngred" id="pesoIngrediente" required oninput="formatarNumeroDecimal(this)">
+            <input type="text" step=".01" class="form-control inputModal" name="pesoIngred" id="pesoIngred" oninput="formatarNumeroDecimal(this)">
           </div>
 
           <div class="form-group">
             <label for="valorIngred" class="form-label">Valor Unitário</label>
-            <input type="text" step=".01" class="form-control inputModal" name="valorIngred" id="valorIngred" required oninput="formatarNumeroDecimal(this)">
+            <input type="text" step=".01" class="form-control inputModal" name="valorIngred" id="valorIngred" oninput="formatarNumeroDecimal(this)">
           </div>
 
           <div class="mb-3">
             <label for="dataCompra" class="form-label">Data da compra</label>
-            <input type="date" class="form-control inputModal" name="dataCompra" id="dataCompra" required>
+            <input type="date" class="form-control inputModal" name="dataCompra" id="dataCompra">
           </div>
 
           <div class="mb-3">
             <label for="dataValidade" class="form-label">Data de validade</label>
-            <input type="date" class="form-control inputModal" name="dataValidade" id="dataValidade" required>
+            <input type="date" class="form-control inputModal" name="dataValidade" id="dataValidade">
           </div>
         </div>
         <div class="modal-footer modaisCorpos">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-          <button type="submit" class="btn btn-primary btnCadIngrediente" onclick="cadIngredientesUpload('frmCadIngrediente');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+          <button type="submit" class="btn btn-primary" onclick="cadIngredientesUpload('frmCadIngrediente');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
         </div>
       </form>
     </div>

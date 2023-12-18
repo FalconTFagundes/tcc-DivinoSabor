@@ -122,7 +122,6 @@ switch ($acao) {
         include_once './pages/ingredientes/ativarIngredientes.php';
         break;
 
-
         // páginas de ações
 
     case 'loginEntrar':

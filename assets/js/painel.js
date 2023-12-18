@@ -1,4 +1,4 @@
-masks();  
+masks();
 //tema dark/light :D
 const btnDarkModeToggle = document.getElementById("btn-dark-mode-toggle");
 let themeSystem = localStorage.getItem("themeSystem") || "light";
@@ -40,10 +40,10 @@ function updateWave(theme) {
     waveElements.forEach((waveElement, index) => {
         if (theme == "light") {
             waveElement.style.backgroundImage = `url(./assets/images/favicon/wave.png)`;
-        
+
         } else {
             waveElement.style.backgroundImage = `url(./assets/images/favicon/waveDarkMode.png)`;
-          
+
         }
     });
 }
@@ -54,11 +54,11 @@ updateWave(themeSystem);
 
 
 // focus input codigo - page listar ingredientes!!!!
-$(document).ready(function() {
-    $('#modalCadIngrediente').on('shown.bs.modal', function() {
-      $('#codigoIngrediente').focus();
+$(document).ready(function () {
+    $('#modalCadIngrediente').on('shown.bs.modal', function () {
+        $('#codigoIngrediente').focus();
     });
-  });
+});
 
 
 function cadGeral(formId, modalId, pageAcao, pageRetorno) {
@@ -132,7 +132,7 @@ function excGeral(idvar, acaopage, pageretorno, m1, m2) {
             data: dados,
             beforeSend: function (retorno) {
             }, success: function (retorno) {
-          
+
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -261,7 +261,7 @@ $(document).ready(function () {
             data: dados,
             beforeSend: function () {
                 // loading();
-          
+
             }, success: function (retorno) {
 
                 if (retorno != 'Home') {
@@ -340,24 +340,24 @@ function listarPage(listar) {
 /* masks(); */
 
 function masks() {
-    $(document).ready(function() {
-    $('.maskTelefone').inputmask({
-        mask: '(99) 99999-9999'
-    });
+    $(document).ready(function () {
+        $('.maskTelefone').inputmask({
+            mask: '(99) 99999-9999'
+        });
 
-    $('.maskCPF').inputmask({
-        mask: '999.999.999-99'
-    });
+        $('.maskCPF').inputmask({
+            mask: '999.999.999-99'
+        });
 
-    $('.maskData').inputmask({
-        mask: '99/99/9999'
-    });
+        $('.maskData').inputmask({
+            mask: '99/99/9999'
+        });
 
-    $('.maskCEP').inputmask({
-        mask: '99999-999'
-    });
+        $('.maskCEP').inputmask({
+            mask: '99999-999'
+        });
 
-});
+    });
 
     /*  $('.maskDateTime').inputmask({
         mask: '99/99/9999 99:99'
@@ -1268,8 +1268,8 @@ function cadIngredientesUpload(formId) {
                 processData: false,
                 contentType: false,
                 success: function (retorna) {
-        /*             console.log(formdata); */
-                        console.log(retorna);
+                    /*             console.log(formdata); */
+                    console.log(retorna);
                     $('#modalCadIngrediente').modal('hide')
                     setTimeout(function () {
                         atualizarPagina('listarIngredientes');
@@ -1290,7 +1290,41 @@ function cadIngredientesUpload(formId) {
 
 
 
+$(document).ready(function () {
+    // clicar Enter no campo de código de barras
+    $('#codigoIngrediente').keypress(function (e) {
+        if (e.which === 13) { // verificação - enter :D
+            e.preventDefault(); 
+            $('#btnConsultIngredientes').click(); // aciona o clique no btn de consulta
+        }
+    });
 
+    $('#btnConsultIngredientes').on('click', function () {
+        // valor do código de barras
+        var codigoDeBarras = $('#codigoIngrediente').val();
+        console.log(codigoDeBarras);
 
+        $.ajax({
+            url: 'consultaBancoIngredientes.php',
+            method: 'POST',
+            data: {
+                codigoDeBarras: codigoDeBarras
+            },
+            dataType: 'json',
+            success: function (data) {
+                $('#nomeIngred').val(data['nomeIngred']);
+                $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
+                $('#pesoIngred').val(data['pesoUnit']);
+                $('#valorIngred').val(data['precoUnit']);
 
+                 // desabilitar o campo de upload de arquivo pois a imagem já existente irá aparecer
+                 $('#imgIngrediente').prop('disabled', true); 
+                 $('#avisoDesabilitar').show(); //aviso do pq foi desabilitado
+            },
+            error: function () {
+                console.log('Erro na consulta.');
+            }
+        });
+    });
+});
 
