@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
     <!-- croppie -->
-    <link rel="stylesheet" href="assets/croppiejs/cropper.min.css">
+    <link rel="stylesheet" href="assets/croppiejs/croppie.css">
 
     <!-- CSS normal -->
     <link rel="stylesheet" href="assets/css/style.css">

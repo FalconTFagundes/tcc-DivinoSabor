@@ -53,6 +53,13 @@ updateLogo(themeSystem);
 updateWave(themeSystem);
 
 
+// focus input codigo - page listar ingredientes!!!!
+$(document).ready(function() {
+    $('#modalCadIngrediente').on('shown.bs.modal', function() {
+      $('#codigoIngrediente').focus();
+    });
+  });
+
 
 function cadGeral(formId, modalId, pageAcao, pageRetorno) {
     $('#' + formId).on('submit', function (k) {
@@ -1211,3 +1218,79 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //     });
 // }
+
+
+// UPLOAD INGREDIENTES
+var redimensionar = $('#previewUploadIngrediente').croppie({
+    enableExif: true,
+    enableOrientation: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'square'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
+});
+
+// Manipulador de mudança para o input de arquivo
+$('#imgIngrediente').on('change', function () {
+    var redimensionarImgIngrediente = new FileReader();
+
+    redimensionarImgIngrediente.onload = function (e) {
+        redimensionar.croppie('bind', {
+            url: e.target.result
+        });
+    }
+
+    redimensionarImgIngrediente.readAsDataURL(this.files[0]);
+});
+
+// Manipulador de envio do formulário
+function cadIngredientesUpload(formId) {
+    $('#' + formId).on('submit', function (event) {
+        event.preventDefault();
+
+        var formdata = new FormData(this);
+
+        redimensionar.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (img) {
+            formdata.append("imagem", img);
+
+            $.ajax({
+                url: "uploads/uploadIngredientes.php",
+                type: "POST",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (retorna) {
+        /*             console.log(formdata); */
+                        console.log(retorna);
+                    $('#modalCadIngrediente').modal('hide')
+                    setTimeout(function () {
+                        atualizarPagina('listarIngredientes');
+                    }, 1000);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Salvo com Sucesso',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            });
+        });
+    });
+}
+
+
+
+
+
+
+
+

@@ -631,6 +631,16 @@ table {
   border-collapse: separate !important;
 }
 
+
+
+.img-thumbnail{
+  width: 60%;
+  height: 60%;
+
+}
+
+
+
 .table-financeira {
   width: 100%;
   border: 2px solid var(--purplePadrão);
@@ -646,16 +656,9 @@ table {
 }
 
 .table-financeira thead tr {
-<<<<<<< HEAD
   height: 100%;
   top: 0;
   position: sticky;
-=======
-
-    height: 100%;
-    top: 0;
-    position: sticky;
->>>>>>> 2fdbef0c3fe0dbf2979b49adb54348c296e332cc
 }
 
 .table-financeira thead {

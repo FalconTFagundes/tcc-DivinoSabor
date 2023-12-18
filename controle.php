@@ -114,10 +114,6 @@ switch ($acao) {
         include_once './pages/ingredientes/listarIngredientes.php';
         break;
     
-    case 'cadastrarIngredientes':
-        include_once './pages/ingredientes/cadastrarIngredientes.php';
-        break;
-    
     case 'excluirIngredientes':
         include_once './pages/ingredientes/excluirIngredientes.php';
         break;
