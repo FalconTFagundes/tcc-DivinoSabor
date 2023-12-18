@@ -3741,6 +3741,8 @@ function upUm($tabela, $campo1, $campoId, $valeu1, $valeuId)
     $conn = null;
 }
 
+
+
 function upDois($tabela, $campo1, $campo2, $campoId, $valeu1, $valeu2, $valeuId)
 {
     $conn = conectar();
@@ -4562,7 +4564,7 @@ function formatarDataHoraBr($data)
 
 function formatarDataBr($data)
 {
-    return date('d-m-Y', strtotime($data));
+    return date('d/m/Y', strtotime($data));
 }
 
 function formatarDataHoraEn($data)

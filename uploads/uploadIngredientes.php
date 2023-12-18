@@ -5,58 +5,101 @@ include_once "../func/dashboard.php";
 
 // Receber a imagem
 $imagem = filter_input(INPUT_POST, 'imagem', FILTER_DEFAULT);
-//var_dump($imagem);
-
-// Separa as informações da imagem base64 pelo ";"
-list($type, $imagem) = explode(';', $imagem);
-list(, $imagem) = explode(',', $imagem);
-
-// Desconverter a imagem base64
-$imagem = base64_decode($imagem);
-
-// Atribuir a extensão da imagem PNG
-$imagem_nome = time() . '.png';
 
 // Caminho completo para o diretório
 $caminho_diretorio = '../assets/images/ingredientes/';
 
-// Realizar o upload da imagem
-file_put_contents($caminho_diretorio . $imagem_nome, $imagem);
+// Variável para armazenar o nome da imagem
+$imagem_nome = '';
 
-echo "Imagem enviada com sucesso!";
+// Se uma nova imagem foi enviada
+if (!empty($imagem)) {
+    // Separa as informações da imagem base64 pelo ";"
+    list($type, $imagem) = explode(';', $imagem);
+    list(, $imagem) = explode(',', $imagem);
 
+    // Desconverter a imagem base64
+    $imagem = base64_decode($imagem);
 
+    // Atribuir um novo nome para a imagem PNG
+    $imagem_nome = time() . '.png';
+
+    // Realizar o upload da nova imagem
+    file_put_contents($caminho_diretorio . $imagem_nome, $imagem);
+
+    echo "Imagem enviada com sucesso!";
+}
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 $conn = conectar();
 
 if (!empty($dados) && isset($dados)) {
+    $codigoIngrediente = $dados['codigoIngrediente'];
 
+    // verificar se o registro já existe
+    $queryVerificacao = "SELECT COUNT(*) as total FROM ingredientes WHERE codigo = :codigo";
+    $stmtVerificacao = $conn->prepare($queryVerificacao);
+    $stmtVerificacao->bindParam(':codigo', $codigoIngrediente, PDO::PARAM_STR);
+    $stmtVerificacao->execute();
+    $resultadoVerificacao = $stmtVerificacao->fetch(PDO::FETCH_ASSOC);
+
+    //recebendo de $dados
     $nomeIngrediente = $dados['nomeIngred'];
     $qtdIngrediente = $dados['quantIngred'];
     $pesoIngrediente = $dados['pesoIngred'];
     $valorIngred = $dados['valorIngred'];
     $dataCompraIngrediente = $dados['dataCompra'];
-    $codigoIngrediente = $dados['codigoIngrediente'];
     $dataValidade = $dados['dataValidade'];
-
     $dataeHoraAtual = date('Y-m-d H:i:s');
 
-    var_dump($dados);
+    if ($resultadoVerificacao['total'] > 0) {
+        // se já existe, faça o update
 
-    $resultado =  insertNove(
-        'ingredientes',
-        'nomeIngred, img, quantIngred, pesoUnit, precoUnit, dataComp, dataValidad, codigo, cadastro',
-        "$nomeIngrediente",
-        "$imagem_nome",
-        "$qtdIngrediente",
-        "$pesoIngrediente",
-        "$valorIngred",
-        "$dataCompraIngrediente",
-        "$dataValidade",
-        "$codigoIngrediente",
-        "$dataeHoraAtual"
-    );
+        $queryQuantidade = "SELECT quantIngred FROM ingredientes WHERE codigo = :codigo";
+        $stmtQuantidade = $conn->prepare($queryQuantidade);
+        $stmtQuantidade->bindParam(':codigo', $codigoIngrediente, PDO::PARAM_STR);
+        $stmtQuantidade->execute();
+        $quantidadeAtual = $stmtQuantidade->fetchColumn();
+
+        // somar a nova quantidade à quantidade existente
+        $novaQuantidade = $qtdIngrediente + $quantidadeAtual;
+
+        upSeis(
+            'ingredientes',
+            'nomeIngred',
+            'quantIngred',
+            'pesoUnit',
+            'precoUnit',
+            'dataComp',
+            'dataValidad',
+            'codigo',
+            $nomeIngrediente,
+            $novaQuantidade,
+            $pesoIngrediente,
+            $valorIngred,
+            $dataCompraIngrediente,
+            $dataValidade,
+            $codigoIngrediente,
+
+        );
+    } else {
+        // caso não exista, faça o insert
+        $resultado = insertNove(
+            'ingredientes',
+            'nomeIngred, img, quantIngred, pesoUnit, precoUnit, dataComp, dataValidad, codigo, cadastro',
+            $nomeIngrediente,
+            $imagem_nome,
+            $qtdIngrediente,
+            $pesoIngrediente,
+            $valorIngred,
+            $dataCompraIngrediente,
+            $dataValidade,
+            $codigoIngrediente,
+            $dataeHoraAtual
+        );
+
+        echo "Registro inserido com sucesso!";
+    }
 } else {
     echo json_encode('Erro no Insert');
 }

@@ -16,8 +16,12 @@ try {
 
     // Se a conexão for bem-sucedida, continue com o restante do código
     if ($conn) {
+        // Recebendo ID diretamente pela URL - sem Ajax e verificando ser um número inteiro
+        $idIngredUn = isset($_GET['id']) ? intval($_GET['id']) : null;
+        var_dump($idIngredUn);
+
         // QUERY para recuperar os registros do banco de dados
-        $query_ingredientes = "SELECT 
+        $query_ingredientesUn = "SELECT 
         idingredientes, 
         nomeIngred, 
         img, 
@@ -32,16 +36,18 @@ try {
         cadastro, 
         alteracao, 
         ativo
-     FROM ingredientes";
+     FROM ingredientes WHERE idingredientes = :idIngredUn";
+
         // Prepara a QUERY
-        $stmt = $conn->prepare($query_ingredientes);
+        $stmt = $conn->prepare($query_ingredientesUn);
 
         // Verificar se a preparação da query foi bem-sucedida
         if (!$stmt) {
             throw new Exception("Falha ao preparar a consulta.");
         }
 
-        // Executar a QUERY
+        // Preparar e executar a QUERY
+        $stmt->bindParam(':idIngredUn', $idIngredUn, PDO::PARAM_INT);
         $stmt->execute();
 
         // Informacoes para o PDF
@@ -107,8 +113,8 @@ try {
         $dados .= "<h4>Usuário Emissor: <b>" . $_SESSION['nomeUser'] . "</b></h4>";
 
         // Ler os registros retornados do BD
-        while ($row_ingredientes = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            extract($row_ingredientes);
+        while ($row_ingredienteUn = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            extract($row_ingredienteUn);
 
             $dados .= "<table>";
             $dados .= "<tr><th>Código do Ingrediente</th><td>$idingredientes</td></tr>";

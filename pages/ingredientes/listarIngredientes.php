@@ -105,11 +105,12 @@ include_once './func/dashboard.php';
                 }
                 ?>
                 <!-- passando id diretamente na URL - sem SEM AJAX -->
-                <a href="#" onclick="mostrarAlertaIdGet('<?php $idIngred; ?>')">
+                <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idIngred; ?>')">
                   <button type="button" class="btn btn-outline-info btnGerarRelatIngredientesUn">
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
+                
                 <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idIngred ?>', 'excluirIngredientes', 'listarIngredientes', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir ingredientes"></i> Excluir </button>
               </div>
             </td>
@@ -242,7 +243,7 @@ include_once './func/dashboard.php';
           showConfirmButton: false,
           timer: 700
         });
-        window.location.href = './gerarRelatorios/gerarRelatingredientesUn.php?id=' + idingredientes;
+        window.location.href = './gerarRelatorios/gerarRelatUnIngredientes.php?id=' + idingredientes;
       }
     });
   }
