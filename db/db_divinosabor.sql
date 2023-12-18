@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/12/2023 às 19:15
+-- Tempo de geração: 18/12/2023 às 09:33
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -94,14 +94,20 @@ CREATE TABLE `ingredientes` (
   `pesoTotal` decimal(10,2) GENERATED ALWAYS AS (`quantIngred` * `pesoUnit`) STORED,
   `precoUnit` decimal(10,2) NOT NULL,
   `precoTotal` decimal(10,2) GENERATED ALWAYS AS (`quantIngred` * `precoUnit`) STORED,
-  `precoGrama` decimal(10,2) GENERATED ALWAYS AS (`pesoUnit` * 1000 / `precoUnit` / 100) STORED,
   `dataComp` date NOT NULL,
-  `dataValidad` varchar(45) NOT NULL,
+  `dataValidad` date DEFAULT NULL,
   `codigo` int(11) NOT NULL,
   `cadastro` datetime NOT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `ingredientes`
+--
+
+INSERT INTO `ingredientes` (`idingredientes`, `nomeIngred`, `img`, `quantIngred`, `pesoUnit`, `precoUnit`, `dataComp`, `dataValidad`, `codigo`, `cadastro`, `alteracao`, `ativo`) VALUES
+(12, 'Fubá Mimoso Ranziza 51', 'fubaMimoso.jpg', 14, 22.00, 2.00, '2222-02-22', '2222-02-22', 2222, '2023-12-18 00:28:50', '2023-12-18 06:58:25', 'A');
 
 -- --------------------------------------------------------
 
@@ -179,26 +185,26 @@ INSERT INTO `pedidos` (`idpedidos`, `idclientes`, `pedido`, `detalhes`, `cadastr
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura para tabela `produtos`
 --
 
-CREATE TABLE `produto` (
-  `idproduto` int(10) UNSIGNED NOT NULL,
+CREATE TABLE `produtos` (
+  `idprodutos` int(10) UNSIGNED NOT NULL,
   `img` varchar(145) DEFAULT NULL,
   `produto` varchar(145) NOT NULL DEFAULT '',
   `valor` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `cadatro` datetime DEFAULT NULL,
+  `cadastro` datetime DEFAULT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `produto`
+-- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produto` (`idproduto`, `img`, `produto`, `valor`, `cadatro`, `alteracao`, `ativo`) VALUES
-(6, 'eee', 'peixe', 5.00, NULL, '2023-12-16 19:00:36', 'A'),
-(7, NULL, 'Franguinho', 5.00, NULL, '2023-12-16 19:00:36', 'A');
+INSERT INTO `produtos` (`idprodutos`, `img`, `produto`, `valor`, `cadastro`, `alteracao`, `ativo`) VALUES
+(6, 'peixeFrito.jpg', 'peixe', 5.00, '2023-12-18 04:50:00', '2023-12-18 08:06:23', 'A'),
+(7, 'frangoFrito.jpg', 'Franguinho', 5.00, '2023-12-18 04:50:00', '2023-12-18 07:56:47', 'A');
 
 -- --------------------------------------------------------
 
@@ -269,10 +275,10 @@ ALTER TABLE `pedidos`
   ADD KEY `FK_idclientes` (`idclientes`);
 
 --
--- Índices de tabela `produto`
+-- Índices de tabela `produtos`
 --
-ALTER TABLE `produto`
-  ADD PRIMARY KEY (`idproduto`);
+ALTER TABLE `produtos`
+  ADD PRIMARY KEY (`idprodutos`);
 
 --
 -- Índices de tabela `usuario`
@@ -300,7 +306,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT de tabela `ingredientes`
 --
 ALTER TABLE `ingredientes`
-  MODIFY `idingredientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idingredientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `pacote`
@@ -321,10 +327,10 @@ ALTER TABLE `pedidos`
   MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `produto`
+-- AUTO_INCREMENT de tabela `produtos`
 --
-ALTER TABLE `produto`
-  MODIFY `idproduto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `produtos`
+  MODIFY `idprodutos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
@@ -341,7 +347,7 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `pacotecadastro`
   ADD CONSTRAINT `FK_pacotecadastro_pacote` FOREIGN KEY (`idpacote`) REFERENCES `pacote` (`idpacote`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_pacotecadastro_produto` FOREIGN KEY (`idproduto`) REFERENCES `produto` (`idproduto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_pacotecadastro_produto` FOREIGN KEY (`idproduto`) REFERENCES `produtos` (`idprodutos`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `pedidos`
