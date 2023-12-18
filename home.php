@@ -32,7 +32,7 @@ include_once './pages/time.php';
                         <i class="fa-solid fa-money-bill-trend-up" title="Financeiro"></i>
                     </a>
 
-                    <a href="#" class="linkMenu" idMenu="listarIngredientes">
+                    <a href="#" class="linkMenu" idMenu="estoqueDecision">
                         <i class="fa-solid fa-boxes-stacked" title="Estoque"></i>
                     </a>
 
@@ -78,8 +78,14 @@ include_once './pages/time.php';
                     if ($page == 'listarPacotes') {
                         include_once './pages/pacotes/listarPacotes.php';
                     }
+                    if ($page == 'estoqueDecision') {
+                        include_once './pages/estoqueDecision.php';
+                    }
                     if ($page == 'listarIngredientes') {
-                        include_once './pages/ingredientes/listarIngredientes.php';
+                        include_once './pages/listarIngredientes.php';
+                    }
+                    if ($page == 'listarProdutos') {
+                        include_once './pages/listarProdutos.php';
                     }
                     if ($page == 'perguntas') {
                         include_once './footerPages/perguntas.php';

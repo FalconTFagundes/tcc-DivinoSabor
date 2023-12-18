@@ -107,13 +107,20 @@ switch ($acao) {
         break;
 
 
-        // ESTOQUE - INGREDIENTES/PRODUTOS
+        // ESTOQUE - DECISÃO (INGREDIENTE OU PRODUTO?)
+
+    case 'estoqueDecision':
+        $_SESSION["page"] = 'estoqueDecision';
+        include_once './pages/estoqueDecision.php';
+        break;
+
+        // ESTOQUE - INGREDIENTES
 
     case 'listarIngredientes':
         $_SESSION["page"] = 'listarIngredientes';
         include_once './pages/ingredientes/listarIngredientes.php';
         break;
-    
+
     case 'excluirIngredientes':
         include_once './pages/ingredientes/excluirIngredientes.php';
         break;
@@ -121,6 +128,14 @@ switch ($acao) {
     case 'ativarIngredientes':
         include_once './pages/ingredientes/ativarIngredientes.php';
         break;
+
+        // ESTOQUE - PRODUTOS
+
+    case 'listarProdutos':
+        $_SESSION["page"] = 'listarProdutos';
+        include_once './pages/produtos/listarProdutos.php';
+        break;
+
 
         // páginas de ações
 
