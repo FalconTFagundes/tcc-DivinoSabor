@@ -8,8 +8,8 @@
   <h1 style="text-align: center;">Estoque Produtos</h1>
 
   <!-- btn que chama a modal -->
-  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadClientes">
-    <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Clientes
+  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadProdutos">
+    <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Produto
   </button>
 
 
@@ -26,15 +26,13 @@
     <table class="table-financeira table table-hover">
       <thead>
         <tr>
-          <th scope="col" width="5">Código</th>
-          <th scope="col" width="15%">Nome</th>
-          <th scope="col" width="20%">Endereço</th>
-          <th scope="col" width="10%">Complemento</th>
-          <th scope="col" width="10%">Estado</th>
-          <th scope="col" width="15%">Cidade</th>
-          <th scope="col" width="5%">Telefone</th>
-          <th scope="col" width="10%">Ações</th>
-          <!-- CEP consta somente no relatório!! -->
+          <th scope="col" width="10">Código</th>
+          <th scope="col" width="20%">Imagem</th>
+          <th scope="col" width="20%">Nome</th>
+          <th scope="col" width="10%">Valor</th>
+          <th scope="col" width="25%">Data e Hora de Cadastro</th>
+          <th scope="col" width="15%">Ação</th>
+
         </tr>
       </thead>
       <tbody>
@@ -42,51 +40,47 @@
         <?php
         $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
-        $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo','clientes');
-        if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
-          foreach ($retornoListarClientes as $itemCliente) {
-            $idCliente = $itemCliente->idclientes;
-            $nomeCliente = $itemCliente->nome;
-            $enderecoCliente = $itemCliente->endereco;
-            $complementoCliente = $itemCliente->complemento;
-            $estadoCliente = $itemCliente->estado;
-            $cidadeCliente = $itemCliente->cidade;
-            $cepCliente = $itemCliente->cep;
-            $telefoneCliente = $itemCliente->telefone;
-            $cadastroCliente = $itemCliente->cadastro;
-            $ativoCliente = $itemCliente->ativo;
+        $retornoListarProdutos = listarGeral('idprodutos, img, produto, valor, cadastro, alteracao, ativo','produtos');
+        if (is_array($retornoListarProdutos) && !empty($retornoListarProdutos)) {
+          foreach ($retornoListarProdutos as $itemProduto) {
+            $idProduto = $itemProduto->idprodutos;
+            $imgProduto = $itemProduto -> img;
+            $nomeProduto = $itemProduto -> produto;
+            $valorProduto = $itemProduto -> valor;
+            $cadastroProduto = $itemProduto -> cadastro;
+            $dataCadastroFormatada = formatarDataHoraBr($cadastroProduto); //passando para br pois será exibida
+            $ativoProduto = $itemProduto -> ativo;
+   
         ?>
 
             <tr>
-              <td scope="row"><?php echo $idCliente; ?></td>
-              <td><?php echo $nomeCliente; ?></td>
-              <td><?php echo $enderecoCliente; ?></td>
-              <td><?php echo $complementoCliente; ?></td>
-              <td><?php echo $estadoCliente; ?></td>
-              <td><?php echo $cidadeCliente; ?></td>
-              <td><?php echo $telefoneCliente; ?></td>
+              <td scope="row"><?php echo $idProduto; ?></td>
+              <td><img src="./assets/images/produtos/<?php echo $imgProduto; ?>" alt="Imagem Produto" class="img-thumbnail"></td>
+              <td><?php echo $nomeProduto; ?></td>
+              <td><?php echo $valorProduto; ?></td>
+              <td><?php echo $dataCadastroFormatada; ?></td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                   <?php
-                  if ($ativoCliente == 'A') {
+                  if ($ativoProduto == 'A') {
                   ?>
-                    <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idCliente; ?>,'desativar','ativarClientes','listarClientes', 'Cliente Desativado com Sucesso');"> <i class="fa-solid fa-unlock" title="Cliente Ativado"></i> Ativado</button>
+                    <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idProduto; ?>,'desativar','ativarProdutos','listarProdutos', 'Produto Desativado com Sucesso');"> <i class="fa-solid fa-unlock" title="Produto Ativado"></i> Ativado</button>
                   <?php
                   } else {
                   ?>
-                    <button type='button' class='btn btn-outline-warning' onclick="ativarGeral(<?php echo $idCliente; ?>, 'ativar', 'ativarClientes','listarClientes', 'Cliente Ativado com Sucesso');"><i class="fa-solid fa-lock" title="Cliente Não Ativado"></i> Desativado</button>
+                    <button type='button' class='btn btn-outline-warning' onclick="ativarGeral(<?php echo $idProduto; ?>, 'ativar', 'ativarProdutos','listarProdutos', 'Produto Ativado com Sucesso');"><i class="fa-solid fa-lock" title="Produto Não Ativado"></i> Desativado</button>
 
                   <?php
                   }
                   ?>
                   <!-- passando id diretamente na URL - sem SEM AJAX -->
-                  <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idCliente; ?>')">
+                  <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idProduto; ?>')">
                     <button type="button" class="btn btn-outline-info">
                       <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                     </button>
                   </a>
 
-                  <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idCliente; ?>', 'excluirClientes', 'listarClientes', 'Certeza que deseja excluir este Cliente?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
+                  <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idProduto; ?>', 'excluirProdutos', 'listarProdutos', 'Certeza que deseja excluir este Produto?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
                 </div>
               </td>
             </tr>
@@ -102,17 +96,17 @@
     </table>
   </div>
 
-  <!-- Modal Cad Cliente -->
-  <div class="modal fade" id="modalCadClientes" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
+  <!-- Modal Cad Produto -->
+  <div class="modal fade" id="modalCadProdutos" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color:blueviolet; color: white; ">
-          <h5 class="modal-title" id="modalCadPedido">Cadastrar Cliente <i class="fa-solid fa-user-plus" title="Cadastro de Clientes"></i></h5>
+          <h5 class="modal-title" id="modalCadPedido">Cadastrar Produto <i class="fa-solid fa-user-plus" title="Cadastro de Produtos"></i></h5>
         </div>
-        <form name="frmCadClientes" method="POST" id="frmCadClientes" class="frmCadClientes" action="#">
+        <form name="frmCadProdutos" method="POST" id="frmCadProdutos" class="frmCadProdutos" action="#">
           <div class="modal-body modaisCorpos">
             <div class="form-group">
-              <label for="nomeCliente" class="form-label">Nome do Cliente</label>
+              <label for="nomeCliente" class="form-label">Nome do produto</label>
               <input type="text" class="form-control inputModal" name="nomeCliente" id="nomeCliente" aria-describedby="nomeCliente" required>
             </div>
 
@@ -154,7 +148,7 @@
     function mostrarAlerta() {
       Swal.fire({
         title: 'Você tem certeza?',
-        text: 'Deseja gerar o relatório geral dos clientes?',
+        text: 'Deseja gerar o relatório geral dos produtos?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -170,7 +164,7 @@
             showConfirmButton: false,
             timer: 700
           });
-          window.location.href = './gerarRelatorios/gerarRelatClientes.php';
+          window.location.href = './gerarRelatorios/gerarRelatProdutos.php';
         }
       });
     }
@@ -178,7 +172,7 @@
     function mostrarAlertaIdGet(id) {
       Swal.fire({
         title: 'Você tem certeza?',
-        text: 'Deseja gerar o relatório do cliente?',
+        text: 'Deseja gerar o relatório do produto?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -194,7 +188,7 @@
             showConfirmButton: false,
             timer: 700
           });
-          window.location.href = './gerarRelatorios/gerarRelatUnCliente.php?id=' + id;
+          window.location.href = './gerarRelatorios/gerarRelatUnProduto.php?id=' + id;
         }
       });
     }
