@@ -66,14 +66,16 @@
     <!-- sweet alert -->
     <script src="assets/sweetAlert2/sweetAlert2.js"></script>
 
+    <!-- croppie -->
+    <script src="assets/croppiejs/croppie.min.js"></script>
+    
     <!-- inputmask -->
     <script src="assets/inputMask/inputMask.js"></script>
 
     <!-- Bootstrap v4.0 -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    
-    <!-- croppie -->
-    <script src="assets/croppiejs/croppie.min.js"></script>
+
+
 
     <!-- calendario -->
     <script src='./assets/js/index.global.min.js'></script>

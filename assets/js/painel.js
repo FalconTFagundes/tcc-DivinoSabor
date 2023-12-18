@@ -1220,6 +1220,47 @@ document.addEventListener('DOMContentLoaded', function () {
 // }
 
 
+
+$(document).ready(function () {
+    // clicar Enter no campo de código de barras
+    $('#codigoIngrediente').keypress(function (e) {
+        if (e.which === 13) { // verificação - enter :D
+            e.preventDefault(); 
+            $('#btnConsultIngredientes').click(); // aciona o clique no btn de consulta
+        }
+    });
+
+    $('#btnConsultIngredientes').on('click', function () {
+        // valor do código de barras
+        var codigoDeBarras = $('#codigoIngrediente').val();
+        console.log(codigoDeBarras);
+
+        $.ajax({
+            url: 'consultaBancoIngredientes.php',
+            method: 'POST',
+            data: {
+                codigoDeBarras: codigoDeBarras
+            },
+            dataType: 'json',
+            success: function (data) {
+                $('#nomeIngred').val(data['nomeIngred']);
+                $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
+                $('#pesoIngred').val(data['pesoUnit']);
+                $('#valorIngred').val(data['precoUnit']);
+
+                 // desabilitar o campo de upload de arquivo pois a imagem já existente irá aparecer
+                 $('#imgIngrediente').prop('disabled', true); 
+                 $('#avisoDesabilitar').show(); //aviso do pq foi desabilitado
+            },
+            error: function () {
+                console.log('Erro na consulta.');
+            }
+        });
+    });
+});
+
+
+
 // UPLOAD INGREDIENTES
 var redimensionar = $('#previewUploadIngrediente').croppie({
     enableExif: true,
@@ -1236,7 +1277,7 @@ var redimensionar = $('#previewUploadIngrediente').croppie({
 });
 
 // Manipulador de mudança para o input de arquivo
-$('#imgIngrediente').on('change', function () {
+$('#imgProduto').on('change', function () {
     var redimensionarImgIngrediente = new FileReader();
 
     redimensionarImgIngrediente.onload = function (e) {
@@ -1288,43 +1329,69 @@ function cadIngredientesUpload(formId) {
 }
 
 
-
-
-$(document).ready(function () {
-    // clicar Enter no campo de código de barras
-    $('#codigoIngrediente').keypress(function (e) {
-        if (e.which === 13) { // verificação - enter :D
-            e.preventDefault(); 
-            $('#btnConsultIngredientes').click(); // aciona o clique no btn de consulta
-        }
-    });
-
-    $('#btnConsultIngredientes').on('click', function () {
-        // valor do código de barras
-        var codigoDeBarras = $('#codigoIngrediente').val();
-        console.log(codigoDeBarras);
-
-        $.ajax({
-            url: 'consultaBancoIngredientes.php',
-            method: 'POST',
-            data: {
-                codigoDeBarras: codigoDeBarras
-            },
-            dataType: 'json',
-            success: function (data) {
-                $('#nomeIngred').val(data['nomeIngred']);
-                $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
-                $('#pesoIngred').val(data['pesoUnit']);
-                $('#valorIngred').val(data['precoUnit']);
-
-                 // desabilitar o campo de upload de arquivo pois a imagem já existente irá aparecer
-                 $('#imgIngrediente').prop('disabled', true); 
-                 $('#avisoDesabilitar').show(); //aviso do pq foi desabilitado
-            },
-            error: function () {
-                console.log('Erro na consulta.');
-            }
-        });
-    });
+// UPLOAD PRODUTOS
+var redimensionarProduto = $('#previewUploadProduto').croppie({
+    enableExif: true,
+    enableOrientation: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'square'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
 });
 
+// Manipulador de mudança para o input de arquivo
+$('#imgIngrediente').on('change', function () {
+    var redimensionarImgProduto = new FileReader();
+
+    redimensionarImgProduto.onload = function (e) {
+        redimensionarProduto.croppie('bind', {
+            url: e.target.result
+        });
+    }
+
+    redimensionarImgProduto.readAsDataURL(this.files[0]);
+});
+
+// Manipulador de envio do formulário
+function cadProdutosUpload(formId) {
+    $('#' + formId).on('submit', function (event) {
+        event.preventDefault();
+
+        var formdata = new FormData(this);
+
+        redimensionarProduto.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (img) {
+            formdata.append("imagem", img);
+
+            $.ajax({
+                url: "uploads/uploadProdutos.php",
+                type: "POST",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (retorna) {
+                    /*             console.log(formdata); */
+                    console.log(retorna);
+                    $('#modalCadProdutos').modal('hide')
+                    setTimeout(function () {
+                        atualizarPagina('listarProdutos');
+                    }, 1000);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Salvo com Sucesso',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            });
+        });
+    });
+}

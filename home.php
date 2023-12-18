@@ -82,10 +82,10 @@ include_once './pages/time.php';
                         include_once './pages/estoqueDecision.php';
                     }
                     if ($page == 'listarIngredientes') {
-                        include_once './pages/listarIngredientes.php';
+                        include_once './pages/ingredientes/listarIngredientes.php';
                     }
                     if ($page == 'listarProdutos') {
-                        include_once './pages/listarProdutos.php';
+                        include_once './pages/produtos/listarProdutos.php';
                     }
                     if ($page == 'perguntas') {
                         include_once './footerPages/perguntas.php';
