@@ -33,7 +33,7 @@ include_once "./func/dashboard.php";
 
     <div class="card">
         <div>
-            <div class="numbers"><?php echo $retornoSomaVendas; ?></div>
+            <div class="numbers"><?php echo number_format($retornoSomaVendas, 0, ',', '.') . " R$"; ?></div>
             <div class="cardName">Vendas mensais</div>
         </div>
 
@@ -51,7 +51,7 @@ include_once "./func/dashboard.php";
 
     <div class="card">
         <div>
-            <div class="numbers"><?php echo $retornoDiferencaDefict;?></div>
+            <div class="numbers"><?php echo $retornoDiferencaDefict . " R$"; ?></div>
             <div class="cardName">Défict</div>
         </div>
 
@@ -60,9 +60,12 @@ include_once "./func/dashboard.php";
         </div>
     </div>
 
+    <?php
+    $lucro = $retornoSomaVendas - $retornoDiferencaDefict;
+    ?>
     <div class="card">
         <div>
-            <div class="numbers">704</div>
+            <div class="numbers"><?php echo $lucro . " R$"; ?></div>
             <div class="cardName">Lucro</div>
         </div>
 
