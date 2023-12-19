@@ -53,6 +53,7 @@ try {
             'color' => $color,
             'start' => $start,
             'end' => $end,
+            'tipo' => 'pedido'
         ];
     }
 
