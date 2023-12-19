@@ -1239,7 +1239,11 @@ function carregaUploadIngredientes(){
 
                 $('#nomeIngred').val(data['nomeIngred']);
                 if (data['img'] != null) {
+                    $("#imgIngrediente").prop('disabled', true);
+                    $('#msgBlockInput').html("<div class='alert alert-warning' style='text-align: center;' role='alert'>Função bloqueada pois a imagem já está sendo exibida</div>")
                     $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
+                } else {
+                    msgGeral('Ingrediente não encontrado', 'error');
                 }
                 $('#pesoIngred').val(data['pesoUnit']);
                 $('#valorIngred').val(data['precoUnit']);
