@@ -64,6 +64,7 @@ try {
         <body>
             <h1>RELATÓRIO - PAINEL FINANCEIRO</h1>
     ";
+        $dados .= "<h4>Usuário Emissor: <b>" . $_SESSION['nomeUser'] . "</b></h4>";
 
         // Dados Financeiros
         $dadosFinanceiros = $_SESSION['dados_painel_financeiro'] ?? null;
