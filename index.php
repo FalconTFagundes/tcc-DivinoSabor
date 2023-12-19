@@ -68,14 +68,17 @@
 
     <!-- croppie -->
     <script src="assets/croppiejs/croppie.min.js"></script>
-    
+
     <!-- inputmask -->
     <script src="assets/inputMask/inputMask.js"></script>
 
     <!-- Bootstrap v4.0 -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
-
+    <!-- Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='./assets/js/graficos/grafico1.js'></script>
+    <script src='./assets/js/graficos/grafico2.js'></script>
 
     <!-- calendario -->
     <script src='./assets/js/index.global.min.js'></script>
