@@ -2,6 +2,10 @@
 
 <body>
 
+    <div style="text-align: center;" class="headerCalendar">
+        <h1>Calendário</h1>
+    </div>
+
     <div class="calendario-body">
         <div id='calendar'></div>
     </div>
@@ -70,13 +74,13 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Gerando Relatório :D',
-                    showConfirmButton: false,
-                    timer: 700
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Gerando Relatório :D',
+                        showConfirmButton: false,
+                        timer: 700
 
-                })
+                    })
                     window.location.href = './gerarRelatorios/gerarRelatEventos.php';
                 }
             });

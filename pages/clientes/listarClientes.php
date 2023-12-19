@@ -5,7 +5,9 @@
 
   ?>
 
-  <h1 style="text-align: center;">Clientes</h1>
+  <div style="text-align: center;" class="headerCalendar">
+    <h1>Clientes</h1>
+  </div>
 
   <!-- btn que chama a modal -->
   <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadClientes">
@@ -42,7 +44,7 @@
         <?php
         $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
 
-        $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo','clientes');
+        $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo', 'clientes');
         if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
           foreach ($retornoListarClientes as $itemCliente) {
             $idCliente = $itemCliente->idclientes;

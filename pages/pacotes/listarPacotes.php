@@ -9,19 +9,13 @@ $opcoesPacote = obterOpcoesDoBanco('pacote', 'idpacote', 'pacote');
 $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
 
 ?>
-<!DOCTYPE html>
-<html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Título Aqui</title>
-    <!-- Adicione os links para seus arquivos de estilo e scripts aqui -->
-</head>
+<div style="text-align: center;" class="headerCalendar">
+<h1>Pacotes</h1>
 
-<body>
-    <h1 style="text-align: center;">Pacotes</h1>
+  </div>
 
+    
     <!-- btn que chama a modal -->
     <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadPacotes">
         <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Pacote
@@ -268,6 +262,3 @@ $opcoesProduto = obterOpcoesDoBanco('produto', 'idproduto', 'produto');
             });
         }
     </script>
-</body>
-
-</html>

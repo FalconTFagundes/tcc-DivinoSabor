@@ -6,9 +6,9 @@ include_once './func/dashboard.php';
 
 ?>
 
-<h1 style="text-align: center;">Estoque Ingredientes</h1>
-
-
+<div style="text-align: center;" class="headerCalendar">
+<h1>Estoque Ingredientes</h1>
+</div>
 
 <!-- btn que chama a modal -->
 <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadIngrediente">

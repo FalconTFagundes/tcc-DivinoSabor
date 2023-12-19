@@ -1,11 +1,11 @@
 <!-- a class do calendário é apenas para aproveitamento da estilização -->
 
-<button type="button" class="btn btn-primary btn-lg linkMenu" idMenu="listarIngredientes" id="mostrarCalendarioBtn"><i class="fa-solid fa-eye" title="Exibir"></i> Exibir Ingredientes</button>
+<button type="button" class="btn btn-primary btn-lg linkMenuEstoqueDecision" idMenu="listarIngredientes" id="mostrarCalendarioBtn"><i class="fa-solid fa-eye" title="Exibir"></i> Exibir Ingredientes</button>
 
-<button type="button" class="btn btn-secondary btn-lg linkMenu" idMenu="listarProdutos" id="btnGerarCalendario"><i class="fa-solid fa-layer-group"></i> Exibir Produtos</button>
+<button type="button" class="btn btn-secondary btn-lg linkMenuEstoqueDecision" idMenu="listarProdutos" id="btnGerarCalendario"><i class="fa-solid fa-layer-group"></i> Exibir Produtos</button>
 
 <script>
-    $('.linkMenu').click(function(event) {
+    $('.linkMenuEstoqueDecision').click(function(event) {
         event.preventDefault();
 
         let menuClicado = $(this).attr('idMenu');

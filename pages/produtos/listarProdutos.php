@@ -5,7 +5,11 @@ include_once './func/dashboard.php';
 
 ?>
 
-<h1 style="text-align: center;">Estoque Produtos</h1>
+<div style="text-align: center;" class="headerCalendar">
+  <h1>Estoque Produtos</h1>
+
+</div>
+
 
 <!-- btn que chama a modal -->
 <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadProdutos">
@@ -114,7 +118,7 @@ include_once './func/dashboard.php';
             <input type="file" class="form-control inputModal" name="imgProduto" id="imgProduto">
           </div>
           <div id="previewUploadProduto"></div>
-          
+
           <div class="mb-3">
             <label for="valorProduto" class="form-label">Valor</label>
             <input type="text" class="form-control inputModal" name="valorProduto" id="valorProduto" required>

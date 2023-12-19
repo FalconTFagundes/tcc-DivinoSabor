@@ -5,8 +5,10 @@ include_once './config/conexao.php';
 include_once './func/dashboard.php';
 
 ?>
+<div style="text-align: center;" class="headerCalendar">
+  <h1>Pedidos</h1>
 
-<h1 style="text-align: center;">Pedidos</h1>
+</div>
 
 <!-- btn que chama a modal -->
 <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadPedido">
