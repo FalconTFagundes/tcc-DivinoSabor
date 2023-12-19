@@ -59,7 +59,7 @@ function obterPacotes()
             MAX(pacote.qtdPessoas) AS qtdPessoas,
             MAX(pacotecadastro.valorPacote) AS valorPacote,
             MAX(pacotecadastro.detalhes) AS detalhes,
-            MAX(pacotecadastro.ativo) AS AtivoPacoteCadastro,
+            MAX(pacote.ativo) AS AtivoPacoteCadastro,
             MAX(pacotecadastro.cadastro) AS cadastro,
             MAX(pacotecadastro.alteracao) AS alteracao
           FROM pacote
