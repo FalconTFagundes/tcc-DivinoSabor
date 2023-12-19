@@ -964,7 +964,8 @@ table {
   gap: 5%;
 }
 
-.containerVendasRecentes, .containerClientesRecentes {
+.containerVendasRecentes,
+.containerClientesRecentes {
   width: 100%;
 }
 
@@ -1056,7 +1057,9 @@ table {
 }
 
 
-.details .vendasRecentes tbody, .details .clientesRecentes tbody, .details p {
+.details .vendasRecentes tbody,
+.details .clientesRecentes tbody,
+.details p {
   font-weight: 300 !important;
   font-style: normal;
   font-size: 1rem;
@@ -1148,6 +1151,19 @@ body.swal2-height-auto {
   grid-gap: 25%;
 
 }
+
+#btnRelatFinanceiro {
+  margin-left: 7%;
+  color: #9e77f1;
+  background: none;
+  border: 2px solid;
+}
+
+#btnRelatFinanceiro:hover{
+  background-color: #6f42c1;
+  color: white;
+}
+
 
 /* FINAL LISTAR FINANCEIRO */
 

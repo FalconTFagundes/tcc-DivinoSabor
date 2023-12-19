@@ -1341,6 +1341,8 @@ function cadProdutosUpload(formId) {
 
 // gráficos
 
+// gráfico 01 :D
+
 const ctx = document.getElementById('grafico1');
 
   new Chart(ctx, {
@@ -1361,6 +1363,8 @@ const ctx = document.getElementById('grafico1');
       }
     }
   });
+
+  // gráfico 02 :D
 
   const ctx2 = document.getElementById('grafico2');
 

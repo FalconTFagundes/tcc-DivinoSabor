@@ -63,6 +63,7 @@
     <!-- Popper.js -->
     <script src="assets/popperJs/popper.js"></script>
 
+
     <!-- sweet alert -->
     <script src="assets/sweetAlert2/sweetAlert2.js"></script>
 
@@ -72,21 +73,24 @@
     <!-- inputmask -->
     <script src="assets/inputMask/inputMask.js"></script>
 
-    <!-- Bootstrap v4.0 -->
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-
     <!-- Gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src='./assets/js/graficos/grafico1.js'></script>
     <script src='./assets/js/graficos/grafico2.js'></script>
+
+    <!-- Bootstrap v4.0 -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- calendario -->
     <script src='./assets/js/index.global.min.js'></script>
     <script src='./assets/js/core/locales-all.global.min.js'></script>
     <script src='./assets/js/custom.js'></script>
 
+
+
     <!-- painel js -->
     <script src="./assets/js/painel.js"></script>
+
 
 </body>
 

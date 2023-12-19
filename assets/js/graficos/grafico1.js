@@ -1,29 +1,9 @@
+// Certifique-se de que Utils está definido ou inclua o arquivo que o define
 
-const chartData = {
-  labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-}
+const labelsGrafico1 = Utils.months({ count: 7 });
 
-const grafico1 = document.querySelector("#grafico1");
-
-new Chart(myChart, {
-  type: "polarArea",
-});
-
-const config = {
-    type: 'polarArea',
-    data: data,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    },
-  };
-
-const labels = Utils.months({count: 7});
-const data = {
-  labels: labels,
+const dataGrafico1 = {
+  labels: labelsGrafico1,
   datasets: [{
     label: 'My First Dataset',
     data: [65, 59, 80, 81, 56, 55, 40],
@@ -48,3 +28,19 @@ const data = {
     borderWidth: 1
   }]
 };
+
+const grafico1 = document.querySelector("#grafico1");
+
+if (grafico1) {
+  new Chart(grafico1, {
+    type: "polarArea",
+    data: dataGrafico1,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}

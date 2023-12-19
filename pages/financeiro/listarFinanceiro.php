@@ -10,6 +10,11 @@ include_once "./func/dashboard.php";
     <h2>Painel Financeiro</h2>
 </div>
 
+<button type="button" id="btnRelatFinanceiro" class="btn" onclick="mostrarAlerta();">
+  <i class="fa-solid fa-print" title="Gerar Relatório"></i>
+  Gerar Relatório Geral
+</button>
+
 <div class="cardBox">
 
     <div class="card">
@@ -79,12 +84,12 @@ include_once "./func/dashboard.php";
 
 <!-- GRÁFICOS -->
 
-<div class="graficoBox">
+<!-- <div class="graficoBox">
     <div class="box">
         <canvas id="grafico2"></canvas>
     </div>
     <div class="box"><canvas id="grafico1"></canvas></div>
-</div>
+</div> -->
 
 <!-- FIM GRÁFICOS -->
 
@@ -95,7 +100,7 @@ include_once "./func/dashboard.php";
         <div class="headerTableFin">
             <h2>Vendas recentes</h2>
             <div class="cardHeader">
-                <a href="" class="btn">Ver tudo</a>
+                <a href="" class="btn linkMenu" idMenu="listarPacotes">Ver tudo</a>
             </div>
         </div>
 
@@ -196,3 +201,39 @@ include_once "./func/dashboard.php";
         </div>
     </div>
 </div>
+<?php
+$_SESSION['dados_painel_financeiro'] = [
+    'qtdClientes' => $retornoQtdClientes['quantidade'],
+    'vendasMensais' => number_format($retornoSomaVendas, 0, ',', '.') . " R$",
+    'deficit' => $retornoDiferencaDefict . " R$",
+    'lucro' => $lucro . " R$",
+    'ultimasVendas' => $retornoUltimasVendas,
+    'ultimosClientes' => $ultimosClientes,
+];
+?>
+
+<script>
+     function mostrarAlerta() {
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: 'Deseja gerar o relatório financeiro geral?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, gerar relatório!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Gerando Relatório :D',
+          showConfirmButton: false,
+          timer: 700
+        });
+        window.location.href = `./gerarRelatorios/gerarRelatFinanceiro.php`;
+      }
+    });
+  }
+</script>
