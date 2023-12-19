@@ -1,4 +1,5 @@
 masks();
+
 //tema dark/light :D
 const btnDarkModeToggle = document.getElementById("btn-dark-mode-toggle");
 let themeSystem = localStorage.getItem("themeSystem") || "light";
@@ -52,13 +53,6 @@ defineCurrentTheme(themeSystem);
 updateLogo(themeSystem);
 updateWave(themeSystem);
 
-
-// focus input codigo - page listar ingredientes!!!!
-$(document).ready(function () {
-    $('#modalCadIngrediente').on('shown.bs.modal', function () {
-        $('#codigoIngrediente').focus();
-    });
-});
 
 
 function cadGeral(formId, modalId, pageAcao, pageRetorno) {
@@ -1220,9 +1214,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // }
 
 
-
-$(document).ready(function () {
-    // clicar Enter no campo de código de barras
+// UPLOAD INGREDIENTES
+function carregaUploadIngredientes(){
     $('#codigoIngrediente').keypress(function (e) {
         if (e.which === 13) { // verificação - enter :D
             e.preventDefault();
@@ -1258,39 +1251,12 @@ $(document).ready(function () {
             }
         });
     });
-});
+}
 
-
-
-// UPLOAD INGREDIENTES
-var redimensionarIngredientes = $('#previewUploadIngrediente').croppie({
-    enableExif: true,
-    enableOrientation: true,
-    viewport: {
-        width: 200,
-        height: 200,
-        type: 'square'
-    },
-    boundary: {
-        width: 300,
-        height: 300
-    }
-});
-
-// Manipulador de mudança para o input de arquivo
-$('#imgIngrediente').on('change', function () {
-    var lerIngrediente = new FileReader();
-    lerIngrediente.onload = function (e) {
-        redimensionarIngredientes.croppie('bind', {
-            url: e.target.result
-        });
-    }
-
-    lerIngrediente.readAsDataURL(this.files[0]);
-});
 
 // Manipulador de envio do formulário
 function cadIngredientesUpload(formId) {
+    carregaUploadIngredientes();
     $('#' + formId).on('submit', function (event) {
         event.preventDefault();
 
@@ -1329,35 +1295,7 @@ function cadIngredientesUpload(formId) {
 }
 
 
-
 // UPLOAD PRODUTOS
-var redimensionarImgProduto = $('#previewUploadProduto').croppie({
-    enableExif: true,
-    enableOrientation: true,
-    viewport: {
-        width: 200,
-        height: 200,
-        type: 'square'
-    },
-    boundary: {
-        width: 300,
-        height: 300
-    }
-});
-
-// Manipulador de mudança para o input de arquivo
-$('#imgProduto').on('change', function () {
-    var lerProduto = new FileReader();
-    lerProduto.onload = function (e) {
-        redimensionarImgProduto.croppie('bind', {
-            url: e.target.result
-        });
-    }
-
-    lerProduto.readAsDataURL(this.files[0]);
-});
-
-// Manipulador de envio do formulário
 function cadProdutosUpload(formId) {
     $('#' + formId).on('submit', function (event) {
         event.preventDefault();

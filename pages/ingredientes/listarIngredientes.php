@@ -149,14 +149,14 @@ include_once './func/dashboard.php';
           <div id="previewUploadIngrediente"></div>
           <div class="form-group">
             <label for="codigoIngrediente" class="form-label">Código do Ingrediente</label>
-            <input type="text" class="form-control inputModal" name="codigoIngrediente" id="codigoIngrediente" required>
+            <input type="text" class="form-control inputModal" name="codigoIngrediente" id="codigoIngrediente">
           </div>
           <div class="form-group">
             <button type="button" class="btn btn-outline-warning" id="btnConsultIngredientes">Consultar</button>
           </div>
           <div class="form-group">
             <label for="quantIngred" class="form-label">Quantidade</label>
-            <input type="number" class="form-control inputModal" name="quantIngred" id="quantidade" required>
+            <input type="number" class="form-control inputModal" name="quantIngred" id="quantidade">
           </div>
 
           <div class="form-group">
@@ -188,11 +188,17 @@ include_once './func/dashboard.php';
   </div>
 </div>
 <script>
+  carregaUploadIngredientes();
   function formatarNumeroDecimal(input) {
     input.value = input.value.replace(/,/g, '.');
   }
 
-
+  // focus input codigo - page listar ingredientes!!!!
+  $(document).ready(function() {
+    $('#modalCadIngrediente').on('shown.bs.modal', function() {
+      $('#codigoIngrediente').focus();
+    });
+  });
 
   function mostrarAlerta() {
     Swal.fire({
@@ -241,4 +247,27 @@ include_once './func/dashboard.php';
       }
     });
   }
+  var redimensionarIngredientes = $('#previewUploadIngrediente').croppie({
+    enableExif: true,
+    enableOrientation: true,
+    viewport: {
+      width: 200,
+      height: 200,
+      type: 'square'
+    },
+    boundary: {
+      width: 300,
+      height: 300
+    }
+  });
+  $('#imgIngrediente').on('change', function() {
+    var lerIngrediente = new FileReader();
+    lerIngrediente.onload = function(e) {
+      redimensionarIngredientes.croppie('bind', {
+        url: e.target.result
+      });
+    }
+
+    lerIngrediente.readAsDataURL(this.files[0]);
+  });
 </script>

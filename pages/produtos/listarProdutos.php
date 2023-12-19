@@ -123,7 +123,7 @@ include_once './func/dashboard.php';
         </div>
         <div class="modal-footer modaisCorpos">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-          <button type="submit" class="btn btn-primary" id="btnCadProdutos" onclick="cadProdutosUpload('frmCadClientes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+          <button type="submit" class="btn btn-primary" id="btnCadProdutos" onclick="cadProdutosUpload('frmCadProdutos');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
         </div>
       </form>
     </div>
@@ -179,7 +179,33 @@ include_once './func/dashboard.php';
       }
     });
   }
-  
+
+  /* PARTE DA FUNCTION DE UPLOADE */
+  var redimensionarImgProduto = $('#previewUploadProduto').croppie({
+    enableExif: true,
+    enableOrientation: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'square'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
+});
+
+// Manipulador de mudança para o input de arquivo
+$('#imgProduto').on('change', function () {
+    var lerProduto = new FileReader();
+    lerProduto.onload = function (e) {
+        redimensionarImgProduto.croppie('bind', {
+            url: e.target.result
+        });
+    }
+
+    lerProduto.readAsDataURL(this.files[0]);
+});
 </script>
 
 
