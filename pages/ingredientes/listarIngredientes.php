@@ -31,16 +31,16 @@ include_once './func/dashboard.php';
   <table class="table-financeira table table-hover">
     <thead>
       <tr>
-        <th scope="col" width="5%">Código</th>
-        <th scope="col" width="8%">Imagem</th>
-        <th scope="col" width="10%">Nome</th>
-        <th scope="col" width="5%">Quantidade</th>
-        <th scope="col" width="12%">Peso unitário</th>
-        <th scope="col" width="10%">Valor unitário</th>
-        <th scope="col" width="10%">Data da compra</th>
-        <th scope="col" width="10%">Valor total</th>
-        <th scope="col" width="10%">Data de validade</th>
-        <th scope="col" width="20%" class="text-center">Ação</th>
+        <th scope="col" width="5%"><i class="fa-solid fa-hashtag"></i> Código</th>
+        <th scope="col" width="8%"><i class="fa-solid fa-image"></i> Imagem</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-file-signature"></i> Nome</th>
+        <th scope="col" width="5%"><i class="fa-solid fa-arrow-up-wide-short"></i> Quantidade</th>
+        <th scope="col" width="12%"><i class="fa-solid fa-weight-scale"></i> Peso unitário</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-money-check-dollar"></i> Valor unitário</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-calendar-days"></i> Data da compra</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-coins"></i> Valor total</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-clock"></i> Data de validade</th>
+        <th scope="col" width="20%" class="text-center"><i class="fa-solid fa-pen-to-square"></i> Ação</th>
 
       </tr>
     </thead>
@@ -172,12 +172,12 @@ include_once './func/dashboard.php';
 
           <div class="mb-3">
             <label for="dataCompra" class="form-label">Data da compra</label>
-            <input type="date" class="form-control inputModal" name="dataCompra" id="dataCompra">
+            <input type="date" class="form-control inputModal" value="<?php echo date('Y-m-d'); ?>" name="dataCompra" id="dataCompra">
           </div>
 
           <div class="mb-3">
             <label for="dataValidade" class="form-label">Data de validade</label>
-            <input type="date" class="form-control inputModal" name="dataValidade" id="dataValidade">
+            <input type="date" class="form-control inputModal" name="dataValidade" id="dataValidade"> 
           </div>
         </div>
         <div class="modal-footer modaisCorpos">

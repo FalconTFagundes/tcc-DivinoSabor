@@ -28,14 +28,14 @@
     <table class="table-financeira table table-hover">
       <thead>
         <tr>
-          <th scope="col" width="5">Código</th>
-          <th scope="col" width="15%">Nome</th>
-          <th scope="col" width="20%">Endereço</th>
-          <th scope="col" width="10%">Complemento</th>
-          <th scope="col" width="10%">Estado</th>
-          <th scope="col" width="15%">Cidade</th>
-          <th scope="col" width="5%">Telefone</th>
-          <th scope="col" width="10%">Ações</th>
+          <th scope="col" width="5"><i class="fa-solid fa-id-badge"></i> Código</th>
+          <th scope="col" width="15%"><i class="fa-solid fa-user"></i> Nome</th>
+          <th scope="col" width="20%"><i class="fa-solid fa-location-dot"></i> Endereço</th>
+          <th scope="col" width="10%"><i class="fa-solid fa-house"></i> Complemento</th>
+          <th scope="col" width="10%"><i class="fa-solid fa-flag"></i> Estado</th>
+          <th scope="col" width="15%"><i class="fa-solid fa-location-crosshairs"></i> Cidade</th>
+          <th scope="col" width="5%"><i class="fa-solid fa-phone"></i> Telefone</th>
+          <th scope="col" width="10%"><i class="fa-solid fa-pen-to-square"></i> Ações</th>
           <!-- CEP consta somente no relatório!! -->
         </tr>
       </thead>

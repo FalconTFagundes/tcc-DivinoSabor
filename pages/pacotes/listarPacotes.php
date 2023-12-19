@@ -36,12 +36,12 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
     <table class="table-financeira table table-hover">
         <thead>
             <tr>
-                <th scope="col" width="5">Código</th>
-                <th scope="col" width="15%">Nome</th>
-                <th scope="col" width="20%">Detalhes</th>
-                <th scope="col" width="20%">Quantitativo que Alcança</th>
-                <th scope="col" width="20%">Valor</th>
-                <th scope="col" width="25%">Ações</th>
+                <th scope="col" width="5"><i class="fa-solid fa-hashtag"></i> Código</th>
+                <th scope="col" width="15%"><i class="fa-solid fa-file-signature"></i> Nome</th>
+                <th scope="col" width="20%"><i class="fa-solid fa-circle-info"></i> Detalhes</th>
+                <th scope="col" width="20%"><i class="fa-solid fa-arrow-up-wide-short"></i> Quantitativo que Alcança</th>
+                <th scope="col" width="20%"><i class="fa-solid fa-money-check-dollar"></i> Valor</th>
+                <th scope="col" width="25%"><i class="fa-solid fa-pen-to-square"></i> Ações</th>
             </tr>
         </thead>
         <tbody>

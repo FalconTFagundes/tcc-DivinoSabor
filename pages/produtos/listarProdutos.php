@@ -31,12 +31,12 @@ include_once './func/dashboard.php';
   <table class="table-financeira table table-hover">
     <thead>
       <tr>
-        <th scope="col" width="10">Código</th>
-        <th scope="col" width="20%">Imagem</th>
-        <th scope="col" width="20%">Nome</th>
-        <th scope="col" width="10%">Valor</th>
-        <th scope="col" width="25%">Data e Hora de Cadastro</th>
-        <th scope="col" width="15%">Ação</th>
+        <th scope="col" width="10"><i class="fa-solid fa-hashtag"></i> Código</th>
+        <th scope="col" width="20%"><i class="fa-solid fa-image"></i> Imagem</th>
+        <th scope="col" width="20%"><i class="fa-solid fa-file-signature"></i> Nome</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-money-check-dollar"></i> Valor</th>
+        <th scope="col" width="25%"><i class="fa-solid fa-clock"></i> Data e Hora de Cadastro</th>
+        <th scope="col" width="15%"><i class="fa-solid fa-pen-to-square"></i> Ação</th>
 
       </tr>
     </thead>

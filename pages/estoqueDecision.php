@@ -1,3 +1,7 @@
+<div style="text-align: center;" class="headerCalendar">
+    <h1>Estoque</h1>
+  </div>
+
 <!-- a class do calendário é apenas para aproveitamento da estilização -->
 
 <button type="button" class="btn btn-primary btn-lg linkMenuEstoqueDecision" idMenu="listarIngredientes" id="mostrarCalendarioBtn"><i class="fa-solid fa-eye" title="Exibir"></i> Exibir Ingredientes</button>
