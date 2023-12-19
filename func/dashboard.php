@@ -12,6 +12,19 @@
 //-------------------------------------------SESSÃO---------------------------------------------------------------------
 //validar Sessao usuário
 
+
+function nomeCorParaHex($nomeCor)
+{
+    $cores = [
+        'roxo' => '#9E77F1',
+        'amarelo' => '#D4C200',
+        'azul' => '#297BFF',
+        'vermelho' => '#FF0831',
+        'verde' => '#00BD3f',
+    ];
+    return isset($cores[$nomeCor]) ? $cores[$nomeCor] : '#000000';
+}
+
 function obterOpcoesDoBanco($tabela, $idColuna, $nomeColuna)
 {
     try {

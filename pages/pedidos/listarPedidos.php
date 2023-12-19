@@ -151,6 +151,16 @@ include_once './func/dashboard.php';
             <label for="dataEntregaPedido" class="form-label">Data de Entrega</label>
             <input type="date" class="form-control inputModal" name="dataEntregaPedido" id="dataEntregaPedido" required>
           </div>
+          <div class="mb-3">
+            <label for="corPedidoCalendario" class="form-label">Selecione a cor que o pedido ficará no calendário</label>
+            <select class="custom-select inputModal" name="corPedidoCalendario">
+              <option selected value="#9E77F1" style="color: #9E77F1;">Roxo</option>
+              <option value="#D4C200" style="color: #D4C200;">Amarelo</option>
+              <option value="#297BFF" style="color: #297BFF;">Azul</option>
+              <option value="#FF0831" style="color: #FF0831;">Vermelho</option>
+              <option value="#00BD3f" style="color: #00BD3f;">Verde</option>
+            </select>
+          </div>
         </div>
         <div class="modal-footer modaisCorpos">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>

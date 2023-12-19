@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
         eventClick: function (arg) {
             var eventId = arg.event.id;
             Swal.fire({
-                title: 'Deseja excluir este evento?',
+                title: 'Deseja excluir este item?',
                 text: 'Esta operação é irreversível!',
                 icon: 'warning',
                 showCancelButton: true,
@@ -183,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 });
             })
-            arg.event.remove();
         },
 
         // eu parei no passar o código para ao banco de dados no evento custom estatico
