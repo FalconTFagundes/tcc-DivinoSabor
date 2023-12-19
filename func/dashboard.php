@@ -85,7 +85,7 @@ function obterUltimosClientes()
     try {
         $conn = conectar();
 
-        $consulta = "SELECT idclientes, nome, cadastro
+        $consulta = "SELECT idclientes, nome, ativo, cadastro
                     FROM clientes
                     WHERE ativo = 'A'
                     ORDER BY cadastro DESC

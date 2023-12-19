@@ -68,7 +68,7 @@ include_once "./func/dashboard.php";
 
 <div class="graficoBox">
     <div class="box">
-    <canvas id="grafico2"></canvas>
+        <canvas id="grafico2"></canvas>
     </div>
     <div class="box"><canvas id="grafico1"></canvas></div>
 </div>
@@ -122,37 +122,44 @@ include_once "./func/dashboard.php";
     $ultimosClientes = obterUltimosClientes(); //capturando os três ultimos clientes cadastrados no banco
     ?>
 
-<div class="containerClientesRecentes">
-    <div class="headerTableFin">
-        <h2>Clientes recentes</h2>
-        <div class="cardHeader">
-            <a href="" class="btn">Ver tudo</a>
+    <div class="containerClientesRecentes">
+        <div class="headerTableFin">
+            <h2>Clientes recentes</h2>
+            <div class="cardHeader">
+                <a href="" class="btn">Ver tudo</a>
+            </div>
+        </div>
+
+        <div>
+            <table class="clientesRecentes">
+                <thead>
+                    <tr>
+                        <th scope="col" width="5%">Código do cliente</th>
+                        <th scope="col" width="25%">Nome do cliente</th>
+                        <th scope="col" width="25%">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php foreach ($ultimosClientes as $cliente) : ?>
+                        <tr>
+                            <th>
+                                <p><?php echo $cliente['idclientes']; ?></p>
+                            </th>
+                            <th>
+                                <p><?php echo $cliente['nome']; ?></p>
+                                                  <th>
+                                <?php
+                                if ($cliente['ativo'] == 'A') {
+                                    echo '<span class="status concluido">Ativo</span>';
+                                } else {
+                                    echo '<span class="status emAndamento">Inativo</span>';
+                                }
+                                ?>
+                            </th>
+                        </tr>
+                    <?php endforeach; ?> <!-- finalizando o loop aq baby ;) -->
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <div>
-        <table class="clientesRecentes">
-            <thead>
-                <tr>
-                    <th scope="col" width="5%">Código do pedido</th>
-                    <th scope="col" width="25%">Nome do cliente</th>
-                    <th scope="col" width="25%">Status</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach ($ultimosClientes as $cliente) : ?>
-                    <tr>
-                        <th>
-                            <p><?php echo $cliente['idclientes']; ?></p>
-                        </th>
-                        <th>
-                            <p><?php echo $cliente['nome']; ?></p>
-                        </th>
-                        <th><span class="status concluido">Concluído</span></th>
-                    </tr>
-                <?php endforeach; ?> <!-- finalizando o loop aq baby ;) -->
-            </tbody>
-        </table>
-    </div>
-</div>
