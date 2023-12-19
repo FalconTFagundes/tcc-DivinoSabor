@@ -1106,7 +1106,7 @@ body.swal2-height-auto {
   font-size: 3rem;
   color: #9e77f1;
   font-weight: 600;
-  padding-left: 7%;
+  text-align: center;
 }
 
 
@@ -1153,7 +1153,7 @@ body.swal2-height-auto {
 }
 
 #btnRelatFinanceiro {
-  margin-left: 7%;
+  margin-left: 5.5%;
   color: #9e77f1;
   background: none;
   border: 2px solid;

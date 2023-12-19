@@ -97,7 +97,7 @@ include_once "./func/dashboard.php";
 
     <div class="containerVendasRecentes">
         <!-- ORDENS RECENTES -->
-        <div class="headerTableFin">
+        <div class="he#btnRelatFinanceiro aderTableFin">
             <h2>Vendas recentes</h2>
             <div class="cardHeader">
                 <a href="" class="btn linkMenu" idMenu="listarPacotes">Ver tudo</a>
