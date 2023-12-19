@@ -624,8 +624,6 @@ ul .indicator::after {
 
 #Date,
 #controle-clock-toggle {
-#Date,
-#controle-clock-toggle {
   font-size: 1.3em !important;
   justify-content: center;
   align-items: center;
@@ -689,10 +687,14 @@ table {
   border-collapse: separate !important;
 }
 
-.img-thumbnail  {
-  width: 60% !important;
-  height: 60% !important;
+
+
+.img-thumbnail{
+  width: 60%;
+  height: 60%;
+
 }
+
 
 
 .table-financeira {
