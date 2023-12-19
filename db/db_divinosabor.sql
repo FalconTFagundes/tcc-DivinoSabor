@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/12/2023 às 14:32
+-- Tempo de geração: 19/12/2023 às 14:49
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -71,6 +71,13 @@ CREATE TABLE `events` (
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
+(1, 'Teste Evento', '#D4C200', '2023-12-29 03:00:00', '2023-12-30 03:00:00');
 
 -- --------------------------------------------------------
 
@@ -175,13 +182,25 @@ CREATE TABLE `pedidos` (
   `idpedidos` int(10) UNSIGNED NOT NULL,
   `idclientes` int(10) UNSIGNED NOT NULL,
   `pedido` varchar(45) NOT NULL,
-  `detalhes` varchar(70) NOT NULL,
+  `detalhes` longtext NOT NULL DEFAULT '',
   `cadastro` datetime NOT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A',
-  `dataEntrega` date DEFAULT NULL,
+  `dataEntrega` datetime DEFAULT NULL,
   `cor_pedidos` varchar(60) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`idpedidos`, `idclientes`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`, `cor_pedidos`) VALUES
+(5, 8, 'Festa de Aniversário 2025', 'Segundo cliente, mínimo 40 pessoas estarão na festa.', '2023-12-19 10:35:31', '2023-12-19 13:46:27', 'A', '2025-08-17 22:00:00', '#D4C200'),
+(6, 18, 'Festa Hallowen 2024', '20 pessoas', '2023-12-19 10:36:12', '2023-12-19 13:46:27', 'A', '2024-10-31 10:30:00', '#9E77F1'),
+(7, 10, 'Festa comida de buteco', 'comida clássica de buteco, minimo 20 pessoas segundo cliente', '2023-12-19 10:36:52', '2023-12-19 13:46:27', 'A', '2023-12-25 09:20:00', '#00BD3f'),
+(8, 11, 'Salgado Saae', 'um cento de salgado, variando entre mini-coxinha, mini-pizza, quibe e pastelzinho. Segundo o cliente o mesmo foi promovido e agora precisa pagar para o seu setor um cento de salgado.', '2023-12-19 10:37:57', '2023-12-19 13:46:27', 'A', '2023-12-18 11:40:00', '#297BFF'),
+(9, 8, 'Aniversário 2024', 'Festa de aniversário do nosso fiel cliente Rafael', '2023-12-19 10:40:01', '2023-12-19 13:46:27', 'A', '2024-08-17 13:00:00', '#FF0831'),
+(10, 8, 'teste data', 'dia 20', '2023-12-19 10:45:20', '2023-12-19 13:46:27', 'A', '2023-12-20 13:00:00', '#9E77F1');
 
 -- --------------------------------------------------------
 
@@ -306,7 +325,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `ingredientes`
@@ -330,7 +349,7 @@ ALTER TABLE `pacotecadastro`
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`

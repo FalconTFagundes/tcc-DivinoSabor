@@ -60,7 +60,7 @@ include_once './func/dashboard.php';
           $ativoPedido = $itemPedido->ativo;
           $dataEntrega = $itemPedido->dataEntrega;
 
-          $dataEntregaFormat = date("d/m/Y", strtotime($dataEntrega)); //passando para o formato br
+          $dataEntregaFormat = date("d/m/Y H:i:s", strtotime($dataEntrega)); //passando para o formato br
 
           $classeData = '';
           if (strtotime($dataAtual) >= strtotime($dataEntrega)) {
@@ -149,7 +149,7 @@ include_once './func/dashboard.php';
           </div>
           <div class="mb-3">
             <label for="dataEntregaPedido" class="form-label">Data de Entrega</label>
-            <input type="date" class="form-control inputModal" name="dataEntregaPedido" id="dataEntregaPedido" required>
+            <input type="datetime-local" class="form-control inputModal" name="dataEntregaPedido" id="dataEntregaPedido" required>
           </div>
           <div class="mb-3">
             <label for="corPedidoCalendario" class="form-label">Selecione a cor que o pedido ficará no calendário</label>

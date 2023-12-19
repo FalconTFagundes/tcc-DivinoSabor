@@ -34,7 +34,7 @@ try {
     }
 
     // QUERY para recuperar os eventos da tabela 'pedidos'
-    $query_pedidos = "SELECT idpedidos as id, pedido as title, cor_pedidos as color, DATE_FORMAT(cadastro, '%Y-%m-%dT%H:%i:%s') AS start, DATE_FORMAT(dataEntrega, '%Y-%m-%dT%H:%i:%s') AS end FROM pedidos";
+    $query_pedidos = "SELECT idpedidos as id, pedido as title, cor_pedidos as color, DATE_FORMAT(dataEntrega, '%Y-%m-%dT%H:%i:%s') AS start, DATE_FORMAT(dataEntrega, '%Y-%m-%dT%H:%i:%s') AS end FROM pedidos";
 
     // Prepara o QUERY
     $result_pedidos = $conn->prepare($query_pedidos);
