@@ -1264,6 +1264,10 @@ function carregaUploadIngredientes() {
                     $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
                 } else {
                     msgGeral('Ingrediente não encontrado', 'error');
+                    $("#imgIngrediente").prop('disabled', false); // habilito novamente o botão
+                    $('#msgBlockInput').html(""); // removo a mensagem da função block
+                    $('#previewUploadIngrediente').html(""); // removo o conteúdo que aparece no preview
+
                 }
                 $('#pesoIngred').val(data['pesoUnit']);
                 $('#valorIngred').val(data['precoUnit']);
@@ -1363,7 +1367,7 @@ function cadProdutosUpload(formId) {
 
 // gráfico 01 :D
 
-const ctx = document.getElementById('grafico1');
+/* const ctx = document.getElementById('grafico1');
 
 new Chart(ctx, {
     type: 'bar',
@@ -1383,10 +1387,10 @@ new Chart(ctx, {
         }
     }
 });
-
+ */
 // gráfico 02 :D
 
-const ctx2 = document.getElementById('grafico2');
+/* const ctx2 = document.getElementById('grafico2');
 
 new Chart(ctx2, {
     type: 'bar',
@@ -1405,4 +1409,4 @@ new Chart(ctx2, {
             }
         }
     }
-});
+}); */
