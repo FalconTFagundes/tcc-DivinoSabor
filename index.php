@@ -75,8 +75,8 @@
 
     <!-- Gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src='./assets/js/graficos/grafico1.js'></script>
-    <script src='./assets/js/graficos/grafico2.js'></script>
+<!--     <script src='./assets/js/graficos/grafico1.js'></script>
+    <script src='./assets/js/graficos/grafico2.js'></script> -->
 
     <!-- Bootstrap v4.0 -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -89,7 +89,7 @@
 
 
     <!-- painel js -->
-    <script src="./assets/js/painel.js"></script>
+    <script src="./assets/js/painel.js" ></script>
 
 
 </body>

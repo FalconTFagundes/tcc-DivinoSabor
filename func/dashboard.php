@@ -86,6 +86,27 @@ function obterOpcoesDoBanco($tabela, $idColuna, $nomeColuna)
     try {
         $conn = conectar();
 
+        $consulta = "SELECT $idColuna, $nomeColuna FROM $tabela WHERE ativo = 'A';";
+
+        $sqlLista = $conn->query($consulta);
+        $opcoes = $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+
+        return $opcoes ?: 'Vazio';
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+        return null;
+    } finally {
+        if ($conn) {
+            $conn = null;
+        }
+    }
+}
+
+function obterOpcoesDoBancoSemAtivo($tabela, $idColuna, $nomeColuna)
+{
+    try {
+        $conn = conectar();
+
         $consulta = "SELECT $idColuna, $nomeColuna FROM $tabela;";
 
         $sqlLista = $conn->query($consulta);

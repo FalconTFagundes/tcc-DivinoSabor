@@ -5,7 +5,7 @@ include_once './func/dashboard.php';
 
 $resultadoCadastro = '';
 
-$opcoesPacote = obterOpcoesDoBanco('pacote', 'idpacote', 'pacote');
+$opcoesPacote = obterOpcoesDoBancoSemAtivo('pacote', 'idpacote', 'pacote');
 $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
 
 ?>

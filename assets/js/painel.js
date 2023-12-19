@@ -10,9 +10,12 @@ btnDarkModeToggle.addEventListener('click', () => {
 
     localStorage.setItem("themeSystem", newTheme);
     themeSystem = newTheme;
+    applyTheme(newTheme);
     defineCurrentTheme(newTheme);
     updateLogo(newTheme);
     updateWave(newTheme);
+
+
 });
 
 function defineCurrentTheme(theme) {
@@ -22,16 +25,15 @@ function defineCurrentTheme(theme) {
     } else {
         btnDarkModeToggle.innerHTML = "<i class='fa-solid fa-3x fa-moon' id='darkModeActive' title='Modo Claro'></i>";
     }
-
 }
 
 function updateLogo(theme) {
     const logoElement = document.querySelector(".linkMenu img");
 
     if (theme == "light") {
-        logoElement.src = "./assets/images/favicon/logo-2015.png"; //light modee logo
+        logoElement.src = "./assets/images/favicon/logo-2015.png"; // light mode logo
     } else {
-        logoElement.src = "./assets/images/favicon/logoDarkMode.png"; //dark mode logo
+        logoElement.src = "./assets/images/favicon/logoDarkMode.png"; // dark mode logo
     }
 }
 
@@ -41,14 +43,32 @@ function updateWave(theme) {
     waveElements.forEach((waveElement, index) => {
         if (theme == "light") {
             waveElement.style.backgroundImage = `url(./assets/images/favicon/wave.png)`;
-
         } else {
             waveElement.style.backgroundImage = `url(./assets/images/favicon/waveDarkMode.png)`;
-
         }
     });
 }
 
+function applyTheme(theme) {
+    const root = document.documentElement;
+
+    if (theme === "light") {
+        root.style.setProperty("--white", "#fff");
+        root.style.setProperty("--whiteDiferente", "#fdfdfd");
+        root.style.setProperty("--dark", "#313131");
+        root.style.setProperty("--purplePadrão", "#9e77f1");
+        root.style.setProperty("--purplePadrão2", "#9e77f1");
+    } else {
+        root.style.setProperty("--white", "#313131");
+        root.style.setProperty("--whiteDiferente", "#3f3f3f");
+        root.style.setProperty("--dark", "#fff");
+        root.style.setProperty("--purplePadrão", "#915ddf");
+        root.style.setProperty("--purplePadrão2", "#6a43bd");
+    }
+}
+
+
+applyTheme(themeSystem);
 defineCurrentTheme(themeSystem);
 updateLogo(themeSystem);
 updateWave(themeSystem);
@@ -1215,7 +1235,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // UPLOAD INGREDIENTES
-function carregaUploadIngredientes(){
+function carregaUploadIngredientes() {
     $('#codigoIngrediente').keypress(function (e) {
         if (e.which === 13) { // verificação - enter :D
             e.preventDefault();
@@ -1345,44 +1365,44 @@ function cadProdutosUpload(formId) {
 
 const ctx = document.getElementById('grafico1');
 
-  new Chart(ctx, {
+new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-      datasets: [{
-        label: 'Qtd de Vendas por mês',
-        data: [12, 19, 3, 5, 2, 3, 67, 92, 34, 76, 56],
-        borderWidth: 1
-      }]
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        datasets: [{
+            label: 'Qtd de Vendas por mês',
+            data: [12, 19, 3, 5, 2, 3, 67, 92, 34, 76, 56],
+            borderWidth: 1
+        }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         }
-      }
     }
-  });
+});
 
-  // gráfico 02 :D
+// gráfico 02 :D
 
-  const ctx2 = document.getElementById('grafico2');
+const ctx2 = document.getElementById('grafico2');
 
-  new Chart(ctx2, {
+new Chart(ctx2, {
     type: 'bar',
     data: {
-      labels: ['Bronze', 'Prata', 'Ouro', 'Diamante'],
-      datasets: [{
-        label: 'Pacotes mais escolhidos',
-        data: [12, 19, 9, 3],
-        borderWidth: 1
-      }]
+        labels: ['Bronze', 'Prata', 'Ouro', 'Diamante'],
+        datasets: [{
+            label: 'Pacotes mais escolhidos',
+            data: [12, 19, 9, 3],
+            borderWidth: 1
+        }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         }
-      }
     }
-  });
+});
