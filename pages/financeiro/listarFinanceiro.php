@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include_once "./config/constantes.php";
 include_once "./config/conexao.php";
@@ -13,8 +13,8 @@ include_once "./func/dashboard.php";
 <div class="cardBox">
 
     <div class="card">
-        <?php 
-        $retornoQtdClientes = listarGeralCount('nome','clientes');
+        <?php
+        $retornoQtdClientes = listarGeralCount('nome', 'clientes');
         ?>
         <div>
             <!-- minha funct retorna a quantidade de registros encontrados -->
@@ -109,41 +109,41 @@ include_once "./func/dashboard.php";
         <!-- FIM ORDENS RECENTES -->
     </div>
 
+    <?php
+    $ultimosClientes = obterUltimosClientes(); //capturando os três ultimos clientes cadastrados no banco
+    ?>
 
-    <div class="containerClientesRecentes">
-        <div class="headerTableFin">
-            <h2>Clientes recentes</h2>
-            <div class="cardHeader">
-                <a href="" class="btn">Ver tudo</a>
-            </div>
+<div class="containerClientesRecentes">
+    <div class="headerTableFin">
+        <h2>Clientes recentes</h2>
+        <div class="cardHeader">
+            <a href="" class="btn">Ver tudo</a>
         </div>
+    </div>
 
-        <div>
-            <table class="clientesRecentes">
-                <thead>
-                    <tr>
-                        <th scope="col" width="5%">Código do pedido</th>
-                        <th scope="col" width="25%">Nome do cliente</th>
-                        <th scope="col" width="25%">Pacote escolhido</th>
-                        <th scope="col" width="25%">Status</th>
-                    </tr>
-                </thead>
+    <div>
+        <table class="clientesRecentes">
+            <thead>
+                <tr>
+                    <th scope="col" width="5%">Código do pedido</th>
+                    <th scope="col" width="25%">Nome do cliente</th>
+                    <th scope="col" width="25%">Status</th>
+                </tr>
+            </thead>
 
-                <tbody>
+            <tbody>
+                <?php foreach ($ultimosClientes as $cliente) : ?>
                     <tr>
                         <th>
-                            <p>1</p>
+                            <p><?php echo $cliente['idclientes']; ?></p>
                         </th>
                         <th>
-                            <p>João</p>
-                        </th>
-                        <th>
-                            <p>Diamante</p>
+                            <p><?php echo $cliente['nome']; ?></p>
                         </th>
                         <th><span class="status concluido">Concluído</span></th>
                     </tr>
-                </tbody>
-            </table>
-        </div>
+                <?php endforeach; ?> <!-- finalizando o loop aq baby ;) -->
+            </tbody>
+        </table>
     </div>
 </div>

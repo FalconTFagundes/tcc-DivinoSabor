@@ -80,6 +80,30 @@ function obterPacotes()
     }
 }
 
+function obterUltimosClientes()
+{
+    try {
+        $conn = conectar();
+
+        $consulta = "SELECT idclientes, nome, cadastro
+                    FROM clientes
+                    WHERE ativo = 'A'
+                    ORDER BY cadastro DESC
+                    LIMIT 3";
+
+        $sqlLista = $conn->query($consulta);
+        $clientes = $sqlLista->fetchAll(PDO::FETCH_ASSOC);
+
+        return $clientes ?: 'Vazio';
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+        return null;
+    } finally {
+        if ($conn) {
+            $conn = null;
+        }
+    }
+}
 
 
 

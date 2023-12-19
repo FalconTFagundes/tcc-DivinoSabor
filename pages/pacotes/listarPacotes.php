@@ -126,6 +126,21 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
                         <label for="quantitativoPacote" class="form-label">Quantitativo que Alcança</label>
                         <input type="number" class="form-control inputModal" name="quantitativoPacote" id="quantitativoPacote" required>
                     </div>
+                    <div class="form-group">
+                        <label for="nomePedido" class="form-label">Selecione o Cliente</label>
+                        <!-- select com nome dos clientes cadastrados no banco de dados :D -->
+                        <select class="custom-select inputModal" name="clientePacoteId">
+                            <?php
+                            $retornoListagemClientes_Pacotes = listarGeral('idclientes, nome', 'clientes');
+                            foreach ($retornoListagemClientes_Pacotes as $itemListagemClientes_pacotes) {
+                                $idCliente_Pacote = $itemListagemClientes_pacotes->idclientes;
+                                $nomeCliente_Pacote = $itemListagemClientes_pacotes->nome;
+                            ?>
+                                <option selected value="<?php echo $idCliente_Pacote ?>"><?php echo $nomeCliente_Pacote; ?></option>
+                            <?php    } ?>
+                        </select>
+
+                    </div>
                 </div>
                 <div class="modal-footer modaisCorpos">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>

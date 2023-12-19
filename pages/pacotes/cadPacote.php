@@ -12,12 +12,13 @@ if(!empty($dados) && isset($dados)) {
 
     $nomePacote = $dados['nomePacote']; 
     $quantitativoPacote = $dados['quantitativoPacote'];
+    $nomeClientePacote = $dados['clientePacoteId'];
 
-/*     var_dump($dados); */
+    var_dump($dados); 
 
     $dataeHoraAtual = date('Y-m-d H:i:s');
 
-    $retornoInsert = insertTres('pacote','pacote, qtdPessoas, cadastro',"$nomePacote", "$quantitativoPacote", "$dataeHoraAtual"); /* função PHP que faz o insert  */
+    $retornoInsert = insertQuatro('pacote','pacote, qtdPessoas, cadastro, idclientes',"$nomePacote", "$quantitativoPacote", "$dataeHoraAtual", "$nomeClientePacote"); /* função PHP que faz o insert  */
     echo json_encode($retornoInsert); /* envia o final da ação da função - (VERIFICA NA PÁGINA DE FUNÇÃO) $retornoInsert recebe 'Gravado' ou 'nGravado'  */
 
 } else {
