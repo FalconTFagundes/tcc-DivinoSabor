@@ -12,6 +12,32 @@
 //-------------------------------------------SESSÃO---------------------------------------------------------------------
 //validar Sessao usuário
 
+function obterHashDaSenhaDoBanco($email)
+{
+    $conn = conectar();
+    try {
+        $stmt = $conn->prepare("SELECT senha FROM usuario WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Verifica se a consulta retornou resultados
+        if ($stmt->rowCount() > 0) {
+            // Retorna o resultado como objeto stdClass
+            $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+            return $resultado->senha; // Retorne o hash da senha do banco
+        } else {
+            return null;
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        return null;
+    } finally {
+        // Sempre feche a conexão no bloco finally
+        $conn = null;
+    }
+}
+
+
 function listarGeralPacoteInnerjoinFinanceiro()
 {
     $conn = conectar();
@@ -183,30 +209,43 @@ function obterUltimosClientes()
 }
 
 
-
-
-function checarLogin($tabela, $valor1, $valor2)
+function checarLogin($tabela, $email, $senha)
 {
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT email, senha FROM $tabela WHERE email = ? AND senha = ?");
-        $sqlLista->bindValue(1, $valor1, PDO::PARAM_STR);
-        $sqlLista->bindValue(2, $valor2, PDO::PARAM_STR);
+        
+        //verificar apenas se o email existe
+        $sqlLista = $conn->prepare("SELECT senha FROM $tabela WHERE email = ?");
+        $sqlLista->bindValue(1, $email, PDO::PARAM_STR);
         $sqlLista->execute();
+        
         $conn->commit();
+
         if ($sqlLista->rowCount() > 0) {
-            return 'OK';
+            // capturo o hash da senha do banco de dados
+            $hashArmazenado = $sqlLista->fetch(PDO::FETCH_ASSOC)['senha'];
+
+            // password_verify para comparar a senha fornecida com o hash salvo
+            if (password_verify($senha, $hashArmazenado)) {
+           
+                return true;
+            } else {
+
+                return false;
+            }
         } else {
-            return 'false';
-        };
+            return false;
+        }
     } catch (PDOException $e) {
-        echo 'Exception -> ';
-        return ($e->getMessage());
-        $conn->rollback();
-    };
-    $conn = null;
+        error_log('Exception: ' . $e->getMessage());
+        $conn->rollBack();
+        return false;
+    } finally {
+        $conn = null;
+    }
 }
+
 
 
 function validarSessao($redirecionar)

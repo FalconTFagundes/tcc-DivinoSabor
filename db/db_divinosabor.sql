@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/12/2023 às 14:49
+-- Tempo de geração: 19/12/2023 às 16:34
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -77,7 +77,10 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
-(1, 'Teste Evento', '#D4C200', '2023-12-29 03:00:00', '2023-12-30 03:00:00');
+(1, 'Teste Evento', '#D4C200', '2023-12-29 03:00:00', '2023-12-30 03:00:00'),
+(2, 'teste', '#FF0831', '2023-12-21 03:00:00', '2023-12-21 03:00:00'),
+(3, 'teste', '#FF0831', '2023-12-21 03:00:00', '2023-12-21 03:00:00'),
+(4, 'teste', '#FF0831', '2023-12-21 03:00:00', '2023-12-21 03:00:00');
 
 -- --------------------------------------------------------
 
@@ -195,12 +198,11 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idpedidos`, `idclientes`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`, `cor_pedidos`) VALUES
-(5, 8, 'Festa de Aniversário 2025', 'Segundo cliente, mínimo 40 pessoas estarão na festa.', '2023-12-19 10:35:31', '2023-12-19 13:46:27', 'A', '2025-08-17 22:00:00', '#D4C200'),
+(5, 8, 'Festa de Aniversário 2025', 'Segundo cliente, mínimo 40 pessoas estarão na festa.', '2023-12-19 10:35:31', '2023-12-19 14:03:24', 'A', '2025-08-17 22:00:00', '#D4C200'),
 (6, 18, 'Festa Hallowen 2024', '20 pessoas', '2023-12-19 10:36:12', '2023-12-19 13:46:27', 'A', '2024-10-31 10:30:00', '#9E77F1'),
-(7, 10, 'Festa comida de buteco', 'comida clássica de buteco, minimo 20 pessoas segundo cliente', '2023-12-19 10:36:52', '2023-12-19 13:46:27', 'A', '2023-12-25 09:20:00', '#00BD3f'),
-(8, 11, 'Salgado Saae', 'um cento de salgado, variando entre mini-coxinha, mini-pizza, quibe e pastelzinho. Segundo o cliente o mesmo foi promovido e agora precisa pagar para o seu setor um cento de salgado.', '2023-12-19 10:37:57', '2023-12-19 13:46:27', 'A', '2023-12-18 11:40:00', '#297BFF'),
-(9, 8, 'Aniversário 2024', 'Festa de aniversário do nosso fiel cliente Rafael', '2023-12-19 10:40:01', '2023-12-19 13:46:27', 'A', '2024-08-17 13:00:00', '#FF0831'),
-(10, 8, 'teste data', 'dia 20', '2023-12-19 10:45:20', '2023-12-19 13:46:27', 'A', '2023-12-20 13:00:00', '#9E77F1');
+(7, 10, 'Festa comida de buteco', 'comida clássica de buteco, minimo 20 pessoas segundo cliente', '2023-12-19 10:36:52', '2023-12-19 14:03:17', 'A', '2023-12-25 09:20:00', '#00BD3f'),
+(8, 11, 'Salgado Saae', 'um cento de salgado, variando entre mini-coxinha, mini-pizza, quibe e pastelzinho. Segundo o cliente o mesmo foi promovido e agora precisa pagar para o seu setor um cento de salgado.', '2023-12-19 10:37:57', '2023-12-19 14:03:19', 'D', '2023-12-18 11:40:00', '#297BFF'),
+(9, 8, 'Aniversário 2024', 'Festa de aniversário do nosso fiel cliente Rafael', '2023-12-19 10:40:01', '2023-12-19 13:46:27', 'A', '2024-08-17 13:00:00', '#FF0831');
 
 -- --------------------------------------------------------
 
@@ -240,7 +242,7 @@ CREATE TABLE `usuario` (
   `idusuario` int(10) UNSIGNED NOT NULL,
   `nome` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `senha` varchar(45) NOT NULL,
+  `senha` text NOT NULL DEFAULT '',
   `ativo` char(1) NOT NULL DEFAULT 'A',
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `cadastro` datetime NOT NULL
@@ -251,9 +253,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `ativo`, `alteracao`, `cadastro`) VALUES
-(1, 'g', 'g@gmail.com', '123', 'A', '2023-12-03 22:46:47', '0000-00-00 00:00:00'),
-(2, 'Rafael', 'rafael@gmail.com', '123', 'A', '2023-12-04 22:12:36', '2023-12-04 19:00:00'),
-(3, 'Glaydmar', 'glayglay@gmail.com', '123', 'A', '2023-12-05 01:06:46', '2023-12-04 22:06:00');
+(1, 'g', 'g@gmail.com', '$2y$10$IuSKuPsSV2XL9Sj7q5yxV.smM5BLO//XCemS31v1kN0Jp5v2Y8dwG', 'A', '2023-12-19 15:32:30', '0000-00-00 00:00:00'),
+(2, 'Rafael', 'rafael@gmail.com', '$2y$10$Vr.EBNdAPsMkIrzpExBs5egPEtPfkjbGVz8.WSddUqCTXGgFrz8yG', 'A', '2023-12-19 15:26:08', '2023-12-04 19:00:00'),
+(3, 'Glaydmar', 'glayglay@gmail.com', '$2y$10$RHfzCEJbJwPRm7/ucRNYOeXmSsgOIjHs2UZhusc246bh7HRL4pdnm', 'A', '2023-12-19 15:32:51', '2023-12-04 22:06:00');
 
 --
 -- Índices para tabelas despejadas
@@ -325,7 +327,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `ingredientes`
@@ -337,13 +339,13 @@ ALTER TABLE `ingredientes`
 -- AUTO_INCREMENT de tabela `pacote`
 --
 ALTER TABLE `pacote`
-  MODIFY `idpacote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `idpacote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de tabela `pacotecadastro`
 --
 ALTER TABLE `pacotecadastro`
-  MODIFY `idpacotecadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `idpacotecadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
