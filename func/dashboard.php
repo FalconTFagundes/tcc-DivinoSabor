@@ -2573,6 +2573,31 @@ function listarGeral($campos, $tabela)
     $conn = null;
 }
 
+function listarGeralCount($campos, $tabela)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->query("SELECT $campos FROM $tabela");
+        $sqlLista->execute();
+
+        $resultados = $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        $quantidade = $sqlLista->rowCount();
+
+        return [
+            'dados' => $resultados,
+            'quantidade' => $quantidade,
+        ];
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ['error' => $e->getMessage()];
+        $conn->rollback();
+    } finally {
+        $conn = null;
+    }
+}
+
+
 function listarGeralInnerJoin($campos, $tabelaPrincipal, $tabelaJoin, $condicaoJoin)
 {
     $conn = conectar();

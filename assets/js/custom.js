@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         url: 'controle.php',
                         data: dados,
                         beforeSend: function (retorno) {
-                            // ...
+
                         },
                         success: function (retorno) {
                             Swal.fire({
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 atualizarPagina('listarEventos');
                             }, 1000);
                         },
-                        // ...
+        
                     });
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire(
