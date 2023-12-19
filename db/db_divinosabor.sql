@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/12/2023 às 09:33
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 19/12/2023 às 02:31
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,7 +77,10 @@ INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
 (3, 'Teste Blue', '#297BFF', '2023-12-19 03:00:00', '2023-12-20 03:00:00'),
 (5, 'teste amarelão', '#D4C200', '2023-12-22 03:00:00', '2023-12-23 03:00:00'),
 (6, 'Teste', '#FF0831', '2023-12-26 23:00:00', '2023-12-27 03:00:00'),
-(7, 'Festa', '#00BD3f', '2023-12-07 03:00:00', '2023-12-08 03:00:00');
+(7, 'Festa', '#00BD3f', '2023-12-07 03:00:00', '2023-12-08 03:00:00'),
+(10, 'teste', '#297BFF', '2023-12-12 03:00:00', '2023-12-13 03:00:00'),
+(11, 'teste', '#297BFF', '2023-12-12 03:00:00', '2023-12-13 03:00:00'),
+(12, 'teste', '#297BFF', '2023-12-12 03:00:00', '2023-12-13 03:00:00');
 
 -- --------------------------------------------------------
 
@@ -96,7 +99,7 @@ CREATE TABLE `ingredientes` (
   `precoTotal` decimal(10,2) GENERATED ALWAYS AS (`quantIngred` * `precoUnit`) STORED,
   `dataComp` date NOT NULL,
   `dataValidad` date DEFAULT NULL,
-  `codigo` int(11) NOT NULL,
+  `codigo` varchar(255) DEFAULT NULL,
   `cadastro` datetime NOT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A'
@@ -107,7 +110,7 @@ CREATE TABLE `ingredientes` (
 --
 
 INSERT INTO `ingredientes` (`idingredientes`, `nomeIngred`, `img`, `quantIngred`, `pesoUnit`, `precoUnit`, `dataComp`, `dataValidad`, `codigo`, `cadastro`, `alteracao`, `ativo`) VALUES
-(12, 'Fubá Mimoso Ranziza 51', 'fubaMimoso.jpg', 14, 22.00, 2.00, '2222-02-22', '2222-02-22', 2222, '2023-12-18 00:28:50', '2023-12-18 06:58:25', 'A');
+(17, 'Sorvete da Geísa', 'sorveteLuigi.jpg', 30, 2.40, 12.00, '2023-12-18', NULL, '7898944767683', '0000-00-00 00:00:00', '2023-12-18 21:56:23', 'A');
 
 -- --------------------------------------------------------
 
@@ -149,14 +152,6 @@ CREATE TABLE `pacotecadastro` (
   `quantidade` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `pacotecadastro`
---
-
-INSERT INTO `pacotecadastro` (`idpacotecadastro`, `idpacote`, `idproduto`, `cadastro`, `alteracao`, `ativo`, `valorPacote`, `detalhes`, `quantidade`) VALUES
-(87, 41, 7, '2023-12-17 11:36:20', '2023-12-17 14:36:20', 'A', 700.00, 'frango, franguinho', 90),
-(88, 41, 7, '2023-12-17 11:36:20', '2023-12-17 14:36:20', 'A', 700.00, 'frango, franguinho', 50);
-
 -- --------------------------------------------------------
 
 --
@@ -180,7 +175,8 @@ CREATE TABLE `pedidos` (
 
 INSERT INTO `pedidos` (`idpedidos`, `idclientes`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`) VALUES
 (1, 5, 'teste', 'teste', '2023-12-15 02:18:44', '2023-12-15 05:18:44', 'A', '1111-11-11'),
-(2, 4, 'teste', 'teste', '2023-12-15 02:24:33', '2023-12-15 05:24:33', 'A', '1111-11-11');
+(2, 4, 'teste', 'teste', '2023-12-15 02:24:33', '2023-12-15 05:24:33', 'A', '1111-11-11'),
+(3, 7, 'teste', 'teste', '2023-12-18 20:14:49', '2023-12-18 23:14:49', 'A', '0111-11-11');
 
 -- --------------------------------------------------------
 
@@ -203,8 +199,7 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`idprodutos`, `img`, `produto`, `valor`, `cadastro`, `alteracao`, `ativo`) VALUES
-(6, 'peixeFrito.jpg', 'peixe', 5.00, '2023-12-18 04:50:00', '2023-12-18 08:06:23', 'A'),
-(7, 'frangoFrito.jpg', 'Franguinho', 5.00, '2023-12-18 04:50:00', '2023-12-18 07:56:47', 'A');
+(6, 'peixeFrito.jpg', 'peixe', 5.00, '2023-12-18 04:50:00', '2023-12-18 08:06:23', 'A');
 
 -- --------------------------------------------------------
 
@@ -300,13 +295,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `ingredientes`
 --
 ALTER TABLE `ingredientes`
-  MODIFY `idingredientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idingredientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `pacote`
@@ -324,13 +319,13 @@ ALTER TABLE `pacotecadastro`
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idpedidos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `idprodutos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idprodutos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
