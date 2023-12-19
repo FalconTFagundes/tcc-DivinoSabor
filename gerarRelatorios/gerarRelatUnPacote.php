@@ -26,6 +26,7 @@ try {
         $query_pacoteUn = "SELECT
         pacote.idpacote,
         pacote.pacote,
+        clientes.nome as nomeCliente,
         pacote.qtdPessoas,
         pacotecadastro.valorPacote,
         pacotecadastro.detalhes,
@@ -33,11 +34,14 @@ try {
         pacotecadastro.cadastro,
         pacotecadastro.alteracao,
         GROUP_CONCAT(CONCAT(produtos.produto, ' (', pacotecadastro.quantidade, 'x)') SEPARATOR ', ') AS Produtos
-    FROM pacote
-    INNER JOIN pacotecadastro ON pacote.idpacote = pacotecadastro.idpacote
-    INNER JOIN produtos ON pacotecadastro.idproduto = produtos.idprodutos
-    WHERE pacote.idpacote = :idPacoteun
-    GROUP BY pacote.idpacote";
+        FROM pacote
+        INNER JOIN pacotecadastro ON pacote.idpacote = pacotecadastro.idpacote
+        INNER JOIN produtos ON pacotecadastro.idproduto = produtos.idprodutos
+        INNER JOIN clientes ON pacote.idclientes = clientes.idclientes
+        WHERE pacote.idpacote = :idPacoteun
+        GROUP BY pacote.idpacote;";
+
+
 
 
 
@@ -143,6 +147,7 @@ try {
 
                 $dados .= "<h2>$pacote</h2>";
                 $dados .= "<table>";
+                $dados .= "<tr><th>Cliente que Desejou o Pacote:</th><td>$nomeCliente </td></tr>";
                 $dados .= "<tr><th>Capacidade:</th><td>$qtdPessoas pessoa(s)</td></tr>";
                 $dados .= "<tr><th>Valor Total do Pacote:</th><td>$valorPacote</td></tr>";
                 $dados .= "<tr><th>Detalhes do Pacote:</th><td>$detalhes</td></tr>";
