@@ -13,6 +13,33 @@
 //validar Sessao usuário
 
 
+function somarGeral($campos, $tabela)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $stmt = $conn->prepare("SELECT SUM($campos) AS total FROM $tabela");
+        $stmt->execute();
+
+        // Verifica se a consulta retornou resultados
+        if ($stmt->rowCount() > 0) {
+            // Retorna a soma como um objeto stdClass
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } else {
+            return 'Vazio';
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        $conn->rollback();
+        return null;
+    } finally {
+        // Sempre feche a conexão no bloco finally
+        $conn = null;
+    }
+}
+
+
+
 function nomeCorParaHex($nomeCor)
 {
     $cores = [

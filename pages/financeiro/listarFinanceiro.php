@@ -27,12 +27,16 @@ include_once "./func/dashboard.php";
         </div>
     </div>
 
+    <?php
+    $retornoSomaVendas = somarGeral('valorPacote', 'pacoteCadastro');
+    ?>
 
     <div class="card">
         <div>
-            <div class="numbers">584</div>
+            <div class="numbers"><?php echo $retornoSomaVendas; ?></div>
             <div class="cardName">Vendas mensais</div>
         </div>
+
 
         <div class="iconBox">
             <i class="fa-regular fa-money-bill-1"></i>
@@ -126,7 +130,7 @@ include_once "./func/dashboard.php";
         <div class="headerTableFin">
             <h2>Clientes recentes</h2>
             <div class="cardHeader">
-                <a href="" class="btn">Ver tudo</a>
+                <a href="" class="btn linkMenu" idMenu="listarClientes">Ver tudo</a>
             </div>
         </div>
 
@@ -148,7 +152,7 @@ include_once "./func/dashboard.php";
                             </th>
                             <th>
                                 <p><?php echo $cliente['nome']; ?></p>
-                                                  <th>
+                            <th>
                                 <?php
                                 if ($cliente['ativo'] == 'A') {
                                     echo '<span class="status concluido">Ativo</span>';
@@ -163,3 +167,4 @@ include_once "./func/dashboard.php";
             </table>
         </div>
     </div>
+</div>
