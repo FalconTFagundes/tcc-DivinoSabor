@@ -12,6 +12,35 @@
 //-------------------------------------------SESSÃO---------------------------------------------------------------------
 //validar Sessao usuário
 
+function listarGeralPacoteInnerjoinFinanceiro()
+{
+    $conn = conectar();
+    try {
+        $stmt = $conn->prepare(" SELECT idpacote, pacote, pacote.ativo, clientes.nome 
+            FROM pacote 
+            INNER JOIN clientes ON pacote.idclientes = clientes.idclientes
+            ORDER BY idpacote DESC
+            LIMIT 3 ");
+        $stmt->execute();
+
+        // Verifica se a consulta retornou resultados
+        if ($stmt->rowCount() > 0) {
+            // Retorna todos os resultados como objetos stdClass em um array
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            return 'Vazio';
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        return null;
+    } finally {
+        // Sempre feche a conexão no bloco finally
+        $conn = null;
+    }
+}
+
+
+
 
 function somarGeral($campos, $tabela)
 {

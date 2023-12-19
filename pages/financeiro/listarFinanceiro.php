@@ -101,7 +101,7 @@ include_once "./func/dashboard.php";
 
         <div>
 
-
+            <?php $retornoUltimasVendas = listarGeralPacoteInnerjoinFinanceiro(); ?>
             <table class="vendasRecentes">
                 <thead>
                     <tr>
@@ -111,20 +111,39 @@ include_once "./func/dashboard.php";
                         <th scope="col" width="25%">Status</th>
                     </tr>
                 </thead>
-
                 <tbody>
-                    <tr>
-                        <th>
-                            <p>1</p>
-                        </th>
-                        <th>
-                            <p>João</p>
-                        </th>
-                        <th>
-                            <p>Diamante</p>
-                        </th>
-                        <th><span class="status concluido">Concluído</span></th>
-                    </tr>
+                    <?php foreach ($retornoUltimasVendas as $itemUltimasVendas) {
+                        $idPedidoUltimasVendas = $itemUltimasVendas->idpacote;
+                        $nomeClienteUltimasVendas = $itemUltimasVendas->nome;
+                        $pacoteEscolhidoultimasVendas = $itemUltimasVendas->pacote;
+                        $statusUltimasVendas = $itemUltimasVendas->ativo;
+                    ?>
+                        <tr>
+                            <th>
+                                <p><?php echo $idPedidoUltimasVendas; ?></p>
+                            </th>
+                            <th>
+                                <p><?php echo $nomeClienteUltimasVendas; ?></p>
+                            </th>
+                            <th>
+                                <p><?php echo $pacoteEscolhidoultimasVendas; ?></p>
+                            </th>
+                            <th>
+                                <?php
+                                if ($statusUltimasVendas == 'A') {
+                                ?>
+                                    <span class="status concluido">Ativado</span>
+                                <?php
+                                } else {
+                                ?>
+                                    <span class="status emAndamento">Desativado</span>
+                                <?php
+                                }
+                                ?>
+
+                            </th>
+                        </tr>
+                    <?php  } ?>
                 </tbody>
             </table>
         </div>
