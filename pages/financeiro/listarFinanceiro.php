@@ -43,9 +43,15 @@ include_once "./func/dashboard.php";
         </div>
     </div>
 
+    <?php
+    $retornoDefictProdutos = somarGeral('valor', 'produtos');
+    $retornoDefictPacotes = somarGeral('valorPacote', 'pacotecadastro');
+    $retornoDiferencaDefict = $retornoDefictPacotes - $retornoDefictProdutos;
+    ?>
+
     <div class="card">
         <div>
-            <div class="numbers">63</div>
+            <div class="numbers"><?php echo $retornoDiferencaDefict;?></div>
             <div class="cardName">Défict</div>
         </div>
 
