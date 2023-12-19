@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             calendar.unselect()
         },
-        eventClick: function (arg) {
-           /*  if (confirm('Are you sure you want to delete this event?')) {
+      /*   eventClick: function (arg) {
+            if (confirm('Are you sure you want to delete this event?')) {
                 arg.event.remove()
-            } */
-        },
+            } 
+        }, */
 
 
         // permite arrastar e redimensionar os eventos diretamente no calendário

@@ -11,190 +11,194 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
 ?>
 
 <div style="text-align: center;" class="headerCalendar">
-<h1>Pacotes</h1>
+    <h1>Pacotes</h1>
 
-  </div>
+</div>
 
-    
-    <!-- btn que chama a modal -->
-    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadPacotes">
-        <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Pacote
-    </button>
 
-    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cadPacoteProdutoModal">
-        <i class="fa-solid fa-plus" title="Cadastrar"></i> Itens do Pacote
-    </button>
+<!-- btn que chama a modal -->
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalCadPacotes">
+    <i class="fa-solid fa-plus" title="Cadastrar"></i> Cadastrar Pacote
+</button>
 
-    <button type="button" class="btn btn-outline-secondary" onclick="mostrarAlerta();">
-        <i class="fa-solid fa-print" title="Gerar Relatório"></i>
-        Gerar Relatório Geral
-    </button>
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cadPacoteProdutoModal">
+    <i class="fa-solid fa-plus" title="Cadastrar"></i> Itens do Pacote
+</button>
 
-    <br><br>
+<button type="button" class="btn btn-outline-secondary" onclick="mostrarAlerta();">
+    <i class="fa-solid fa-print" title="Gerar Relatório"></i>
+    Gerar Relatório Geral
+</button>
 
-    <div style="height: 400px;">
-        <table class="table-financeira table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col" width="5">Código</th>
-                    <th scope="col" width="15%">Nome</th>
-                    <th scope="col" width="20%">Detalhes</th>
-                    <th scope="col" width="20%">Quantitativo que Alcança</th>
-                    <th scope="col" width="20%">Valor</th>
-                    <th scope="col" width="25%">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
+<br><br>
 
-                <?php
-                $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
+<div style="height: 400px;">
+    <table class="table-financeira table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" width="5">Código</th>
+                <th scope="col" width="15%">Nome</th>
+                <th scope="col" width="20%">Detalhes</th>
+                <th scope="col" width="20%">Quantitativo que Alcança</th>
+                <th scope="col" width="20%">Valor</th>
+                <th scope="col" width="25%">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                $retornoListarPacotes = obterPacotes();
-      /*           var_dump($retornoListarPacotes); */ //ver oq está vindo
-                if (!empty($retornoListarPacotes) && is_array($retornoListarPacotes)) {
-                    foreach ($retornoListarPacotes as $itemPacote) {
-                        $idPacote = $itemPacote['idpacote'];
-                        $nomePacote = $itemPacote['pacote'];
-                        $detalhesPacote = $itemPacote['detalhes'];
-                        $qtdPeoplePacote = $itemPacote['qtdPessoas'];
-                        $valorPacote = $itemPacote['valorPacote'];
-                        $cadastroPacote = $itemPacote['cadastro'];
-                        $ativoPacote = $itemPacote['AtivoPacoteCadastro'];
-                ?>
-                        <tr>
-                            <td scope="row"><?php echo $idPacote; ?></td>
-                            <td><?php echo $nomePacote; ?></td>
-                            <td><?php echo $detalhesPacote; ?></td>
-                            <td><?php echo $qtdPeoplePacote; ?></td>
-                            <td><?php echo $valorPacote; ?></td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <?php
-                                    $statusButtonClass = ($ativoPacote == 'A') ? 'btn-outline-success' : 'btn-outline-warning';
-                                    $statusButtonText = ($ativoPacote == 'A') ? 'Ativado' : 'Desativado';
-                                    $statusIcon = ($ativoPacote == 'A') ? 'fa-unlock' : 'fa-lock';
-                                    ?>
-                                    <button type='button' class='btn <?php echo $statusButtonClass; ?>' onclick="ativarGeral(<?php echo $idPacote; ?>, '<?php echo ($ativoPacote == 'A') ? 'desativar' : 'ativar'; ?>', 'ativarPacotes','listarPacotes', 'Pacote <?php echo $statusButtonText; ?> com Sucesso');">
-                                        <i class="fa-solid <?php echo $statusIcon; ?>" title="Pacote <?php echo $statusButtonText; ?>"></i> <?php echo $statusButtonText; ?>
+            <?php
+            $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
+
+            $retornoListarPacotes = obterPacotes();
+            /*           var_dump($retornoListarPacotes); */ //ver oq está vindo
+            if (!empty($retornoListarPacotes) && is_array($retornoListarPacotes)) {
+                foreach ($retornoListarPacotes as $itemPacote) {
+                    $idPacote = $itemPacote['idpacote'];
+                    $nomePacote = $itemPacote['pacote'];
+                    $detalhesPacote = $itemPacote['detalhes'];
+                    $qtdPeoplePacote = $itemPacote['qtdPessoas'];
+                    $valorPacote = $itemPacote['valorPacote'];
+                    $cadastroPacote = $itemPacote['cadastro'];
+                    $ativoPacote = $itemPacote['AtivoPacoteCadastro'];
+            ?>
+                    <tr>
+                        <td scope="row"><?php echo $idPacote; ?></td>
+                        <td><?php echo $nomePacote; ?></td>
+                        <td><?php echo $detalhesPacote; ?></td>
+                        <td><?php echo $qtdPeoplePacote; ?></td>
+                        <td><?php echo $valorPacote; ?></td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <?php
+                                if ($ativoPacote == 'A') {
+                                ?>
+                                    <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idPacote; ?>, 'desativar', 'ativarPacotes','listarPacotes', 'Pacote Desativado');"><i class="fa-solid fa-lock" title="Pacote Ativado"></i> Ativado</button>
+                                <?php
+                                } else {
+                                ?><button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idPacote; ?>,'ativar','ativarPacotes','listarPacotes', 'Pacote Ativado');"> <i class="fa-solid fa-unlock" title="Pacote Desativado"></i> Desativado</button>
+
+
+                                <?php
+                                }
+                                ?>
+
+                                <!-- passando id diretamente na URL - sem AJAX -->
+                                <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idPacote; ?>')">
+                                    <button type="button" class="btn btn-outline-info">
+                                        <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                                     </button>
+                                </a>
 
-                                    <!-- passando id diretamente na URL - sem AJAX -->
-                                    <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idPacote; ?>')">
-                                        <button type="button" class="btn btn-outline-info">
-                                            <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
-                                        </button>
-                                    </a>
-
-                                    <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPacote; ?>', 'excluirPacotes', 'listarPacotes', 'Certeza que deseja excluir este pacote?', 'Operação Irreversível!')">
-                                        <i class="fa-solid fa-trash" title="Excluir"></i> Excluir
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                <?php
-                    } 
-                } else {
-                    echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
-                    echo "Nenhum Registro Encontrado";
-                    echo "</div>";
+                                <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idPacote; ?>', 'excluirPacotes', 'listarPacotes', 'Certeza que deseja excluir este pacote?', 'Operação Irreversível!')">
+                                    <i class="fa-solid fa-trash" title="Excluir"></i> Excluir
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+            <?php
                 }
+            } else {
+                echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
+                echo "Nenhum Registro Encontrado";
+                echo "</div>";
+            }
 
 
-                ?>
-            </tbody>
-        </table>
-    </div>
+            ?>
+        </tbody>
+    </table>
+</div>
 
-    <!-- Modal Cadastrar Pacote -->
-    <div class="modal fade" id="modalCadPacotes" tabindex="-1" role="dialog" aria-labelledby="modalCadPacote" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:blueviolet; color: white; ">
-                    <h5 class="modal-title" id="modalCadPacotes">Cadastrar Pacote <i class="fa-solid fa-user-plus" title="Cadastro de Pacotes"></i></h5>
-                </div>
-                <form name="frmCadPacotes" method="POST" id="frmCadPacotes" class="frmCadPacotes" action="#">
-                    <div class="modal-body modaisCorpos">
-                        <div class="form-group">
-                            <label for="nomePacote" class="form-label">Nome do Pacote</label>
-                            <input type="text" class="form-control inputModal" name="nomePacote" id="nomePacote" aria-describedby="nomePacote" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantitativoPacote" class="form-label">Quantitativo que Alcança</label>
-                            <input type="number" class="form-control inputModal" name="quantitativoPacote" id="quantitativoPacote" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer modaisCorpos">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-                        <button type="submit" class="btn btn-primary" id="btnCadPacotes" onclick="cadGeral('frmCadPacotes','modalCadPacotes','cadPacote','listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pacote"></i> Cadastrar</button>
-                    </div>
-                </form>
+<!-- Modal Cadastrar Pacote -->
+<div class="modal fade" id="modalCadPacotes" tabindex="-1" role="dialog" aria-labelledby="modalCadPacote" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:blueviolet; color: white; ">
+                <h5 class="modal-title" id="modalCadPacotes">Cadastrar Pacote <i class="fa-solid fa-user-plus" title="Cadastro de Pacotes"></i></h5>
             </div>
+            <form name="frmCadPacotes" method="POST" id="frmCadPacotes" class="frmCadPacotes" action="#">
+                <div class="modal-body modaisCorpos">
+                    <div class="form-group">
+                        <label for="nomePacote" class="form-label">Nome do Pacote</label>
+                        <input type="text" class="form-control inputModal" name="nomePacote" id="nomePacote" aria-describedby="nomePacote" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantitativoPacote" class="form-label">Quantitativo que Alcança</label>
+                        <input type="number" class="form-control inputModal" name="quantitativoPacote" id="quantitativoPacote" required>
+                    </div>
+                </div>
+                <div class="modal-footer modaisCorpos">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
+                    <button type="submit" class="btn btn-primary" id="btnCadPacotes" onclick="cadGeral('frmCadPacotes','modalCadPacotes','cadPacote','listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pacote"></i> Cadastrar</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Modal Cadastrar itens no pacote -->
-    <div class="modal fade" id="cadPacoteProdutoModal" tabindex="-1" role="dialog" aria-labelledby="pacoteProdutoModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:blueviolet; color: white; ">
-                    <h5 class="modal-title" id="modalCadPacotes">Cadastrar Itens no Pacote <i class="fa-regular fa-pen-to-square" title="Cadastro de Pacotoes"></i></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body modaisCorpos">
-                    <form action="#" name="frmCadItemPacote" id="frmCadItemPacote" method="post">
-                        <div class="form-group">
-                            <label for="idpacote">Escolha o pacote</label>
-                            <select class="form-control inputModal" name="idpacote" id="idpacote">
-                                <?php foreach ($opcoesPacote as $opcao) : ?>
-                                    <option value="<?php echo $opcao['idpacote']; ?>">
-                                        <?php echo $opcao['pacote']; ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div id="produtos-container" class="mb-3">
-                            <div class="produto">
-                                <div class="form-group">
-                                    <label for="idproduto">Escolha os produtos</label>
-                                    <select class="form-control inputModal" name="idproduto[]" id="idproduto">
-                                        <?php foreach ($opcoesProduto as $opcao) : ?>
-                                            <option value="<?php echo $opcao['idproduto']; ?>">
-                                                <?php echo $opcao['produto']; ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="quantidade">Quantidade</label>
-                                    <input type="number" class="form-control inputModal" name="quantidade[]" placeholder="Quantidade">
-                                </div>
+<!-- Modal Cadastrar itens no pacote -->
+<div class="modal fade" id="cadPacoteProdutoModal" tabindex="-1" role="dialog" aria-labelledby="pacoteProdutoModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:blueviolet; color: white; ">
+                <h5 class="modal-title" id="modalCadPacotes">Cadastrar Itens no Pacote <i class="fa-regular fa-pen-to-square" title="Cadastro de Pacotoes"></i></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modaisCorpos">
+                <form action="#" name="frmCadItemPacote" id="frmCadItemPacote" method="post">
+                    <div class="form-group">
+                        <label for="idpacote">Escolha o pacote</label>
+                        <select class="form-control inputModal" name="idpacote" id="idpacote">
+                            <?php foreach ($opcoesPacote as $opcao) : ?>
+                                <option value="<?php echo $opcao['idpacote']; ?>">
+                                    <?php echo $opcao['pacote']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div id="produtos-container" class="mb-3">
+                        <div class="produto">
+                            <div class="form-group">
+                                <label for="idproduto">Escolha os produtos</label>
+                                <select class="form-control inputModal" name="idproduto[]" id="idproduto">
+                                    <?php foreach ($opcoesProduto as $opcao) : ?>
+                                        <option value="<?php echo $opcao['idprodutos']; ?>">
+                                            <?php echo $opcao['produto']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantidade">Quantidade</label>
+                                <input type="number" class="form-control inputModal" name="quantidade[]" placeholder="Quantidade">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-outline-secondary w-100" onclick="adicionarProduto()">Adicionar Produto</button>
-                        <br><br>
-                        <div class="form-group">
-                            <label for="detalhesPacote" class="form-label">Detalhes Pacote</label>
-                            <input type="text" class="form-control inputModal" name="detalhesPacote" id="detalhesPacote" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
-                            <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadItemPacote','cadPacoteProdutoModal','cadPacoteVenda', 'listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
-                        </div>
-                    </form>
-                    <script>
-                        function adicionarProduto() {
-                            var container = document.getElementById('produtos-container');
-                            var produtoDiv = document.createElement('div');
-                            produtoDiv.innerHTML = `
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary w-100" onclick="adicionarProduto()">Adicionar Produto</button>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="detalhesPacote" class="form-label">Detalhes Pacote</label>
+                        <input type="text" class="form-control inputModal" name="detalhesPacote" id="detalhesPacote" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark" title="Fechar Modal"></i> Fechar</button>
+                        <button type="submit" class="btn btn-primary" onclick="cadGeral('frmCadItemPacote','cadPacoteProdutoModal','cadPacoteVenda', 'listarPacotes');"><i class="fa-solid fa-check" title="Cadastrar Pedido"></i> Cadastrar</button>
+                    </div>
+                </form>
+                <script>
+                    function adicionarProduto() {
+                        var container = document.getElementById('produtos-container');
+                        var produtoDiv = document.createElement('div');
+                        produtoDiv.innerHTML = `
                                 <br>
                                 <div class="produto">
                                     <div class="form-group">
                                         <label for="idproduto">Escolha os produtos</label>
                                         <select class="form-control inputModal" name="idproduto[]" id="idproduto">
                                             <?php foreach ($opcoesProduto as $opcao) : ?>
-                                                <option value="<?php echo $opcao['idproduto']; ?>"><?php echo $opcao['produto']; ?></option>
+                                                <option value="<?php echo $opcao['idprodutos']; ?>"><?php echo $opcao['produto']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -204,61 +208,61 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
                                     </div>
                                 </div>
                                 <br> <br>`;
-                            container.appendChild(produtoDiv);
-                        }
-                    </script>
-                </div>
+                        container.appendChild(produtoDiv);
+                    }
+                </script>
             </div>
         </div>
     </div>
+</div>
 
 
-    <script>
-        function mostrarAlerta() {
-            Swal.fire({
-                title: 'Você tem certeza?',
-                text: 'Deseja gerar o relatório geral dos pacotes?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, gerar relatório!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Gerando Relatório :D',
-                        showConfirmButton: false,
-                        timer: 700
-                    });
-                    window.location.href = `./gerarRelatorios/gerarRelatPacotes.php`;
-                }
-            });
-        }
+<script>
+    function mostrarAlerta() {
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: 'Deseja gerar o relatório geral dos pacotes?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, gerar relatório!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Gerando Relatório :D',
+                    showConfirmButton: false,
+                    timer: 700
+                });
+                window.location.href = `./gerarRelatorios/gerarRelatPacotes.php`;
+            }
+        });
+    }
 
-        function mostrarAlertaIdGet(idPacote) {
-            Swal.fire({
-                title: 'Você tem certeza?',
-                text: 'Deseja gerar o relatório do pacote?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, gerar relatório!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Gerando Relatório :D',
-                        showConfirmButton: false,
-                        timer: 700
-                    });
-                    window.location.href = './gerarRelatorios/gerarRelatUnPacote.php?id=' + idPacote;
-                }
-            });
-        }
-    </script>
+    function mostrarAlertaIdGet(idPacote) {
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: 'Deseja gerar o relatório do pacote?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, gerar relatório!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Gerando Relatório :D',
+                    showConfirmButton: false,
+                    timer: 700
+                });
+                window.location.href = './gerarRelatorios/gerarRelatUnPacote.php?id=' + idPacote;
+            }
+        });
+    }
+</script>

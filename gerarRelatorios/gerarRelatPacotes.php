@@ -27,10 +27,10 @@ try {
         pacotecadastro.ativo AS AtivoPacoteCadastro,
         pacotecadastro.cadastro,
         pacotecadastro.alteracao,
-        GROUP_CONCAT(CONCAT(produto.produto, ' (', pacotecadastro.quantidade, 'x)') SEPARATOR ', ') AS Produtos
+        GROUP_CONCAT(CONCAT(produtos.produto, ' (', pacotecadastro.quantidade, 'x)') SEPARATOR ', ') AS Produtos
     FROM pacote
     INNER JOIN pacotecadastro ON pacote.idpacote = pacotecadastro.idpacote
-    INNER JOIN produto ON pacotecadastro.idproduto = produto.idproduto
+    INNER JOIN produtos ON pacotecadastro.idproduto = produtos.idprodutos
     GROUP BY pacote.idpacote;
     ";
 

@@ -1,3 +1,11 @@
+<?php 
+
+include_once "./config/constantes.php";
+include_once "./config/conexao.php";
+include_once "./func/dashboard.php";
+
+?>
+
 <div class="headerCardBox">
     <h2>Painel Financeiro</h2>
 </div>
@@ -5,8 +13,12 @@
 <div class="cardBox">
 
     <div class="card">
+        <?php 
+        $retornoQtdClientes = listarGeralCount('nome','clientes');
+        ?>
         <div>
-            <div class="numbers">1.502</div>
+            <!-- minha funct retorna a quantidade de registros encontrados -->
+            <div class="numbers"><?php echo $retornoQtdClientes['quantidade']; ?></div>
             <div class="cardName">Clientes</div>
         </div>
 
@@ -142,7 +154,5 @@
                 </tbody>
             </table>
         </div>
-
     </div>
-
 </div>

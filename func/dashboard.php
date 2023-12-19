@@ -12,6 +12,19 @@
 //-------------------------------------------SESSÃO---------------------------------------------------------------------
 //validar Sessao usuário
 
+
+function nomeCorParaHex($nomeCor)
+{
+    $cores = [
+        'roxo' => '#9E77F1',
+        'amarelo' => '#D4C200',
+        'azul' => '#297BFF',
+        'vermelho' => '#FF0831',
+        'verde' => '#00BD3f',
+    ];
+    return isset($cores[$nomeCor]) ? $cores[$nomeCor] : '#000000';
+}
+
 function obterOpcoesDoBanco($tabela, $idColuna, $nomeColuna)
 {
     try {
@@ -46,7 +59,7 @@ function obterPacotes()
             MAX(pacote.qtdPessoas) AS qtdPessoas,
             MAX(pacotecadastro.valorPacote) AS valorPacote,
             MAX(pacotecadastro.detalhes) AS detalhes,
-            MAX(pacotecadastro.ativo) AS AtivoPacoteCadastro,
+            MAX(pacote.ativo) AS AtivoPacoteCadastro,
             MAX(pacotecadastro.cadastro) AS cadastro,
             MAX(pacotecadastro.alteracao) AS alteracao
           FROM pacote
@@ -2559,6 +2572,31 @@ function listarGeral($campos, $tabela)
     };
     $conn = null;
 }
+
+function listarGeralCount($campos, $tabela)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->query("SELECT $campos FROM $tabela");
+        $sqlLista->execute();
+
+        $resultados = $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        $quantidade = $sqlLista->rowCount();
+
+        return [
+            'dados' => $resultados,
+            'quantidade' => $quantidade,
+        ];
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ['error' => $e->getMessage()];
+        $conn->rollback();
+    } finally {
+        $conn = null;
+    }
+}
+
 
 function listarGeralInnerJoin($campos, $tabelaPrincipal, $tabelaJoin, $condicaoJoin)
 {

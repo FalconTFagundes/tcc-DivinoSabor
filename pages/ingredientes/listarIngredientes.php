@@ -143,6 +143,7 @@ include_once './func/dashboard.php';
           <div class="form-group">
             <label for="imgIngrediente" class="form-label">Imagem Ingrediente</label>
           </div>
+          <div id="msgBlockInput"> </div> <!-- div que exibe a msg de input bloqueado - está sendo manipulada pelo ajax!!! -->
           <div class="form-group">
             <input type="file" class="form-control inputModal" name="imgIngrediente" id="imgIngrediente">
           </div>

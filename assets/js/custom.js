@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         })
 
-                        
+
                     }
                 });
             });
@@ -133,8 +133,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         eventClick: function (arg) {
             var eventId = arg.event.id;
+            var tipo = arg.event.extendedProps.tipo;
+
+            var dados = {
+                acao: tipo === 'pedido' ? 'excluirPedidos' : 'excluirEventos',
+                id: eventId
+            };
+
             Swal.fire({
-                title: 'Deseja excluir este evento?',
+                title: 'Deseja excluir este item?',
                 text: 'Esta operação é irreversível!',
                 icon: 'warning',
                 showCancelButton: true,
@@ -143,48 +150,38 @@ document.addEventListener('DOMContentLoaded', function () {
                 confirmButtonText: 'Confirmar'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'HTML',
+                        url: 'controle.php',
+                        data: dados,
+                        beforeSend: function (retorno) {
 
-                    var dados = {
-                        acao: 'excluirEventos',
-                        id: eventId
-                    }
-
+                        },
+                        success: function (retorno) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Salvo com Sucesso',
+                                showConfirmButton: false,
+                                timer: 700
+                            });
+                            setTimeout(function () {
+                                atualizarPagina('listarEventos');
+                            }, 1000);
+                        },
+        
+                    });
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
+                    Swal.fire(
                         'Cancelado',
                         'Operação Cancelada',
                         'error'
-                    )
+                    );
                 }
-
-                $.ajax({
-                    type: 'POST',
-                    dataType: 'HTML',
-                    url: 'controle.php',
-                    data: dados,
-                    beforeSend: function (retorno) {
-                    }, success: function (retorno) {
-
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Salvo com Sucesso',
-                            showConfirmButton: false,
-                            timer: 700
-
-                        })
-                        setTimeout(function () {
-                            atualizarPagina('listarEventos');
-                        }, 1000)
-                    }
-                    
-                    
-
-
-                });
-            })
-            arg.event.remove();
+            });
         },
+
 
         // eu parei no passar o código para ao banco de dados no evento custom estatico
 
@@ -201,6 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-        calendar.render();
+    calendar.render();
 });
 

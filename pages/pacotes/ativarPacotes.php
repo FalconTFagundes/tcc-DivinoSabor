@@ -13,9 +13,9 @@ if(!empty($dados) && isset($dados)) {
     $ativarPacoteCad = $dados['a'];
     
     if($ativarPacoteCad == 'A'){
-        $retorno = upUm('pacotecadastro', 'ativo', 'idpacotecadastro', 'A', "$idPacoteCad");
+        $retorno = upUm('pacote', 'ativo', 'idpacote', 'A', "$idPacoteCad");
     } else {
-        $retorno = upUm('pacotecadastro', 'ativo', 'idpacotecadastro', 'D', "$idPacoteCad");
+        $retorno = upUm('pacote', 'ativo', 'idpacote', 'D', "$idPacoteCad");
     }
 
 

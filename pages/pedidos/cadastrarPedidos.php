@@ -14,11 +14,12 @@ if(!empty($dados) && isset($dados)) {
     $pedido = $dados['pedido'];
     $detalhesPedido = $dados['detalhesPedido'];
     $dataEntregaPedido = $dados['dataEntregaPedido'];
+    $corPedidoCalendario = $dados['corPedidoCalendario'];
 
     $dataeHoraPedido = date('Y-m-d H:i:s');
 
 
-    $retornoInsert = insertCinco('pedidos','idclientes, pedido, detalhes, dataEntrega, cadastro',"$clientePedidoId", "$pedido", "$detalhesPedido", "$dataEntregaPedido", "$dataeHoraPedido"); /* função PHP que faz o insert  */
+    $retornoInsert = insertSeis('pedidos','idclientes, pedido, detalhes, dataEntrega, cadastro, cor_pedidos',"$clientePedidoId", "$pedido", "$detalhesPedido", "$dataEntregaPedido", "$dataeHoraPedido", "$corPedidoCalendario"); /* função PHP que faz o insert  */
     echo json_encode($retornoInsert); /* envia o final da ação da função - VERIFICA NA PÁGINA DE FUNÇÃO, $retornoInsert recebe 'Gravado' ou 'nGravado'  */
 
 } else {

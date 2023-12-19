@@ -56,7 +56,25 @@ switch ($acao) {
         break;
 
 
+        // PEDIDOS
 
+    case 'listarPedidos':
+        // chamar variável
+        $_SESSION["page"] = 'listarPedidos';
+        include_once './pages/pedidos/listarPedidos.php';
+        break;
+
+    case 'cadastrarPedidos':
+        include_once './pages/pedidos/cadastrarPedidos.php';
+        break;
+
+    case 'excluirPedidos':
+        include_once './pages/pedidos/excluirPedidos.php';
+        break;
+
+    case 'ativarPedidos':
+        include_once './pages/pedidos/ativarPedidos.php';
+        break;
 
 
         // EVENTOS
@@ -155,26 +173,5 @@ switch ($acao) {
 
     case 'loginSair':
         include_once './login/loginSair.php';
-        break;
-
-
-        // PEDIDOS
-
-    case 'listarPedidos':
-        // chamar variável
-        $_SESSION["page"] = 'listarPedidos';
-        include_once './pages/pedidos/listarPedidos.php';
-        break;
-
-    case 'cadastrarPedidos':
-        include_once './pages/pedidos/cadastrarPedidos.php';
-        break;
-
-    case 'excluirPedidos':
-        include_once './pages/pedidos/excluirPedidos.php';
-        break;
-
-    case 'ativarPedidos':
-        include_once './pages/pedidos/ativarPedidos.php';
         break;
 }
