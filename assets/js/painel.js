@@ -1,4 +1,5 @@
 masks();
+
 //tema dark/light :D
 const btnDarkModeToggle = document.getElementById("btn-dark-mode-toggle");
 let themeSystem = localStorage.getItem("themeSystem") || "light";
@@ -52,13 +53,6 @@ defineCurrentTheme(themeSystem);
 updateLogo(themeSystem);
 updateWave(themeSystem);
 
-
-// focus input codigo - page listar ingredientes!!!!
-$(document).ready(function () {
-    $('#modalCadIngrediente').on('shown.bs.modal', function () {
-        $('#codigoIngrediente').focus();
-    });
-});
 
 
 function cadGeral(formId, modalId, pageAcao, pageRetorno) {
@@ -1220,12 +1214,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // }
 
 
-
-$(document).ready(function () {
-    // clicar Enter no campo de código de barras
+// UPLOAD INGREDIENTES
+function carregaUploadIngredientes(){
     $('#codigoIngrediente').keypress(function (e) {
         if (e.which === 13) { // verificação - enter :D
-            e.preventDefault(); 
+            e.preventDefault();
             $('#btnConsultIngredientes').click(); // aciona o clique no btn de consulta
         }
     });
@@ -1243,60 +1236,33 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
+
                 $('#nomeIngred').val(data['nomeIngred']);
-                $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
+                if (data['img'] != null) {
+                    $('#previewUploadIngrediente').html('<img src="./assets/images/ingredientes/' + data['img'] + '" alt="Imagem Ingrediente" class="img-thumbnail">');
+                }
                 $('#pesoIngred').val(data['pesoUnit']);
                 $('#valorIngred').val(data['precoUnit']);
 
-                 // desabilitar o campo de upload de arquivo pois a imagem já existente irá aparecer
-                 $('#imgIngrediente').prop('disabled', true); 
-                 $('#avisoDesabilitar').show(); //aviso do pq foi desabilitado
+
             },
             error: function () {
                 console.log('Erro na consulta.');
             }
         });
     });
-});
+}
 
-
-
-// UPLOAD INGREDIENTES
-var redimensionar = $('#previewUploadIngrediente').croppie({
-    enableExif: true,
-    enableOrientation: true,
-    viewport: {
-        width: 200,
-        height: 200,
-        type: 'square'
-    },
-    boundary: {
-        width: 300,
-        height: 300
-    }
-});
-
-// Manipulador de mudança para o input de arquivo
-$('#imgProduto').on('change', function () {
-    var redimensionarImgIngrediente = new FileReader();
-
-    redimensionarImgIngrediente.onload = function (e) {
-        redimensionar.croppie('bind', {
-            url: e.target.result
-        });
-    }
-
-    redimensionarImgIngrediente.readAsDataURL(this.files[0]);
-});
 
 // Manipulador de envio do formulário
 function cadIngredientesUpload(formId) {
+    carregaUploadIngredientes();
     $('#' + formId).on('submit', function (event) {
         event.preventDefault();
 
         var formdata = new FormData(this);
 
-        redimensionar.croppie('result', {
+        redimensionarIngredientes.croppie('result', {
             type: 'canvas',
             size: 'viewport'
         }).then(function (img) {
@@ -1330,41 +1296,13 @@ function cadIngredientesUpload(formId) {
 
 
 // UPLOAD PRODUTOS
-var redimensionarProduto = $('#previewUploadProduto').croppie({
-    enableExif: true,
-    enableOrientation: true,
-    viewport: {
-        width: 200,
-        height: 200,
-        type: 'square'
-    },
-    boundary: {
-        width: 300,
-        height: 300
-    }
-});
-
-// Manipulador de mudança para o input de arquivo
-$('#imgIngrediente').on('change', function () {
-    var redimensionarImgProduto = new FileReader();
-
-    redimensionarImgProduto.onload = function (e) {
-        redimensionarProduto.croppie('bind', {
-            url: e.target.result
-        });
-    }
-
-    redimensionarImgProduto.readAsDataURL(this.files[0]);
-});
-
-// Manipulador de envio do formulário
 function cadProdutosUpload(formId) {
     $('#' + formId).on('submit', function (event) {
         event.preventDefault();
 
         var formdata = new FormData(this);
 
-        redimensionarProduto.croppie('result', {
+        redimensionarImgProduto.croppie('result', {
             type: 'canvas',
             size: 'viewport'
         }).then(function (img) {

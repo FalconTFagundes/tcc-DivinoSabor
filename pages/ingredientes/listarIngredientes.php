@@ -110,7 +110,7 @@ include_once './func/dashboard.php';
                     <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                   </button>
                 </a>
-                
+
                 <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idIngred ?>', 'excluirIngredientes', 'listarIngredientes', 'Certeza que deseja excluir?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir ingredientes"></i> Excluir </button>
               </div>
             </td>
@@ -142,27 +142,21 @@ include_once './func/dashboard.php';
           </div>
           <div class="form-group">
             <label for="imgIngrediente" class="form-label">Imagem Ingrediente</label>
-
           </div>
           <div class="form-group">
-            <!-- só aparece quando o btn type file for desabilitado no javascript (quando a outra img aparecer - img já cadastrada) -->
-            <div id="avisoDesabilitar" class="alert alert-warning" style="display:none; text-align: center;">
-              Upload desativado - Imagem já Exibida
-            </div>
-
             <input type="file" class="form-control inputModal" name="imgIngrediente" id="imgIngrediente">
           </div>
           <div id="previewUploadIngrediente"></div>
           <div class="form-group">
             <label for="codigoIngrediente" class="form-label">Código do Ingrediente</label>
-            <input type="text" class="form-control inputModal" name="codigoIngrediente" id="codigoIngrediente" required>
+            <input type="text" class="form-control inputModal" name="codigoIngrediente" id="codigoIngrediente">
           </div>
           <div class="form-group">
             <button type="button" class="btn btn-outline-warning" id="btnConsultIngredientes">Consultar</button>
           </div>
           <div class="form-group">
             <label for="quantIngred" class="form-label">Quantidade</label>
-            <input type="number" class="form-control inputModal" name="quantIngred" id="quantidade" required>
+            <input type="number" class="form-control inputModal" name="quantIngred" id="quantidade">
           </div>
 
           <div class="form-group">
@@ -194,11 +188,17 @@ include_once './func/dashboard.php';
   </div>
 </div>
 <script>
+  carregaUploadIngredientes();
   function formatarNumeroDecimal(input) {
     input.value = input.value.replace(/,/g, '.');
   }
 
-
+  // focus input codigo - page listar ingredientes!!!!
+  $(document).ready(function() {
+    $('#modalCadIngrediente').on('shown.bs.modal', function() {
+      $('#codigoIngrediente').focus();
+    });
+  });
 
   function mostrarAlerta() {
     Swal.fire({
@@ -247,4 +247,27 @@ include_once './func/dashboard.php';
       }
     });
   }
+  var redimensionarIngredientes = $('#previewUploadIngrediente').croppie({
+    enableExif: true,
+    enableOrientation: true,
+    viewport: {
+      width: 200,
+      height: 200,
+      type: 'square'
+    },
+    boundary: {
+      width: 300,
+      height: 300
+    }
+  });
+  $('#imgIngrediente').on('change', function() {
+    var lerIngrediente = new FileReader();
+    lerIngrediente.onload = function(e) {
+      redimensionarIngredientes.croppie('bind', {
+        url: e.target.result
+      });
+    }
+
+    lerIngrediente.readAsDataURL(this.files[0]);
+  });
 </script>

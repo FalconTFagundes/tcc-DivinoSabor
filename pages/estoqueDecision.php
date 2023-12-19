@@ -7,7 +7,7 @@
 <script>
     $('.linkMenuEstoqueDecision').click(function(event) {
         event.preventDefault();
-
+        
         let menuClicado = $(this).attr('idMenu');
 
         let dados = {
@@ -36,6 +36,7 @@
                 });
             },
             success: function(retorno) {
+                
                 // Exibe a mensagem de sucesso por 1 segundo antes de redirecionar
                 setTimeout(function() {
                     if (retorno !== 'Home') {

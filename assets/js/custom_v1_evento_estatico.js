@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
             calendar.unselect()
         },
         eventClick: function (arg) {
-            if (confirm('Are you sure you want to delete this event?')) {
+           /*  if (confirm('Are you sure you want to delete this event?')) {
                 arg.event.remove()
-            }
+            } */
         },
 
 
