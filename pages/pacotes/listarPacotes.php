@@ -160,7 +160,7 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
                                     <label for="idproduto">Escolha os produtos</label>
                                     <select class="form-control inputModal" name="idproduto[]" id="idproduto">
                                         <?php foreach ($opcoesProduto as $opcao) : ?>
-                                            <option value="<?php echo $opcao['idproduto']; ?>">
+                                            <option value="<?php echo $opcao['idprodutos']; ?>">
                                                 <?php echo $opcao['produto']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -194,7 +194,7 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
                                         <label for="idproduto">Escolha os produtos</label>
                                         <select class="form-control inputModal" name="idproduto[]" id="idproduto">
                                             <?php foreach ($opcoesProduto as $opcao) : ?>
-                                                <option value="<?php echo $opcao['idproduto']; ?>"><?php echo $opcao['produto']; ?></option>
+                                                <option value="<?php echo $opcao['idprodutos']; ?>"><?php echo $opcao['produto']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

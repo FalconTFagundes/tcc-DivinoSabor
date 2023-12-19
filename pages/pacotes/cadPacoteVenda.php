@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $sqlCadastrarProdutoNoPacote->execute();
 
                 // Cálculo do valor total do pacote
-                $sqlValorProduto = $conexao->prepare("SELECT valor FROM produto WHERE idproduto = ?");
+                $sqlValorProduto = $conexao->prepare("SELECT valor FROM produtos WHERE idprodutos = ?");
                 $sqlValorProduto->bindValue(1, $idproduto, PDO::PARAM_INT);
                 $sqlValorProduto->execute();
                 $valorProduto = $sqlValorProduto->fetch(PDO::FETCH_ASSOC)['valor'];
