@@ -63,7 +63,7 @@ try {
             h1 {
                 color: #9E77F1;
                 text-align: center;
-                border-bottom: 2px solid #333;
+                border-bottom: 1px solid #333;
                 padding-bottom: 10px;
                 margin-bottom: 20px;
             }

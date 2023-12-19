@@ -62,7 +62,7 @@ body.loginStyle .margin-login {
   border-radius: 30px;
   box-shadow: 5px 20px 20px #424242;
   /* border: 1px #9E77F1; */
-  border: 2px solid #9e77f1;
+  border: 1px solid #9e77f1;
 }
 
 #chk {
@@ -97,7 +97,7 @@ body.loginStyle input {
   padding: 10px;
   outline: none;
   border-radius: 30px;
-  border: 2px solid #9e77f1;
+  border: 1px solid #9e77f1;
 }
 
 ::-webkit-scrollbar {
@@ -1011,6 +1011,23 @@ table {
   margin-top: 2px;
 }
 
+.he\#btnRelatFinanceiro.aderTableFin {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
+.he\#btnRelatFinanceiro.aderTableFin .btn {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
+
 .details .btn {
   position: relative;
   padding: 5px 10px;
@@ -1156,7 +1173,7 @@ body.swal2-height-auto {
   margin-left: 5.5%;
   color: #9e77f1;
   background: none;
-  border: 2px solid;
+  border: 1px solid;
 }
 
 #btnRelatFinanceiro:hover{
@@ -1234,7 +1251,7 @@ h1 {
   width: fit-content;
   border-radius: 30px;
   overflow: hidden;
-  border: 2px solid #9e77f1;
+  border: 1px solid #9e77f1;
   box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
   background: transparent;
 }
@@ -1471,7 +1488,7 @@ footer .wave#wave4 {
     width: fit-content;
     border-radius: 30px;
     overflow: hidden;
-    border: 2px solid #9e77f1;
+    border: 1px solid #9e77f1;
     box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
   }
 
@@ -1588,7 +1605,7 @@ footer .wave#wave4 {
     width: fit-content;
     border-radius: 30px;
     overflow: hidden;
-    border: 2px solid #9e77f1;
+    border: 1px solid #9e77f1;
     box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.4);
   }
 
@@ -1716,7 +1733,7 @@ footer .wave#wave4 {
     width: fit-content;
     border-radius: 30px;
     overflow: hidden;
-    border: 2px solid #9e77f1;
+    border: 1px solid #9e77f1;
     box-shadow: 12px 14px 8px 0px rgba(0, 0, 0, 0.4);
   }
 
