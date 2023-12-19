@@ -160,15 +160,15 @@ body.loginStyle input {
   transform: scale(0.6);
 }
 
-#chk:checked ~ .login {
+#chk:checked~.login {
   transform: translateY(-500px);
 }
 
-#chk:checked ~ .login label {
+#chk:checked~.login label {
   transform: scale(1);
 }
 
-#chk:checked ~ .login label {
+#chk:checked~.login label {
   transform: scale(1);
 }
 
@@ -689,7 +689,7 @@ table {
 
 
 
-.img-thumbnail{
+.img-thumbnail {
   width: 60%;
   height: 60%;
 
@@ -765,7 +765,7 @@ table {
   position: relative;
 }
 
-.btn-group{
+.btn-group {
   gap: 2%;
 
 }
@@ -960,8 +960,12 @@ table {
   position: relative;
   width: 90%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 5%;
+}
+
+.containerVendasRecentes, .containerClientesRecentes {
+  width: 100%;
 }
 
 /* 43:15 */
@@ -1084,7 +1088,7 @@ table {
 
 /* botão feio de ficheiro */
 
-.form-control.inputModal{
+.form-control.inputModal {
   background: transparent;
   border-radius: 20px;
 }
@@ -1095,7 +1099,7 @@ body.swal2-height-auto {
 
 
 
-.headerCardBox h2{
+.headerCardBox h2 {
   font-size: 3rem;
   color: #9e77f1;
   font-weight: 600;
@@ -1103,16 +1107,46 @@ body.swal2-height-auto {
 }
 
 
-.headerCalendar h1{
+.headerCalendar h1 {
   font-size: 3rem;
   color: #9e77f1;
   font-weight: 600;
 }
 
-.headerCalendar h1{
+.headerCalendar h1 {
   font-size: 3rem;
   color: #9e77f1;
   font-weight: 600;
+}
+
+
+/* gráfico */
+
+.graficoBox {
+  position: relative;
+  width: 100%;
+
+  padding: 5%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1%;
+}
+
+.graficoBox .box {
+  position: relative;
+  border-radius: 30px;
+
+  min-height: 220px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 6px 12px rgba(2, 2, 2, 0.1);
+  border: 1px solid #9e77f1;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+  grid-gap: 25%;
+
 }
 
 /* FINAL LISTAR FINANCEIRO */
@@ -1139,7 +1173,7 @@ body.swal2-height-auto {
   padding: 30px;
   border-radius: 30px;
   box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.4);
-  
+
   margin-bottom: 5%;
 }
 
@@ -1220,7 +1254,7 @@ footer .menu_footer {
 footer .social_icon li,
 footer .menu_footer li {
   list-style: none;
-  
+
 }
 
 footer .social_icon li a {
@@ -1491,7 +1525,7 @@ footer .wave#wave4 {
     z-index: 2;
     transition: 0.7s !important;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1) !important;
-}
+  }
 
   .divNav {
     width: 98%;
@@ -1603,7 +1637,7 @@ footer .wave#wave4 {
     top: 85%;
     margin-left: 80%;
     z-index: 5;
-}
+  }
 
   .menu-lado .menu {
     background: var(--whiteDiferente);
@@ -1620,7 +1654,7 @@ footer .wave#wave4 {
     z-index: 2;
     transition: 0.7s !important;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1) !important;
-}
+  }
 
   .divNav {
     width: 75%;
@@ -1705,6 +1739,36 @@ footer .wave#wave4 {
     position: relative;
     width: 90%;
     display: flow;
+  }
+
+
+  /* gráfico */
+
+  .graficoBox {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 5%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1%;
+  }
+
+  .graficoBox .box {
+    position: relative;
+    border-radius: 30px;
+
+    max-height: 230px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 6px 12px rgba(2, 2, 2, 0.1);
+    border: 1px solid #9e77f1;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    background: transparent;
+    grid-gap: 25%;
+
   }
 
 }

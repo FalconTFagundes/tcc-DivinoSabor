@@ -1333,3 +1333,48 @@ function cadProdutosUpload(formId) {
         });
     });
 }
+
+
+// gráficos
+
+const ctx = document.getElementById('grafico1');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      datasets: [{
+        label: 'Qtd de Vendas por mês',
+        data: [12, 19, 3, 5, 2, 3, 67, 92, 34, 76, 56],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx2 = document.getElementById('grafico2');
+
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['Bronze', 'Prata', 'Ouro', 'Diamante'],
+      datasets: [{
+        label: 'Pacotes mais escolhidos',
+        data: [12, 19, 9, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });

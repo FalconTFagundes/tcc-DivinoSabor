@@ -54,6 +54,15 @@
 
 <!-- GRÁFICOS -->
 
+<div class="graficoBox">
+    <div class="box">
+    <canvas id="grafico2"></canvas>
+    </div>
+    <div class="box"><canvas id="grafico1"></canvas></div>
+</div>
+
+<!-- FIM GRÁFICOS -->
+
 <div class="details">
 
     <div class="containerVendasRecentes">
