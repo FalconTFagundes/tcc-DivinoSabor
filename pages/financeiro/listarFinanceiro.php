@@ -39,7 +39,7 @@ include_once "./func/dashboard.php";
 
     <div class="card">
         <div>
-            <div class="numbers"><?php echo $retornoSomaVendas . " R$"; ?></div>
+            <div class="numbers"><?php echo number_format($retornoSomaVendas, 2, ',', '.') . " R$"; ?></div>
             <div class="cardName">Vendas mensais</div>
         </div>
 
@@ -55,7 +55,7 @@ include_once "./func/dashboard.php";
 
     <div class="card">
         <div>
-            <div class="numbers"><?php echo $retornoDefict . " R$"; ?></div>
+            <div class="numbers"><?php echo number_format($retornoDefict, 2, ',', '.') . " R$"; ?></div>
             <div class="cardName">Défict</div>
         </div>
 
@@ -69,7 +69,7 @@ include_once "./func/dashboard.php";
     ?>
     <div class="card">
         <div>
-            <div class="numbers"><?php echo $lucro . " R$"; ?></div>
+        <div class="numbers"><?php echo number_format($lucro, 2, ',', '.') . " R$"; ?></div>
             <div class="cardName">Lucro</div>
         </div>
 
@@ -203,7 +203,7 @@ include_once "./func/dashboard.php";
 <?php
 $_SESSION['dados_painel_financeiro'] = [
     'qtdClientes' => $retornoQtdClientes['quantidade'],
-    'vendasMensais' => number_format($retornoSomaVendas, 0, ',', '.') . " R$",
+    'vendasMensais' => $retornoSomaVendas . " R$",
     'deficit' => $retornoDefict . " R$",
     'lucro' => $lucro . " R$",
     'ultimasVendas' => $retornoUltimasVendas,
