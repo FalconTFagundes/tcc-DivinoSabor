@@ -11,22 +11,18 @@ if (!$connect) {
     die("Erro de conexão com o banco de dados: " . mysqli_connect_error());
 }
 
-
 if (isset($_POST["nome"])) {
     $busca = $_POST["nome"];
-    // Use $nomeClientePedido in your query if needed
     $query = "SELECT pedidos.*, clientes.nome as nomeCliente
-    FROM pedidos
-    INNER JOIN clientes ON pedidos.idclientes = clientes.idclientes
-    WHERE pedidos.pedido LIKE '%$busca%'
-    ORDER BY pedidos.pedido;
-    ";
+              FROM pedidos
+              INNER JOIN clientes ON pedidos.idclientes = clientes.idclientes
+              WHERE pedidos.pedido LIKE '%$busca%'
+              ORDER BY pedidos.pedido";
 } else {
     $query = "SELECT pedidos.*, clientes.nome as nomeCliente
-    FROM pedidos
-    INNER JOIN clientes ON pedidos.idclientes = clientes.idclientes
-    ORDER BY pedidos.pedido;
-    ";
+              FROM pedidos
+              INNER JOIN clientes ON pedidos.idclientes = clientes.idclientes
+              ORDER BY pedidos.pedido";
 }
 
 $statement = $connect->prepare($query);
@@ -36,12 +32,28 @@ $rowCount = $statement->rowCount();
 
 if ($rowCount > 0) {
     foreach ($result as $row) {
+        // Lógica para atribuir classes de estilo com base na data de entrega
+        $dataEntrega = strtotime($row["dataEntrega"]);
+        $dataAtual = strtotime(date("Y-m-d"));
+
+        $classeData = '';
+        if ($dataAtual >= $dataEntrega) {
+            $classeData = 'entregaVermelha';
+        } elseif ($dataAtual >= strtotime('-7 days', $dataEntrega) && $dataAtual < $dataEntrega) {
+            $classeData = 'entregaAmarela';
+        } else {
+            $classeData = 'entregaVerde';
+        }
+
+        // Formatação da data para o formato brasileiro
+        $dataEntregaFormat = date("d/m/Y H:i:s", $dataEntrega);
+
         echo '<tr>
                 <td>' . $row["idpedidos"] . '</td>
                 <td>' . $row["nomeCliente"] . '</td>
                 <td>' . $row["pedido"] . '</td>
                 <td>' . $row["detalhes"] . '</td>
-                <td>' . $row["dataEntrega"] . '</td>
+                <td class="' . $classeData . '">' . $dataEntregaFormat . '</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">';
         if ($row["ativo"] == 'A') {
@@ -70,3 +82,4 @@ if ($rowCount > 0) {
     Nenhum registro localizado.
    </div></td></tr>";
 }
+?>
