@@ -98,7 +98,7 @@ include_once "./func/dashboard.php";
         <div class="he#btnRelatFinanceiro aderTableFin">
             <h2>Vendas recentes</h2>
             <div class="cardHeader">
-                <a href="" class="btn linkMenu" idMenu="listarPacotes">Ver tudo</a>
+                <a href="" class="btn linkMenuFinanceiro" idMenu="listarPacotes">Ver tudo</a>
             </div>
         </div>
 
@@ -234,6 +234,66 @@ $_SESSION['dados_painel_financeiro'] = [
             }
         });
     }
+
+    $('.linkMenuFinanceiro').click(function (event) { //colocada aqui pois o mesmo estava bugando
+        event.preventDefault();
+
+        let menuClicado = $(this).attr('idMenu');
+
+        let dados = {
+            acao: menuClicado,
+        };
+
+        console.log(dados);
+
+        var menuToggle = document.getElementById('controle-menu-toggle');
+
+        var clockToggle = document.getElementById('controle-clock-toggle');
+
+        var clockNavToggle = document.getElementById('clock-nav');
+
+        $.ajax({
+            type: "POST",
+            dataType: 'html',
+            url: 'controle.php',
+            data: dados,
+            beforeSend: function () {
+                // loading();
+
+            }, success: function (retorno) {
+
+                if (retorno != 'Home') {
+                    setTimeout(function () {
+                        // loadingEnd();
+                        $('div#showpage').html(retorno);
+                        document.getElementById("clock").classList.remove("clock");
+                        document.getElementById("clock").classList.add("clock-time");
+
+                        if (!menuToggle.classList.contains("menu-lado")) {
+                            menuToggle.classList.toggle("menu-lado");
+                        };
+
+                        if (!clockToggle.classList.contains("clocka")) {
+                            clockToggle.classList.toggle("clocka");
+                        };
+
+                        if (!clockNavToggle.classList.contains("clock-son")) {
+                            clockNavToggle.classList.toggle("clock-son");
+                        };
+
+
+
+                    }, 300);
+                } else if (retorno == 'Home') {
+                    location.reload();
+
+                } else {
+                    msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+                }
+
+            }
+        });
+    });
 
     // grafico 2
     const ctx2 = document.getElementById('grafico2');
