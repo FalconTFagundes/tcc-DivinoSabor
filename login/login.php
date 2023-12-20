@@ -16,7 +16,7 @@
                     <p><i class="fa-solid fa-lock"></i> Senha</p><input type="password" name="senhaLogin" placeholder="Digite a sua senha." required="">
                     
                     <button type="submit" onclick="Login();">Entrar</button>
-                    <!-- <input type="checkbox" id="chk" aria-hidden="true">Lembrar de mim. -->
+                    <input type="checkbox" id="chk" aria-hidden="true">Lembrar de mim. -->
 
     <!-- </form>
             </div>
