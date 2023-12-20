@@ -121,48 +121,45 @@ function excGeral(idvar, acaopage, pageretorno, m1, m2) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Confirmar'
+        confirmButtonText: 'Confirmar',
+        allowOutsideClick: false  // travamento - alert só fecha quando clica no cancel obs: tava dando success quando clicava para fora do alert :D
     }).then((result) => {
         if (result.isConfirmed) {
-
             var dados = {
                 acao: acaopage,
                 id: idvar
-            }
-            console.log(dados);
+            };
 
+            $.ajax({
+                type: 'POST',
+                dataType: 'HTML',
+                url: 'controle.php',
+                data: dados,
+                beforeSend: function (retorno) {
+                },
+                success: function (retorno) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Deletado com Sucesso :D',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function () {
+                        atualizarPagina(pageretorno);
+                    }, 1000);
+                },
+            });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-            swalWithBootstrapButtons.fire(
+            Swal.fire(
                 'Cancelado',
                 'Operação Cancelada',
                 'error'
-            )
+            );
         }
-
-        $.ajax({
-            type: 'POST',
-            dataType: 'HTML',
-            url: 'controle.php',
-            data: dados,
-            beforeSend: function (retorno) {
-            }, success: function (retorno) {
-
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Deletado com Sucesso :D",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                setTimeout(function () {
-                    atualizarPagina(pageretorno);
-                }, 1000)
-            }
-
-
-        });
-    })
+    });
 }
+
 
 
 // mensagem editar
@@ -1266,7 +1263,7 @@ function carregaUploadIngredientes() {
                     msgGeral('Ingrediente não encontrado', 'error');
                     $("#imgIngrediente").prop('disabled', false); // habilito novamente o botão
                     $('#msgBlockInput').html(""); // removo a mensagem da função block
-                    $('#previewUploadIngrediente').html(""); // removo o conteúdo que aparece no preview
+                   
 
                 }
                 $('#pesoIngred').val(data['pesoUnit']);

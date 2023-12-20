@@ -11,8 +11,8 @@ include_once "./func/dashboard.php";
 </div>
 
 <button type="button" id="btnRelatFinanceiro" class="btn" onclick="mostrarAlerta();">
-  <i class="fa-solid fa-print" title="Gerar Relatório"></i>
-  Gerar Relatório Geral
+    <i class="fa-solid fa-print" title="Gerar Relatório"></i>
+    Gerar Relatório Geral
 </button>
 
 <div class="cardBox">
@@ -33,12 +33,13 @@ include_once "./func/dashboard.php";
     </div>
 
     <?php
-    $retornoSomaVendas = somarGeral('valorPacote', 'pacoteCadastro');
+    /* vendas */
+    $retornoSomaVendas = somarGeralPacotes();
     ?>
 
     <div class="card">
         <div>
-            <div class="numbers"><?php echo number_format($retornoSomaVendas, 0, ',', '.') . " R$"; ?></div>
+            <div class="numbers"><?php echo $retornoSomaVendas . " R$"; ?></div>
             <div class="cardName">Vendas mensais</div>
         </div>
 
@@ -49,14 +50,12 @@ include_once "./func/dashboard.php";
     </div>
 
     <?php
-    $retornoDefictProdutos = somarGeral('valor', 'produtos');
-    $retornoDefictPacotes = somarGeral('valorPacote', 'pacotecadastro');
-    $retornoDiferencaDefict = $retornoDefictPacotes - $retornoDefictProdutos;
+    $retornoDefict = somarGeral('precoTotal', 'ingredientes'); // somo todos os gastos
     ?>
 
     <div class="card">
         <div>
-            <div class="numbers"><?php echo $retornoDiferencaDefict . " R$"; ?></div>
+            <div class="numbers"><?php echo $retornoDefict . " R$"; ?></div>
             <div class="cardName">Défict</div>
         </div>
 
@@ -66,7 +65,7 @@ include_once "./func/dashboard.php";
     </div>
 
     <?php
-    $lucro = $retornoSomaVendas - $retornoDiferencaDefict;
+    $lucro = $retornoSomaVendas - $retornoDefict;
     ?>
     <div class="card">
         <div>
@@ -141,7 +140,7 @@ include_once "./func/dashboard.php";
                                 <?php
                                 } else {
                                 ?>
-                                    <span class="status emAndamento">Desativado</span>
+                                    <span class="status emAndamento">Inativo</span>
                                 <?php
                                 }
                                 ?>
@@ -188,7 +187,7 @@ include_once "./func/dashboard.php";
                             <th>
                                 <?php
                                 if ($cliente['ativo'] == 'A') {
-                                    echo '<span class="status concluido">Ativo</span>';
+                                    echo '<span class="status concluido">Ativado</span>';
                                 } else {
                                     echo '<span class="status emAndamento">Inativo</span>';
                                 }
@@ -205,7 +204,7 @@ include_once "./func/dashboard.php";
 $_SESSION['dados_painel_financeiro'] = [
     'qtdClientes' => $retornoQtdClientes['quantidade'],
     'vendasMensais' => number_format($retornoSomaVendas, 0, ',', '.') . " R$",
-    'deficit' => $retornoDiferencaDefict . " R$",
+    'deficit' => $retornoDefict . " R$",
     'lucro' => $lucro . " R$",
     'ultimasVendas' => $retornoUltimasVendas,
     'ultimosClientes' => $ultimosClientes,
@@ -213,27 +212,27 @@ $_SESSION['dados_painel_financeiro'] = [
 ?>
 
 <script>
-     function mostrarAlerta() {
-    Swal.fire({
-      title: 'Você tem certeza?',
-      text: 'Deseja gerar o relatório financeiro geral?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sim, gerar relatório!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
+    function mostrarAlerta() {
         Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Gerando Relatório :D',
-          showConfirmButton: false,
-          timer: 700
+            title: 'Você tem certeza?',
+            text: 'Deseja gerar o relatório financeiro geral?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, gerar relatório!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Gerando Relatório :D',
+                    showConfirmButton: false,
+                    timer: 700
+                });
+                window.location.href = `./gerarRelatorios/gerarRelatFinanceiro.php`;
+            }
         });
-        window.location.href = `./gerarRelatorios/gerarRelatFinanceiro.php`;
-      }
-    });
-  }
+    }
 </script>
