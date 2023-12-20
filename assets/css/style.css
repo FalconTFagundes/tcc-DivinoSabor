@@ -2132,7 +2132,11 @@ footer .wave#wave4 {
 }
 
 @media screen and (min-width: 1401px) {
-  .img-bg img{
-    width: 70%;
+  .waveLogin {
+    width: 40%;
+  }
+  .img-bg img {
+    width: 100%;
+
   }
 }
