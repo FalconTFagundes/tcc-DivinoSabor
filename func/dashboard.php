@@ -257,7 +257,6 @@ function obterUltimosClientes()
 
         $consulta = "SELECT idclientes, nome, ativo, cadastro
                     FROM clientes
-                    WHERE ativo = 'A'
                     ORDER BY cadastro DESC
                     LIMIT 3";
 
