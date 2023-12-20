@@ -67,5 +67,8 @@ if ($rowCount > 0) {
         ';
 	}
 } else {
-	echo "<tr><td colspan='8'>Nenhum registro localizado.</td></tr>";
+	echo "<tr><td colspan='6'><div class='alert alert-warning' role='alert'>
+    Nenhum registro localizado.
+   </div></td></tr>";
 }
+

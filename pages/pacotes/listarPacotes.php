@@ -31,9 +31,16 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
 </button>
 
 <br><br>
+<i class="fa-solid fa-magnifying-glass fa-lg"></i>
+<label for="inputSearch" class="labelSearch">
+    <h5>Pesquisar Pacote Cadastrado</h5>
+</label>
+<div class="input-group input-group-sm mb-3">
+    <input type="text" id="buscarPacote" class="form-control inputSearch" aria-label="Small" placeholder="Pesquise">
+</div>
 
 <div style="height: 400px;">
-    <table class="table-financeira table table-hover">
+    <table class="table-financeira table table-hover" id="tabelaPacotesCad">
         <thead>
             <tr>
                 <th scope="col" width="5"><i class="fa-solid fa-hashtag"></i> Código</th>
@@ -280,4 +287,34 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
             }
         });
     }
+
+    function buscarNomePacoteCad(nome) {
+        $.ajax({
+            url: "pesquisarPacoteCadastro.php",
+            method: "POST",
+            data: {
+                nome: nome
+            },
+            success: function(data) {
+                // atualiza o conteúdo da tabela com os resultados da pesquisa
+                $('#tabelaPacotesCad tbody').html(data);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        // clientes iniciais
+        buscarNomePacoteCad();
+
+        // atualiza os clientes conforme o usuário digita na barra de pesquisa
+        $('#buscarPacote').keyup(function() {
+            var nome = $(this).val();
+            if (nome != '') {
+                buscarNomePacoteCad(nome);
+            } else {
+                // se pesquisa estiver vazia, exibe todos os clientes novamente
+                buscarNomePacoteCad();
+            }
+        });
+    });
 </script>
