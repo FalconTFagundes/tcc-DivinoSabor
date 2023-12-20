@@ -101,11 +101,11 @@ include_once './func/dashboard.php';
                 <?php
                 if ($ativoIngred == 'A') {
                 ?>
-                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idIngred; ?>,'desativar','ativarIngredientes','listarIngredientes', 'Uso suspenso');"> <i class="fa-solid fa-unlock" title="satus ingrediente"></i> Em uso</button>
+                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idIngred; ?>,'desativar','ativarIngredientes','listarIngredientes', 'Uso suspenso');"> <i class="fa-solid fa-unlock" title="Ingrediente em uso"></i> Em uso</button>
                 <?php
                 } else {
                 ?>
-                  <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idIngred; ?>, 'ativar', 'ativarIngredientes','listarIngredientes', 'Ingrediente em uso');"><i class="fa-solid fa-lock" title="Pedido Concluído"></i> Uso suspenso</button>
+                  <button type='button' class='btn btn-outline-secondary' onclick="ativarGeral(<?php echo $idIngred; ?>, 'ativar', 'ativarIngredientes','listarIngredientes', 'Ingrediente em uso');"><i class="fa-solid fa-lock" title="Ingrediente em desuso"></i> Uso suspenso</button>
 
                 <?php
                 }

@@ -25,20 +25,35 @@ $rowCount = $statement->rowCount();
 
 if ($rowCount > 0) {
     foreach ($result as $row) {
+        // Lógica para atribuir classes de estilo com base na data de validade
+        $dataAtual = strtotime(date("Y-m-d")); // Converte a data atual para timestamp
+        $dataValidade = strtotime($row["dataValidad"]); // Converte a data de validade para timestamp
+
+        $classeData = '';
+        if ($dataAtual >= $dataValidade) {
+            $classeData = 'entregaVermelha';
+        } elseif ($dataAtual >= strtotime('-7 days', $dataValidade) && $dataAtual < $dataValidade) {
+            $classeData = 'entregaAmarela';
+        } else {
+            $classeData = 'entregaVerde';
+        }
+
+        // Formatação da data de validade para o formato brasileiro
+        $dataValidadeFormat = date("d/m/Y", strtotime($row["dataValidad"]));
+
         echo '
             <tr>
                 <td>' . $row["idingredientes"] . '</td>
                 <td><img src="./assets/images/ingredientes/' . $row["img"] . '" alt="Imagem Ingrediente" class="img-thumbnail"></td>
                 <td>' . $row["nomeIngred"] . '</td>
                 <td>' . $row["quantIngred"] . '</td>
-                <td>' . $row["pesoUnit"] . '</td>
-                <td>' . $row["precoUnit"] . '</td>
+                <td>' . $row["pesoUnit"] . ' Kg</td>
+                <td>' . $row["precoUnit"] . ' R$</td>
                 <td>' . $row["dataComp"] . '</td>
-                <td>' . $row["precoTotal"] . '</td>
-                <td>' . $row["dataValidad"] . '</td>
+                <td>' . $row["precoTotal"] . ' R$</td>
+                <td class="' . $classeData . '">' . $dataValidadeFormat . '</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">';
-
 
         if ($row["ativo"] == 'A') {
             echo '
@@ -56,11 +71,11 @@ if ($rowCount > 0) {
 
         echo '
                         <a href="#" onclick="mostrarAlertaIdGet(' . $row["idingredientes"] . ')">
-                            <button type="button" class="btn btn-outline-info">
+                            <button type="button" class="btn btn-outline-info btnGerarRelatIngredientesUn">
                                 <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
                             </button>
                         </a>
-                        <button type="submit" class="btn btn-outline-danger" onclick="excGeral(' . $row["idingredientes"] . ', \'excluirIngredientes\', \'listarIngredientes\', \'CCerteza que deseja excluir?\', \'Operação Irreversível!\')">
+                        <button type="submit" class="btn btn-outline-danger" onclick="excGeral(' . $row["idingredientes"] . ', \'excluirIngredientes\', \'listarIngredientes\', \'Certeza que deseja excluir?\', \'Operação Irreversível!\')">
                             <i class="fa-solid fa-trash" title="Excluir"></i> Excluir
                         </button>
                     </div>
@@ -69,7 +84,7 @@ if ($rowCount > 0) {
         ';
     }
 } else {
-    echo "<tr><td colspan='6'><div class='alert alert-warning' role='alert'>
+    echo "<tr><td colspan='10'><div class='alert alert-warning' role='alert'>
     Nenhum registro localizado.
    </div></td></tr>";
 }
