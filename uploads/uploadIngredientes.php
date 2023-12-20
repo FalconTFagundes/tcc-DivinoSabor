@@ -36,14 +36,14 @@ $conn = conectar();
 if (!empty($dados) && isset($dados)) {
     $codigoIngrediente = $dados['codigoIngrediente'];
 
-    // verificar se o registro já existe
+    // Verificar se o registro já existe
     $queryVerificacao = "SELECT COUNT(*) as total FROM ingredientes WHERE codigo = :codigo";
     $stmtVerificacao = $conn->prepare($queryVerificacao);
     $stmtVerificacao->bindParam(':codigo', $codigoIngrediente, PDO::PARAM_STR);
     $stmtVerificacao->execute();
     $resultadoVerificacao = $stmtVerificacao->fetch(PDO::FETCH_ASSOC);
 
-    //recebendo de $dados
+    // Receber dados do $dados
     $nomeIngrediente = $dados['nomeIngred'];
     $qtdIngrediente = $dados['quantIngred'];
     $pesoIngrediente = $dados['pesoIngred'];
@@ -52,18 +52,19 @@ if (!empty($dados) && isset($dados)) {
     $dataValidade = $dados['dataValidade'];
     $dataeHoraAtual = date('Y-m-d H:i:s');
 
+    // Se o registro já existe, faça o update
     if ($resultadoVerificacao['total'] > 0) {
-        // se já existe, faça o update
-
+        // Obter a quantidade atual
         $queryQuantidade = "SELECT quantIngred FROM ingredientes WHERE codigo = :codigo";
         $stmtQuantidade = $conn->prepare($queryQuantidade);
         $stmtQuantidade->bindParam(':codigo', $codigoIngrediente, PDO::PARAM_STR);
         $stmtQuantidade->execute();
         $quantidadeAtual = $stmtQuantidade->fetchColumn();
 
-        // somar a nova quantidade à quantidade existente
+        // Somar a nova quantidade à quantidade existente
         $novaQuantidade = $qtdIngrediente + $quantidadeAtual;
 
+        // Chamar a função de update
         upSeis(
             'ingredientes',
             'nomeIngred',
@@ -79,12 +80,11 @@ if (!empty($dados) && isset($dados)) {
             $valorIngred,
             $dataCompraIngrediente,
             $dataValidade,
-            $codigoIngrediente,
-
+            $codigoIngrediente
         );
     } else {
-        // caso não exista, faça o insert
-        $resultado = insertNove(
+        // Caso não exista, faça o insert
+        insertNove(
             'ingredientes',
             'nomeIngred, img, quantIngred, pesoUnit, precoUnit, dataComp, dataValidad, codigo, cadastro',
             $nomeIngrediente,

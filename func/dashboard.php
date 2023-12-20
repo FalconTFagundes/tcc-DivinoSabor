@@ -93,6 +93,31 @@ function somarGeral($campos, $tabela)
     }
 }
 
+function somarGeralPacotes()
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $stmt = $conn->prepare("SELECT SUM(valorPacote) AS valorTotalGeral FROM (SELECT idpacote, MAX(valorPacote) AS valorPacote FROM pacotecadastro GROUP BY idpacote) AS pacotesTotais");
+        $stmt->execute();
+        // Verifica se a consulta retornou resultados
+        if ($stmt->rowCount() > 0) {
+            // Retorna a soma como um valor numérico
+            return $stmt->fetchColumn();
+        } else {
+            return 0; // ou outro valor padrão, se desejar
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        $conn->rollback();
+        return null;
+    } finally {
+        // Sempre feche a conexão no bloco finally
+        $conn = null;
+    }
+}
+
+
 
 
 function nomeCorParaHex($nomeCor)
@@ -214,12 +239,12 @@ function checarLogin($tabela, $email, $senha)
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        
+
         //verificar apenas se o email existe
         $sqlLista = $conn->prepare("SELECT senha FROM $tabela WHERE email = ?");
         $sqlLista->bindValue(1, $email, PDO::PARAM_STR);
         $sqlLista->execute();
-        
+
         $conn->commit();
 
         if ($sqlLista->rowCount() > 0) {
@@ -228,7 +253,7 @@ function checarLogin($tabela, $email, $senha)
 
             // password_verify para comparar a senha fornecida com o hash salvo
             if (password_verify($senha, $hashArmazenado)) {
-           
+
                 return true;
             } else {
 
