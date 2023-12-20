@@ -1263,7 +1263,7 @@ function carregaUploadIngredientes() {
                     msgGeral('Ingrediente não encontrado', 'error');
                     $("#imgIngrediente").prop('disabled', false); // habilito novamente o botão
                     $('#msgBlockInput').html(""); // removo a mensagem da função block
-                   
+
 
                 }
                 $('#pesoIngred').val(data['pesoUnit']);
@@ -1364,22 +1364,22 @@ function cadProdutosUpload(formId) {
 const inputs = document.querySelectorAll(".input");
 
 
-function addcl(){
-	let parent = this.parentNode.parentNode;
-	parent.classList.add("focus");
+function addcl() {
+    let parent = this.parentNode.parentNode;
+    parent.classList.add("focus");
 }
 
-function remcl(){
-	let parent = this.parentNode.parentNode;
-	if(this.value == ""){
-		parent.classList.remove("focus");
-	}
+function remcl() {
+    let parent = this.parentNode.parentNode;
+    if (this.value == "") {
+        parent.classList.remove("focus");
+    }
 }
 
 
 inputs.forEach(input => {
-	input.addEventListener("focus", addcl);
-	input.addEventListener("blur", remcl);
+    input.addEventListener("focus", addcl);
+    input.addEventListener("blur", remcl);
 });
 
 
@@ -1388,7 +1388,7 @@ inputs.forEach(input => {
 
 // gráfico 01 :D
 
-/* const ctx = document.getElementById('grafico1');
+const ctx = document.getElementById('grafico1');
 
 new Chart(ctx, {
     type: 'bar',
@@ -1408,26 +1408,39 @@ new Chart(ctx, {
         }
     }
 });
- */
+
 // gráfico 02 :D
+const ctx2 = document.getElementById('grafico2');
 
-/* const ctx2 = document.getElementById('grafico2');
-
-new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: ['Bronze', 'Prata', 'Ouro', 'Diamante'],
-        datasets: [{
-            label: 'Pacotes mais escolhidos',
-            data: [12, 19, 9, 3],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+function atualizarGrafico() {
+    $.ajax({
+        url: 'dadosGrafico2.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            new Chart(ctx2, {
+                type: 'polarArea',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Pacotes mais escolhidos',
+                        data: data.data,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        },
+        error: function (error) {
+            console.error('Erro ao obter dados do gráfico:', error);
         }
-    }
-}); */
+    });
+}
+
+atualizarGrafico();

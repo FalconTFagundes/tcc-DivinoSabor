@@ -69,7 +69,7 @@ include_once "./func/dashboard.php";
     ?>
     <div class="card">
         <div>
-        <div class="numbers"><?php echo number_format($lucro, 2, ',', '.') . " R$"; ?></div>
+            <div class="numbers"><?php echo number_format($lucro, 2, ',', '.') . " R$"; ?></div>
             <div class="cardName">Lucro</div>
         </div>
 
@@ -82,13 +82,14 @@ include_once "./func/dashboard.php";
 
 
 <!-- GRÁFICOS -->
-
-<!-- <div class="graficoBox">
+<div class="graficoBox">
     <div class="box">
         <canvas id="grafico2"></canvas>
     </div>
-    <div class="box"><canvas id="grafico1"></canvas></div>
-</div> -->
+    <div class="box">
+        <canvas id="grafico1"></canvas>
+    </div>
+</div>
 
 <!-- FIM GRÁFICOS -->
 

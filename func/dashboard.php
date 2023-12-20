@@ -67,7 +67,6 @@ function listarGeralPacoteInnerjoinFinanceiro()
 
 
 
-
 function somarGeral($campos, $tabela)
 {
     $conn = conectar();
@@ -116,8 +115,28 @@ function somarGeralPacotes()
         $conn = null;
     }
 }
-
-
+function capturarPacotesBest() {
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $stmt = $conn->prepare("SELECT pc.idpacote, pacote.pacote AS nome_pacote, COUNT(pc.idpacote) AS total_vendas FROM pacotecadastro pc INNER JOIN pacote ON pc.idpacote = pacote.idpacote WHERE pc.ativo = 'A' GROUP BY pc.idpacote, pacote.pacote ORDER BY total_vendas DESC LIMIT 4;");
+        $stmt->execute();
+        // Verifica se a consulta retornou resultados
+        if ($stmt->rowCount() > 0) {
+            // Retorna todos os resultados como um array associativo
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return []; // ou outro valor padrão, se desejar
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        $conn->rollback();
+        return null;
+    } finally {
+        // Sempre feche a conexão no bloco finally
+        $conn = null;
+    }
+}
 
 
 function nomeCorParaHex($nomeCor)

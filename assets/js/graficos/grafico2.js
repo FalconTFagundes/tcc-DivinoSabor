@@ -1,5 +1,5 @@
 const config = {
-  type: 'line',
+  type: 'polarArea',
   data: data,
   options: {
     scales: {
