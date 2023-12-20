@@ -29,7 +29,6 @@ if ($rowCount > 0) {
             <tr>
                 <td>' . $row["idingredientes"] . '</td>
                 <td><img src="./assets/images/ingredientes/' . $row["img"] . '" alt="Imagem Ingrediente" class="img-thumbnail"></td>
-
                 <td>' . $row["nomeIngred"] . '</td>
                 <td>' . $row["quantIngred"] . '</td>
                 <td>' . $row["pesoUnit"] . '</td>

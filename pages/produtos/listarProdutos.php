@@ -25,10 +25,17 @@ include_once './func/dashboard.php';
 
 
 <br><br>
+<i class="fa-solid fa-magnifying-glass fa-lg"></i>
+<label for="inputSearch" class="labelSearch">
+    <h5>Pesquisar Produto </h5>
+</label>
+<div class="input-group input-group-sm mb-3">
+    <input type="text" id="buscarProduto" class="form-control inputSearch" aria-label="Small" placeholder="Pesquise">
+</div>
 
 
 <div style="height: 400px;">
-  <table class="table-financeira table table-hover">
+  <table class="table-financeira table table-hover" id="tabelaProdutos">
     <thead>
       <tr>
         <th scope="col" width="10"><i class="fa-solid fa-hashtag"></i> Código</th>
@@ -136,7 +143,6 @@ include_once './func/dashboard.php';
 </div>
 
 <script>
-
   function mostrarAlerta() {
     Swal.fire({
       title: 'Você tem certeza?',
@@ -190,27 +196,52 @@ include_once './func/dashboard.php';
     enableExif: true,
     enableOrientation: true,
     viewport: {
-        width: 200,
-        height: 200,
-        type: 'square'
+      width: 200,
+      height: 200,
+      type: 'square'
     },
     boundary: {
-        width: 300,
-        height: 300
+      width: 300,
+      height: 300
     }
-});
+  });
 
-// Manipulador de mudança para o input de arquivo
-$('#imgProduto').on('change', function () {
+  // Manipulador de mudança para o input de arquivo
+  $('#imgProduto').on('change', function() {
     var lerProduto = new FileReader();
-    lerProduto.onload = function (e) {
-        redimensionarImgProduto.croppie('bind', {
-            url: e.target.result
-        });
+    lerProduto.onload = function(e) {
+      redimensionarImgProduto.croppie('bind', {
+        url: e.target.result
+      });
     }
 
     lerProduto.readAsDataURL(this.files[0]);
-});
+  });
+
+  function buscarNomeProduto(nome) {
+    $.ajax({
+      url: "pesquisarProduto.php",
+      method: "POST",
+      data: {
+        nome: nome
+      },
+      success: function(data) {
+        $('#tabelaProdutos tbody').html(data);
+      }
+    });
+  }
+
+  $(document).ready(function() {
+
+    buscarNomeProduto();
+
+    $('#buscarProduto').keyup(function() {
+      var nome = $(this).val();
+      if (nome != '') {
+        buscarNomeProduto(nome);
+      } else {
+        buscarNomeProduto();
+      }
+    });
+  });
 </script>
-
-
