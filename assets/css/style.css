@@ -7,6 +7,7 @@
   --purpleDark: #915ddf;
   --white: #fff;
   --whiteDiferente: #fdfdfd;
+  --sweetAlertText: #313131;
   --dark: #313131;
   --darkClaro: #3f3f3f;
 }
@@ -15,6 +16,7 @@
 [data-theme="dark"] {
   --white: #313131;
   --whiteDiferente: #3f3f3f;
+  --sweetAlertText: #949494;
   --dark: #fff;
   --purplePadrão: #915ddf;
   --purplePadrão2: #6a43bd;
