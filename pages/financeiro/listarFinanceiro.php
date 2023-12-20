@@ -161,7 +161,7 @@ include_once "./func/dashboard.php";
         <div class="headerTableFin">
             <h2>Clientes recentes</h2>
             <div class="cardHeader">
-                <a href="" class="btn linkMenu" idMenu="listarClientes">Ver tudo</a>
+                <a href="" class="btn linkMenuFinanceiro" idMenu="listarClientes">Ver tudo</a>
             </div>
         </div>
 
