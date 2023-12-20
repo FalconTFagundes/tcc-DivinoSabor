@@ -1466,3 +1466,4 @@ function atualizarGrafico2() {
 }
 
 atualizarGrafico2();
+

@@ -896,6 +896,33 @@ table {
   border-collapse: separate !important;
 }
 
+/* SEARCH */
+
+.inputSearch {
+  background-color: transparent;
+  color: #333333;
+  border-color: #9e77f1;
+  width: 200px;
+  border-radius: 4px;
+}
+
+.inputSearch:focus{
+  background-color: transparent;
+}
+
+.fa-magnifying-glass {
+  color: #9e77f1;
+}
+
+.labelSearch{
+  color: #9e77f1;
+}
+
+
+
+
+
+/* fim search */
 
 
 .img-thumbnail {
@@ -903,7 +930,6 @@ table {
   height: 60%;
 
 }
-
 
 
 .table-financeira {
@@ -2126,6 +2152,7 @@ footer .wave#wave4 {
 /* LOGIN IMG :D */
 
 @media screen and (max-width: 900px) and (min-width: 626px) {
+
   .img-bg img,
   .waveLogin {
     display: none;
@@ -2136,6 +2163,7 @@ footer .wave#wave4 {
   .waveLogin {
     width: 40%;
   }
+
   .img-bg img {
     width: 100%;
 

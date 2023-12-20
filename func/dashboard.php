@@ -2780,6 +2780,7 @@ function listarGeral($campos, $tabela)
     $conn = null;
 }
 
+
 function listarGeralCount($campos, $tabela)
 {
     $conn = conectar();

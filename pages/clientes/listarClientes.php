@@ -20,89 +20,92 @@
     Gerar Relatório Geral
   </button>
 
-
   <br><br>
-
-
-  <div style="height: 400px;">
-    <table class="table-financeira table table-hover">
-      <thead>
-        <tr>
-          <th scope="col" width="5"><i class="fa-solid fa-id-badge"></i> Código</th>
-          <th scope="col" width="15%"><i class="fa-solid fa-user"></i> Nome</th>
-          <th scope="col" width="20%"><i class="fa-solid fa-location-dot"></i> Endereço</th>
-          <th scope="col" width="10%"><i class="fa-solid fa-house"></i> Complemento</th>
-          <th scope="col" width="10%"><i class="fa-solid fa-flag"></i> Estado</th>
-          <th scope="col" width="15%"><i class="fa-solid fa-location-crosshairs"></i> Cidade</th>
-          <th scope="col" width="5%"><i class="fa-solid fa-phone"></i> Telefone</th>
-          <th scope="col" width="10%"><i class="fa-solid fa-pen-to-square"></i> Ações</th>
-          <!-- CEP consta somente no relatório!! -->
-        </tr>
-      </thead>
-      <tbody>
-
-        <?php
-        $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
-
-        $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo', 'clientes');
-        if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
-          foreach ($retornoListarClientes as $itemCliente) {
-            $idCliente = $itemCliente->idclientes;
-            $nomeCliente = $itemCliente->nome;
-            $enderecoCliente = $itemCliente->endereco;
-            $complementoCliente = $itemCliente->complemento;
-            $estadoCliente = $itemCliente->estado;
-            $cidadeCliente = $itemCliente->cidade;
-            $cepCliente = $itemCliente->cep;
-            $telefoneCliente = $itemCliente->telefone;
-            $cadastroCliente = $itemCliente->cadastro;
-            $ativoCliente = $itemCliente->ativo;
-        ?>
-
-            <tr>
-              <td scope="row"><?php echo $idCliente; ?></td>
-              <td><?php echo $nomeCliente; ?></td>
-              <td><?php echo $enderecoCliente; ?></td>
-              <td><?php echo $complementoCliente; ?></td>
-              <td><?php echo $estadoCliente; ?></td>
-              <td><?php echo $cidadeCliente; ?></td>
-              <td><?php echo $telefoneCliente; ?></td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                  <?php
-                  if ($ativoCliente == 'A') {
-                  ?>
-                    <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idCliente; ?>,'desativar','ativarClientes','listarClientes', 'Cliente Desativado com Sucesso');"> <i class="fa-solid fa-unlock" title="Cliente Ativado"></i> Ativado</button>
-                  <?php
-                  } else {
-                  ?>
-                    <button type='button' class='btn btn-outline-warning' onclick="ativarGeral(<?php echo $idCliente; ?>, 'ativar', 'ativarClientes','listarClientes', 'Cliente Ativado com Sucesso');"><i class="fa-solid fa-lock" title="Cliente Não Ativado"></i> Desativado</button>
-
-                  <?php
-                  }
-                  ?>
-                  <!-- passando id diretamente na URL - sem SEM AJAX -->
-                  <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idCliente; ?>')">
-                    <button type="button" class="btn btn-outline-info">
-                      <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
-                    </button>
-                  </a>
-
-                  <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idCliente; ?>', 'excluirClientes', 'listarClientes', 'Certeza que deseja excluir este Cliente?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
-                </div>
-              </td>
-            </tr>
-        <?php
-          }
-        } else {
-          echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
-          echo "Nenhum Registro Encontrado";
-          echo "</div>";
-        }
-        ?>
-      </tbody>
-    </table>
+  <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  <label for="inputSearch" class="labelSearch"><h5>Pesquisar Clientes</h5></label>
+  <div class="input-group input-group-sm mb-3">
+    <input type="text" id="buscarCliente" class="form-control inputSearch" aria-label="Small" placeholder="Pesquise">
   </div>
+
+
+  <table class="table-financeira table table-hover" id="tabelaClientes">
+    <thead>
+      <tr>
+        <th scope="col" width="5"><i class="fa-solid fa-id-badge"></i> Código</th>
+        <th scope="col" width="15%"><i class="fa-solid fa-user"></i> Nome</th>
+        <th scope="col" width="20%"><i class="fa-solid fa-location-dot"></i> Endereço</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-house"></i> Complemento</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-flag"></i> Estado</th>
+        <th scope="col" width="15%"><i class="fa-solid fa-location-crosshairs"></i> Cidade</th>
+        <th scope="col" width="5%"><i class="fa-solid fa-phone"></i> Telefone</th>
+        <th scope="col" width="10%"><i class="fa-solid fa-pen-to-square"></i> Ações</th>
+        <!-- CEP consta somente no relatório!! -->
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php
+      $dataAtual = date("Y-m-d");  // Formato ISO 8601!!!!!!
+
+      $retornoListarClientes = listarGeral('idclientes, nome, endereco, complemento, cidade, estado, cep, telefone, cadastro, alteracao, ativo', 'clientes');
+      if (is_array($retornoListarClientes) && !empty($retornoListarClientes)) {
+        foreach ($retornoListarClientes as $itemCliente) {
+          $idCliente = $itemCliente->idclientes;
+          $nomeCliente = $itemCliente->nome;
+          $enderecoCliente = $itemCliente->endereco;
+          $complementoCliente = $itemCliente->complemento;
+          $estadoCliente = $itemCliente->estado;
+          $cidadeCliente = $itemCliente->cidade;
+          $cepCliente = $itemCliente->cep;
+          $telefoneCliente = $itemCliente->telefone;
+          $cadastroCliente = $itemCliente->cadastro;
+          $ativoCliente = $itemCliente->ativo;
+      ?>
+
+          <tr>
+            <td scope="row"><?php echo $idCliente; ?></td>
+            <td><?php echo $nomeCliente; ?></td>
+            <td><?php echo $enderecoCliente; ?></td>
+            <td><?php echo $complementoCliente; ?></td>
+            <td><?php echo $estadoCliente; ?></td>
+            <td><?php echo $cidadeCliente; ?></td>
+            <td><?php echo $telefoneCliente; ?></td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <?php
+                if ($ativoCliente == 'A') {
+                ?>
+                  <button type='button' class='btn btn-outline-success' onclick="ativarGeral(<?php echo $idCliente; ?>,'desativar','ativarClientes','listarClientes', 'Cliente Desativado com Sucesso');"> <i class="fa-solid fa-unlock" title="Cliente Ativado"></i> Ativado</button>
+                <?php
+                } else {
+                ?>
+                  <button type='button' class='btn btn-outline-warning' onclick="ativarGeral(<?php echo $idCliente; ?>, 'ativar', 'ativarClientes','listarClientes', 'Cliente Ativado com Sucesso');"><i class="fa-solid fa-lock" title="Cliente Não Ativado"></i> Desativado</button>
+
+                <?php
+                }
+                ?>
+                <!-- passando id diretamente na URL - sem SEM AJAX -->
+                <a href="#" onclick="mostrarAlertaIdGet('<?php echo $idCliente; ?>')">
+                  <button type="button" class="btn btn-outline-info">
+                    <i class="fa-solid fa-print" title="Gerar Relatório"></i> Relatório
+                  </button>
+                </a>
+
+                <button type="submit" class="btn btn-outline-danger" onclick="excGeral('<?php echo $idCliente; ?>', 'excluirClientes', 'listarClientes', 'Certeza que deseja excluir este Cliente?', 'Operação Irreversível!')"><i class="fa-solid fa-trash" title="Excluir"></i> Excluir</button>
+              </div>
+            </td>
+          </tr>
+      <?php
+        }
+      } else {
+        echo "<div class='alert alert-warning' style='text-align: center;' role='alert'>";
+        echo "Nenhum Registro Encontrado";
+        echo "</div>";
+      }
+      ?>
+    </tbody>
+  </table>
+
 
   <!-- Modal Cad Cliente -->
   <div class="modal fade" id="modalCadClientes" tabindex="-1" role="dialog" aria-labelledby="modalCadPedido" aria-hidden="true">
@@ -200,4 +203,34 @@
         }
       });
     }
+
+    function buscarNomeCliente(nome) {
+      $.ajax({
+        url: "pesquisarCliente.php",
+        method: "POST",
+        data: {
+          nome: nome
+        },
+        success: function(data) {
+          // atualiza o conteúdo da tabela com os resultados da pesquisa
+          $('#tabelaClientes tbody').html(data);
+        }
+      });
+    }
+
+    $(document).ready(function() {
+      // clientes iniciais
+      buscarNomeCliente();
+
+      // atualiza os clientes conforme o usuário digita na barra de pesquisa
+      $('#buscarCliente').keyup(function() {
+        var nome = $(this).val();
+        if (nome != '') {
+          buscarNomeCliente(nome);
+        } else {
+          // se pesquisa estiver vazia, exibe todos os clientes novamente
+          buscarNomeCliente();
+        }
+      });
+    });
   </script>
