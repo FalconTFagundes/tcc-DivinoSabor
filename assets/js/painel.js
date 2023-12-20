@@ -1266,7 +1266,7 @@ function carregaUploadIngredientes() {
                     msgGeral('Ingrediente não encontrado', 'error');
                     $("#imgIngrediente").prop('disabled', false); // habilito novamente o botão
                     $('#msgBlockInput').html(""); // removo a mensagem da função block
-                    $('#previewUploadIngrediente').html(""); // removo o conteúdo que aparece no preview
+                   
 
                 }
                 $('#pesoIngred').val(data['pesoUnit']);
