@@ -21,13 +21,17 @@ include_once './func/dashboard.php';
   Gerar Relatório Geral
 </button>
 
-
 <br><br>
+  <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  <label for="inputSearch" class="labelSearch"><h5>Pesquisar Pedidos</h5></label>
+  <div class="input-group input-group-sm mb-3">
+    <input type="text" id="buscarPedido" class="form-control inputSearch" aria-label="Small" placeholder="Pesquise">
+  </div>
 
 
 
 <div style="height: 400px;">
-  <table class="table-financeira table table-hover">
+  <table class="table-financeira table table-hover" id="tabelaPedidos">
     <thead>
       <tr>
         <th scope="col" width="5%"><i class="fa-solid fa-hashtag"></i> Código</th>
@@ -221,4 +225,31 @@ include_once './func/dashboard.php';
       }
     });
   }
+
+  function buscarNomePedido(nome) {
+    $.ajax({
+      url: "pesquisarPedido.php",
+      method: "POST",
+      data: {
+        nome: nome
+      },
+      success: function(data) {
+        $('#tabelaPedidos tbody').html(data);
+      }
+    });
+  }
+
+  $(document).ready(function() {
+
+    buscarNomePedido();
+
+    $('#buscarPedido').keyup(function() {
+      var nome = $(this).val();
+      if (nome != '') {
+        buscarNomePedido(nome);
+      } else {
+        buscarNomePedido();
+      }
+    });
+  });
 </script>

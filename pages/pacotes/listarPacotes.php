@@ -296,23 +296,21 @@ $opcoesProduto = obterOpcoesDoBanco('produtos', 'idprodutos', 'produto');
                 nome: nome
             },
             success: function(data) {
-                // atualiza o conteúdo da tabela com os resultados da pesquisa
+     
                 $('#tabelaPacotesCad tbody').html(data);
             }
         });
     }
 
     $(document).ready(function() {
-        // clientes iniciais
         buscarNomePacoteCad();
 
-        // atualiza os clientes conforme o usuário digita na barra de pesquisa
+
         $('#buscarPacote').keyup(function() {
             var nome = $(this).val();
             if (nome != '') {
                 buscarNomePacoteCad(nome);
             } else {
-                // se pesquisa estiver vazia, exibe todos os clientes novamente
                 buscarNomePacoteCad();
             }
         });
