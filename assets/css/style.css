@@ -1132,22 +1132,47 @@ table {
 }
 
 .status.concluido {
-  padding: 2px 4px;
-  background: #32cd32;
+  background: linear-gradient(45deg, #008004, #00ff00);
   color: white;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 0;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 128, 4, 0.3);
 }
 
 .status.emAndamento {
-  padding: 2px 4px;
-  background: #cd3232;
+  background: linear-gradient(45deg, #ff2d2d, #910000);
   color: white;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 0;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(255, 45, 45, 0.3);
 }
+
+.status.concluido:hover{
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 255, 8, 0.4);
+}
+
+.status.emAndamento:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(255, 8, 0, 0.4);
+}
+
 
 /* botão feio de ficheiro */
 
