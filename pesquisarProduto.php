@@ -31,7 +31,7 @@ if ($rowCount > 0) {
                 <td><img src="./assets/images/produtos/' . $row["img"] . '" alt="Imagem Produto" class="img-thumbnail"></td>
                 <td>' . $row["produto"] . '</td>
                 <td>' . $row["valor"] . '</td>
-                <td>' . $row["cadastro"] . '</td>
+                <td>' . date("d/m/Y H:i:s", strtotime($row["cadastro"])) . '</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">';
 
