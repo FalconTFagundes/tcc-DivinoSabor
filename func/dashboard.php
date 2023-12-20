@@ -138,6 +138,29 @@ function capturarPacotesBest() {
     }
 }
 
+function capturarVendasMes(){
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $stmt = $conn->prepare("SELECT
+        DATE_FORMAT(cadastro, '%m') AS mes, COUNT(*) AS total_registros  FROM  pacotecadastro WHERE cadastro IS NOT NULL GROUP BY  mes ORDER BY mes; ");
+        $stmt->execute();
+        // Verifica se a consulta retornou resultados
+        if ($stmt->rowCount() > 0) {
+            // Retorna todos os resultados como um array associativo
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return []; // ou outro valor padrão, se desejar
+        }
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        $conn->rollback();
+        return null;
+    } finally {
+        // Sempre feche a conexão no bloco finally
+        $conn = null;
+    }
+}
 
 function nomeCorParaHex($nomeCor)
 {

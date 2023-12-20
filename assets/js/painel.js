@@ -1387,38 +1387,68 @@ inputs.forEach(input => {
 // gráficos
 
 // gráfico 01 :D
-
+// gráfico 01 :D
 const ctx = document.getElementById('grafico1');
+let myChart1;  // Variável para armazenar a referência ao gráfico
 
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        datasets: [{
-            label: 'Qtd de Vendas por mês',
-            data: [12, 19, 3, 5, 2, 3, 67, 92, 34, 76, 56],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
+function atualizarGrafico1() {
+    // Verifica se o gráfico já existe e o destrói
+    if (myChart1) {
+        myChart1.destroy();
     }
-});
+
+    $.ajax({
+        url: 'dadosGrafico1.php', // Substitua com o caminho correto para o seu script PHP
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            const labels = data.labels;
+            const datasetData = data.data;
+
+            myChart1 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Qtd de Vendas por mês',
+                        data: datasetData,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        },
+        error: function (error) {
+            console.error('Erro ao obter dados do gráfico 1:', error);
+        }
+    });
+}
+
+atualizarGrafico1();
+
 
 // gráfico 02 :D
 const ctx2 = document.getElementById('grafico2');
+let myChart2;
 
-function atualizarGrafico() {
+function atualizarGrafico2() {
+    // verificando se o gráfico já existe e o destrói
+    if (myChart2) {
+        myChart2.destroy();
+    }
+
     $.ajax({
         url: 'dadosGrafico2.php',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            new Chart(ctx2, {
+            myChart2 = new Chart(ctx2, {
                 type: 'polarArea',
                 data: {
                     labels: data.labels,
@@ -1438,9 +1468,9 @@ function atualizarGrafico() {
             });
         },
         error: function (error) {
-            console.error('Erro ao obter dados do gráfico:', error);
+            console.error('Erro ao obter dados do gráfico 2:', error);
         }
     });
 }
 
-atualizarGrafico();
+atualizarGrafico2();
