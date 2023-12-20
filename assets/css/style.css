@@ -1212,6 +1212,7 @@ table {
 .containerVendasRecentes,
 .containerClientesRecentes {
   width: 100%;
+  margin-bottom: 10%;
 
 }
 
