@@ -7,7 +7,7 @@ include_once './func/dashboard.php';
 ?>
 
 <div style="text-align: center;" class="headerCalendar">
-<h1>Estoque Ingredientes</h1>
+  <h1>Estoque Ingredientes</h1>
 </div>
 
 <!-- btn que chama a modal -->
@@ -22,13 +22,19 @@ include_once './func/dashboard.php';
 </button>
 
 
-
 <br><br>
+<i class="fa-solid fa-magnifying-glass fa-lg"></i>
+<label for="inputSearch" class="labelSearch">
+    <h5>Pesquisar Ingrediente </h5>
+</label>
+<div class="input-group input-group-sm mb-3">
+    <input type="text" id="buscarIngrediente" class="form-control inputSearch" aria-label="Small" placeholder="Pesquise">
+</div>
 
 
 
 <div style="height: 400px;">
-  <table class="table-financeira table table-hover">
+  <table class="table-financeira table table-hover" id="tabelaIngredientes">
     <thead>
       <tr>
         <th scope="col" width="5%"><i class="fa-solid fa-hashtag"></i> Código</th>
@@ -177,7 +183,7 @@ include_once './func/dashboard.php';
 
           <div class="mb-3">
             <label for="dataValidade" class="form-label">Data de validade</label>
-            <input type="date" class="form-control inputModal" name="dataValidade" id="dataValidade"> 
+            <input type="date" class="form-control inputModal" name="dataValidade" id="dataValidade">
           </div>
         </div>
         <div class="modal-footer modaisCorpos">
@@ -190,6 +196,7 @@ include_once './func/dashboard.php';
 </div>
 <script>
   carregaUploadIngredientes();
+
   function formatarNumeroDecimal(input) {
     input.value = input.value.replace(/,/g, '.');
   }
@@ -270,5 +277,32 @@ include_once './func/dashboard.php';
     }
 
     lerIngrediente.readAsDataURL(this.files[0]);
+  });
+
+  function buscarNomeIngrediente(nome) {
+    $.ajax({
+      url: "pesquisarIngrediente.php",
+      method: "POST",
+      data: {
+        nome: nome
+      },
+      success: function(data) {
+        $('#tabelaIngredientes tbody').html(data);
+      }
+    });
+  }
+
+  $(document).ready(function() {
+
+    buscarNomeIngrediente();
+
+    $('#buscarIngrediente').keyup(function() {
+      var nome = $(this).val();
+      if (nome != '') {
+        buscarNomeIngrediente(nome);
+      } else {
+        buscarNomeIngrediente();
+      }
+    });
   });
 </script>
