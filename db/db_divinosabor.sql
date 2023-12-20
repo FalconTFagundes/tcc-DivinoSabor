@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/12/2023 às 16:34
+-- Tempo de geração: 20/12/2023 às 11:40
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -46,17 +46,17 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`idclientes`, `nome`, `endereco`, `complemento`, `cidade`, `estado`, `cep`, `telefone`, `cadastro`, `alteracao`, `ativo`) VALUES
-(8, 'Rafael Fagundes', 'Endereco1', 'Complemento1', 'Cidade1', 'Estado1', 'CEP1', 'Telefone1', '2023-12-19 09:49:26', '2023-12-19 12:50:24', 'D'),
+(8, 'Rafael Fagundes', 'Endereco1', 'Complemento1', 'Cidade1', 'Estado1', 'CEP1', 'Telefone1', '2023-12-19 09:49:26', '2023-12-20 08:52:10', 'A'),
 (9, 'Geísa Martins', 'Endereco2', 'Complemento2', 'Cidade2', 'Estado2', 'CEP2', 'Telefone2', '2023-12-19 09:49:26', '2023-12-19 12:49:26', 'A'),
 (10, 'Widerson Alves', 'Endereco3', 'Complemento3', 'Cidade3', 'Estado3', 'CEP3', 'Telefone3', '2023-12-19 09:49:26', '2023-12-19 12:50:26', 'D'),
 (11, 'Fernando Rodrigues', 'Endereco4', 'Complemento4', 'Cidade4', 'Estado4', 'CEP4', 'Telefone4', '2023-12-19 09:49:26', '2023-12-19 12:49:26', 'A'),
-(12, 'Cliente5', 'Endereco5', 'Complemento5', 'Cidade5', 'Estado5', 'CEP5', 'Telefone5', '2023-12-19 09:49:26', '2023-12-19 13:28:05', 'D'),
+(12, 'Cliente5', 'Endereco5', 'Complemento5', 'Cidade5', 'Estado5', 'CEP5', 'Telefone5', '2023-12-19 09:49:26', '2023-12-20 09:05:28', 'A'),
 (13, 'Cliente6', 'Endereco6', 'Complemento6', 'Cidade6', 'Estado6', 'CEP6', 'Telefone6', '2023-12-19 09:49:26', '2023-12-19 12:49:26', 'A'),
 (14, 'Cliente7', 'Endereco7', 'Complemento7', 'Cidade7', 'Estado7', 'CEP7', 'Telefone7', '2023-12-19 09:49:26', '2023-12-19 12:49:26', 'A'),
-(15, 'Cliente8', 'Endereco8', 'Complemento8', 'Cidade8', 'Estado8', 'CEP8', 'Telefone8', '2023-12-19 09:49:26', '2023-12-19 13:28:09', 'D'),
+(15, 'Cliente8', 'Endereco8', 'Complemento8', 'Cidade8', 'Estado8', 'CEP8', 'Telefone8', '2023-12-19 09:49:26', '2023-12-20 09:05:30', 'A'),
 (16, 'Cliente9', 'Endereco9', 'Complemento9', 'Cidade9', 'Estado9', 'CEP9', 'Telefone9', '2023-12-19 09:49:26', '2023-12-19 12:49:26', 'A'),
-(17, 'Cliente10', 'Endereco10', 'Complemento10', 'Cidade10', 'Estado10', 'CEP10', 'Telefone10', '2023-12-19 09:49:26', '2023-12-19 12:49:26', 'A'),
-(18, 'Aparecido Das Graças', 'Rua das Graças, 102, Santa Helena', 'Apto 01', 'Governador Valadares', 'Minas Gerais', '35069-110', '(33) 9 9141-4767', '2023-12-19 10:31:36', '2023-12-19 13:31:36', 'A');
+(17, 'Cliente10', 'Endereco10', 'Complemento10', 'Cidade10', 'Estado10', 'CEP10', 'Telefone10', '2023-12-19 09:49:26', '2023-12-20 09:53:07', 'D'),
+(18, 'Aparecido Das Graças', 'Rua das Graças, 102, Santa Helena', 'Apto 01', 'Governador Valadares', 'Minas Gerais', '35069-110', '(33) 9 9141-4767', '2023-12-19 10:31:36', '2023-12-20 09:52:32', 'D');
 
 -- --------------------------------------------------------
 
@@ -77,10 +77,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
-(1, 'Teste Evento', '#D4C200', '2023-12-29 03:00:00', '2023-12-30 03:00:00'),
-(2, 'teste', '#FF0831', '2023-12-21 03:00:00', '2023-12-21 03:00:00'),
-(3, 'teste', '#FF0831', '2023-12-21 03:00:00', '2023-12-21 03:00:00'),
-(4, 'teste', '#FF0831', '2023-12-21 03:00:00', '2023-12-21 03:00:00');
+(5, 'Evento Senai', '#D4C200', '2023-12-22 03:00:00', '2023-12-25 03:00:00'),
+(6, 'Aniversário Widerson', '#297BFF', '2023-12-07 03:00:00', '2023-12-08 03:00:00');
 
 -- --------------------------------------------------------
 
@@ -90,7 +88,7 @@ INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
 
 CREATE TABLE `ingredientes` (
   `idingredientes` int(11) NOT NULL,
-  `nomeIngred` varchar(45) NOT NULL,
+  `nomeIngred` varchar(255) NOT NULL DEFAULT '',
   `img` varchar(45) NOT NULL,
   `quantIngred` int(11) NOT NULL,
   `pesoUnit` decimal(10,2) NOT NULL,
@@ -110,8 +108,10 @@ CREATE TABLE `ingredientes` (
 --
 
 INSERT INTO `ingredientes` (`idingredientes`, `nomeIngred`, `img`, `quantIngred`, `pesoUnit`, `precoUnit`, `dataComp`, `dataValidad`, `codigo`, `cadastro`, `alteracao`, `ativo`) VALUES
-(21, 'Leite Condensado Piracanjuba', '1702991221.png', 1, 3.95, 7.00, '2023-12-19', '2024-08-28', '7898215152002', '2023-12-19 10:07:01', '2023-12-19 13:13:43', 'A'),
-(22, 'Leite em pó Integral Piracanjuba', '1702991564.png', 1, 0.40, 6.00, '2023-12-19', '2024-11-02', '7898215152347', '2023-12-19 10:12:44', '2023-12-19 13:12:44', 'A');
+(21, 'Leite Condensado Piracanjuba', '1702991221.png', 1, 3.95, 7.00, '2023-12-19', '2024-08-28', '7898215152002', '2023-12-19 10:07:01', '2023-12-20 10:02:50', 'A'),
+(22, 'Leite em pó Integral Piracanjuba', '1702991564.png', 1, 0.40, 6.00, '2023-12-19', '2024-11-02', '7898215152347', '2023-12-19 10:12:44', '2023-12-19 13:12:44', 'A'),
+(25, 'Batata Palha extrafina Yoki', '1703044211.png', 24, 0.10, 9.00, '2023-12-20', '2024-08-17', '789821181515002', '2023-12-20 00:50:11', '2023-12-20 03:50:11', 'A'),
+(26, 'Morango Bandeja', '1703044333.png', 5, 0.25, 15.00, '2023-12-20', '2024-01-20', '7898277781515002', '2023-12-20 00:52:13', '2023-12-20 03:52:13', 'A');
 
 -- --------------------------------------------------------
 
@@ -138,8 +138,9 @@ INSERT INTO `pacote` (`idpacote`, `idclientes`, `pacote`, `qtdPessoas`, `cadastr
 (46, 12, 'Diamante', 50, '2023-11-23 23:25:00', '2023-12-19 13:03:06', 'A'),
 (47, 10, 'Premium', 90, '2023-12-15 09:20:00', '2023-12-19 13:03:06', 'A'),
 (48, 9, 'Halloween', 25, '2023-12-17 21:10:27', '2023-12-19 13:30:20', 'D'),
-(49, 13, 'Clássico', 20, '2023-12-18 20:01:27', '2023-12-19 13:30:20', 'A'),
-(50, 17, 'Aniversário Infantil', 35, '2023-12-19 10:01:27', '2023-12-19 13:23:11', 'D');
+(49, 13, 'Clássico', 20, '2023-12-18 20:01:27', '2023-12-20 09:54:01', 'A'),
+(50, 17, 'Aniversário Infantil', 35, '2023-12-19 10:01:27', '2023-12-19 13:23:11', 'D'),
+(52, 18, 'Duo', 2, '2023-12-20 00:14:05', '2023-12-20 09:54:10', 'A');
 
 -- --------------------------------------------------------
 
@@ -173,7 +174,10 @@ INSERT INTO `pacotecadastro` (`idpacotecadastro`, `idpacote`, `idproduto`, `cada
 (107, 47, 13, '2023-12-19 10:25:25', '2023-12-19 13:25:25', 'A', 122.00, 'Pacote exclusivo para o nosso cliente', 20),
 (108, 47, 11, '2023-12-19 10:25:25', '2023-12-19 13:25:25', 'A', 122.00, 'Pacote exclusivo para o nosso cliente', 10),
 (109, 47, 15, '2023-12-19 10:25:25', '2023-12-19 13:25:25', 'A', 122.00, 'Pacote exclusivo para o nosso cliente', 4),
-(110, 47, 14, '2023-12-19 10:25:25', '2023-12-19 13:25:25', 'A', 122.00, 'Pacote exclusivo para o nosso cliente', 15);
+(110, 47, 14, '2023-12-19 10:25:25', '2023-12-19 13:25:25', 'A', 122.00, 'Pacote exclusivo para o nosso cliente', 15),
+(113, 52, 11, '2023-12-20 00:39:18', '2023-12-20 03:39:18', 'A', 274.00, 'teste', 90),
+(114, 52, 6, '2023-12-20 00:39:18', '2023-12-20 03:39:18', 'A', 274.00, 'teste', 1),
+(115, 52, 6, '2023-11-20 00:39:18', '2023-12-20 06:16:34', 'A', 274.00, 'teste', 0);
 
 -- --------------------------------------------------------
 
@@ -198,11 +202,11 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idpedidos`, `idclientes`, `pedido`, `detalhes`, `cadastro`, `alteracao`, `ativo`, `dataEntrega`, `cor_pedidos`) VALUES
-(5, 8, 'Festa de Aniversário 2025', 'Segundo cliente, mínimo 40 pessoas estarão na festa.', '2023-12-19 10:35:31', '2023-12-19 14:03:24', 'A', '2025-08-17 22:00:00', '#D4C200'),
+(5, 8, 'Festa de Aniversário 2025', 'Segundo cliente, mínimo 40 pessoas estarão na festa.', '2023-12-19 10:35:31', '2023-12-20 09:58:58', 'D', '2025-08-17 22:00:00', '#D4C200'),
 (6, 18, 'Festa Hallowen 2024', '20 pessoas', '2023-12-19 10:36:12', '2023-12-19 13:46:27', 'A', '2024-10-31 10:30:00', '#9E77F1'),
-(7, 10, 'Festa comida de buteco', 'comida clássica de buteco, minimo 20 pessoas segundo cliente', '2023-12-19 10:36:52', '2023-12-19 14:03:17', 'A', '2023-12-25 09:20:00', '#00BD3f'),
-(8, 11, 'Salgado Saae', 'um cento de salgado, variando entre mini-coxinha, mini-pizza, quibe e pastelzinho. Segundo o cliente o mesmo foi promovido e agora precisa pagar para o seu setor um cento de salgado.', '2023-12-19 10:37:57', '2023-12-19 14:03:19', 'D', '2023-12-18 11:40:00', '#297BFF'),
-(9, 8, 'Aniversário 2024', 'Festa de aniversário do nosso fiel cliente Rafael', '2023-12-19 10:40:01', '2023-12-19 13:46:27', 'A', '2024-08-17 13:00:00', '#FF0831');
+(7, 10, 'Festa comida de buteco', 'comida clássica de buteco, minimo 20 pessoas segundo cliente', '2023-12-19 10:36:52', '2023-12-20 09:59:04', 'A', '2023-12-25 09:20:00', '#00BD3f'),
+(8, 11, 'Salgado Saae', 'um cento de salgado, variando entre mini-coxinha, mini-pizza, quibe e pastelzinho. Segundo o cliente o mesmo foi promovido e agora precisa pagar para o seu setor um cento de salgado.', '2023-12-19 10:37:57', '2023-12-20 09:58:54', 'D', '2023-12-18 11:40:00', '#297BFF'),
+(9, 8, 'Aniversário 2024', 'Festa de aniversário do nosso fiel cliente Rafael', '2023-12-19 10:40:01', '2023-12-20 09:59:00', 'D', '2024-08-17 13:00:00', '#FF0831');
 
 -- --------------------------------------------------------
 
@@ -228,8 +232,8 @@ INSERT INTO `produtos` (`idprodutos`, `img`, `produto`, `valor`, `cadastro`, `al
 (6, 'peixeFrito.jpg', 'Peixe Frito', 4.00, '2023-12-18 04:50:00', '2023-12-19 13:19:08', 'A'),
 (11, 'pasteizinhos.jpg', 'Pasteizinhos', 3.00, '2023-12-18 04:50:00', '2023-12-19 13:20:37', 'A'),
 (12, 'miniCoxinha.jpg', 'Mini-Coxinha', 0.40, '2023-12-18 04:50:00', '2023-12-19 13:19:09', 'A'),
-(13, 'doceCoco.jpg', 'Doce de Coco', 1.00, '2023-12-18 04:50:00', '2023-12-19 13:19:09', 'A'),
-(14, 'miniPizza.jpg', 'Mini-Pizza', 4.00, '2023-12-18 04:50:00', '2023-12-19 13:19:09', 'A'),
+(13, 'doceCoco.jpg', 'Doce de Coco', 1.00, '2023-12-18 04:50:00', '2023-12-20 09:51:14', 'A'),
+(14, 'miniPizza.jpg', 'Mini-Pizza', 4.00, '2023-12-18 04:50:00', '2023-12-20 09:51:21', 'A'),
 (15, 'quibe.jpg', 'Quibe Grande', 3.00, '2023-12-18 04:50:00', '2023-12-19 13:19:09', 'A');
 
 -- --------------------------------------------------------
@@ -321,31 +325,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idclientes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idclientes` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `ingredientes`
 --
 ALTER TABLE `ingredientes`
-  MODIFY `idingredientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idingredientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de tabela `pacote`
 --
 ALTER TABLE `pacote`
-  MODIFY `idpacote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `idpacote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de tabela `pacotecadastro`
 --
 ALTER TABLE `pacotecadastro`
-  MODIFY `idpacotecadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `idpacotecadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
