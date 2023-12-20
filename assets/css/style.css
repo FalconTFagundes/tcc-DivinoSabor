@@ -2122,3 +2122,17 @@ footer .wave#wave4 {
     }
   }
 }
+
+
+@media screen and (max-width: 900px) and (min-width: 626px) {
+  .img-bg img,
+  .waveLogin {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1401px) {
+  .img-bg img{
+    width: 70%;
+  }
+}
