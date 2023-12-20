@@ -80,8 +80,6 @@ include_once "./func/dashboard.php";
 </div>
 
 
-
-<!-- GRÁFICOS -->
 <div class="graficoBox">
     <div class="box">
         <canvas id="grafico2"></canvas>
@@ -236,4 +234,16 @@ $_SESSION['dados_painel_financeiro'] = [
             }
         });
     }
+
+    // grafico 2
+    const ctx2 = document.getElementById('grafico2');
+    let myChart2;
+
+    atualizarGrafico2();
+
+    //grafico 1
+    const ctx = document.getElementById('grafico1');
+    let myChart1;
+
+    atualizarGrafico1();
 </script>

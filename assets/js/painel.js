@@ -1387,18 +1387,13 @@ inputs.forEach(input => {
 // gráficos
 
 // gráfico 01 :D
-// gráfico 01 :D
-const ctx = document.getElementById('grafico1');
-let myChart1;  // Variável para armazenar a referência ao gráfico
-
 function atualizarGrafico1() {
-    // Verifica se o gráfico já existe e o destrói
     if (myChart1) {
         myChart1.destroy();
     }
 
     $.ajax({
-        url: 'dadosGrafico1.php', // Substitua com o caminho correto para o seu script PHP
+        url: 'dadosGrafico1.php', 
         type: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -1430,15 +1425,12 @@ function atualizarGrafico1() {
     });
 }
 
-atualizarGrafico1();
+/* atualizarGrafico1(); */
 
 
 // gráfico 02 :D
-const ctx2 = document.getElementById('grafico2');
-let myChart2;
 
 function atualizarGrafico2() {
-    // verificando se o gráfico já existe e o destrói
     if (myChart2) {
         myChart2.destroy();
     }
