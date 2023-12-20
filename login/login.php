@@ -3,7 +3,7 @@
 <body class="loginStyle">
 
 
-
+    <!-- 
     <div class="margin-login">
 
         <div class="main">
@@ -12,13 +12,48 @@
                 <form action="#" method="post" name="formLogin" id="formLogin">
                     <label for="chk" aria-hidden="true">Login</label>
                     <p><i class="fa-solid fa-user"></i> E-mail</p><input type="email" name="emailLogin" placeholder="Digite o seu email." required="">
+
                     <p><i class="fa-solid fa-lock"></i> Senha</p><input type="password" name="senhaLogin" placeholder="Digite a sua senha." required="">
+                    
                     <button type="submit" onclick="Login();">Entrar</button>
                     <!-- <input type="checkbox" id="chk" aria-hidden="true">Lembrar de mim. -->
 
-                </form>
+    <!-- </form>
             </div>
+        </div> -->
+
+
+
+
+    <div class="containerLogin">
+        <img class="waveLogin" src="assets/images/undraw.co/wave.png">
+        <div class="img-bg">
+            <img src="assets/images/undraw.co/bg.svg">
         </div>
+        <div class="login-content">
+            <form action="#" method="post" name="formLogin" id="formLogin">
+                <img src="assets/images/favicon/logo-2015.png">
+                <h2 class="title">Bem vindo!</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="div">
+                         <p>E-mail</p><input type="email" name="emailLogin" placeholder="Digite o seu email." required="">
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <p>Senha</p> <input type="password" name="senhaLogin" placeholder="Digite a sua senha." required="">
+                    </div>
+                </div>
+                <button type="submit" onclick="Login();">Entrar</button>
+            </form>
+        </div>
+    </div>
 
     </div>
 </body>
