@@ -140,7 +140,7 @@ include_once "./func/dashboard.php";
                                 <?php
                                 } else {
                                 ?>
-                                    <span class="status emAndamento">Desativado</span>
+                                    <span class="status emAndamento">Inativo</span>
                                 <?php
                                 }
                                 ?>
@@ -187,7 +187,7 @@ include_once "./func/dashboard.php";
                             <th>
                                 <?php
                                 if ($cliente['ativo'] == 'A') {
-                                    echo '<span class="status concluido">Ativo</span>';
+                                    echo '<span class="status concluido">Ativado</span>';
                                 } else {
                                     echo '<span class="status emAndamento">Inativo</span>';
                                 }
@@ -204,7 +204,7 @@ include_once "./func/dashboard.php";
 $_SESSION['dados_painel_financeiro'] = [
     'qtdClientes' => $retornoQtdClientes['quantidade'],
     'vendasMensais' => number_format($retornoSomaVendas, 0, ',', '.') . " R$",
-    'deficit' => $retornoDiferencaDefict . " R$",
+    'deficit' => $retornoDefict . " R$",
     'lucro' => $lucro . " R$",
     'ultimasVendas' => $retornoUltimasVendas,
     'ultimosClientes' => $ultimosClientes,

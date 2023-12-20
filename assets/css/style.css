@@ -906,6 +906,7 @@ table {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 5%;
+
 }
 
 .cardBox .card {
@@ -922,6 +923,7 @@ table {
   cursor: pointer;
   background: transparent;
   grid-gap: 25%;
+  transition-duration: 0.3s;
 }
 
 .cardBox .card:hover {
@@ -929,30 +931,35 @@ table {
   border: 1px solid #32cd32;
   transform: translateY(1px);
   transform: scale(1.1);
-  transition: 0.3s;
+  transition-duration: 0.3s;
 }
 
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
 .cardBox .card:hover .iconBox {
   color: #32cd32;
+  transition-duration: 0.3s;
+
 }
 
 .cardBox .card .numbers {
   position: relative;
   font-size: 1.6rem;
   color: #9e77f1;
+  transition-duration: 0.3s;
 }
 
 .cardBox .card .cardName {
   color: #9e77f1;
   font-size: 1.1rem;
   margin-top: 5px;
+  transition-duration: 0.3s;
 }
 
 .cardBox .card .iconBox {
   font-size: 1.6rem;
   color: #9e77f1;
+  transition-duration: 0.3s;
 }
 
 .details {
@@ -962,11 +969,15 @@ table {
   display: flex;
   justify-content: space-evenly;
   gap: 5%;
+
 }
+
+/* FINANCEIRO - CLIENTES RECENTES :D */
 
 .containerVendasRecentes,
 .containerClientesRecentes {
   width: 100%;
+
 }
 
 /* 43:15 */
@@ -974,16 +985,46 @@ table {
 .details .clientesRecentes {
   color: var(--purplePadrão);
   text-align: center;
-
   padding: 20px;
   box-shadow: 0px 6px 12px rgba(2, 2, 2, 0.1);
   border-radius: 30px;
   border: 1px solid #9e77f1;
   overflow-y: auto;
+  transition-duration: 0.3s;
 }
+
 
 .details .vendasRecentes thead {
   width: auto;
+  transition-duration: 0.3s;
+}
+
+.details .vendasRecentes p,
+.details .clientesRecentes p,
+.details .vendasRecentes th,
+.details .clientesRecentes th {
+  transition-duration: 0.3s;
+}
+
+
+.details .vendasRecentes:hover tr,
+.details .clientesRecentes:hover tr,
+.details .vendasRecentes:hover p,
+.details .clientesRecentes:hover p,
+.details .vendasRecentes:hover th,
+.details .clientesRecentes:hover th {
+  color: #32cd32 !important;
+  transition-duration: 0.3s;
+}
+
+.details table.vendasRecentes:hover,
+.details table.clientesRecentes:hover {
+  color: #32cd32 !important;
+  transition-duration: 0.2s;
+  border-color: #32cd32;
+  cursor: pointer;
+  transform: translateY(1px);
+  transform: scale(1.1);
 }
 
 .cardHeader {
@@ -1176,7 +1217,7 @@ body.swal2-height-auto {
   border: 1px solid;
 }
 
-#btnRelatFinanceiro:hover{
+#btnRelatFinanceiro:hover {
   background-color: #6f42c1;
   color: white;
 }
