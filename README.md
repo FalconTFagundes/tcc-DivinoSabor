@@ -71,3 +71,5 @@ Todos usuários possuem hash em suas senhas (criptografia bycript), mas todas as
 
 ![Menu](https://github.com/FalconTFagundes/tcc-DivinoSabor/assets/126299374/d69ab5e4-b2df-40ba-ac37-35f731d9de9a)
 
+> [!IMPORTANT]\
+> Utilizamos Ajax para efetuar os POST's e garantir que as rotas sejam efetuadas com sucesso, movimentando o usuário pelo site e fornecendo maior velocidade na transição pelos painéis. Sem contar o fato de os dados serem atualizados de maneira dinâmica, sem a necessidade de efetuar um refresh na página.
