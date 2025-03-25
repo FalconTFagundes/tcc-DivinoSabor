@@ -42,7 +42,7 @@ https://github.com/FalconTFagundes/tcc-DivinoSabor.git
 
 ## :space_invader: Sistema:
 
-<h3>Agora com seu ambiente APACHE devidamente funcional, vamos para o sistema:</h3>
+<h3>Agora com seu ambiente APACHE (Caso for rodar localhost) devidamente funcional, vamos para o sistema:</h3>
 
 ![Tela de login](https://github.com/FalconTFagundes/tcc-DivinoSabor/assets/126299374/70c95ca0-2a50-449c-8bdf-43e2f6f7be63)
 <h3>Com a tela de login aberta, podemos fazer o login com algum dos usuários cadastrados.</h3>
