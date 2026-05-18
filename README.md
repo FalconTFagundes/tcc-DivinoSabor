@@ -3,7 +3,7 @@
 <p align="center">
     
   <img width="300px" src="https://github.com/FalconTFagundes/tcc-DivinoSabor/assets/126299374/6665b44b-08c5-4d15-9736-c7d0db122df7">
-  <img width="1000px" src="https://github.com/FalconTFagundes/tcc-DivinoSabor/assets/126299374/a60539de-c2fe-438d-babc-a1b57a9c20bd">
+  <img width="310" src="https://github.com/FalconTFagundes/tcc-DivinoSabor/assets/126299374/a60539de-c2fe-438d-babc-a1b57a9c20bd">
   <h1 align="center">Sistema de Gestão Empresarial - Buffet Divino Sabor</h1>
   <h3 align="center">Trabalho de Conclusão de curso - Técnico em Desenvolvimento de Sistemas</h3>
 </p>
